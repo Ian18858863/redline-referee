@@ -65,9 +65,11 @@ def _mark(data: bytes, quotes: list[str]) -> str:
 
 
 class FakeClocked:
-    def __init__(self, truth: dict, *, compare_misses: set[str] = frozenset(), fail: set[str] = frozenset(),
-                 misalign: bool = False, low_confidence_route: bool = False):
+    def __init__(self, truth: dict, *, compare_misses: set[str] = frozenset(), verify_misses: set[str] = frozenset(),
+                 fail: set[str] = frozenset(), misalign: bool = False, low_confidence_route: bool = False,
+                 unrelated: bool = False):
         self.truth, self.compare_misses, self.fail = truth, set(compare_misses), set(fail)
+        self.verify_misses, self.unrelated = set(verify_misses), unrelated
         self.misalign, self.low = misalign, low_confidence_route
         self.calls: list[str] = []
 
@@ -81,6 +83,24 @@ class FakeClocked:
     # -- Compare
     def compare(self, request, idempotency_key=None, timeout=None):
         self._pre("compare")
+        if "text" in request["documents"][0]:        # one clause: our text against theirs
+            texts = {d["id"]: d["text"] for d in request["documents"]}
+            conflicts, dups = [], []
+            edits = [(e, "conflict") for e in self.truth["substantive"] if e["id"] not in self.compare_misses]
+            edits += [(e, "restated") for e in self.truth["cosmetic"] if e["id"].startswith("reword")]
+            shift = 1 if self.misalign else 0
+            for e, rel in edits:
+                i, j = texts["v1"].find(e["v1_quote"]), texts["v2"].find(e["v2_quote"])
+                if i < 0 or j < 0:
+                    continue
+                item = {"kind": "value" if rel == "conflict" else "restated", "confidence": 0.98,
+                        "a": {"document": "v1", "quote": e["v1_quote"], "start": i + shift, "end": i + len(e["v1_quote"]) + shift, "confidence": 1},
+                        "b": {"document": "v2", "quote": e["v2_quote"], "start": j + shift, "end": j + len(e["v2_quote"]) + shift, "confidence": 1}}
+                (conflicts if rel == "conflict" else dups).append(item)
+            rel = "conflicting" if conflicts else "same"
+            return FakeResult({"model": "fake", "verdict": "conflicts" if conflicts else "duplicates",
+                               "pairs": [{"a": "v1", "b": "v2", "relation": rel, "related": 0.99, "probabilities": {rel: 0.98},
+                                          "duplicates": dups, "conflicts": conflicts}]}, credits=6, key=idempotency_key)
         raw = {d["id"]: base64.b64decode(d["pdf"]) for d in request["documents"]}
         texts = {k: pdf_text(v) for k, v in raw.items()}
         conflicts, dups, marks = [], [], {"v1": [], "v2": []}
@@ -107,16 +127,35 @@ class FakeClocked:
                 "page_offsets": texts[k][1], "characters": len(texts[k][0]), "text": texts[k][0],
                 "marked": {"mode": "highlight", "spans": len(marks[k]), "marked": len(marks[k]), "pages": [1],
                            "document": _mark(raw[k], marks[k])}} for k in ("v1", "v2")]
-        rel = "conflicting" if conflicts else "same"
+        rel = "unrelated" if self.unrelated else "conflicting" if conflicts else "same"
         return FakeResult({"model": "fake", "verdict": "conflicts" if conflicts else "duplicates", "threshold": 0.5,
                            "evidence": request.get("evidence", "flagged"),
-                           "pairs": [{"a": "v1", "b": "v2", "relation": rel, "related": 0.99,
+                           "pairs": [{"a": "v1", "b": "v2", "relation": rel, "related": 0.02 if self.unrelated else 0.99,
                                       "probabilities": {rel: 0.98}, "duplicates": dups, "conflicts": conflicts}],
                            "pdf": pdf}, credits=40, key=idempotency_key)
 
     # -- Verify
     def grounding(self, request, idempotency_key=None, timeout=None):
         self._pre("grounding")
+        if "pdf" in request:                       # one version's sentences against the other version
+            from difflib import SequenceMatcher
+            nz = lambda x: re.sub(r"[^a-z0-9]+", "", x.lower())
+            moved = [e for e in self.truth["substantive"] if e["id"] not in self.verify_misses]
+            moved += [e for e in self.truth["cosmetic"] if e["kind"] == "address"]
+            out = []
+            for claim in request["claims"]:
+                c, hit = nz(claim), False
+                for e in moved:
+                    for q in (nz(e["v1_quote"]), nz(e["v2_quote"])):
+                        m = SequenceMatcher(None, c, q, autojunk=False).find_longest_match(0, len(c), 0, len(q))
+                        hit = hit or m.size >= min(25, len(q))
+                verdict = "contradicted" if hit else "supported"
+                item = {"claim": claim, "kind": "claim", "counted": True, "supported": 0.02, "contradicted": 0.02,
+                        "not_stated": 0.01, "not_a_claim": 0.0, "verdict": verdict, "source": None}
+                item[verdict] = 0.97
+                out.append(item)
+            return FakeResult({"model": "fake", "grounded": 0.5, "verdict": "contradicted", "claims": out,
+                               "pdf": {"pages": 3, "selected": [1, 2, 3], "mode": "text"}}, credits=12, key=idempotency_key)
         ledger = next(d["text"] for d in request["documents"] if d["id"] == "changes")
         truth = {c["text"]: c for c in self.truth["letter_claims"]}
         clause_of = {e["id"]: e["clause"] for e in self.truth["substantive"] + self.truth["cosmetic"]}
@@ -170,7 +209,8 @@ class FakeClocked:
             "route": {"type": "choice", "choice": route, "confidence": conf, "probabilities": {route: conf}},
             "favors": {"type": "choice", "choice": "customer", "confidence": 0.9},
             "materiality": {"type": "score", "score": 2.9, "confidence": 0.8,
-                            "legend": request["questions"]["materiality"]["criteria"]}}}, credits=4, key=idempotency_key)
+                            "legend": {str(i): c for i, c in enumerate(request["questions"]["materiality"]["criteria"])}}}},
+                          credits=4, key=idempotency_key)
 
     # -- Extract
     def extract(self, request, idempotency_key=None, timeout=None):

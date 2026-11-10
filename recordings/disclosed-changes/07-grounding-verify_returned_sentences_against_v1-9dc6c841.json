@@ -1,0 +1,154 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "9dc6c8419e20139f577900d3a402eb39144ddb6589aae7198751585e3b833cd9",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term. Provider may increase the fees for any renewal term by up to 3% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a minimum of 10% of the monthly fee for that month. For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Provider may increase the fees for any renewal term by up to 3% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a minimum of 10% of the monthly fee for that month.",
+   "For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 173.898308,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "a4b40d40-16d3-40b8-bdc9-b37c85e42e15",
+  "request_id": "a5846e7c5c7b0cee-BOS",
+  "wall_ms": 485,
+  "recorded_at": "2026-11-10T10:39:08+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.29,
+  "ungrounded": 0.71,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.29,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2891,
+    "supported": 0.9934,
+    "contradicted": 0.0027,
+    "not_stated": 0.0021,
+    "not_a_claim": 0.0018,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Provider may increase the fees for any renewal term by up to 3% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2208,
+    "supported": 0.002,
+    "contradicted": 0.9936,
+    "not_stated": 0.0024,
+    "not_a_claim": 0.0021,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "4.4 Fee Adjustments",
+     "start": 1609,
+     "end": 1628,
+     "confidence": 0.973
+    }
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a minimum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2996,
+    "supported": 0.0026,
+    "contradicted": 0.9919,
+    "not_stated": 0.0031,
+    "not_a_claim": 0.0024,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1905,
+    "supported": 0.0086,
+    "contradicted": 0.9693,
+    "not_stated": 0.0171,
+    "not_a_claim": 0.005,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "For thirty (30) days after termination or expiration, Provider will make",
+     "start": 2344,
+     "end": 2416,
+     "confidence": 0.99
+    }
+   }
+  ],
+  "unsupported_claims": [
+   1,
+   2,
+   3
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 308,
+   "total_ms": 309
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}

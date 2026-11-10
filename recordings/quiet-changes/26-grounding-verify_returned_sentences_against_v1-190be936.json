@@ -1,0 +1,212 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "190be9360e0e3ccf8338758797ea97b71caba95087add605577ea5e01c63ba8d",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least thirty (30) days before the end of the then-current term. Customer shall pay each undisputed invoice within ninety (90) days of the invoice date. Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time. If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the sixty (60) months before the event giving rise to the claim. This Agreement is governed by the laws of the State of Oregon, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Portland, Oregon.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least thirty (30) days before the end of the then-current term.",
+   "Customer shall pay each undisputed invoice within ninety (90) days of the invoice date.",
+   "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the sixty (60) months before the event giving rise to the claim.",
+   "This Agreement is governed by the laws of the State of Oregon, without regard to its conflict of laws rules.",
+   "The parties submit to the exclusive jurisdiction of the state and federal courts located in Portland, Oregon."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 9,
+  "model_ms": 204.257217,
+  "cost_usd": 0.001793,
+  "attempts": 1,
+  "idempotency_key": "73847713-f8b1-42f5-bacc-f0484c85417f",
+  "request_id": "a5846ac0ccc013e2-BOS",
+  "wall_ms": 476,
+  "recorded_at": "2026-11-10T10:36:35+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.3067,
+  "ungrounded": 0.6933,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.3067,
+    "claims": [
+     2,
+     3
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least thirty (30) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1964,
+    "supported": 0.0019,
+    "contradicted": 0.9931,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless",
+     "start": 831,
+     "end": 936,
+     "confidence": 0.501
+    }
+   },
+   {
+    "claim": "Customer shall pay each undisputed invoice within ninety (90) days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0773,
+    "supported": 0.0022,
+    "contradicted": 0.9922,
+    "not_stated": 0.0034,
+    "not_a_claim": 0.0023,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1058,
+    "supported": 0.9851,
+    "contradicted": 0.0069,
+    "not_stated": 0.0043,
+    "not_a_claim": 0.0036,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer must",
+     "start": 1339,
+     "end": 1352,
+     "confidence": 1
+    }
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2027,
+    "supported": 0.9913,
+    "contradicted": 0.0035,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.0024,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1893,
+     "end": 1923,
+     "confidence": 0.998
+    }
+   },
+   {
+    "claim": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the sixty (60) months before the event giving rise to the claim.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2249,
+    "supported": 0.0022,
+    "contradicted": 0.9922,
+    "not_stated": 0.0033,
+    "not_a_claim": 0.0023,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "This Agreement is governed by the laws of the State of Oregon, without regard to its conflict of laws rules.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.096,
+    "supported": 0.0025,
+    "contradicted": 0.9909,
+    "not_stated": 0.0035,
+    "not_a_claim": 0.0031,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "The parties submit to the exclusive jurisdiction of the state and federal courts located in Portland, Oregon.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0969,
+    "supported": 0.003,
+    "contradicted": 0.9893,
+    "not_stated": 0.0044,
+    "not_a_claim": 0.0033,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1,
+   4,
+   5,
+   6
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0019
+  },
+  "timing": {
+   "read_ms": 259,
+   "total_ms": 262
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}

@@ -1,0 +1,154 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "586980a08d4e23236eae8c7dce3bdec300b9c579468817436b558084fd31b16a",
+ "request": {
+  "pdf": {
+   "sha256": "bfd4a044b1742f48fb173d945670404a71ff1320890a3fe0fbdbc06ac4084f22"
+  },
+  "answer": "Customer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in advance. Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer. Either party may terminate this Agreement for material breach if the breach is not cured within thirty (30) days after written notice. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term. Any seperate attempt to assign is void.",
+  "claims": [
+   "Customer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in advance.",
+   "Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+   "Either party may terminate this Agreement for material breach if the breach is not cured within thirty (30) days after written notice. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+   "Any seperate attempt to assign is void."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 165.795998,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "b9543430-4b3e-4398-bc58-e9d164b88d4c",
+  "request_id": "a5846e5a7f86a5bb-BOS",
+  "wall_ms": 527,
+  "recorded_at": "2026-11-10T10:39:03+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0626,
+  "ungrounded": 0.9374,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.0626,
+    "claims": [
+     3
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Customer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in advance.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1739,
+    "supported": 0.002,
+    "contradicted": 0.993,
+    "not_stated": 0.0029,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.396,
+    "supported": 0.0021,
+    "contradicted": 0.9932,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.002,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "Provider retains all right, title and interest in the Service, excluding configurations, integrations and",
+     "start": 2514,
+     "end": 2619,
+     "confidence": 0.798
+    }
+   },
+   {
+    "claim": "Either party may terminate this Agreement for material breach if the breach is not cured within thirty (30) days after written notice. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3696,
+    "supported": 0.0042,
+    "contradicted": 0.9869,
+    "not_stated": 0.005,
+    "not_a_claim": 0.0038,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Any seperate attempt to assign is void.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0606,
+    "supported": 0.9887,
+    "contradicted": 0.005,
+    "not_stated": 0.0029,
+    "not_a_claim": 0.0033,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Any separate attempt to assign is void.",
+     "start": 4322,
+     "end": 4361,
+     "confidence": 1
+    }
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 317,
+   "total_ms": 321
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4902
+   ],
+   "characters": 5614
+  }
+ }
+}

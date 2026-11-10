@@ -1,0 +1,119 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 4.4",
+ "request_hash": "c81fb0e52d0bb8b2ebe8b8ad0da2f646af4b8e9c1943b56dd861b1e584f0f5e2",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Provider may increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date."
+   },
+   {
+    "id": "v2",
+    "text": "Provider may increase the fees for any renewal term by up to 3% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 93.498977,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "b613a419-ab83-4251-96fe-0533e3b9b7e1",
+  "request_id": "a5846e772e155e1e-BOS",
+  "wall_ms": 809,
+  "recorded_at": "2026-11-10T10:39:08+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9978,
+    "probabilities": {
+     "same": 0.0015,
+     "overlapping": 0.0033,
+     "conflicting": 0.993,
+     "unrelated": 0.0022
+    },
+    "duplicates": [],
+    "conflicts": [
+     {
+      "kind": "value",
+      "kinds": {
+       "value": 0.9937,
+       "date_or_version": 0.0016,
+       "rule_or_condition": 0.0015,
+       "scope": 0.001,
+       "name": 0.0012,
+       "no_conflict": 0.001
+      },
+      "confidence": 0.999,
+      "a": {
+       "document": "v1",
+       "quote": "Provider may increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.",
+       "start": 0,
+       "end": 168,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Provider may increase the fees for any renewal term by up to 3% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.",
+       "start": 0,
+       "end": 168,
+       "confidence": 1
+      }
+     }
+    ]
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 419,
+   "passage_reads": 1,
+   "passages_ms": 71,
+   "passages": 1,
+   "counterparts_ms": 83,
+   "kinds_ms": 72
+  },
+  "timing": {
+   "read_ms": 645,
+   "total_ms": 647
+  }
+ }
+}

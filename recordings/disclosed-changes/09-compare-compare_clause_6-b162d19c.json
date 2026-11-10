@@ -1,0 +1,174 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 6",
+ "request_hash": "b162d19c1c132f72c1852afd13c509d5279c985f74343498bbc10274ee8ff195",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Customer owns all data it submits to the Service (\"Customer Data\"). Provider will process Customer Data only to provide the Service. For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it."
+   },
+   {
+    "id": "v2",
+    "text": "Customer owns all data it submits to the Service (\"Customer Data\"). Provider will process Customer Data only to provide the Service. For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 149.650461,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "02bab4c6-459d-45a9-b1ec-3afefb5a576e",
+  "request_id": "a5846e7c3b5d5e1e-BOS",
+  "wall_ms": 708,
+  "recorded_at": "2026-11-10T10:39:08+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [
+     "v2"
+    ],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [
+     "v1"
+    ],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9988,
+    "probabilities": {
+     "same": 0.0009,
+     "overlapping": 0.0017,
+     "conflicting": 0.9962,
+     "unrelated": 0.0012
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9927,
+       "restated": 0.003,
+       "elaborated": 0.0021,
+       "different": 0.0022
+      },
+      "confidence": 0.9978,
+      "a": {
+       "document": "v1",
+       "quote": "Customer owns all data it submits to the Service (\"Customer Data\").",
+       "start": 0,
+       "end": 67,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Customer owns all data it submits to the Service (\"Customer Data\").",
+       "start": 0,
+       "end": 67,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9924,
+       "restated": 0.0031,
+       "elaborated": 0.0021,
+       "different": 0.0023
+      },
+      "confidence": 0.9977,
+      "a": {
+       "document": "v1",
+       "quote": "Provider will process Customer Data only to provide the Service.",
+       "start": 68,
+       "end": 132,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Provider will process Customer Data only to provide the Service.",
+       "start": 68,
+       "end": 132,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": [
+     {
+      "kind": "value",
+      "kinds": {
+       "value": 0.9915,
+       "date_or_version": 0.0024,
+       "rule_or_condition": 0.0015,
+       "scope": 0.0015,
+       "name": 0.0018,
+       "no_conflict": 0.0013
+      },
+      "confidence": 0.9987,
+      "a": {
+       "document": "v1",
+       "quote": "For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+       "start": 133,
+       "end": 278,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+       "start": 133,
+       "end": 278,
+       "confidence": 1
+      }
+     }
+    ]
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [
+   0
+  ],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 177,
+   "passage_reads": 1,
+   "passages_ms": 153,
+   "passages": 3,
+   "counterparts_ms": 89,
+   "kinds_ms": 16
+  },
+  "timing": {
+   "read_ms": 435,
+   "total_ms": 438
+  }
+ }
+}

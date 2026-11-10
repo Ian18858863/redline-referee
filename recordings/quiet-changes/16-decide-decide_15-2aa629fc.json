@@ -1,0 +1,104 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 15",
+ "request_hash": "2aa629fc62d03882e6d5ac4d4290f60110b601d378c0401f9715dee1e50d9171",
+ "request": {
+  "state": {
+   "clause": "15 Governing Law",
+   "change": "“Delaware” → “Oregon”; “Wilmington, Delaware” → “Portland, Oregon”",
+   "we_sent": "of the State of Delaware, without regard to",
+   "they_returned": "of the State of Oregon, without regard to",
+   "playbook": [
+    "Governing law: any other state: Any governing law or venue other than Delaware or New York, including the customer's home state, needs the approval of Legal before signature."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, and the playbook passages that apply to it, if any. Judge only this change. The deal desk may accept or counter only what the playbook says it may; anything the playbook reserves for Legal, Finance or another approver, or does not cover, is escalated.",
+  "questions": {
+   "route": {
+    "type": "choice",
+    "criteria": {
+     "accept": "The playbook lets the deal desk accept this change as written, or the change is purely administrative.",
+     "counter": "The playbook gives the deal desk a position or fallback to send back instead of this change.",
+     "escalate": "The change needs an approver outside the deal desk, is refused by the playbook, or is not covered by it."
+    }
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 29.3472,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "ae132bd5-9ff6-4881-8ff1-a1748f9ddc69",
+  "request_id": "a5845e650b8b303a-BOS",
+  "wall_ms": 211,
+  "recorded_at": "2026-11-10T10:28:09+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "escalate",
+    "probabilities": {
+     "accept": 0.002,
+     "counter": 0.002,
+     "escalate": 0.996
+    },
+    "confidence": 0.9939
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.88,
+     "provider": 0.059,
+     "neutral": 0.061
+    },
+    "confidence": 0.82
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.5884,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0306,
+     "1": 0.0344,
+     "2": 0.0753,
+     "3": 0.0355,
+     "4": 0.8242
+    },
+    "confidence": 0.7803
+   }
+  },
+  "usage": {
+   "input_tokens": 211,
+   "output_tokens": 11
+  }
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 7",
+ "request_hash": "7f9ba60fa11493853e359949d0b52a5e0ad9a0da831314bdd69358f848355b3b",
+ "request": {
+  "state": {
+   "clause": "7 Intellectual Property",
+   "change": "Clause rewritten",
+   "we_sent": "Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+   "they_returned": "Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
+   "playbook": "The playbook has no passage that covers this change."
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, and the playbook passages that apply to it, if any. Judge only this change. The deal desk may accept or counter only what the playbook says it may; anything the playbook reserves for Legal, Finance or another approver, or does not cover, is escalated.",
+  "questions": {
+   "route": {
+    "type": "choice",
+    "criteria": {
+     "accept": "The playbook lets the deal desk accept this change as written, or the change is purely administrative.",
+     "counter": "The playbook gives the deal desk a position or fallback to send back instead of this change.",
+     "escalate": "The change needs an approver outside the deal desk, is refused by the playbook, or is not covered by it."
+    }
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 29.972383,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "73ea98d1-55d2-4e21-b1a3-583efdfa43ba",
+  "request_id": "a5846e68ab384d18-BOS",
+  "wall_ms": 226,
+  "recorded_at": "2026-11-10T10:39:05+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "escalate",
+    "probabilities": {
+     "accept": 0.0024,
+     "counter": 0.002,
+     "escalate": 0.9956
+    },
+    "confidence": 0.9935
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9878,
+     "provider": 0.0069,
+     "neutral": 0.0053
+    },
+    "confidence": 0.9817
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.7271,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0076,
+     "1": 0.0073,
+     "2": 0.0079,
+     "3": 0.2045,
+     "4": 0.7726
+    },
+    "confidence": 0.7157
+   }
+  },
+  "usage": {
+   "input_tokens": 213,
+   "output_tokens": 11
+  }
+ }
+}

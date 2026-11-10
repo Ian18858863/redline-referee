@@ -1,0 +1,112 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "5790d36fcb9effafd7bc244afd67955fecd8911aebc1d1e81ceeb5496fc0ea6f",
+ "request": {
+  "pdf": {
+   "sha256": "636e2455fcf4b50b8e80da88f485418f454a7b1f2185b5fef0fe95c3379a2814"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 123.721058,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "bdf10bf1-187e-4704-a1ee-47903d81ff68",
+  "request_id": "a5846ea029279009-BOS",
+  "wall_ms": 438,
+  "recorded_at": "2026-11-10T10:39:14+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9918,
+  "ungrounded": 0.0082,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.9918,
+    "claims": [
+     0,
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4899,
+    "supported": 0.991,
+    "contradicted": 0.0042,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.002,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5101,
+    "supported": 0.9926,
+    "contradicted": 0.0029,
+    "not_stated": 0.0025,
+    "not_a_claim": 0.0019,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1894,
+     "end": 1924,
+     "confidence": 0.995
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.991
+  },
+  "timing": {
+   "read_ms": 184,
+   "total_ms": 188
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2196,
+    4655
+   ],
+   "characters": 5367
+  }
+ }
+}

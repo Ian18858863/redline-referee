@@ -1,0 +1,104 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 4.4",
+ "request_hash": "c0f9450abf90644188816dae1495ea119254a248713885403c7c706570d30fc1",
+ "request": {
+  "state": {
+   "clause": "4.4 Fee Adjustments",
+   "change": "5% → 3%",
+   "we_sent": "term by up to 5% over the fees for",
+   "they_returned": "term by up to 3% over the fees for",
+   "playbook": [
+    "Fees: renewal price increases: Our standard renewal increase cap is 5%. The deal desk may lower the cap to 3% for an initial term of three years or longer. A cap below 3%, or a price freeze, needs the approval of the VP Finance."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, and the playbook passages that apply to it, if any. Judge only this change. The deal desk may accept or counter only what the playbook says it may; anything the playbook reserves for Legal, Finance or another approver, or does not cover, is escalated.",
+  "questions": {
+   "route": {
+    "type": "choice",
+    "criteria": {
+     "accept": "The playbook lets the deal desk accept this change as written, or the change is purely administrative.",
+     "counter": "The playbook gives the deal desk a position or fallback to send back instead of this change.",
+     "escalate": "The change needs an approver outside the deal desk, is refused by the playbook, or is not covered by it."
+    }
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 29.409569,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "b649b563-93c8-465f-b55f-cb215840af82",
+  "request_id": "a5846e8df8f2639f-BOS",
+  "wall_ms": 216,
+  "recorded_at": "2026-11-10T10:39:11+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "accept",
+    "probabilities": {
+     "accept": 0.8325,
+     "counter": 0.0369,
+     "escalate": 0.1306
+    },
+    "confidence": 0.7487
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9832,
+     "provider": 0.0105,
+     "neutral": 0.0063
+    },
+    "confidence": 0.9748
+   },
+   "materiality": {
+    "type": "score",
+    "score": 1.1121,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0109,
+     "1": 0.8986,
+     "2": 0.0666,
+     "3": 0.0154,
+     "4": 0.0085
+    },
+    "confidence": 0.8732
+   }
+  },
+  "usage": {
+   "input_tokens": 221,
+   "output_tokens": 11
+  }
+ }
+}

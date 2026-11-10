@@ -24,10 +24,13 @@ CASES = ROOT / "data" / "cases"
 def run(case_id: str, live: bool, out_root: Path, **kw) -> dict:
     d = CASES / case_id
     truth = json.loads((d / "truth.json").read_text())
+    kw_prune = kw.pop("prune", False)
     gw = Gateway("auto" if live else "replay", ROOT / "recordings" / case_id, record=live,
                  credit_cap=kw.pop("credit_cap", None))
     r = review(d / "v1.pdf", d / "v2.pdf", (d / "cover.txt").read_text(), gw, out_root / case_id,
                case={"id": case_id, "title": truth["title"], "description": truth["description"]}, **kw)
+    if kw_prune and not r["errors"]:
+        print(f"   pruned {gw.prune()} unused recording(s)")
     live_calls = sum(not a["replayed"] for a in gw.audit)
     print(f"{case_id:26} {r['status']:10} expected {truth['expected_status']:8} changes {len(r['changes']):2} "
           f"errors {len(r['errors'])} calls {len(gw.audit)} (live {live_calls}) credits {r['audit']['credits']}")
@@ -43,13 +46,14 @@ def main() -> None:
     ap.add_argument("--live", action="store_true")
     ap.add_argument("--out", default=str(ROOT / "docs" / "cases"))
     ap.add_argument("--credit-cap", type=int, default=None)
+    ap.add_argument("--prune", action="store_true", help="after a clean run, delete recordings the run did not use")
     a = ap.parse_args()
     index = json.loads((CASES / "index.json").read_text())
     ids = a.cases or [c["id"] for c in index if c["group"] == "demo"]
     out = Path(a.out)
     listing = []
     for cid in ids:
-        r = run(cid, a.live, out, credit_cap=a.credit_cap)
+        r = run(cid, a.live, out, credit_cap=a.credit_cap, prune=a.prune)
         meta = next(c for c in index if c["id"] == cid)
         listing.append({"id": cid, "title": meta["title"], "description": meta["description"], "status": r["status"]})
     if a.demo or not a.cases:

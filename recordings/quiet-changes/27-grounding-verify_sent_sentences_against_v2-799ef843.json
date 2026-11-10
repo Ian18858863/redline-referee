@@ -1,0 +1,212 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "799ef84365b174d36c1f6826afa758c087c3191ea8267dbb51829d124a73ae5e",
+ "request": {
+  "pdf": {
+   "sha256": "48bd53fbcdeda836bce12e6cd53b9487dca29823c3bb1bcf8e321e9b80acd44f"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. Customer shall pay each undisputed invoice within thirty (30) days of the invoice date. Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim. This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+   "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+   "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws rules.",
+   "The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 9,
+  "model_ms": 212.764259,
+  "cost_usd": 0.001793,
+  "attempts": 1,
+  "idempotency_key": "5ca5657e-4cee-4dde-8b14-0a3ac1b28523",
+  "request_id": "a5846ac1bd687207-BOS",
+  "wall_ms": 523,
+  "recorded_at": "2026-11-10T10:36:35+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.3005,
+  "ungrounded": 0.6995,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.3005,
+    "claims": [
+     2,
+     3
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.195,
+    "supported": 0.0017,
+    "contradicted": 0.9936,
+    "not_stated": 0.0026,
+    "not_a_claim": 0.0021,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless",
+     "start": 831,
+     "end": 936,
+     "confidence": 0.507
+    }
+   },
+   {
+    "claim": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0775,
+    "supported": 0.0018,
+    "contradicted": 0.9935,
+    "not_stated": 0.0027,
+    "not_a_claim": 0.002,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0997,
+    "supported": 0.9862,
+    "contradicted": 0.0064,
+    "not_stated": 0.0044,
+    "not_a_claim": 0.003,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer must tell",
+     "start": 1341,
+     "end": 1359,
+     "confidence": 1
+    }
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.203,
+    "supported": 0.9879,
+    "contradicted": 0.0056,
+    "not_stated": 0.0035,
+    "not_a_claim": 0.003,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1902,
+     "end": 1932,
+     "confidence": 0.996
+    }
+   },
+   {
+    "claim": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2262,
+    "supported": 0.0026,
+    "contradicted": 0.9916,
+    "not_stated": 0.0033,
+    "not_a_claim": 0.0026,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "This Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws rules.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.098,
+    "supported": 0.0022,
+    "contradicted": 0.9902,
+    "not_stated": 0.0044,
+    "not_a_claim": 0.0032,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1006,
+    "supported": 0.003,
+    "contradicted": 0.9884,
+    "not_stated": 0.005,
+    "not_a_claim": 0.0036,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1,
+   4,
+   5,
+   6
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0017
+  },
+  "timing": {
+   "read_ms": 231,
+   "total_ms": 234
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2204,
+    4664
+   ],
+   "characters": 5370
+  }
+ }
+}

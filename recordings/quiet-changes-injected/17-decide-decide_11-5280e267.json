@@ -1,0 +1,104 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 11",
+ "request_hash": "5280e26783b8d840ed469df73efb11b322a08e2b7db58daca337d2edc502a982",
+ "request": {
+  "state": {
+   "clause": "11 Termination",
+   "change": "Clause rewritten",
+   "we_sent": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+   "they_returned": "Customer may terminate this Agreement for convenience at any time on thirty (30) days' written notice and will receive a pro-rata refund of prepaid fees.",
+   "playbook": [
+    "Term: termination for convenience: We do not give customers a right to terminate for convenience. If the customer insists, escalate to Legal. Legal may offer termination for convenience after the first twelve months with no refund of prepaid fees."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, and the playbook passages that apply to it, if any. Judge only this change. The deal desk may accept or counter only what the playbook says it may; anything the playbook reserves for Legal, Finance or another approver, or does not cover, is escalated.",
+  "questions": {
+   "route": {
+    "type": "choice",
+    "criteria": {
+     "accept": "The playbook lets the deal desk accept this change as written, or the change is purely administrative.",
+     "counter": "The playbook gives the deal desk a position or fallback to send back instead of this change.",
+     "escalate": "The change needs an approver outside the deal desk, is refused by the playbook, or is not covered by it."
+    }
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 29.223583,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "abe84959-d5d7-40d4-b15f-637e592afe73",
+  "request_id": "a5846e69aabf910c-BOS",
+  "wall_ms": 256,
+  "recorded_at": "2026-11-10T10:39:05+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "escalate",
+    "probabilities": {
+     "accept": 0.0107,
+     "counter": 0.0138,
+     "escalate": 0.9756
+    },
+    "confidence": 0.9633
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9924,
+     "provider": 0.0042,
+     "neutral": 0.0034
+    },
+    "confidence": 0.9886
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.6814,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0051,
+     "1": 0.0107,
+     "2": 0.0364,
+     "3": 0.1933,
+     "4": 0.7545
+    },
+    "confidence": 0.6931
+   }
+  },
+  "usage": {
+   "input_tokens": 230,
+   "output_tokens": 11
+  }
+ }
+}

@@ -98,6 +98,7 @@ class Gateway:
         self._client = client
         self._lock = threading.Lock()
         self._index: dict[str, Path] = {}
+        self.used: set[Path] = set()            # recordings this run actually read or wrote
         if self.dir and self.dir.is_dir():
             for f in sorted(self.dir.glob("*.json")):
                 try:
@@ -117,6 +118,7 @@ class Gateway:
         saved = self._index.get(h)
         if saved is not None and self.mode in ("replay", "auto"):
             rec = json.loads(saved.read_text(encoding="utf-8"))
+            self.used.add(saved)
             self._log(endpoint, label, rec["meta"], replayed=True)
             return rec["response"]
         if self.mode == "replay":
@@ -157,8 +159,16 @@ class Gateway:
                                         "request": _strip(request), "meta": meta, "response": response},
                                        indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
             self._index[h] = path
+            self.used.add(path)
         self._log(endpoint, label, meta, replayed=False)
         return response
+
+    def prune(self) -> int:
+        """Delete recordings in this folder that the run did not use (left over from earlier request shapes)."""
+        stale = [f for f in (self.dir.glob("*.json") if self.dir and self.dir.is_dir() else []) if f not in self.used]
+        for f in stale:
+            f.unlink()
+        return len(stale)
 
     # -- internals ------------------------------------------------------------
     def _sdk(self):

@@ -8,12 +8,28 @@ COMPARE_INSTRUCTIONS = (
     "'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are not conflicts."
 )
 
+COMPARE_DOCUMENT_INSTRUCTIONS = (
+    "Document v1 is the agreement we sent. Document v2 is the copy the counterparty returned. Decide whether they "
+    "are two versions of the same agreement between the same parties."
+)
+
+COMPARE_CLAUSE_INSTRUCTIONS = (
+    "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the "
+    "counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an "
+    "obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if "
+    "only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting "
+    "such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, "
+    "not a conflict."
+)
+RELATED_FLOOR = 0.5                # below this, the two files are not treated as versions of one agreement
+
 VERIFY_INSTRUCTIONS = (
     "The answer is a cover note the counterparty wrote about the copy of the agreement they returned. Document "
     "'v2' is that returned copy. Document 'changes' lists every difference found between the copy we sent and "
     "v2. A statement that a term is unchanged, or that no commercial or legal terms changed, is contradicted "
     "when 'changes' lists a substantive change to that term. A statement that describes a change is supported "
-    "only when 'changes' or v2 shows that same change. Judge each claim on these two documents alone."
+    "only when 'changes' or v2 shows that same change. A statement that a term is unchanged is supported when "
+    "'changes' says that the clause holding that term is unchanged. Judge each claim on these two documents alone."
 )
 
 XVERIFY_INSTRUCTIONS = (
@@ -67,25 +83,29 @@ MEANING_CHANGED_FLOOR = 0.6        # Verify "contradicted" at or above this: the
 MEANING_SAME_FLOOR = 0.8           # Verify "supported" at or above this, in both directions: same meaning
 SAME_AGREEMENT_FLOOR = 0.5         # Compare "related" below this: the two files are not versions of one agreement
 
+RERANK_USE_FLOOR = 0.9             # a passage is quoted only when Rerank says "use" at or above this relevance
+
 RERANK_INSTRUCTIONS = (
     "The passages are internal playbook rules for the Provider's deal desk. A passage answers the query only if "
     "it tells the deal desk how to respond to this specific change for a deal of this size."
 )
 
+# Each field asks for the complete phrase, not the bare number: a bare "30" or "Delaware" occurs in several
+# clauses and the span would land on the first one. A phrase is unique, so its position is the right one.
 EXTRACT_FIELDS = {
-    "annual_fee": "The annual subscription fee, as written, with its currency symbol",
-    "payment_terms": "How many days after the invoice date the Customer must pay undisputed invoices",
-    "late_interest": "The interest rate on overdue amounts",
-    "price_increase_cap": "The maximum percentage by which fees may increase for a renewal term",
-    "initial_term": "The length of the initial term",
-    "renewal_notice": "How long before the end of the term a party must give notice of non-renewal",
-    "uptime": "The monthly availability percentage the Provider commits to",
-    "service_credit_limit": "The limit on service credits as a percentage of the monthly fee, including whether it is a maximum or a minimum",
-    "liability_cap": "The period of fees that caps each party's total liability",
-    "data_export_window": "How long after termination Customer Data stays available for export",
-    "confidentiality_period": "How long confidentiality obligations continue after termination",
-    "governing_law": "The state whose laws govern the agreement",
-    "venue": "The city and state of the courts with exclusive jurisdiction",
+    "annual_fee": "The annual subscription fee the Customer pays, as written, with its currency symbol",
+    "payment_terms": "The complete phrase that states when the Customer must pay undisputed invoices, from the word 'within' to the words 'invoice date'",
+    "late_interest": "The complete phrase that states the interest rate on overdue amounts, including the word 'rate' and the period",
+    "price_increase_cap": "The complete phrase that states by how much the Provider may increase fees for a renewal term, including the words 'by up to' and 'over the fees'",
+    "initial_term": "The length of the initial term, as written",
+    "renewal_notice": "The complete phrase that states how long before the end of the term notice of non-renewal must be given, including the words 'at least' and 'before'",
+    "uptime": "The complete phrase that states the monthly availability commitment, including the words 'at least'",
+    "service_credit_limit": "The complete phrase that limits service credits as a percentage of the monthly fee, including whether it is a maximum or a minimum",
+    "liability_cap": "The complete phrase that states which period of fees caps each party's total liability, from the words 'fees paid' to the words 'the claim'",
+    "data_export_window": "The complete phrase that states how long after termination or expiration Customer Data stays available, from the word 'For' to the word 'expiration'",
+    "confidentiality_period": "The complete phrase that states how long confidentiality obligations continue, from the word 'continue' to the word 'after'",
+    "governing_law": "The complete phrase that names the governing law, from the words 'governed by' to the name of the state",
+    "venue": "The complete phrase that names the courts with exclusive jurisdiction, from the word 'courts' to the name of the state",
 }
 TERM_LABELS = {
     "annual_fee": "Annual fee", "payment_terms": "Payment terms", "late_interest": "Late interest",

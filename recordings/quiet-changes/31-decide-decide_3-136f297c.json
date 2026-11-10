@@ -1,0 +1,104 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 3",
+ "request_hash": "136f297c6a0fdf54575428dcdfe8798e69e96464dd55854085cab9ff855f9cde",
+ "request": {
+  "state": {
+   "clause": "3 Renewal",
+   "change": "60 days → 30 days",
+   "we_sent": "of non-renewal at least sixty (60) days before the",
+   "they_returned": "of non-renewal at least thirty (30) days before the",
+   "playbook": [
+    "Term: notice of non-renewal: We ask for sixty days' notice of non-renewal. The deal desk may accept thirty days. Shorter than thirty days needs the approval of the VP Customer Success because it leaves no time to plan capacity."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, and the playbook passages that apply to it, if any. Judge only this change. The deal desk may accept or counter only what the playbook says it may; anything the playbook reserves for Legal, Finance or another approver, or does not cover, is escalated.",
+  "questions": {
+   "route": {
+    "type": "choice",
+    "criteria": {
+     "accept": "The playbook lets the deal desk accept this change as written, or the change is purely administrative.",
+     "counter": "The playbook gives the deal desk a position or fallback to send back instead of this change.",
+     "escalate": "The change needs an approver outside the deal desk, is refused by the playbook, or is not covered by it."
+    }
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 29.190912,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "eed814e6-5a7c-490d-a941-a6787456197b",
+  "request_id": "a5846ad05b384cf6-BOS",
+  "wall_ms": 271,
+  "recorded_at": "2026-11-10T10:36:38+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "route": {
+    "type": "choice",
+    "choice": "accept",
+    "probabilities": {
+     "accept": 0.9884,
+     "counter": 0.0082,
+     "escalate": 0.0034
+    },
+    "confidence": 0.9825
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9394,
+     "provider": 0.0487,
+     "neutral": 0.0119
+    },
+    "confidence": 0.9092
+   },
+   "materiality": {
+    "type": "score",
+    "score": 1.0141,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0066,
+     "1": 0.9831,
+     "2": 0.0036,
+     "3": 0.0027,
+     "4": 0.0039
+    },
+    "confidence": 0.9789
+   }
+  },
+  "usage": {
+   "input_tokens": 221,
+   "output_tokens": 11
+  }
+ }
+}
