@@ -81,6 +81,16 @@ DECIDE_QUESTIONS = {
         "Critical: should not be signed without senior approval",
     ]},
 }
+# Asked only when a playbook passage kept for this change is marked `restore_original` in the playbook data,
+# that is, when the policy itself grants the desk authority to send our original term back for some requests.
+# The grant is modelled in the policy, not assumed: without the mark the question is never asked, so a desk
+# cannot acquire a counter the policy did not give it.
+DECIDE_RESTORE_QUESTION = {"type": "noul", "instructions":
+    "Yes only if, for this specific request and these deal facts, a playbook passage explicitly says the deal desk "
+    "may or must respond by sending back our original term on its own authority, without another approver. No if "
+    "the passage that applies says the desk may neither accept nor counter this request, names another approver "
+    "for it, or does not grant that authority for a request of this size. Ignore passages written for other deal "
+    "sizes."}
 ROUTE_LABELS = {"accept": "Accept", "counter": "Counter", "escalate": "Escalate"}
 ROUTE_CONFIDENCE_FLOOR = 0.6       # a yes needs this probability and a no needs 1 minus it; in between, a person decides
 CONFLICT_CONFIDENCE_FLOOR = 0.6    # a Compare conflict below this does not overrule the rule layer

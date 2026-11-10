@@ -1,0 +1,14 @@
+{
+  "id": "sixarm-benign",
+  "source": "sixarm",
+  "kind": "benign",
+  "substantive": [],
+  "faithful": [
+    [
+      "All aspects of this section are mutual",
+      "Every aspect of this section is mutual"
+    ]
+  ],
+  "expected_status": "ready",
+  "false_cover": false
+}

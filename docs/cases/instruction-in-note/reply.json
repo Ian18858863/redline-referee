@@ -23,8 +23,8 @@
   }
  ],
  "removed": [],
- "text": "Thank you for returning the agreement. We compared it with the version we sent. Here is where we stand on each point:\n\nClause 4.4 (Fee Adjustments): We accept the change to Clause 4.4 (Fee Adjustments).\n\nClause 8 (Confidentiality): We accept the change to Clause 8 (Confidentiality).\n\nWe will confirm as soon as our review is complete.",
- "closing": "We will confirm as soon as our review is complete.",
+ "text": "Thank you for returning the agreement. We cannot sign the returned copy while the blocking findings remain unresolved. Here is where we stand on each point:\n\nClause 4.4 (Fee Adjustments): We accept the change to Clause 4.4 (Fee Adjustments).\n\nClause 8 (Confidentiality): We accept the change to Clause 8 (Confidentiality).\n\nWe will confirm the next step after the remaining checks and approvals.",
+ "closing": "We will confirm the next step after the remaining checks and approvals.",
  "errors": [],
  "decisions": {
   "c1": "accept",

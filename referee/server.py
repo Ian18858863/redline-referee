@@ -418,6 +418,12 @@ def create_app(runs_dir: str | Path | None = None, uploads_dir: str | Path | Non
         source = folder / "review.json"
         if not source.is_file():
             raise HTTPException(404, MSG_NOT_FOUND)
+        from .reply import ReplyNotReady, validate_reply
+        saved_review = json.loads(source.read_text(encoding="utf-8"))
+        try:
+            validate_reply(saved_review, decisions)
+        except ReplyNotReady as exc:
+            raise HTTPException(422, str(exc)) from None
         addr, now = _client_addr(request), time.time()
         with state_lock:
             recent = [t for t in reply_hits.get(addr, []) if now - t < 3600]
@@ -426,7 +432,7 @@ def create_app(runs_dir: str | Path | None = None, uploads_dir: str | Path | Non
             reply_hits[addr] = recent + [now]
         try:
             from .reply import draft_reply
-            out = draft_reply(json.loads(source.read_text(encoding="utf-8")), decisions,
+            out = draft_reply(saved_review, decisions,
                               Gateway("live", credit_cap=int(_env_number("CLOCKED_REPLY_CREDIT_CAP", 120))))
         except Exception:
             log.exception("reply for %s failed", base)

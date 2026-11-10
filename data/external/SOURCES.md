@@ -1,0 +1,13 @@
+# External-source challenge provenance
+
+Frozen before the first new API call. Source texts were authored outside this project; mutations and labels were authored by us. This is not an independently adjudicated or blinded benchmark.
+
+- Common Paper Mutual NDA 1.0: https://github.com/CommonPaper/Mutual-NDA , tree `2a3068b6c0ab6015c440f541d5b215bc3ac2f4cb`, Markdown blob `709a94c90b6ada18757b21b37975984ea39c4819`. Copyright Common Paper, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . Full standard terms exported with ReportLab, Helvetica, US Letter. Placeholders are retained; no executed agreement or customer information.
+- Bonterms Mutual NDA 1.0: https://github.com/Bonterms/Mutual-NDA , tree `1b6e3a67176d47bbb89633bd4ec2be2c32d6cacf`, publisher PDF blob `b0b5f1fc158e802d41b806c9ac196377dbdc4b58`. Copyright 2021 Bonterms, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/ . The unmodified publisher PDF is retained; small spans are redacted and replaced for each test. Its original dense layout and branding remain. Modified test copies are not official Bonterms forms.
+- SixArm consulting agreement: https://github.com/SixArm/consulting-agreement , commit `4271e42c800cb272736884ce23680babd2688654`. Copyright SixArm; selected license CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/ . Full upstream Markdown retained. Only sections 6 (Limits) and 7 (Mutual Resolution) are exported, Times, A4. The excerpt and its edited derivatives remain CC BY-SA 4.0, not the repository's MIT license.
+
+Each source has one pair with two substantive edits and one pair with one faithful rewording. Both parties' substantive terms are pre-labelled; no outputs were consulted. `LOCK.json` binds source snapshots, PDFs, cover notes, labels, routing fixtures and the first-run code digests. Rebuilding after observing outputs requires a separately named corpus and protocol.
+
+Detection reviews deliberately skip the SaaS-specific Extract schema and company playbook routing (`terms=False, route=False`). They test PDF extraction, alignment, deterministic differences, Compare, bidirectional Verify, Guard and the cover note. They do not establish NDA-specific routing quality, multilingual coverage, scans/OCR, legal correctness, or production generalization.
+
+Routing is a separate component experiment using six locked fee/payment contexts and an explicitly fictional policy. Fee is supplied as known context. Only retrieval changes across Rerank / all passages / first same-topic passage; Decide and change evidence stay fixed. Report failures and ties; do not claim Rerank uplift if all-passages ties it.

@@ -1,0 +1,27 @@
+{
+  "id": "beipa-changed",
+  "source": "github-beipa",
+  "kind": "changed",
+  "substantive": [
+    [
+      "the Company will compensate you at a reasonable rate",
+      "the Company may compensate you at a reasonable rate"
+    ],
+    [
+      "including the one furnished to you by the Company",
+      "excluding the one furnished to you by the Company"
+    ]
+  ],
+  "faithful": [],
+  "faithful_why": [],
+  "expected_status": "blocked",
+  "false_cover": true,
+  "concealed_new": false,
+  "inherited_fine_print": false,
+  "substantive_type": [
+    "obligation -> discretion ('will' -> 'may'; section 7: post-employment help is no longer necessarily paid)",
+    "carve-out added ('including' -> 'excluding'; section 2: IP made on a Company computer loses the protection)"
+  ],
+  "faithful_type": [],
+  "notes": "Two substantive edits; the cover note says the wording is unchanged, which is false."
+}

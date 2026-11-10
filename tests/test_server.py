@@ -584,7 +584,7 @@ def test_reply_needs_a_key_a_known_review_and_valid_decisions(tmp_path, monkeypa
 
     runs, cases = tmp_path / "runs", tmp_path / "cases"
     (cases / "demo").mkdir(parents=True)
-    (cases / "demo" / "review.json").write_text(_json.dumps({"changes": []}))
+    (cases / "demo" / "review.json").write_text(_json.dumps({"status": "changes", "changes": [{"id": "c1", "blocking": True}]}))
     web = tmp_path / "web"
     web.mkdir()
     (web / "index.html").write_text("ok")

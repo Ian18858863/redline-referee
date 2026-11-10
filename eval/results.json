@@ -2,6 +2,7 @@
  "summary": {
   "pairs": 15,
   "pairs_complete": 15,
+  "pairs_failed": 0,
   "edits": 30,
   "edits_held": 30,
   "edits_verify_changed": 30,
@@ -33,14 +34,16 @@
   "route_correct": 27,
   "route_stricter": 3,
   "route_looser": 0,
+  "route_missing": 0,
+  "claims_not_checked": 0,
   "route_misses": [
    "data_export: counter (playbook says accept)",
    "data_export: counter (playbook says accept)",
    "data_export: counter (playbook says accept)"
   ],
-  "rerank_expected_passage_used": 23,
+  "rerank_expected_passage_used": 24,
   "rerank_with_passage": 24,
-  "rerank_extra_passages": 6,
+  "rerank_extra_passages": 4,
   "rerank_none_when_none": 6,
   "rerank_without_passage": 6,
   "credits": 1136,
@@ -53,7 +56,8 @@
    "false_statements_missed": 0,
    "status_wrong": 0,
    "pairs": 24,
-   "incomplete": 0
+   "incomplete": 0,
+   "failures": []
   },
   "without Verify": {
    "real_cleared": 0,
@@ -61,7 +65,8 @@
    "false_statements_missed": 39,
    "status_wrong": 13,
    "pairs": 24,
-   "incomplete": 0
+   "incomplete": 0,
+   "failures": []
   },
   "without Compare": {
    "real_cleared": 4,
@@ -69,7 +74,8 @@
    "false_statements_missed": 1,
    "status_wrong": 1,
    "pairs": 24,
-   "incomplete": 1
+   "incomplete": 0,
+   "failures": []
   },
   "rules alone": {
    "real_cleared": 0,
@@ -77,7 +83,8 @@
    "false_statements_missed": 39,
    "status_wrong": 13,
    "pairs": 24,
-   "incomplete": 0
+   "incomplete": 0,
+   "failures": []
   }
  },
  "ablation_totals": {
@@ -210,7 +217,7 @@
      "id": "fmt_ampersand",
      "kind": "format",
      "held": false,
-     "cleared_as": "formatting"
+     "cleared_as": null
     },
     {
      "id": "typo_receive",
@@ -912,8 +919,7 @@
      "route_truth": "accept",
      "decide": "counter",
      "passages": [
-      "payment-large",
-      "payment-standard"
+      "data-export"
      ],
      "passage_truth": "data-export",
      "playbook": "guidance"

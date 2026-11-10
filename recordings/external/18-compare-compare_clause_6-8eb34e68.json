@@ -1,0 +1,165 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 6",
+ "request_hash": "8eb34e686b8e453ed30aa181a58eefb1635eaf875401ea13f4d710f12d530900",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "This NDA starts on the Effective Date and expires at the end of the Term of NDA. Either party may terminate this NDA for any or no reason upon notice to the other party. Recipient’s obligations relating to Confidential Information will survive for the Confidentiality Period, despite expiration or termination of this NDA."
+   },
+   {
+    "id": "v2",
+    "text": "This NDA starts on the Effective Date and expires at the end of the Term of NDA. Either party may terminate this NDA for any or no reason upon notice to the other party. Recipient’s obligations relating to Confidential Information will survive for the Confidentiality Period, despite expiration or termination of this NDA. keep using"
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 125.002653,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "fe064cf2-f29a-4c93-a12a-9f63274c7351",
+  "request_id": null,
+  "trace": "a586d7bb991f7a17-LAX",
+  "wall_ms": 512,
+  "recorded_at": "2026-11-10T17:40:30+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9881,
+    "probabilities": {
+     "same": 0.6923,
+     "overlapping": 0.2315,
+     "conflicting": 0.0643,
+     "unrelated": 0.0119
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9922,
+       "restated": 0.0035,
+       "elaborated": 0.0022,
+       "different": 0.0022
+      },
+      "confidence": 0.9978,
+      "a": {
+       "document": "v1",
+       "quote": "This NDA starts on the Effective Date and expires at the end of the Term of NDA.",
+       "start": 0,
+       "end": 80,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "This NDA starts on the Effective Date and expires at the end of the Term of NDA.",
+       "start": 0,
+       "end": 80,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9912,
+       "restated": 0.0027,
+       "elaborated": 0.003,
+       "different": 0.003
+      },
+      "confidence": 0.997,
+      "a": {
+       "document": "v1",
+       "quote": "Either party may terminate this NDA for any or no reason upon notice to the other party.",
+       "start": 81,
+       "end": 169,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Either party may terminate this NDA for any or no reason upon notice to the other party.",
+       "start": 81,
+       "end": 169,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9902,
+       "restated": 0.0041,
+       "elaborated": 0.0028,
+       "different": 0.0029
+      },
+      "confidence": 0.9971,
+      "a": {
+       "document": "v1",
+       "quote": "Recipient’s obligations relating to Confidential Information will survive for the Confidentiality Period, despite expiration or termination of this NDA.",
+       "start": 170,
+       "end": 322,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Recipient’s obligations relating to Confidential Information will survive for the Confidentiality Period, despite expiration or termination of this NDA.",
+       "start": 170,
+       "end": 322,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 19,
+   "passage_reads": 1,
+   "passages_ms": 47,
+   "passages": 3,
+   "counterparts_ms": 67
+  },
+  "timing": {
+   "read_ms": 133,
+   "total_ms": 136
+  }
+ }
+}

@@ -1,0 +1,132 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify reply",
+ "request_hash": "b15f92dd8808512b27f3433f655efa3521884340b8c119b0d13b33e2414b8885",
+ "request": {
+  "documents": [
+   {
+    "id": "brief",
+    "text": "Clause 4.4 (Fee Adjustments). The returned copy reads: \"term by up to 3% over the fees for\". We accept this change.\nClause 5 (Service Levels). The returned copy reads: \", up to a minimum of 10% of the\". This change is under review on our side.\nClause 6 (Customer Data). The returned copy reads: \"the Service. For ninety (90) days after termination\". We do not accept this change as written. What we can agree to instead: We can keep Customer Data available for export for ninety days after termination."
+   }
+  ],
+  "answer": "We accept this change. This change is under review. We can keep Customer Data available for export for ninety days after termination.",
+  "claims": [
+   "We accept this change.",
+   "This change is under review.",
+   "We can keep Customer Data available for export for ninety days after termination."
+  ],
+  "instructions": "The source is the brief the reply was written from. A claim is supported only if the brief states the same decision about the same clause: accepted, countered with that exact position, or under review. A claim that promises something the brief does not state, or names a different term, is contradicted or not stated.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 90.533119,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "5d91f59e-796a-45d0-94ca-cf9c530fe3c0",
+  "request_id": null,
+  "trace": "a586e227aeac13e6-LAX",
+  "wall_ms": 483,
+  "recorded_at": "2026-11-10T17:47:37+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9848,
+  "ungrounded": 0.0152,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "brief",
+    "share": 1,
+    "share_of_answer": 0.9848,
+    "claims": [
+     0,
+     1,
+     2
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "We accept this change.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1679,
+    "supported": 0.9936,
+    "contradicted": 0.0028,
+    "not_stated": 0.002,
+    "not_a_claim": 0.0016,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "Clause 4.4 (Fee Adjustments).",
+     "start": 0,
+     "end": 29,
+     "confidence": 0.989
+    }
+   },
+   {
+    "claim": "This change is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2137,
+    "supported": 0.9935,
+    "contradicted": 0.0025,
+    "not_stated": 0.0023,
+    "not_a_claim": 0.0017,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "Clause 5 (Service Levels).",
+     "start": 116,
+     "end": 142,
+     "confidence": 1
+    }
+   },
+   {
+    "claim": "We can keep Customer Data available for export for ninety days after termination.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6183,
+    "supported": 0.9794,
+    "contradicted": 0.0062,
+    "not_stated": 0.0072,
+    "not_a_claim": 0.0073,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "We can keep Customer Data available for export for ninety days after termination.",
+     "start": 421,
+     "end": 502,
+     "confidence": 0.971
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 2,
+   "supported": 0.9794
+  },
+  "timing": {
+   "read_ms": 97,
+   "total_ms": 99
+  }
+ }
+}

@@ -19,16 +19,19 @@ Entry for the Clocked Build Challenge 2026, built on November 9 and 10, 2026.
 | | |
 |---|---|
 | Live demo, no key needed (replays recorded answers of the live Clocked API) | https://ian18858863.github.io/redline-referee/ |
-| Narrated video, 3 min 20 s | https://ian18858863.github.io/redline-referee/demo.mp4 |
+| Narrated video, 3 min 19 s | https://ian18858863.github.io/redline-referee/demo.mp4 |
 | Evaluation | [`eval/RESULTS.md`](eval/RESULTS.md) |
+| Two locked external corpora and routing controls, including failed targets | [`eval/EXTERNAL_RESULTS.md`](eval/EXTERNAL_RESULTS.md) |
+
+Two locked corpora on public contract templates by other authors, labelled before any run. On the second, built blind to the engine and its earlier failures (three new sources, eight pairs): 6 of 6 planted substantive edits held, 9 of 9 faithful rewordings cleared (8 of 9 as first scored, see the erratum), 3 of 3 false cover notes contradicted, 8 of 8 final statuses correct, newly concealed text blocked and publisher fine print in both versions not blocked. Its ten-case routing control: 9 of 10 with the passage Rerank selected, 7 of 10 with every passage supplied, 5 of 10 with the first passage only, and no loose route in any arm. On the first corpus one faithful rewording is still held because the two readers disagree, and its six-case routing control is a tie. First outputs, scoring errata, rejected experiments and the absence of a completed paired human study are in the external results. None of this is a general contract-accuracy or productivity claim.
 
 ### For judges: three minutes
 
 1. Open the demo. The first case is a returned copy whose note says nothing changed. The status is **Do not sign**, and the "Cover note" tab shows which three statements Verify contradicted.
-2. Use the "Start here" strip: **Two readers, one disagreement** is the case where Verify read two real changes as "same meaning" and Compare read them as conflicts. **A note that talks to your AI** is stopped by Guard alone. **The wrong file came back** stops after one Compare call that cost one credit.
+2. The first-screen evidence pair puts the customer's payment assurance next to **30 days → 90 days** from the open review. **Inspect this change** opens its actual page evidence. Expand **Explore the recorded cases** for a faithful rewording, a reader disagreement, a note addressed to an AI, or the wrong-file gate.
 3. Open "How it works" at the bottom of any case: what each endpoint decided in that review, what would have gone wrong without it, and every request with its credits.
 
-To run it on your own two PDFs, see [Run it](#run-it).
+To run it on your own two PDFs, see [Run it](#run-it). For the evidence trail, reproduction checks and remaining work against the published criteria, see [the reviewer guide](JUDGING.md).
 
 ## What each endpoint changes
 
@@ -41,7 +44,7 @@ To run it on your own two PDFs, see [Run it](#run-it).
 | **Verify**, reply | Each sentence Fill drafted, against the decisions taken | A sentence that is not supported is removed from what the customer sees | |
 | **Compare** `/clocked/compare`, clause against clause | Each differing clause as sent and as returned, two text documents | A conflict confirms a change and vetoes clearing it. Its passages are checked character by character and drawn on both pages | Without it: 4 real changes cleared, because Verify read them as the same meaning |
 | **Compare**, whole documents | The two PDFs, asked for the relation only | A gate: if they are not versions of one agreement the review stops there | 1 to 3 credits per review; fired on the wrong-file case at "related 1%" |
-| **Rerank** `/clocked/rerank` | The playbook passages for each open change, with the deal size as `context` | Only passages returned `use` at 0.9 or above are shown and passed on, at most two. A passage for another deal size comes back `skip / different_case`. No passage: the change goes to Legal | Deciding passage kept 23 of 24 times; none kept 6 of 6 times when the playbook has none |
+| **Rerank** `/clocked/rerank` | The playbook passages for each open change, with the deal size as `context` | Only passages returned `use` at 0.9 or above are shown and passed on, at most three. A passage for another deal size comes back `skip / different_case`. No passage: the change goes to Legal | Deciding passage kept 24 of 24 times; none kept 6 of 6 times when the playbook has none |
 | **Decide** `/clocked/decide` | One change, the passages Rerank kept, the deal facts Extract read. Two yes/no questions | Code turns two probabilities into accept, counter or escalate. Between 0.4 and 0.6 is not an answer: a person decides | 27 of 30 routes equal to the playbook; the 3 misses are on the strict side |
 | **Extract** `/clocked/extract` | Thirteen key terms from each PDF, `return_pdf: "box"` | The side-by-side terms table; the annual fee and term given to Rerank and Decide | |
 | **Fill** `/clocked/fill` | A brief of the decisions: generated sentences, a verbatim position per countered change, three typed answers | The reply to the customer and its closing line | Drafted for 6 demo cases; every sentence then went through Verify |
@@ -71,11 +74,13 @@ v1.pdf  v2.pdf  cover note
   status, set by code:  blocked > incomplete > changes > ready
 ```
 
-**Why a rule layer.** Nobody should depend on a model noticing that 30 became 90. Deterministic code finds every textual difference and quotes it verbatim, so recall of differences is 100% by construction. A number, a date, a symbol or a currency that differs is never cleared by a model. Spelling, formatting and a notice address are settled by rules and are not sent to the API.
+**Why a rule layer.** Nobody should depend on a model noticing that 30 became 90. Deterministic code enumerates differences in the extracted, aligned text and quotes them verbatim. PDF extraction and alignment can still miss content; deterministic comparison alone is not a guarantee of recall on arbitrary PDFs. A number, a date, a symbol or a currency that differs is never cleared by a model. Spelling, formatting and a notice address are settled by rules and are not sent to the API.
 
 **Why two readers.** What the rules cannot do is read meaning: "will defend" to "may defend" is one word; a rewritten sentence may say the same thing. On 39 such edits Verify alone would have cleared two real changes and Compare alone left one unflagged. Together: 24 of 24 changes of meaning held, 14 of 15 faithful rewordings cleared, and the one miss is a false alarm.
 
 ## Measured
+
+These are development examples, not a held-out contract benchmark. Every attempted review, expected statement and expected route stays in the evaluation denominator, including missing or failed results. `uv run python eval/run_eval.py --check` fails when evaluation coverage is incomplete; known model mistakes remain reported.
 
 All numbers are computed from recorded answers of the live API against exact ground truth; `uv run python eval/run_eval.py` recomputes them without a key. Full tables: [`eval/RESULTS.md`](eval/RESULTS.md).
 
@@ -124,6 +129,7 @@ Before submitting the final version we had the project attacked by three indepen
 - **Two real words are not a spelling fix.** "Maximum" to "minimum" used to be classed as spelling until a model objected. Now a one-word edit is a spelling fix only if the old word is not a word.
 - **The most expensive call decided nothing.** The whole-document Compare cost about 45 credits and never changed an outcome. It is now asked for the relation only (1 to 3 credits) and stops the review when the wrong file comes back.
 - **"Read three times" was an overclaim.** Formatting is settled by rules alone, and in the first recordings the two readers never disagreed. We built the hard set to find out whether both are needed. They are; the numbers are above.
+- **A teammate's locked external test found two more.** Publisher fine print that our own version already carried blocked the review, and a faithful rewording in a PDF edited in place was held because the edit is drawn last in the file's text layer, so a reader of the raw PDF sees a hole in the sentence. Concealed text now blocks only when our version does not carry it, and edited PDFs are read in reading order and flagged as edited in place. Both fixes were then checked on a second corpus built blind to them.
 - **A judge on a phone saw a third of the page.** There is now a phone layout, a "Start here" strip and readable crops of both pages next to every change.
 
 ## Run it
@@ -132,7 +138,7 @@ Requirements: Python 3.10+ and [uv](https://docs.astral.sh/uv/).
 
 ```sh
 uv sync
-uv run pytest                          # 901 tests, no key, no network
+uv run pytest                          # application, failure-path and recorded-response tests; no API calls
 uv run python scripts/build_site.py    # rebuild docs/ from the recordings
 uv run uvicorn referee.server:app --port 8787
 ```
@@ -160,22 +166,25 @@ uv run python eval/run_hard.py --live            # the hard set
 | Path | Contents |
 |---|---|
 | `referee/textdoc.py`, `referee/rules.py` | The deterministic layer: PDF text, clauses, alignment, diff, classes, hidden text, locating quotes |
+| `referee/note.py` | Cover-note statements, instructions, courtesies and signature parsing |
 | `referee/engine.py` | The review: gate, the readings and how code decides between them, cover note, routing, status |
 | `referee/reply.py` | The reply to the customer: Fill drafts, Verify decides what stays |
 | `referee/gateway.py` | The one door to Clocked: record, replay by request hash, credit reservation, time budget, audit |
 | `referee/prompts.py` | Every instruction, question and threshold sent to Clocked |
 | `referee/server.py` | Uploads, limits, the reply endpoint |
 | `referee/contracts.py`, `data/` | The synthetic agreement, the catalogue of edits with exact ground truth, the playbook |
-| `recordings/` | 428 recorded exchanges with the live API behind the demo and the evaluation, with credits |
+| `recordings/` | Recorded exchanges with the live API behind the demo and the evaluation, with credits |
 | `web/`, `docs/` | The interface (no framework, no build step) and the built static demo |
-| `tests/`, `eval/` | 901 tests (257 functions) and the evaluation |
+| `tests/`, `eval/` | Application, failure-path and recorded-response tests, plus the evaluation |
 
 ## Limits
 
-- The documents are synthetic: one Master Services Agreement in 25 variations and one non-disclosure agreement. Other layouts are covered by generated test PDFs, not by exports from Word or a contract system.
+- The development documents are synthetic: one Master Services Agreement in 25 variations and one non-disclosure agreement. The two external corpora use six public templates with our own edits and labels (14 pairs); they are small and not independently adjudicated. Other layouts are covered by generated test PDFs, not by exports from Word or a contract system.
 - Text-layer PDFs only, single documents up to the API's limits. Multi-column pages and tables are read by heuristics.
 - The thirteen key terms Extract reads are those of a subscription agreement. On the non-disclosure agreement most of them are correctly empty.
 - Routing errs on the strict side: the playbook lets the desk extend the data export window to ninety days and Decide still answered that it may not be accepted as written, in all three pairs that contain that edit. We left the answers as recorded.
+- Sending our original term back as a counter is supported only where the policy data grants it (`restore_original` on a playbook passage). The demo playbook grants none; the mechanism is measured on the second corpus's fixture only.
+- No completed study with intended users exists. One person did half of the protocol in `study/`. Nothing here claims time saved.
 - One faithful rewording in the hard set ("exclusive of taxes" to "do not include taxes") was held by both readers. Also on the strict side.
 - Rerank's `expand` (the answer is in a neighbouring passage) is handled and unit-tested, but did not occur in the recordings.
 - The cover note is checked against the returned copy and against our own list of changes. That list comes from the rule layer and the two readers, not from the note; a statement about something outside the documents can only come back "not stated".
@@ -184,10 +193,10 @@ uv run python eval/run_hard.py --live            # the hard set
 
 ## Data and disclosure
 
-All documents, companies, people and playbook rules are fictional and were written for this project. No real contract or personal data is included. No API key is in the repository or its history.
+The original development documents, companies, people and playbook rules are fictional and were written for this project. The external challenge adds public, unexecuted contract templates by Common Paper, Bonterms and SixArm, plus our labelled mutations. Their source snapshots, licences and modifications are documented in [`data/external/SOURCES.md`](data/external/SOURCES.md). No customer agreement, participant answer or API key is included.
 
-The application was designed and written with AI coding assistance (Claude Code), including the adversarial reviews described above. The video is narrated by a synthetic voice. `tests/fake_clocked.py` is a stand-in for the API used only by unit tests of our own logic; the demo, the evaluation and `tests/test_recordings.py` use real recorded responses.
+The application was designed and written with AI coding assistance (Claude Code and Codex), including the adversarial reviews described above. The video is narrated by a synthetic voice. `tests/fake_clocked.py` is a stand-in for the API used only by unit tests of our own logic; the demo, the evaluation and `tests/test_recordings.py` use real recorded responses.
 
 Awards entered: Best Overall App, the three group awards, and People's Choice.
 
-MIT License.
+Code: MIT License. External source documents and their derivatives retain their original CC BY 4.0 or CC BY-SA 4.0 licences; see the source attribution above.

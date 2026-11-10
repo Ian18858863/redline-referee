@@ -1,0 +1,92 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "8396455118fc18d37bbf7e33fb5a762d6c7a487dc0b158411a9a8f9cf19c60a1",
+ "request": {
+  "pdf": {
+   "sha256": "7f92b9d136f39f6d8bc4d22c2f726f90076bd95e2833bdc4724f2111a8d269be"
+  },
+  "answer": "Recipient’s obligations in this NDA do not apply to information that it can document: (a) is or becomes publicly available through no fault of Recipient, (b) it rightfully knew or possessed before receipt from Discloser without confidentiality restrictions, (c) it rightfully received from a third party without confidentiality restrictions or (d) it independently developed without using or referencing Confidential Information.",
+  "claims": [
+   "Recipient’s obligations in this NDA do not apply to information that it can document: (a) is or becomes publicly available through no fault of Recipient, (b) it rightfully knew or possessed before receipt from Discloser without confidentiality restrictions, (c) it rightfully received from a third party without confidentiality restrictions or (d) it independently developed without using or referencing Confidential Information."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 142.474529,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "3fdae52f-3ab0-4616-94ac-991a1e9ae473",
+  "request_id": null,
+  "trace": "a588342b0ede578c-IAD",
+  "wall_ms": 402,
+  "recorded_at": "2026-11-10T21:38:22+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.992,
+  "ungrounded": 0.008,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.992,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Recipient’s obligations in this NDA do not apply to information that it can document: (a) is or becomes publicly available through no fault of Recipient, (b) it rightfully knew or possessed before receipt from Discloser without confidentiality restrictions, (c) it rightfully received from a third party without confidentiality restrictions or (d) it independently developed without using or referencing Confidential Information.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 1,
+    "supported": 0.992,
+    "contradicted": 0.0031,
+    "not_stated": 0.0029,
+    "not_a_claim": 0.0019,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "4.",
+     "start": 2225,
+     "end": 2227,
+     "confidence": 0.932
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.992
+  },
+  "timing": {
+   "read_ms": 153,
+   "total_ms": 159
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 7539
+  }
+ }
+}

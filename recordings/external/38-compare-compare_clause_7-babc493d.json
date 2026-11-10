@@ -1,0 +1,429 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 7",
+ "request_hash": "babc493d1881ab905d4634ad5f2ad40c26c53567530040094f514341474e1f16",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "All aspects of this section are mutual i.e. apply equally to each Party. Agreement to resolve claims If any controversy or claim arises out of or relating to this Agreement , or the breach thereof, and cannot be settled through negotiation, then the Parties agree to try in good faith to settle the dispute first by non-binding mediation, and if that fails then second via non-binding arbitration, and if that fails then via litigation or some other type of dispute resolution process. Note: The purpose of this multi-step process is to save time and money for everyone involved, and to try multiple ways to find solutions, without needing to involve litigation. We're generally aware that some lawyers recommend binding arbitration, yet in our experience the binding causes more problems than it solves. Non-Binding Mediation If non-binding mediation is needed, then the Parties will use the American Arbitration Association (\"AAA\") standard procedures for Non-Binding Mediation Rules. The Parties agree to do this before the Parties may initiate non-binding arbitration, binding-arbitration, litigation, or some other type of dispute resolution process. Non-Binding Arbitration If non-binding arbitration is necessary, then the Parties agree to submit to non-binding arbitration administered by the American Arbitration Association under its Non-Binding Arbitration Rules. The Parties agree to do this before the Parties may initiate binding arbitration, litigation, or some other type of dispute resolution process. Recovery In the event of non-binding mediation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable mediators’s fees and expenses. In the event of non-binding arbitration relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable arbitrator’s fees and expenses. In the event of litigation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable attorney’s fees and expenses. Integrity If any provision of this Agreement, or restriction of this Agreement, is found by a court of competent jurisdiction to be unlawful, or unenforceable, or void, such provision will be modified, rewritten or interpreted to include as much of its nature and scope as will render it enforceable. If it cannot be so modified, rewritten or interpreted to be enforceable in any respect, it will not be given effect, and the remainder of the Agreement will be enforced as if such provision was not included. Any failure by a Party to enforce another Party’s strict performance of any provision of this Agreement will not constitute a waiver of its right to subsequently enforce such provision or any other provision of this Agreement."
+   },
+   {
+    "id": "v2",
+    "text": "Every aspect of this section is mutual i.e. apply equally to each Party. Agreement to resolve claims If any controversy or claim arises out of or relating to this Agreement , or the breach thereof, and cannot be settled through negotiation, then the Parties agree to try in good faith to settle the dispute first by non-binding mediation, and if that fails then second via non-binding arbitration, and if that fails then via litigation or some other type of dispute resolution process. Note: The purpose of this multi-step process is to save time and money for everyone involved, and to try multiple ways to find solutions, without needing to involve litigation. We're generally aware that some lawyers recommend binding arbitration, yet in our experience the binding causes more problems than it solves. Non-Binding Mediation If non-binding mediation is needed, then the Parties will use the American Arbitration Association (\"AAA\") standard procedures for Non-Binding Mediation Rules. The Parties agree to do this before the Parties may initiate non-binding arbitration, binding-arbitration, litigation, or some other type of dispute resolution process. Non-Binding Arbitration If non-binding arbitration is necessary, then the Parties agree to submit to non-binding arbitration administered by the American Arbitration Association under its Non-Binding Arbitration Rules. The Parties agree to do this before the Parties may initiate binding arbitration, litigation, or some other type of dispute resolution process. Recovery In the event of non-binding mediation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable mediators’s fees and expenses. In the event of non-binding arbitration relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable arbitrator’s fees and expenses. In the event of litigation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable attorney’s fees and expenses. Integrity If any provision of this Agreement, or restriction of this Agreement, is found by a court of competent jurisdiction to be unlawful, or unenforceable, or void, such provision will be modified, rewritten or interpreted to include as much of its nature and scope as will render it enforceable. If it cannot be so modified, rewritten or interpreted to be enforceable in any respect, it will not be given effect, and the remainder of the Agreement will be enforced as if such provision was not included. Any failure by a Party to enforce another Party’s strict performance of any provision of this Agreement will not constitute a waiver of its right to subsequently enforce such provision or any other provision of this Agreement."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 19,
+  "model_ms": 470.480461,
+  "cost_usd": 0.003785,
+  "attempts": 1,
+  "idempotency_key": "5bae826d-b775-4097-8e64-4f9c8c677a46",
+  "request_id": null,
+  "trace": "a586d81d3a0947fc-LAX",
+  "wall_ms": 1018,
+  "recorded_at": "2026-11-10T17:40:47+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9975,
+    "probabilities": {
+     "same": 0.987,
+     "overlapping": 0.0062,
+     "conflicting": 0.0043,
+     "unrelated": 0.0025
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0093,
+       "restated": 0.9798,
+       "elaborated": 0.0057,
+       "different": 0.0053
+      },
+      "confidence": 0.9947,
+      "a": {
+       "document": "v1",
+       "quote": "All aspects of this section are mutual i.e.",
+       "start": 0,
+       "end": 43,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Every aspect of this section is mutual i.e. apply equally to each Party.",
+       "start": 0,
+       "end": 72,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9913,
+       "restated": 0.0042,
+       "elaborated": 0.0022,
+       "different": 0.0023
+      },
+      "confidence": 0.9977,
+      "a": {
+       "document": "v1",
+       "quote": "Agreement to resolve claims If any controversy or claim arises out of or relating to this Agreement , or the breach thereof, and cannot be settled through negotiation, then the Parties agree to try in good faith to settle the dispute first by non-binding mediation, and if that fails then second via non-binding arbitration, and if that fails then via litigation or some other type of dispute resolution process.",
+       "start": 73,
+       "end": 485,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Agreement to resolve claims If any controversy or claim arises out of or relating to this Agreement , or the breach thereof, and cannot be settled through negotiation, then the Parties agree to try in good faith to settle the dispute first by non-binding mediation, and if that fails then second via non-binding arbitration, and if that fails then via litigation or some other type of dispute resolution process.",
+       "start": 73,
+       "end": 485,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9936,
+       "restated": 0.0026,
+       "elaborated": 0.0018,
+       "different": 0.0019
+      },
+      "confidence": 0.9981,
+      "a": {
+       "document": "v1",
+       "quote": "Note: The purpose of this multi-step process is to save time and money for everyone involved, and to try multiple ways to find solutions, without needing to involve litigation.",
+       "start": 486,
+       "end": 662,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Note: The purpose of this multi-step process is to save time and money for everyone involved, and to try multiple ways to find solutions, without needing to involve litigation.",
+       "start": 486,
+       "end": 662,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9938,
+       "restated": 0.0027,
+       "elaborated": 0.0018,
+       "different": 0.0018
+      },
+      "confidence": 0.9982,
+      "a": {
+       "document": "v1",
+       "quote": "We're generally aware that some lawyers recommend binding arbitration, yet in our experience the binding causes more problems than it solves.",
+       "start": 663,
+       "end": 804,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "We're generally aware that some lawyers recommend binding arbitration, yet in our experience the binding causes more problems than it solves.",
+       "start": 663,
+       "end": 804,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9876,
+       "restated": 0.0061,
+       "elaborated": 0.0027,
+       "different": 0.0036
+      },
+      "confidence": 0.9964,
+      "a": {
+       "document": "v1",
+       "quote": "Non-Binding Mediation If non-binding mediation is needed, then the Parties will use the American Arbitration Association (\"AAA\") standard procedures for Non-Binding Mediation Rules.",
+       "start": 805,
+       "end": 986,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Non-Binding Mediation If non-binding mediation is needed, then the Parties will use the American Arbitration Association (\"AAA\") standard procedures for Non-Binding Mediation Rules.",
+       "start": 805,
+       "end": 986,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9911,
+       "restated": 0.0038,
+       "elaborated": 0.0024,
+       "different": 0.0027
+      },
+      "confidence": 0.9973,
+      "a": {
+       "document": "v1",
+       "quote": "The Parties agree to do this before the Parties may initiate non-binding arbitration, binding-arbitration, litigation, or some other type of dispute resolution process.",
+       "start": 987,
+       "end": 1155,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "The Parties agree to do this before the Parties may initiate non-binding arbitration, binding-arbitration, litigation, or some other type of dispute resolution process.",
+       "start": 987,
+       "end": 1155,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.992,
+       "restated": 0.0037,
+       "elaborated": 0.0021,
+       "different": 0.0021
+      },
+      "confidence": 0.9979,
+      "a": {
+       "document": "v1",
+       "quote": "Non-Binding Arbitration If non-binding arbitration is necessary, then the Parties agree to submit to non-binding arbitration administered by the American Arbitration Association under its Non-Binding Arbitration Rules.",
+       "start": 1156,
+       "end": 1374,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Non-Binding Arbitration If non-binding arbitration is necessary, then the Parties agree to submit to non-binding arbitration administered by the American Arbitration Association under its Non-Binding Arbitration Rules.",
+       "start": 1156,
+       "end": 1374,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9666,
+       "restated": 0.0113,
+       "elaborated": 0.0092,
+       "different": 0.0129
+      },
+      "confidence": 0.9871,
+      "a": {
+       "document": "v1",
+       "quote": "The Parties agree to do this before the Parties may initiate binding arbitration, litigation, or some other type of dispute resolution process.",
+       "start": 1375,
+       "end": 1518,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "The Parties agree to do this before the Parties may initiate binding arbitration, litigation, or some other type of dispute resolution process.",
+       "start": 1375,
+       "end": 1518,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9899,
+       "restated": 0.0043,
+       "elaborated": 0.0027,
+       "different": 0.0031
+      },
+      "confidence": 0.9969,
+      "a": {
+       "document": "v1",
+       "quote": "Recovery In the event of non-binding mediation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable mediators’s fees and expenses.",
+       "start": 1519,
+       "end": 1689,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Recovery In the event of non-binding mediation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable mediators’s fees and expenses.",
+       "start": 1519,
+       "end": 1689,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9917,
+       "restated": 0.0038,
+       "elaborated": 0.002,
+       "different": 0.0025
+      },
+      "confidence": 0.9975,
+      "a": {
+       "document": "v1",
+       "quote": "In the event of non-binding arbitration relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable arbitrator’s fees and expenses.",
+       "start": 1690,
+       "end": 1854,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "In the event of non-binding arbitration relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable arbitrator’s fees and expenses.",
+       "start": 1690,
+       "end": 1854,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9912,
+       "restated": 0.0038,
+       "elaborated": 0.0023,
+       "different": 0.0027
+      },
+      "confidence": 0.9973,
+      "a": {
+       "document": "v1",
+       "quote": "In the event of litigation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable attorney’s fees and expenses.",
+       "start": 1855,
+       "end": 2004,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "In the event of litigation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable attorney’s fees and expenses.",
+       "start": 1855,
+       "end": 2004,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9799,
+       "restated": 0.012,
+       "elaborated": 0.0038,
+       "different": 0.0043
+      },
+      "confidence": 0.9957,
+      "a": {
+       "document": "v1",
+       "quote": "Integrity If any provision of this Agreement, or restriction of this Agreement, is found by a court of competent jurisdiction to be unlawful, or unenforceable, or void, such provision will be modified, rewritten or interpreted to include as much of its nature and scope as will render it enforceable.",
+       "start": 2005,
+       "end": 2305,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Integrity If any provision of this Agreement, or restriction of this Agreement, is found by a court of competent jurisdiction to be unlawful, or unenforceable, or void, such provision will be modified, rewritten or interpreted to include as much of its nature and scope as will render it enforceable.",
+       "start": 2005,
+       "end": 2305,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9935,
+       "restated": 0.0029,
+       "elaborated": 0.0018,
+       "different": 0.0018
+      },
+      "confidence": 0.9982,
+      "a": {
+       "document": "v1",
+       "quote": "If it cannot be so modified, rewritten or interpreted to be enforceable in any respect, it will not be given effect, and the remainder of the Agreement will be enforced as if such provision was not included.",
+       "start": 2306,
+       "end": 2513,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "If it cannot be so modified, rewritten or interpreted to be enforceable in any respect, it will not be given effect, and the remainder of the Agreement will be enforced as if such provision was not included.",
+       "start": 2306,
+       "end": 2513,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9921,
+       "restated": 0.0034,
+       "elaborated": 0.0021,
+       "different": 0.0023
+      },
+      "confidence": 0.9977,
+      "a": {
+       "document": "v1",
+       "quote": "Any failure by a Party to enforce another Party’s strict performance of any provision of this Agreement will not constitute a waiver of its right to subsequently enforce such provision or any other provision of this Agreement.",
+       "start": 2514,
+       "end": 2740,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Any failure by a Party to enforce another Party’s strict performance of any provision of this Agreement will not constitute a waiver of its right to subsequently enforce such provision or any other provision of this Agreement.",
+       "start": 2514,
+       "end": 2740,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 34,
+   "passage_reads": 1,
+   "passages_ms": 148,
+   "passages": 14,
+   "counterparts_ms": 304
+  },
+  "timing": {
+   "read_ms": 484,
+   "total_ms": 489
+  }
+ }
+}

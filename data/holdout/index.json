@@ -1,0 +1,118 @@
+[
+  {
+    "id": "cpdpa-changed",
+    "source": "commonpaper-dpa",
+    "kind": "changed",
+    "style": "paper",
+    "pages": 4,
+    "expected_status": "blocked",
+    "v1": "ReportLab export (invariant=1) of text/commonpaper-dpa.txt, Helvetica 10 pt, US Letter",
+    "v2": "same export after the literal replacements in truth.json"
+  },
+  {
+    "id": "cpdpa-benign",
+    "source": "commonpaper-dpa",
+    "kind": "benign",
+    "style": "paper",
+    "pages": 4,
+    "expected_status": "ready",
+    "v1": "ReportLab export (invariant=1) of text/commonpaper-dpa.txt, Helvetica 10 pt, US Letter",
+    "v2": "same export after the literal replacements in truth.json"
+  },
+  {
+    "id": "beipa-changed",
+    "source": "github-beipa",
+    "kind": "changed",
+    "style": "serif",
+    "pages": 3,
+    "expected_status": "blocked",
+    "v1": "ReportLab export (invariant=1) of text/github-beipa.txt, Times-Roman 11 pt, A4",
+    "v2": "same export after the literal replacements in truth.json"
+  },
+  {
+    "id": "beipa-benign",
+    "source": "github-beipa",
+    "kind": "benign",
+    "style": "serif",
+    "pages": 3,
+    "expected_status": "ready",
+    "v1": "ReportLab export (invariant=1) of text/github-beipa.txt, Times-Roman 11 pt, A4",
+    "v2": "same export after the literal replacements in truth.json"
+  },
+  {
+    "id": "btsla-changed",
+    "source": "bonterms-sla",
+    "kind": "changed",
+    "style": "native",
+    "pages": 1,
+    "expected_status": "blocked",
+    "v1": "byte copy of sources/bonterms-sla-original.pdf (publisher PDF)",
+    "v2": "publisher PDF edited in place with PyMuPDF: old glyphs removed, replacement written at the same origin and size in Helvetica",
+    "native_edits": [
+      {
+        "old": "(c) Customer",
+        "new": "(c) Provider",
+        "page": 1,
+        "size": 9.0
+      },
+      {
+        "old": "within 30 days",
+        "new": "within 5 days",
+        "page": 1,
+        "size": 9.0
+      }
+    ]
+  },
+  {
+    "id": "btsla-benign",
+    "source": "bonterms-sla",
+    "kind": "benign",
+    "style": "native",
+    "pages": 1,
+    "expected_status": "ready",
+    "v1": "byte copy of sources/bonterms-sla-original.pdf (publisher PDF)",
+    "v2": "publisher PDF edited in place with PyMuPDF: old glyphs removed, replacement written at the same origin and size in Helvetica",
+    "native_edits": [
+      {
+        "old": "upon request,",
+        "new": "on request,",
+        "page": 1,
+        "size": 9.0
+      },
+      {
+        "old": "Multiple Failures, then Customer may,",
+        "new": "Multiple Failures, Customer may,",
+        "page": 1,
+        "size": 9.0
+      }
+    ]
+  },
+  {
+    "id": "inherited-fineprint",
+    "source": "bonterms-nda",
+    "kind": "inherited-fineprint",
+    "style": "native",
+    "pages": 1,
+    "expected_status": "ready",
+    "v1": "byte copy of sources/bonterms-nda-original.pdf (publisher PDF)",
+    "v2": "publisher PDF edited in place with PyMuPDF: old glyphs removed, replacement written at the same origin and size in Helvetica",
+    "native_edits": [
+      {
+        "old": "prior to receipt",
+        "new": "before receipt",
+        "page": 1,
+        "size": 9.0
+      }
+    ]
+  },
+  {
+    "id": "new-concealed",
+    "source": "commonpaper-dpa",
+    "kind": "new-concealed",
+    "style": "paper",
+    "pages": 4,
+    "expected_status": "blocked",
+    "v1": "ReportLab export (invariant=1) of text/commonpaper-dpa.txt, Helvetica 10 pt, US Letter",
+    "v2": "same export after the literal replacements in truth.json; plus one white 1 pt paragraph after clause 7.12"
+  }
+]

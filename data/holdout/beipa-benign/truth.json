@@ -1,0 +1,30 @@
+{
+  "id": "beipa-benign",
+  "source": "github-beipa",
+  "kind": "benign",
+  "substantive": [],
+  "faithful": [
+    [
+      "If any terms of this Agreement are found invalid or unenforceable by any court, agency, or arbiter with jurisdiction over this Agreement,",
+      "If any court, agency, or arbiter with jurisdiction over this Agreement finds any terms of this Agreement invalid or unenforceable,"
+    ],
+    [
+      "the Company doesn't own it. This is true regardless",
+      "the Company doesn't own it, and this is true regardless"
+    ]
+  ],
+  "faithful_why": [
+    "Same actor (court, agency or arbiter with jurisdiction), same finding, same object; only the voice changes.",
+    "Joining the two sentences with 'and' keeps both statements and what 'this' refers to."
+  ],
+  "expected_status": "ready",
+  "false_cover": false,
+  "concealed_new": false,
+  "inherited_fine_print": false,
+  "substantive_type": [],
+  "faithful_type": [
+    "passive -> active voice",
+    "two sentences merged"
+  ],
+  "notes": "Two faithful rewordings; the cover note is true."
+}

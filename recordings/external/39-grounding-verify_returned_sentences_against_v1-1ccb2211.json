@@ -1,0 +1,89 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "1ccb221129c1ad8dc3775f4564cdd2c300430fc8f36f889b396aa365ca7c846a",
+ "request": {
+  "pdf": {
+   "sha256": "cce12fd4b002aae374d5caed636370abe40eb56b66c24d95be934db28fc7c9d3"
+  },
+  "answer": "Every aspect of this section is mutual i.e. apply equally to each Party.",
+  "claims": [
+   "Every aspect of this section is mutual i.e. apply equally to each Party."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 88.21312,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "d0a41cfc-eae3-42e8-b6c4-211b54682b43",
+  "request_id": null,
+  "trace": "a586d823af0f47fc-LAX",
+  "wall_ms": 478,
+  "recorded_at": "2026-11-10T17:40:47+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.993,
+  "ungrounded": 0.007,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.993,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Every aspect of this section is mutual i.e. apply equally to each Party.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 1,
+    "supported": 0.993,
+    "contradicted": 0.0027,
+    "not_stated": 0.0024,
+    "not_a_claim": 0.002,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.993
+  },
+  "timing": {
+   "read_ms": 97,
+   "total_ms": 99
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2395,
+    5139
+   ],
+   "characters": 5139
+  }
+ }
+}

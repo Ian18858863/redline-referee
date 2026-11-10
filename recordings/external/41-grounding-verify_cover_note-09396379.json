@@ -1,0 +1,95 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify cover note",
+ "request_hash": "09396379b8c2544a7a794612b2d9982182a52d529493ef71e0224e834f5cc9f1",
+ "request": {
+  "documents": [
+   {
+    "id": "v2",
+    "text": "Consulting agreement — sections 6 and 7 (excerpt)\n6. Limits\nModification This Agreement can only be modified by a written amendment signed by the Party against whom enforcement of such modification is sought. Change order Any agreements not specified in this contract must be mutually authorized by a written change order. Term The initial term of this Agreement is one calendar week. After that, this Agreement automatically renews for successive one calendar week periods, unless any Party terminates this Agreement. Termination Any Party may terminate this Agreement by giving one calendar Week written notice to the other Parties of such termination. In the event that Work is postponed or terminated at the request of Consultee, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within one calendar week of Consultee's written notification to stop work. In the event of termination, Consultee shall also pay any expenses incurred by Consultant and Consultant shall own all rights to the Work. Consultee shall assume responsibility for all collection of legal fees necessitated by delay and/or default in payment. Limitation of liability Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement. In the case of per project pricing, or per work order pricing, Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement for the project at issue. Laws affecting electronic commerce From time to time governments enact laws and levy taxes and tariffs affecting Internet electronic commerce. Consultee agrees that Consultee is solely responsible for complying with such laws, taxes, and tariffs, and will hold harmless, protect, and defend consultant and its subcontractors from any claim, suit, penalty, tax, or tariff arising from Consultee's exercise of Internet electronic commerce. Debarment Parties warrant and represent that they have never been, are not currently, and, during the term of this Agreement, will not become Debarred.\n7. Mutual Resolution\nEvery aspect of this section is mutual i.e. apply equally to each Party. Agreement to resolve claims If any controversy or claim arises out of or relating to this Agreement , or the breach thereof, and cannot be settled through negotiation, then the Parties agree to try in good faith to settle the dispute first by non-binding mediation, and if that fails then second via non-binding arbitration, and if that fails then via litigation or some other type of dispute resolution process. Note: The purpose of this multi-step process is to save time and money for everyone involved, and to try multiple ways to find solutions, without needing to involve litigation. We're generally aware that some lawyers recommend binding arbitration, yet in our experience the binding causes more problems than it solves. Non-Binding Mediation If non-binding mediation is needed, then the Parties will use the American Arbitration Association (\"AAA\") standard procedures for Non-Binding Mediation Rules. The Parties agree to do this before the Parties may initiate non-binding arbitration, binding-arbitration, litigation, or some other type of dispute resolution process. Non-Binding Arbitration If non-binding arbitration is necessary, then the Parties agree to submit to non-binding arbitration administered by the American Arbitration Association under its Non-Binding Arbitration Rules. The Parties agree to do this before the Parties may initiate binding arbitration, litigation, or some other type of dispute resolution process. Recovery In the event of non-binding mediation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable mediators’s fees and expenses. In the event of non-binding arbitration relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable arbitrator’s fees and expenses. In the event of litigation relating to this Agreement, the prevailing Party shall be entitled to recover its reasonable attorney’s fees and expenses. Integrity If any provision of this Agreement, or restriction of this Agreement, is found by a court of competent jurisdiction to be unlawful, or unenforceable, or void, such provision will be modified, rewritten or interpreted to include as much of its nature and scope as will render it enforceable. If it cannot be so modified, rewritten or interpreted to be enforceable in any respect, it will not be given effect, and the remainder of the Agreement will be enforced as if such provision was not included. Any failure by a Party to enforce another Party’s strict performance of any provision of this Agreement will not constitute a waiver of its right to subsequently enforce such provision or any other provision of this Agreement."
+   },
+   {
+    "id": "changes",
+    "text": "The returned copy does not change any commercial or legal term of the agreement we sent. The only differences are the ones listed below.\nClause 7 (Mutual Resolution) was reworded without changing its meaning. We sent: \"All aspects of this section are\". The returned copy says: \"Every aspect of this section is\".\nClause 7 (Mutual Resolution) was reworded without changing its meaning. We sent: \"aspects of this section are mutual i.e\". The returned copy says: \"aspect of this section is mutual i.e\".\nClause 6 (Limits) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 7 (Mutual Resolution): no commercial or legal term of this clause changed. The only differences in it are spelling, formatting, an address or wording that keeps the same meaning."
+   }
+  ],
+  "answer": "We reworded one sentence without changing its meaning.",
+  "claims": [
+   "We reworded one sentence without changing its meaning."
+  ],
+  "instructions": "The answer is a cover note the counterparty wrote about the copy of the agreement they returned. Document 'v2' is that returned copy. Document 'changes' lists every difference found between the copy we sent and v2. A statement that a term is unchanged, or that no commercial or legal terms changed, is contradicted when 'changes' lists a substantive change to that term. A statement that describes a change is supported only when 'changes' or v2 shows that same change. A statement that a term is unchanged is supported when 'changes' says that the clause holding that term is unchanged. Judge each claim on these two documents alone.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 100.066429,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "0b587272-a1e3-4b0b-8b59-e2aa7f09c6e8",
+  "request_id": null,
+  "trace": "a586d82c6de12dec-LAX",
+  "wall_ms": 725,
+  "recorded_at": "2026-11-10T17:40:48+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9854,
+  "ungrounded": 0.0146,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "changes",
+    "share": 0.9977,
+    "share_of_answer": 0.9832,
+    "claims": [
+     0
+    ]
+   },
+   {
+    "id": "v2",
+    "share": 0.0023,
+    "share_of_answer": 0.0023,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "We reworded one sentence without changing its meaning.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 1,
+    "supported": 0.9854,
+    "contradicted": 0.0065,
+    "not_stated": 0.0048,
+    "not_a_claim": 0.0032,
+    "verdict": "supported",
+    "sources": {
+     "v2": 0.0023,
+     "changes": 0.9977
+    },
+    "source": "changes",
+    "evidence": {
+     "document": "changes",
+     "quote": "Clause 7 (Mutual Resolution) was reworded without changing its meaning.",
+     "start": 312,
+     "end": 383,
+     "confidence": 0.999
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.9854
+  },
+  "timing": {
+   "read_ms": 109,
+   "total_ms": 114
+  }
+ }
+}

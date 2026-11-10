@@ -1,0 +1,94 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "483ccf4446ca18ef3dbb8d6721f21b1693eaa70ae1b65822b6a57ef27f095cd3",
+ "request": {
+  "documents": [
+   {
+    "id": "pdf",
+    "text": "Bonterms Service Level Agreement (Version 1.0) Attachment to Bonterms Cloud Terms How to Use: This Bonterms Service Level Agreement (Version 1.0) (“SLA”) operates as an Attachment to the Bonterms Cloud Terms. To use this SLA, Customer and Provider incorporate this SLA by reference on their Cover Page. The parties may modify any element of this SLA, including the SLA Key Terms Chart (see Section 7 below), by reference on their Cover Page. Capitalized terms not defined in this SLA have the meanings given in the Bonterms Cloud Terms.\n1. Service Levels\nProvider will use commercially reasonable efforts to provide the Cloud Service at or above Target Availability.\n2. Monitoring\nProvider will provide or otherwise make available to Customer, upon request, reports measuring the Monthly Uptime Percentage as against Target Availability.\n3. Service Credits\nIf there is a verified failure of the Cloud Service to meet Target Availability in a particular month and Customer makes a request for service credit within 5 days after the end of such month, Customer will be entitled to a Service Credit calculated in accordance with the SLA Key Terms Chart below. Provider will apply each Service Credit to Customer’s next invoice, provided that Customer’s account is fully paid up (without outstanding payment issues or disputes). Customer will receive no refund or other credit for unused Service Credits.\n4. Multiple Failures\nTo the extent that the Cloud Service experiences Multiple Failures, then Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service. In such case Provider will refund to Customer any pre-paid, unused fees for the terminated portion of the Subscription Term.\n5. Exclusive Remedies\nService Credits constitute liquidated damages and are not a penalty. Service Credits and the Multiple Failures termination right set forth in Section 4 above are Customer’s exclusive remedies, and Provider’s sole liability, for Provider’s failure to meet Target Availability.\n6. Definitions\n“Maintenance” means Provider’s routine maintenance of the Cloud Service conducted in accordance with its Maintenance Procedures or reasonable emergency maintenance. “Maintenance Procedures” means Provider’s standard Cloud Service maintenance schedule as posted or otherwise made available by Provider upon request by Customer. “Monthly Uptime Percentage” means the number of minutes the Cloud Service is accessible and not subject to an Outage during a calendar month divided by the total number of minutes in that calendar month. “Multiple Failures” is defined in the SLA Key Terms Chart. “Outage” means an unplanned interruption or material disruption of the Cloud Service, but excluding unavailability to the extent caused by (a) Customer’s use of the Cloud Service in a manner not authorized in the Agreement or Documentation, (b) general Internet problems, Force Majeure events or other factors outside of Provider’s reasonable control, (c) Provider ’s network connections or other infrastructure or (d) Maintenance. “Service Credit” means a credit issued by Provider based on the monthly fees due for the affected Cloud Service in such month. “Target Availability” is defined in the SLA Key Terms Chart.\n7. SLA Key Terms Chart\nSLA Key Terms Chart Monthly Uptime Percentage: Service Credit: Target Availability: 99.9% or higher None Credit Tier 1 99.00% - 99.89% 5% of monthly fees Credit Tier 2 97.00% - 98.99% 20% of monthly fees Credit Tier 3 95.00% - 96.99% 35% of monthly fees Credit Tier 4 < 95.00% 50% of monthly fees Multiple Failures: means Target Availability is not met for 2 consecutive months or any 3 months in a rolling 12-month period. Bonterms does not provide legal advice, does not guarantee the enforceability or effect of these terms and has no liability relating to use of these terms."
+   }
+  ],
+  "answer": "If there is a verified failure of the Cloud Service to meet Target Availability in a particular month and Customer makes a request for service credit within 30 days after the end of such month, Customer will be entitled to a Service Credit calculated in accordance with the SLA Key Terms Chart below. “Outage” means an unplanned interruption or material disruption of the Cloud Service, but excluding unavailability to the extent caused by (a) Customer’s use of the Cloud Service in a manner not authorized in the Agreement or Documentation, (b) general Internet problems, Force Majeure events or other factors outside of Provider’s reasonable control, (c) Customer’s network connections or other infrastructure or (d) Maintenance.",
+  "claims": [
+   "If there is a verified failure of the Cloud Service to meet Target Availability in a particular month and Customer makes a request for service credit within 30 days after the end of such month, Customer will be entitled to a Service Credit calculated in accordance with the SLA Key Terms Chart below.",
+   "“Outage” means an unplanned interruption or material disruption of the Cloud Service, but excluding unavailability to the extent caused by (a) Customer’s use of the Cloud Service in a manner not authorized in the Agreement or Documentation, (b) general Internet problems, Force Majeure events or other factors outside of Provider’s reasonable control, (c) Customer’s network connections or other infrastructure or (d) Maintenance."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 122.75478,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "96136676-bfdd-4385-ab01-a945332d56a2",
+  "request_id": null,
+  "trace": "a588340a2eb36c63-IAD",
+  "wall_ms": 243,
+  "recorded_at": "2026-11-10T21:38:17+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.011,
+  "ungrounded": 0.989,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.011,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "If there is a verified failure of the Cloud Service to meet Target Availability in a particular month and Customer makes a request for service credit within 30 days after the end of such month, Customer will be entitled to a Service Credit calculated in accordance with the SLA Key Terms Chart below.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.411,
+    "supported": 0.002,
+    "contradicted": 0.9925,
+    "not_stated": 0.0034,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "“Outage” means an unplanned interruption or material disruption of the Cloud Service, but excluding unavailability to the extent caused by (a) Customer’s use of the Cloud Service in a manner not authorized in the Agreement or Documentation, (b) general Internet problems, Force Majeure events or other factors outside of Provider’s reasonable control, (c) Customer’s network connections or other infrastructure or (d) Maintenance.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.589,
+    "supported": 0.0174,
+    "contradicted": 0.958,
+    "not_stated": 0.0175,
+    "not_a_claim": 0.0071,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 131,
+   "total_ms": 135
+  }
+ }
+}

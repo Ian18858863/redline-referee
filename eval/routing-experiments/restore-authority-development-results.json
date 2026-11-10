@@ -1,0 +1,1519 @@
+{
+ "summary": {
+  "pairs": 15,
+  "pairs_complete": 15,
+  "pairs_failed": 0,
+  "edits": 30,
+  "edits_held": 30,
+  "edits_verify_changed": 30,
+  "edits_verify_asked": 30,
+  "edits_compare_conflict": 26,
+  "edits_compare_asked": 26,
+  "structural": 4,
+  "structural_held": 4,
+  "one_word": 2,
+  "one_word_held": 2,
+  "cosmetic": 41,
+  "cosmetic_held": 0,
+  "rewordings": 4,
+  "rewordings_cleared": 4,
+  "false_alarms": 0,
+  "false_statements": 30,
+  "false_statements_caught": 30,
+  "true_statements": 39,
+  "true_supported": 37,
+  "true_not_stated": 2,
+  "true_contradicted": 0,
+  "injections": 2,
+  "injections_guard": 2,
+  "injections_rules": 2,
+  "guard_false_alarms": 0,
+  "pairs_without_injection": 13,
+  "status_correct": 15,
+  "routed": 30,
+  "route_correct": 22,
+  "route_stricter": 3,
+  "route_looser": 5,
+  "route_missing": 0,
+  "claims_not_checked": 0,
+  "route_misses": [
+   "assignment: counter (playbook says escalate)",
+   "liability_cap: counter (playbook says escalate)",
+   "data_export: counter (playbook says accept)",
+   "assignment: counter (playbook says escalate)",
+   "data_export: counter (playbook says accept)",
+   "data_export: counter (playbook says accept)",
+   "liability_cap: counter (playbook says escalate)",
+   "liability_cap: counter (playbook says escalate)"
+  ],
+  "rerank_expected_passage_used": 24,
+  "rerank_with_passage": 24,
+  "rerank_extra_passages": 4,
+  "rerank_none_when_none": 6,
+  "rerank_without_passage": 6,
+  "credits": 1151,
+  "credits_per_review": 77
+ },
+ "ablation": {
+  "all three": {
+   "real_cleared": 0,
+   "same_held": 1,
+   "false_statements_missed": 0,
+   "status_wrong": 0,
+   "pairs": 24,
+   "incomplete": 0,
+   "failures": []
+  },
+  "without Verify": {
+   "real_cleared": 0,
+   "same_held": 20,
+   "false_statements_missed": 39,
+   "status_wrong": 13,
+   "pairs": 24,
+   "incomplete": 0,
+   "failures": []
+  },
+  "without Compare": {
+   "real_cleared": 4,
+   "same_held": 1,
+   "false_statements_missed": 1,
+   "status_wrong": 1,
+   "pairs": 24,
+   "incomplete": 0,
+   "failures": []
+  },
+  "rules alone": {
+   "real_cleared": 0,
+   "same_held": 20,
+   "false_statements_missed": 39,
+   "status_wrong": 13,
+   "pairs": 24,
+   "incomplete": 0,
+   "failures": []
+  }
+ },
+ "ablation_totals": {
+  "real": 69,
+  "same": 20,
+  "false_statements": 39
+ },
+ "ablation_pairs": [
+  "quiet-changes",
+  "disclosed-changes",
+  "two-readers",
+  "quiet-changes-injected",
+  "instruction-in-note",
+  "added-clause",
+  "clean-return",
+  "eval-01",
+  "eval-02",
+  "eval-03",
+  "eval-04",
+  "eval-05",
+  "eval-06",
+  "eval-07",
+  "eval-08",
+  "eval-09",
+  "eval-10",
+  "eval-11",
+  "eval-12",
+  "struct-01",
+  "struct-02",
+  "struct-03",
+  "hard-a",
+  "hard-b"
+ ],
+ "hard": {
+  "changed_total": 24,
+  "same_total": 15,
+  "app_held_changed": 24,
+  "app_cleared_same": 14,
+  "app_wrongly_cleared": [],
+  "app_held_same": [
+   "hard-a-05"
+  ],
+  "verify_changed_on_changed": 22,
+  "verify_same_on_same": 14,
+  "verify_same_on_changed": [
+   "hard-a-15",
+   "hard-b-13"
+  ],
+  "compare_conflict_on_changed": 23,
+  "compare_same_on_same": 14,
+  "compare_same_on_changed": [],
+  "compare_conflict_on_same": [
+   "hard-a-05"
+  ],
+  "verify_changed_on_same": [
+   "hard-a-05"
+  ],
+  "disagree": [
+   "hard-a-15",
+   "hard-b-13",
+   "hard-b-15"
+  ]
+ },
+ "pairs": [
+  {
+   "case": "eval-01",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 89,
+   "calls": 18,
+   "edits": [
+    {
+     "id": "renewal_notice",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "accept",
+     "route_truth": "accept",
+     "decide": "accept",
+     "passages": [
+      "term-renewal-notice"
+     ],
+     "passage_truth": "term-renewal-notice",
+     "playbook": "guidance"
+    },
+    {
+     "id": "assignment",
+     "kind": "wording",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "escalate",
+     "decide": "counter",
+     "passages": [
+      "assignment-standard"
+     ],
+     "passage_truth": "assignment-standard",
+     "playbook": "guidance"
+    },
+    {
+     "id": "confidentiality",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "accept",
+     "route_truth": "accept",
+     "decide": "accept",
+     "passages": [
+      "data-confidentiality"
+     ],
+     "passage_truth": "data-confidentiality",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "fmt_caps",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "fmt_ampersand",
+     "kind": "format",
+     "held": false,
+     "cleared_as": null
+    },
+    {
+     "id": "typo_receive",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    },
+    {
+     "id": "fmt_cure",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The renewal mechanics are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The assignment clause is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The availability commitment is the same as in your draft.",
+     "expected": "supported",
+     "got": "not_stated"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-02",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 82,
+   "calls": 16,
+   "edits": [
+    {
+     "id": "ip_ownership",
+     "kind": "wording",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "escalate",
+     "route_truth": "escalate",
+     "decide": "escalate",
+     "passages": [],
+     "passage_truth": null,
+     "playbook": "none"
+    },
+    {
+     "id": "liability_cap",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "escalate",
+     "decide": "counter",
+     "passages": [
+      "liability-cap"
+     ],
+     "passage_truth": "liability-cap",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "typo_separate",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    },
+    {
+     "id": "fmt_cure",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "fmt_email",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "reword_dispute",
+     "kind": "reword",
+     "held": false,
+     "cleared_as": "reworded"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Intellectual property ownership is exactly as you proposed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The limitation of liability is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The availability commitment is the same as in your draft.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-03",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 124,
+   "calls": 22,
+   "edits": [
+    {
+     "id": "sla_credit_cap",
+     "kind": "percent",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "accept",
+     "route_truth": "accept",
+     "decide": "accept",
+     "passages": [
+      "service-credits"
+     ],
+     "passage_truth": "service-credits",
+     "playbook": "guidance"
+    },
+    {
+     "id": "renewal_notice",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "accept",
+     "route_truth": "accept",
+     "decide": "accept",
+     "passages": [
+      "term-renewal-notice"
+     ],
+     "passage_truth": "term-renewal-notice",
+     "playbook": "guidance"
+    },
+    {
+     "id": "data_export",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "accept",
+     "decide": "counter",
+     "passages": [
+      "data-export"
+     ],
+     "passage_truth": "data-export",
+     "playbook": "guidance"
+    },
+    {
+     "id": "ip_ownership",
+     "kind": "wording",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "escalate",
+     "route_truth": "escalate",
+     "decide": "escalate",
+     "passages": [],
+     "passage_truth": null,
+     "playbook": "none"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "reword_dispute",
+     "kind": "reword",
+     "held": false,
+     "cleared_as": "reworded"
+    },
+    {
+     "id": "address",
+     "kind": "address",
+     "held": false,
+     "cleared_as": "administrative"
+    },
+    {
+     "id": "typo_separate",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Service credits are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The renewal mechanics are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The late payment clause is as you sent it.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": true,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": true,
+   "hidden_text": true
+  },
+  {
+   "case": "eval-04",
+   "status": "changes",
+   "expected_status": "changes",
+   "errors": 0,
+   "credits": 69,
+   "calls": 14,
+   "edits": [
+    {
+     "id": "min_max",
+     "kind": "wording",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "counter",
+     "decide": "counter",
+     "passages": [
+      "service-credits"
+     ],
+     "passage_truth": "service-credits",
+     "playbook": "guidance"
+    },
+    {
+     "id": "late_interest",
+     "kind": "percent",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "accept",
+     "route_truth": "accept",
+     "decide": "accept",
+     "passages": [
+      "fees-late"
+     ],
+     "passage_truth": "fees-late",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "fmt_confidentiality",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "fmt_email",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We changed the service credit cap into a 10% minimum.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We lowered the late payment interest rate to 1% per month.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-05",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 73,
+   "calls": 15,
+   "edits": [
+    {
+     "id": "late_interest",
+     "kind": "percent",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "accept",
+     "route_truth": "accept",
+     "decide": "accept",
+     "passages": [
+      "fees-late"
+     ],
+     "passage_truth": "fees-late",
+     "playbook": "guidance"
+    },
+    {
+     "id": "renewal_notice",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "accept",
+     "route_truth": "accept",
+     "decide": "accept",
+     "passages": [
+      "term-renewal-notice"
+     ],
+     "passage_truth": "term-renewal-notice",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "fmt_caps",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "address",
+     "kind": "address",
+     "held": false,
+     "cleared_as": "administrative"
+    },
+    {
+     "id": "fmt_email",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "administrative"
+    },
+    {
+     "id": "typo_receive",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The late payment clause is as you sent it.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The renewal mechanics are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The annual subscription fee is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-06",
+   "status": "ready",
+   "expected_status": "ready",
+   "errors": 0,
+   "credits": 49,
+   "calls": 9,
+   "edits": [],
+   "cosmetic": [
+    {
+     "id": "reword_dispute",
+     "kind": "reword",
+     "held": false,
+     "cleared_as": "reworded"
+    },
+    {
+     "id": "fmt_email",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "Termination rights are unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-07",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 70,
+   "calls": 14,
+   "edits": [
+    {
+     "id": "initial_term",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "escalate",
+     "route_truth": "escalate",
+     "decide": "escalate",
+     "passages": [
+      "term-initial"
+     ],
+     "passage_truth": "term-initial",
+     "playbook": "guidance"
+    },
+    {
+     "id": "pay_terms",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "counter",
+     "decide": "counter",
+     "passages": [
+      "payment-large",
+      "payment-standard"
+     ],
+     "passage_truth": "payment-large",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "fmt_confidentiality",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "fmt_cure",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    }
+   ],
+   "claims": [
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The initial term is still thirty-six months.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Payment terms remain net thirty days.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The fee adjustment clause was not touched.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-08",
+   "status": "changes",
+   "expected_status": "changes",
+   "errors": 0,
+   "credits": 75,
+   "calls": 15,
+   "edits": [
+    {
+     "id": "assignment",
+     "kind": "wording",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "escalate",
+     "decide": "counter",
+     "passages": [
+      "assignment-standard"
+     ],
+     "passage_truth": "assignment-standard",
+     "playbook": "guidance"
+    },
+    {
+     "id": "data_export",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "accept",
+     "decide": "counter",
+     "passages": [
+      "data-export"
+     ],
+     "passage_truth": "data-export",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "typo_receive",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    },
+    {
+     "id": "address",
+     "kind": "address",
+     "held": false,
+     "cleared_as": "administrative"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We changed the assignment clause so Customer can assign to affiliates without consent.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We extended the post-termination data export window to ninety days.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-09",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 102,
+   "calls": 16,
+   "edits": [
+    {
+     "id": "data_export",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "accept",
+     "decide": "counter",
+     "passages": [
+      "data-export"
+     ],
+     "passage_truth": "data-export",
+     "playbook": "guidance"
+    },
+    {
+     "id": "pay_terms",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "counter",
+     "decide": "counter",
+     "passages": [
+      "payment-large",
+      "payment-standard"
+     ],
+     "passage_truth": "payment-large",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "fmt_cure",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "typo_written",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    },
+    {
+     "id": "fmt_email",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "typo_receive",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The data handling clause is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Payment terms remain net thirty days.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The audit clause is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": true,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": true,
+   "hidden_text": true
+  },
+  {
+   "case": "eval-10",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 71,
+   "calls": 14,
+   "edits": [
+    {
+     "id": "audit_rights",
+     "kind": "wording",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "escalate",
+     "route_truth": "escalate",
+     "decide": "escalate",
+     "passages": [],
+     "passage_truth": null,
+     "playbook": "none"
+    },
+    {
+     "id": "liability_cap",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "escalate",
+     "decide": "counter",
+     "passages": [
+      "liability-cap"
+     ],
+     "passage_truth": "liability-cap",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "fmt_email",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "administrative"
+    },
+    {
+     "id": "address",
+     "kind": "address",
+     "held": false,
+     "cleared_as": "administrative"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The audit clause is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The limitation of liability is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Service credits are unchanged.",
+     "expected": "supported",
+     "got": "not_stated"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-11",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 77,
+   "calls": 15,
+   "edits": [
+    {
+     "id": "min_max",
+     "kind": "wording",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "counter",
+     "decide": "counter",
+     "passages": [
+      "service-credits"
+     ],
+     "passage_truth": "service-credits",
+     "playbook": "guidance"
+    },
+    {
+     "id": "pay_terms",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "counter",
+     "decide": "counter",
+     "passages": [
+      "payment-large",
+      "payment-standard"
+     ],
+     "passage_truth": "payment-large",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "fmt_cure",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "fmt_caps",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "typo_separate",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Service credits are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Payment terms remain net thirty days.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The assignment clause is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "eval-12",
+   "status": "ready",
+   "expected_status": "ready",
+   "errors": 0,
+   "credits": 53,
+   "calls": 10,
+   "edits": [],
+   "cosmetic": [
+    {
+     "id": "fmt_cure",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    },
+    {
+     "id": "typo_written",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    },
+    {
+     "id": "reword_dispute",
+     "kind": "reword",
+     "held": false,
+     "cleared_as": "reworded"
+    },
+    {
+     "id": "fmt_email",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "The audit clause is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "struct-01",
+   "status": "changes",
+   "expected_status": "changes",
+   "errors": 0,
+   "credits": 71,
+   "calls": 14,
+   "edits": [
+    {
+     "id": "renewal_notice",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "accept",
+     "route_truth": "accept",
+     "decide": "accept",
+     "passages": [
+      "term-renewal-notice"
+     ],
+     "passage_truth": "term-renewal-notice",
+     "playbook": "guidance"
+    },
+    {
+     "id": "added_mfc",
+     "kind": "added",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "not_asked",
+     "route": "escalate",
+     "route_truth": "escalate",
+     "decide": "escalate",
+     "passages": [],
+     "passage_truth": null,
+     "playbook": "none"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "typo_receive",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    },
+    {
+     "id": "fmt_email",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We shortened the non-renewal notice period to thirty days.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We added a most-favoured-customer clause as Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "struct-02",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 72,
+   "calls": 14,
+   "edits": [
+    {
+     "id": "pay_terms",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "counter",
+     "decide": "counter",
+     "passages": [
+      "payment-large",
+      "payment-standard"
+     ],
+     "passage_truth": "payment-large",
+     "playbook": "guidance"
+    },
+    {
+     "id": "removed_late_payment",
+     "kind": "removed",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "not_asked",
+     "route": "escalate",
+     "route_truth": "escalate",
+     "decide": "escalate",
+     "passages": [
+      "fees-late"
+     ],
+     "passage_truth": "fees-late",
+     "playbook": "guidance"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "typo_written",
+     "kind": "typo",
+     "held": false,
+     "cleared_as": "spelling"
+    },
+    {
+     "id": "address",
+     "kind": "address",
+     "held": false,
+     "cleared_as": "administrative"
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Payment terms remain net thirty days.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "No clause was added or removed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Governing law and venue are still Delaware.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  },
+  {
+   "case": "struct-03",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 74,
+   "calls": 15,
+   "edits": [
+    {
+     "id": "liability_cap",
+     "kind": "duration",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "conflict",
+     "route": "counter",
+     "route_truth": "escalate",
+     "decide": "counter",
+     "passages": [
+      "liability-cap"
+     ],
+     "passage_truth": "liability-cap",
+     "playbook": "guidance"
+    },
+    {
+     "id": "added_mfc",
+     "kind": "added",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "not_asked",
+     "route": "escalate",
+     "route_truth": "escalate",
+     "decide": "escalate",
+     "passages": [],
+     "passage_truth": null,
+     "playbook": "none"
+    },
+    {
+     "id": "removed_audit",
+     "kind": "removed",
+     "held": true,
+     "rules": "substantive",
+     "verify": "changed",
+     "compare": "not_asked",
+     "route": "escalate",
+     "route_truth": "escalate",
+     "decide": "escalate",
+     "passages": [],
+     "passage_truth": null,
+     "playbook": "none"
+    }
+   ],
+   "cosmetic": [
+    {
+     "id": "fmt_caps",
+     "kind": "format",
+     "held": false,
+     "cleared_as": "formatting"
+    }
+   ],
+   "claims": [
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The limitation of liability is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "No clause was added or removed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The annual subscription fee is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "injection": false,
+   "note_instruction": false,
+   "wrong_file": false,
+   "guard_flagged": false,
+   "hidden_text": false
+  }
+ ]
+}

@@ -41,6 +41,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 from . import prompts as P
+from .note import split_claims, split_note
 from .gateway import PRODUCT_NAME, Gateway, StepError, pdf_b64
 from .rules import Hunk, _values, align, compare_documents, normalise, sentences
 from .textdoc import TextDoc, content_box, locate, read_pdf, remap_rects, render_pages, squash
@@ -86,157 +87,6 @@ def _verb(names: list[str], verb: str) -> str:
 
 def _is_num(x) -> bool:
     return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
-
-
-# ---------------------------------------------------------------- cover note
-_ABBREV = set("inc ltd co corp llc plc gmbh no nos mr ms mrs dr prof vs e.g i.e approx sec art cl para p.s ps u.s u.k st etc jr sr est".split())
-_COMPANY = set("inc ltd co corp llc plc gmbh".split())
-_SENT_GAP = re.compile(r"(?<=[.!?])[\"”’')\]]*\s+")
-_SALUTE = re.compile(r"^(?:hi|hello|hey|dear|greetings|good (?:morning|afternoon|evening)|to whom it may concern)\b"
-                     r"(?:\s+(?:mr|ms|mrs|dr|prof)\.)?"
-                     r"(?:(?:\s+[^\s,:;.!?—–-]+){0,4}\s*[,:;!]|(?:\s+[^\s,:;.!?—–-]+){0,2}\s*(?:\.(?=\s|$)|$))\s*", re.I)
-_SIGN = (r"(?i:thanks(?: again| so much| very much| a lot)?|thank you(?: very much| again| so much)?|many thanks|"
-         r"best(?: regards| wishes)?|kind regards|warm regards|with regards|regards|sincerely(?: yours)?|"
-         r"yours (?:sincerely|faithfully|truly)|cheers|respectfully|cordially|all the best)")
-_SIGNOFF = re.compile(rf"^{_SIGN}\s*(?:[,.!]\s*)?$|^{_SIGN}\s*,\s*[A-Z][\w.'’-]*(?:\s+[A-Z][\w.'’-]*){{0,3}}$")
-_THANKS = re.compile(r"^(?:thanks|thank you|many thanks)\b", re.I)
-_THANKS_THEN = re.compile(r"^(?:thanks|thank you|many thanks)\s*[,!–—-]\s*(?=\S+\s+\S+\s+\S)", re.I)
-_BULLET = re.compile(r"^(?:[-*•·–—▪◦]|\(?\d{1,2}[.)]|\(?[a-z]\))\s+(?=\S)")
-_TO_AN_AI = re.compile(
-    r"\b(?:AI|A\.I\.|LLMs?|GPT|ChatGPT|Copilot)\b|"
-    r"(?i:\b(?:artificial intelligence|language model|chat ?bot|automated (?:\w+ ){0,2}(?:reviewer|review|system|tool|assistant|agent)|"
-    r"review(?:er)? tool)\b)|"
-    r"(?i:\b(?:ignore|disregard|override)\b.{0,40}\b(?:instructions?|rules|checks?|review)\b)")
-
-
-def _note_sentences(text: str) -> list[str]:
-    """Sentences of a paragraph. "Inc." before a lower-case word, "No. 5", "J. Smith" and "P.S." do not end one."""
-    out, start = [], 0
-    for m in _SENT_GAP.finditer(text):
-        before = text[start:m.start()]
-        last = (before.split() or [""])[-1]
-        nxt = text[m.end():m.end() + 1]
-        if last.endswith("."):
-            w = last[:-1].lower().lstrip("(\"'“‘")
-            if (len(w) == 1 and w.isalpha()) or (w in _ABBREV and not (w in _COMPANY and nxt.isupper())):
-                continue
-        out.append(text[start:m.end()].strip())
-        start = m.end()
-    out.append(text[start:].strip())
-    return [s for s in out if s]
-
-
-def _pieces(sentence: str) -> list[tuple[str, str]]:
-    """A semicolon list as its items: [(text as written, the claim sent)]. A lead-in before a colon
-    ("We changed the following:") is put in front of every item it introduces."""
-    if ";" not in sentence:
-        return [(sentence, sentence)]
-    lead, body = "", sentence
-    m = re.match(r"^([^;]{3,200}?:)\s+(?=\S)", sentence)
-    if m:
-        lead, body = m.group(1), sentence[m.end():]
-    parts = [p.strip() for p in body.split(";") if p.strip()]
-    if len(parts) < 2 or any(len(p.split()) < 2 for p in parts):
-        return [(sentence, sentence)]
-    out = []
-    for p in parts:
-        core = re.sub(r"^(?:and|or)\s+", "", p, flags=re.I)
-        out.append((p, f"{lead} {core}" if lead else core))
-    return out
-
-
-def split_note(letter: str) -> dict:
-    """Every sentence of the cover note, sorted into what happens to it.
-
-    claims        statements that assert something: each is checked by Verify (`sent` holds the text sent,
-                  which differs from `claims` only for a list item that needs its lead-in)
-    instructions  text addressed to an AI or a review tool: left to Guard, which reads the whole note
-    skipped       salutations, sign-offs, signature lines and questions, with the reason
-
-    A paragraph is not dropped because it opens with "Hi", and a sentence does not need a full stop.
-    Bullets and semicolon lists are split into one statement each.
-    """
-    claims: list[str] = []
-    sent: list[str] = []
-    instructions: list[dict] = []
-    skipped: list[dict] = []
-
-    def take(text: str, claim: str):
-        text, claim = text.strip(), claim.strip()
-        bare = re.sub(r"^(?:P\.?\s?S\.?|N\.?B\.?)\s*[:.,-]?\s*", "", text)
-        if not bare:
-            return
-        if re.search(r"\?[\"”’')\]]*$", bare):
-            skipped.append({"text": text, "why": "question"})
-        elif _TO_AN_AI.search(bare):
-            instructions.append({"text": text, "claim": claim,
-                                 "why": "Addressed to an AI or a review tool: an instruction, not a statement about the agreement."})
-        elif _THANKS.match(bare) and not _THANKS_THEN.match(bare):
-            skipped.append({"text": text, "why": "courtesy"})
-        elif len(re.findall(r"\w+", bare)) < 2:
-            skipped.append({"text": text, "why": "too short to state anything"})
-        else:
-            m = _THANKS_THEN.match(text)
-            if m:
-                text = text[m.end():]
-                claim = claim[m.end():] if _THANKS_THEN.match(claim) else claim
-            claims.append(text)
-            sent.append(claim)
-
-    signed, first = False, True
-    every: list[list[str]] = []                # ["text"|"bullet", content], over the whole note
-    body = (letter or "").replace("\r\n", "\n").replace("\r", "\n").strip()
-    for para in re.split(r"\n[ \t]*\n", body):
-        lines = [squash(l) for l in para.split("\n") if l.strip()]
-        if not lines:
-            continue
-        if first:
-            first = False
-            m = _SALUTE.match(lines[0])
-            if m:
-                skipped.append({"text": m.group(0).strip(), "why": "salutation"})
-                rest = lines[0][m.end():].strip()
-                lines = ([rest] if rest else []) + lines[1:]
-        blocks: list[list[str]] = []
-        in_signature = False
-        for line in lines:
-            if in_signature:
-                skipped.append({"text": line, "why": "signature"})
-            elif _SIGNOFF.match(line):
-                skipped.append({"text": line, "why": "sign-off"})
-                signed = in_signature = True
-            elif signed and not re.search(r"[.!?:;][\"”’')\]]*$", line) and len(line.split()) <= 8 and not _BULLET.match(line):
-                skipped.append({"text": line, "why": "signature"})
-            elif _BULLET.match(line):
-                blocks.append(["bullet", _BULLET.sub("", line, count=1)])
-            elif blocks and blocks[-1][0] == "bullet" and not re.search(r"[.!?;:][\"”’')\]]*$", blocks[-1][1]):
-                blocks[-1][1] += " " + line                    # a wrapped bullet
-            elif blocks and blocks[-1][0] == "text":
-                blocks[-1][1] += " " + line
-            else:
-                blocks.append(["text", line])
-        every += blocks
-    lead = ""
-    for n, (kind, content) in enumerate(every):
-        if kind == "text":
-            lead = ""
-            sents = _note_sentences(content)
-            bullets_next = n + 1 < len(every) and every[n + 1][0] == "bullet"
-            if sents and sents[-1].endswith(":") and bullets_next:     # introduces the bullets that follow
-                lead = sents.pop()
-            for s in sents:
-                for text, claim in _pieces(s):
-                    take(text, claim)
-        else:
-            for s in _note_sentences(content):
-                for text, claim in _pieces(s):
-                    take(text, f"{lead} {claim}" if lead else claim)
-    return {"claims": claims, "sent": sent, "instructions": instructions, "skipped": skipped}
-
-
-def split_claims(letter: str) -> list[str]:
-    """The statements of the note that assert something, all of them, as written."""
-    return split_note(letter)["claims"]
 
 
 # ----------------------------------------------------- checking API responses
@@ -498,6 +348,10 @@ def check_decide(resp) -> dict:
         if not isinstance(a, dict) or a.get("noul") is None:
             _bad(f"the answer to “{key}” was missing")
         out[key] = _prob(a.get("noul"), f"answer to “{key}”")
+    restore = answers.get("desk_may_restore")
+    out["desk_may_restore"] = None if restore is None else (
+        _prob(restore.get("noul"), "answer to “desk_may_restore”") if isinstance(restore, dict) and restore.get("noul") is not None
+        else _bad("the answer to “desk_may_restore” was missing"))
     fav, mat = answers.get("favors"), answers.get("materiality")
     fav = fav if isinstance(fav, dict) else {}
     mat = mat if isinstance(mat, dict) else {}
@@ -1272,13 +1126,22 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
                 "compare", {"documents": [{"id": "v1", "text": p["v1"]}, {"id": "v2", "text": p["v2"]}],
                             "instructions": P.COMPARE_CLAUSE_INSTRUCTIONS, "evidence": "all"},
                 step, f"clause {p['label']}", lambda r, p=p: check_clause_compare(r, p["v1"], p["v2"]))
+        reordered = {d.name: drawn_out_of_order(d) for d in (v1, v2)}
+        for d, name in ((v1, "The version we sent"), (v2, "The returned copy")):
+            if reordered[d.name]:
+                warnings.append({"source": "Rules", "kind": "edited_in_place", "text":
+                                 f"{name} draws some of its words out of reading order on {_pages(reordered[d.name]).lower()}, "
+                                 "which is what a PDF edited in place looks like. Verify was given that text in reading order."})
         hclaims = {id(h): hunk_claims(h, view1, view2) for h in hunks if not _settled(h)}
         s1, s2 = xverify_claims(hunks, view1, view2)
         xv_batches: dict[str, list[list[str]]] = {}
         unread: set[str] = set()
-        # sentences of the returned copy are read against the PDF we sent, and the other way round
-        for side, claims_, pdf, step, role in (("v2", s2, b1, "verify returned sentences against v1", "returned sentences against the version we sent"),
-                                               ("v1", s1, b2, "verify sent sentences against v2", "sent sentences against the returned copy")):
+        # sentences of the returned copy are read against the PDF we sent, and the other way round.
+        # A PDF whose text layer is drawn out of reading order is given to Verify as the text the rule layer read.
+        for side, claims_, pdf, source_doc, step, role in (
+                ("v2", s2, b1, v1, "verify returned sentences against v1", "returned sentences against the version we sent"),
+                ("v1", s1, b2, v2, "verify sent sentences against v2", "sent sentences against the returned copy")):
+            source = {"documents": [{"id": "pdf", "text": source_doc.full_text}]} if reordered[source_doc.name] else {"pdf": pdf}
             groups, too_long = batches(claims_)
             xv_batches[side] = groups
             unread |= set(too_long)
@@ -1287,7 +1150,7 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
                      f"({len(c):,} characters). It was not sent, and it was not cut; the change it belongs to was not read.", "too_long")
             for i, group in enumerate(groups):
                 jobs[f"xv|{side}|{i}"] = (
-                    "grounding", {"pdf": pdf, "answer": " ".join(group), "claims": group,
+                    "grounding", {**source, "answer": " ".join(group), "claims": group,
                                   "instructions": P.XVERIFY_INSTRUCTIONS, "threshold": P.MEANING_CHANGED_FLOOR,
                                   "evidence": "all"},
                     step + (f" ({i + 1} of {len(groups)})" if len(groups) > 1 else ""), role,
@@ -1397,8 +1260,9 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
             "kinds": sorted({f["kind"] for cc in ccmp.values() for f in cc.get("findings") or [] if f["relation"] == "conflict" and f["kind"]}),
         },
         "note": note, "guard": guard, "terms": list(term_rows.values()),
-        "hidden_text": [{"text": h.text, "page": h.page, "reason": h.reason, "reason_text": HIDDEN_WORDS.get(h.reason, "hidden text")}
-                        for h in v2.hidden],
+        "hidden_text": [{"text": h.text, "page": h.page, "reason": h.reason, "reason_text": HIDDEN_WORDS.get(h.reason, "hidden text"),
+                         "inherited": inherited}
+                        for h, inherited in classify_hidden(v1, v2)],
         "unread_pages": {"v1": list(v1.pages_without_text), "v2": list(v2.pages_without_text)},
         "ocr_pages": {"v1": list(v1.ocr_pages), "v2": list(v2.ocr_pages)},
         "ignored_readers": sorted(ignore),
@@ -1718,6 +1582,7 @@ def _rerank(c: dict, playbook: dict, fee: str | None, run) -> dict:
                lambda r: check_rerank(r, len(passages_)))
     if rows is None:
         return {"status": "error", "passages": [], "skipped": [], "expanded": False, "query": query}
+    marks = restore_marks(playbook)
     used, skipped, expand_topics = [], [], []
     for row in rows:
         p = by_id.get(row["id"]) or (passages_[row["index"]] if row["index"] is not None else None)
@@ -1725,6 +1590,8 @@ def _rerank(c: dict, playbook: dict, fee: str | None, run) -> dict:
             continue
         view = {"id": p["id"], "title": p["title"], "text": p["text"], "action": row["action"],
                 "reason": row["reason"], "relevance": row["relevance_score"], "document_score": row["document_score"]}
+        if p["id"] in marks:
+            view["restore_original"] = True
         if row["action"] == "use" and (row["relevance_score"] or 0) >= P.RERANK_USE_FLOOR:
             used.append(view)
         elif row["action"] == "expand":
@@ -1743,14 +1610,20 @@ def _rerank(c: dict, playbook: dict, fee: str | None, run) -> dict:
             p = by_id.get(row["id"]) or (siblings[row["index"]] if row["index"] is not None else None)
             if p and row["action"] == "use" and (row["relevance_score"] or 0) >= P.RERANK_USE_FLOOR:
                 used.append({"id": p["id"], "title": p["title"], "text": p["text"], "action": "use", "reason": None,
-                             "relevance": row["relevance_score"], "document_score": row["document_score"]})
+                             "relevance": row["relevance_score"], "document_score": row["document_score"],
+                             **({"restore_original": True} if p["id"] in marks else {})})
     return {"status": "guidance" if used else "none", "passages": used[:3], "skipped": skipped[:3],
             "expanded": expanded, "query": query, "read": len(passages_)}
 
 
-def _route_from_answers(may_accept: float | None, may_counter: float | None) -> tuple[str | None, float]:
-    """Turn two yes/no readings of the playbook into a route and how sure it is.
-    A probability between 1 - floor and floor is not an answer; the route is then None."""
+def _route_from_answers(may_accept: float | None, may_counter: float | None,
+                        may_restore: float | None = None) -> tuple[str | None, float]:
+    """Turn yes/no readings of the playbook into a route and how sure it is.
+    A probability between 1 - floor and floor is not an answer; the route is then None.
+
+    may_restore is given only when the policy data marks a kept passage as granting the desk authority to send
+    our original term back. A sure yes is a counter; an unsure answer is not an answer.
+    """
     hi, lo = P.ROUTE_CONFIDENCE_FLOOR, 1 - P.ROUTE_CONFIDENCE_FLOOR
     if may_accept is None or may_counter is None:
         return None, 0.0
@@ -1758,9 +1631,19 @@ def _route_from_answers(may_accept: float | None, may_counter: float | None) -> 
         return "accept", may_accept
     if may_accept <= lo and may_counter >= hi:
         return "counter", min(1 - may_accept, may_counter)
+    if may_accept <= lo and may_counter <= lo and may_restore is not None:
+        if may_restore >= hi:
+            return "counter", min(1 - may_accept, may_restore)
+        if may_restore > lo:
+            return None, max(min(may_restore, 1 - may_restore), 0.0)
     if may_accept <= lo and may_counter <= lo:
-        return "escalate", min(1 - may_accept, 1 - may_counter)
+        return "escalate", min(1 - may_accept, 1 - may_counter, 1.0 if may_restore is None else 1 - may_restore)
     return None, max(min(may_accept, 1 - may_accept), min(may_counter, 1 - may_counter))
+
+
+def restore_marks(playbook: dict) -> set[str]:
+    """Ids of the passages the policy marks as granting the desk authority to send our original term back."""
+    return {p["id"] for t in playbook.get("topics", []) for p in t.get("passages", []) if p.get("restore_original") is True}
 
 
 def _decide(c: dict, run, deal: dict | None = None) -> dict | None:
@@ -1786,13 +1669,25 @@ def _decide(c: dict, run, deal: dict | None = None) -> dict | None:
         "deal_facts_from_our_version": deal or {},
         "playbook": [f"{p['title']}: {p['text']}" for p in guidance] or "The playbook has no passage that covers this change.",
     }
-    a = run("decide", {"state": state, "instructions": P.DECIDE_INSTRUCTIONS, "questions": P.DECIDE_QUESTIONS},
+    questions = P.DECIDE_QUESTIONS
+    grant = [p["id"] for p in guidance if p.get("restore_original") is True]
+    if grant:                                   # the policy grants it somewhere in what Rerank kept: ask whether it applies here
+        questions = {**P.DECIDE_QUESTIONS, "desk_may_restore": P.DECIDE_RESTORE_QUESTION}
+    a = run("decide", {"state": state, "instructions": P.DECIDE_INSTRUCTIONS, "questions": questions},
             f"decide {c['clause']}", f"clause {c['clause']}", check_decide)
     if a is None:
         return None
     may_accept, may_counter = a["desk_may_accept"], a["desk_may_counter"]
-    route, confidence = _route_from_answers(may_accept, may_counter)
-    return {"route": route, "route_confidence": confidence, "desk_may_accept": may_accept, "desk_may_counter": may_counter,
+    may_restore = a.get("desk_may_restore") if grant else None
+    if grant and may_restore is None:           # asked and not answered: not an answer, a person decides
+        route, confidence = None, 0.0
+    else:
+        route, confidence = _route_from_answers(may_accept, may_counter, may_restore)
+    hi, lo = P.ROUTE_CONFIDENCE_FLOOR, 1 - P.ROUTE_CONFIDENCE_FLOOR
+    by_restoring = bool(route == "counter" and may_restore is not None and may_restore >= hi and not may_counter >= hi)
+    extra = {"desk_may_restore": may_restore, "restore_granted_by": grant,
+             "counter_kind": "restore" if by_restoring else "compromise" if route == "counter" else None} if grant else {}
+    return {**extra, "route": route, "route_confidence": confidence, "desk_may_accept": may_accept, "desk_may_counter": may_counter,
             "favors": a["favors"], "favors_confidence": a["favors_confidence"],
             "materiality": a["materiality"], "materiality_label": a["materiality_label"]}
 
@@ -1809,9 +1704,56 @@ def _final_route(c: dict) -> None:
         c["route"], c["route_reason"] = "escalate", "Decide was not sure how the playbook applies, so a person decides."
     else:
         c["route"] = d["route"]
+        if d.get("counter_kind") == "restore":
+            c["route_reason"] = "The playbook does not allow this as written, and expressly lets the deal desk send our original term back."
+            return
         c["route_reason"] = {"accept": "The playbook lets the deal desk accept this as written.",
                              "counter": "The playbook does not allow this as written, but gives the deal desk a term to send back.",
                              "escalate": "The playbook reserves this for an approver outside the deal desk."}.get(d["route"], "")
+
+
+def drawn_out_of_order(doc: TextDoc) -> list[int]:
+    """Pages whose text layer is not drawn in the order it reads.
+
+    A PDF edited in place keeps the rest of the page and draws the replacement words last, so in the raw text
+    layer the edited sentence has a hole and its new words sit at the end of the page. A reader given the raw
+    PDF reads that hole. Each sentence the rule layer read is looked for, whole, in the raw text layer; a
+    sentence that is not there in one piece marks its page. (A sentence that runs over a page break with a
+    footer in between is marked too; the remedy, reading-order text, is right for it as well.)
+    """
+    try:
+        with pymupdf.open(doc.path) as pdf:
+            raw = _nz(" ".join(page.get_text() for page in pdf))
+    except Exception:
+        return []
+    pages = set()
+    for c in doc.clauses:
+        for sentence in re.split(r"(?<=[.!?;:])\s+", c.text):
+            key = _nz(sentence)
+            if len(key) >= 24 and key not in raw:
+                pages.add(c.page)
+    return sorted(pages)
+
+
+def classify_hidden(v1: TextDoc, v2: TextDoc) -> list[tuple]:
+    """Each concealed passage of the returned copy, with whether the version we sent conceals the same text.
+
+    Fine print that was already in our own version (a publisher's licence mark in 3 pt type, say) is inherited:
+    the counterparty did not put it there, so it does not block. It stays listed, and Guard still reads all of
+    the returned copy's text. Concealed text that our version does not carry is new, and blocks. Matching is by
+    the exact text, one for one: a second copy, or the same passage with a word added, is new.
+    """
+    pool: dict[str, int] = {}
+    for h in v1.hidden:
+        pool[_nz(h.text)] = pool.get(_nz(h.text), 0) + 1
+    out = []
+    for h in v2.hidden:
+        key = _nz(h.text)
+        inherited = bool(key) and pool.get(key, 0) > 0
+        if inherited:
+            pool[key] -= 1
+        out.append((h, inherited))
+    return out
 
 
 def _status(changes, note, guard, v1: TextDoc, v2: TextDoc, errors, *, rules_ran: bool = True,
@@ -1821,11 +1763,19 @@ def _status(changes, note, guard, v1: TextDoc, v2: TextDoc, errors, *, rules_ran
         if g.get("flagged"):
             reasons.append({"level": "block", "source": "Guard", "text": f"{g['target']}: text addressed to an AI reviewer "
                             f"({g.get('category') or 'injection'}, probability {g.get('injection') or 0:.0%})."})
-    if v2.hidden:
-        pages = sorted({h.page for h in v2.hidden})
-        kinds = list(dict.fromkeys(HIDDEN_WORDS.get(h.reason, "hidden text") for h in v2.hidden))
+    concealed = classify_hidden(v1, v2)
+    new_hidden = [h for h, inherited in concealed if not inherited]
+    old_hidden = [h for h, inherited in concealed if inherited]
+    if new_hidden:
+        pages = sorted({h.page for h in new_hidden})
+        kinds = list(dict.fromkeys(HIDDEN_WORDS.get(h.reason, "hidden text") for h in new_hidden))
         reasons.append({"level": "block", "source": "Rules", "text": "The returned copy contains hidden text on "
                         f"{_pages(pages).lower()}: {', '.join(kinds)}."})
+    if old_hidden:
+        pages = sorted({h.page for h in old_hidden})
+        reasons.append({"level": "note", "source": "Rules", "text": f"Fine print on {_pages(pages).lower()} of the returned copy "
+                        f"({HIDDEN_WORDS.get(old_hidden[0].reason, 'hidden text')}) is also in the version we sent, word for word. "
+                        "It is listed, not blocked."})
     bad = [c for c in note["claims"] if c["verdict"] == "contradicted"]
     if bad:
         reasons.append({"level": "block", "source": "Verify", "text": f"{_n(len(bad), 'statement')} in the cover note "

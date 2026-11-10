@@ -1,0 +1,61 @@
+{
+  "protocol": 1,
+  "cases": [
+    "commonpaper-changed",
+    "commonpaper-benign",
+    "bonterms-changed",
+    "bonterms-benign",
+    "sixarm-changed",
+    "sixarm-benign"
+  ],
+  "acceptance": {
+    "completed": 6,
+    "substantive_held": 6,
+    "faithful_cleared": 3,
+    "false_cover_caught": 3,
+    "routing_correct": 6,
+    "routing_ablation": "Report observed differences; no required uplift."
+  },
+  "scope": "Three public authors; our pre-labelled edits. Not an independently labelled or blinded benchmark. Native Bonterms PDF, two generated exports, SixArm excerpt only. No training or prompt tuning after freeze.",
+  "files": {
+    "data/external/SOURCES.md": "4b5f49292ecd2533672cc89a38f3ce789ee1c762089dadd210b4792f304ed0e5",
+    "data/external/bonterms-benign/cover.txt": "262d7fc6a9cb856cb0c374fe9cc26ea6c822a22632b53af38e2300b642ad5f7c",
+    "data/external/bonterms-benign/truth.json": "6da04bec237912c0d8051f0b396c26a9feb9d9a3d9b684a8f29192f83bd4d5fa",
+    "data/external/bonterms-benign/v1.pdf": "7f92b9d136f39f6d8bc4d22c2f726f90076bd95e2833bdc4724f2111a8d269be",
+    "data/external/bonterms-benign/v2.pdf": "d0b380ddeadbce328ad3a8f993d0ca2cf1d66e689f6d834f1763db7e78a3f91a",
+    "data/external/bonterms-changed/cover.txt": "6eaa1ba5cb0a3ce9f52e42ba573c77616440df15e8bea7d259cf0e1ae3d7106e",
+    "data/external/bonterms-changed/truth.json": "a911fcdfbfeb43b8dbf7934f5d2aabe4c0f7134bb719b36467372b648cdfcf60",
+    "data/external/bonterms-changed/v1.pdf": "7f92b9d136f39f6d8bc4d22c2f726f90076bd95e2833bdc4724f2111a8d269be",
+    "data/external/bonterms-changed/v2.pdf": "7e5ef02788891cab3bfd1cdf4e979d743d8f312416e8bcf0c19287dd132a5d3e",
+    "data/external/commonpaper-benign/cover.txt": "262d7fc6a9cb856cb0c374fe9cc26ea6c822a22632b53af38e2300b642ad5f7c",
+    "data/external/commonpaper-benign/truth.json": "2ab67eb70177cbd0134d9293a3b64f4840ae8e9f0cf366800e4868dfc8f71a18",
+    "data/external/commonpaper-benign/v1.pdf": "d9e659262239bdd7539bae8f1f69e3ee8ef1326357c10b1303c08f846c25b5b8",
+    "data/external/commonpaper-benign/v2.pdf": "f80c473da085dc12570a4c92cd819a384e8682eff590e8640cde9e6b0f056372",
+    "data/external/commonpaper-changed/cover.txt": "6eaa1ba5cb0a3ce9f52e42ba573c77616440df15e8bea7d259cf0e1ae3d7106e",
+    "data/external/commonpaper-changed/truth.json": "eeac7de0c1eb122f04b7de525cb437bb58e624ec8ef50ceed2dcb7e26bb1903d",
+    "data/external/commonpaper-changed/v1.pdf": "d9e659262239bdd7539bae8f1f69e3ee8ef1326357c10b1303c08f846c25b5b8",
+    "data/external/commonpaper-changed/v2.pdf": "139be3bfc4e0b840f01c58a708b034072f6b20be3f3cd1ef104ce055ae71bac6",
+    "data/external/index.json": "066cf786f1aca43f79358eda9f79c5d2a12fc1b7de20740bc437337c4e0cd92b",
+    "data/external/routing.json": "fdab3f7f0071c8c042dcc696098a3e427e692afca61d5f802acbdd8294a273e9",
+    "data/external/sixarm-benign/cover.txt": "262d7fc6a9cb856cb0c374fe9cc26ea6c822a22632b53af38e2300b642ad5f7c",
+    "data/external/sixarm-benign/truth.json": "18b487fc3ad5f1fc7f8a36284e962d8db5f2f2bac34ef39f30f186ad487169e4",
+    "data/external/sixarm-benign/v1.pdf": "cce12fd4b002aae374d5caed636370abe40eb56b66c24d95be934db28fc7c9d3",
+    "data/external/sixarm-benign/v2.pdf": "512961d9f3d844a62ff9d7df91c0965c580efd12f4b1ca8b50c4fc619189bb08",
+    "data/external/sixarm-changed/cover.txt": "6eaa1ba5cb0a3ce9f52e42ba573c77616440df15e8bea7d259cf0e1ae3d7106e",
+    "data/external/sixarm-changed/truth.json": "e060477bd7372b47192d5c05a82d8587bd54f6999dcffec5d5a8278880df0311",
+    "data/external/sixarm-changed/v1.pdf": "cce12fd4b002aae374d5caed636370abe40eb56b66c24d95be934db28fc7c9d3",
+    "data/external/sixarm-changed/v2.pdf": "57d670d710d11adede1e43feec195ce4e41b2caa485af492c455c21e8a0b71de",
+    "data/external/sources/bonterms-original.pdf": "7f92b9d136f39f6d8bc4d22c2f726f90076bd95e2833bdc4724f2111a8d269be",
+    "data/external/sources/bonterms.md": "aed37ab474d15dc872b377abdb9f29c571b46cec157f26c00cdef077fe2d1dd8",
+    "data/external/sources/commonpaper.md": "492e23c58523369fa6dcb6e3d953f818f77587a74c3abde9e82343381cdbd858",
+    "data/external/sources/sixarm.md": "c61cb9717f4c6a51feb6e25c48e67bf06a40e5c7321df7198ea5f539f9de55e7"
+  },
+  "code_at_freeze": {
+    "referee/engine.py": "801ddba90de8aa7e244c7250903d30f45f4e711a7d882518428877d861eb1879",
+    "referee/rules.py": "2950a9865dc0481dd8ed3c9c3c9d921522f768f5079bb97fdfc81503961c25ae",
+    "referee/textdoc.py": "615706343942d3fb8b0eb136be209c58dab421be00198adcee510c08a7d68e7b",
+    "referee/prompts.py": "72fcbca8e51713f7feac0cac36e9d8da60ad4afcacf766421ee4f96302ff49cc",
+    "eval/run_external.py": "3933e102de0a8e50fe0c92c85bf309e2cb3d6393535a73d1df769e3578f51727",
+    "eval/run_routing.py": "be97ce949470a724a012633a5b994bf74fbb58f3981201fad3c4537bdb6e0ddc"
+  }
+}

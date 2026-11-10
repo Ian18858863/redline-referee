@@ -1,0 +1,174 @@
+{
+  "playbook": {
+    "about": "Evaluation-only fictional deal-desk policy; it is not the application playbook. Thresholds are explicit so that every case has exactly one right route.",
+    "topics": [
+      {
+        "id": "nonrenewal",
+        "title": "Notice of non-renewal",
+        "passages": [
+          {
+            "id": "nonrenewal-small",
+            "title": "Non-renewal notice: annual fees below $60,000",
+            "text": "Applies only when annual fees are below $60,000. Our standard contract requires the customer to give notice of non-renewal at least 60 days before the end of the term. The deal desk may accept a customer request to shorten that notice to 30 days or more. For a request of 15 to 29 days the desk must counter with 30 days and may do so without approval. A request below 15 days requires Sales Director approval: the desk may neither accept nor counter. Never apply this passage to deals of $60,000 or more."
+          },
+          {
+            "id": "nonrenewal-large",
+            "title": "Non-renewal notice: annual fees at least $60,000",
+            "text": "Applies only when annual fees are $60,000 or more. The desk may not accept any non-renewal notice shorter than our standard 60 days. For a request of 30 to 59 days the desk must hold our original 60-day term and may send it back without approval. A request below 30 days requires Revenue Operations approval: the desk may neither accept it nor send back the original term. Never apply this passage to smaller deals.",
+            "restore_original": true
+          }
+        ]
+      },
+      {
+        "id": "uplift",
+        "title": "Cap on price increase at renewal",
+        "passages": [
+          {
+            "id": "uplift-small",
+            "title": "Renewal price increase cap: annual fees below $150,000",
+            "text": "Applies only when annual fees are below $150,000. Our standard contract caps the price increase at each renewal at 7%. The desk may accept a customer request for a cap of 5% or higher. For a requested cap of 3% or higher but below 5% the desk must counter with 5% and may do so without approval. A requested cap below 3%, including a price freeze, requires Finance approval: the desk may neither accept nor counter. Never apply this passage to deals of $150,000 or more."
+          },
+          {
+            "id": "uplift-large",
+            "title": "Renewal price increase cap: annual fees at least $150,000",
+            "text": "Applies only when annual fees are $150,000 or more. The desk may not accept any cap below our standard 7%. For a requested cap of 5% or higher but below 7% the desk must restore our original 7% cap and may send it back without approval. A requested cap below 5%, including a price freeze, requires Finance approval: the desk may neither accept it nor send back the original cap. Never apply this passage to smaller deals.",
+            "restore_original": true
+          }
+        ]
+      },
+      {
+        "id": "autorenew",
+        "title": "Automatic renewal",
+        "passages": [
+          {
+            "id": "autorenew-removal",
+            "title": "Removal of automatic renewal: all deal sizes",
+            "text": "Applies to deals of every size. A request to delete automatic renewal, or to make renewal depend on the customer's written agreement, requires approval from the VP of Sales. The desk may neither accept the request nor counter it on its own authority."
+          }
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "nonrenewal-40000-30",
+      "fee": "$40,000",
+      "clause": "12.2",
+      "title": "Non-Renewal",
+      "summary": "60 days' notice of non-renewal → 30 days' notice",
+      "we_sent": "Customer may elect not to renew this Agreement by giving Provider written notice at least 60 days before the end of the then-current Subscription Term.",
+      "they_returned": "Customer may elect not to renew this Agreement by giving Provider written notice at least 30 days before the end of the then-current Subscription Term.",
+      "expected": "accept",
+      "expected_passage": "nonrenewal-small",
+      "why": "Below $60,000: 'may accept a customer request to shorten that notice to 30 days or more'."
+    },
+    {
+      "id": "uplift-90000-5",
+      "fee": "$90,000",
+      "clause": "5.3",
+      "title": "Renewal Pricing",
+      "summary": "renewal price increase capped at 7% → capped at 5%",
+      "we_sent": "Provider may increase the Fees for a Renewal Term by no more than 7% over the Fees for the preceding term.",
+      "they_returned": "Provider may increase the Fees for a Renewal Term by no more than 5% over the Fees for the preceding term.",
+      "expected": "accept",
+      "expected_passage": "uplift-small",
+      "why": "Below $150,000: 'may accept a customer request for a cap of 5% or higher'."
+    },
+    {
+      "id": "nonrenewal-25000-20",
+      "fee": "$25,000",
+      "clause": "12.2",
+      "title": "Non-Renewal",
+      "summary": "60 days' notice of non-renewal → 20 days' notice",
+      "we_sent": "Customer may elect not to renew this Agreement by giving Provider written notice at least 60 days before the end of the then-current Subscription Term.",
+      "they_returned": "Customer may elect not to renew this Agreement by giving Provider written notice at least 20 days before the end of the then-current Subscription Term.",
+      "expected": "counter",
+      "expected_passage": "nonrenewal-small",
+      "why": "Below $60,000: 'For a request of 15 to 29 days the desk must counter with 30 days' (named compromise)."
+    },
+    {
+      "id": "uplift-120000-4",
+      "fee": "$120,000",
+      "clause": "5.3",
+      "title": "Renewal Pricing",
+      "summary": "renewal price increase capped at 7% → capped at 4%",
+      "we_sent": "Provider may increase the Fees for a Renewal Term by no more than 7% over the Fees for the preceding term.",
+      "they_returned": "Provider may increase the Fees for a Renewal Term by no more than 4% over the Fees for the preceding term.",
+      "expected": "counter",
+      "expected_passage": "uplift-small",
+      "why": "Below $150,000: '3% or higher but below 5% the desk must counter with 5%' (named compromise)."
+    },
+    {
+      "id": "nonrenewal-60000-45",
+      "fee": "$60,000",
+      "clause": "12.2",
+      "title": "Non-Renewal",
+      "summary": "60 days' notice of non-renewal → 45 days' notice",
+      "we_sent": "Customer may elect not to renew this Agreement by giving Provider written notice at least 60 days before the end of the then-current Subscription Term.",
+      "they_returned": "Customer may elect not to renew this Agreement by giving Provider written notice at least 45 days before the end of the then-current Subscription Term.",
+      "expected": "counter",
+      "expected_passage": "nonrenewal-large",
+      "why": "Exactly $60,000 is '$60,000 or more': 30 to 59 days, 'must hold our original 60-day term and may send it back'."
+    },
+    {
+      "id": "nonrenewal-300000-30",
+      "fee": "$300,000",
+      "clause": "12.2",
+      "title": "Non-Renewal",
+      "summary": "60 days' notice of non-renewal → 30 days' notice",
+      "we_sent": "Customer may elect not to renew this Agreement by giving Provider written notice at least 60 days before the end of the then-current Subscription Term.",
+      "they_returned": "Customer may elect not to renew this Agreement by giving Provider written notice at least 30 days before the end of the then-current Subscription Term.",
+      "expected": "counter",
+      "expected_passage": "nonrenewal-large",
+      "why": "$60,000 or more: 30 days is inside '30 to 59 days', so the desk sends back the original 60 days."
+    },
+    {
+      "id": "uplift-200000-5",
+      "fee": "$200,000",
+      "clause": "5.3",
+      "title": "Renewal Pricing",
+      "summary": "renewal price increase capped at 7% → capped at 5%",
+      "we_sent": "Provider may increase the Fees for a Renewal Term by no more than 7% over the Fees for the preceding term.",
+      "they_returned": "Provider may increase the Fees for a Renewal Term by no more than 5% over the Fees for the preceding term.",
+      "expected": "counter",
+      "expected_passage": "uplift-large",
+      "why": "$150,000 or more: '5% or higher but below 7% the desk must restore our original 7% cap'."
+    },
+    {
+      "id": "nonrenewal-85000-15",
+      "fee": "$85,000",
+      "clause": "12.2",
+      "title": "Non-Renewal",
+      "summary": "60 days' notice of non-renewal → 15 days' notice",
+      "we_sent": "Customer may elect not to renew this Agreement by giving Provider written notice at least 60 days before the end of the then-current Subscription Term.",
+      "they_returned": "Customer may elect not to renew this Agreement by giving Provider written notice at least 15 days before the end of the then-current Subscription Term.",
+      "expected": "escalate",
+      "expected_passage": "nonrenewal-large",
+      "why": "$60,000 or more: below 30 days is outside the restoration range; 'requires Revenue Operations approval'."
+    },
+    {
+      "id": "autorenew-45000-optin",
+      "fee": "$45,000",
+      "clause": "12.1",
+      "title": "Renewal",
+      "summary": "automatic renewal → renewal only if Customer agrees in writing",
+      "we_sent": "This Agreement renews automatically for successive one-year Renewal Terms unless either party gives notice of non-renewal under Section 12.2.",
+      "they_returned": "This Agreement expires at the end of the Subscription Term and renews only if Customer agrees in writing to a Renewal Term.",
+      "expected": "escalate",
+      "expected_passage": "autorenew-removal",
+      "why": "All deal sizes: 'requires approval from the VP of Sales'; the desk may neither accept nor counter, and no authority to send back the original is granted."
+    },
+    {
+      "id": "uplift-150000-3",
+      "fee": "$150,000",
+      "clause": "5.3",
+      "title": "Renewal Pricing",
+      "summary": "renewal price increase capped at 7% → capped at 3%",
+      "we_sent": "Provider may increase the Fees for a Renewal Term by no more than 7% over the Fees for the preceding term.",
+      "they_returned": "Provider may increase the Fees for a Renewal Term by no more than 3% over the Fees for the preceding term.",
+      "expected": "escalate",
+      "expected_passage": "uplift-large",
+      "why": "Exactly $150,000 is '$150,000 or more': a cap below 5% 'requires Finance approval'; outside the restoration range."
+    }
+  ]
+}

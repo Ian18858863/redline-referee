@@ -43,8 +43,8 @@
   }
  ],
  "removed": [],
- "text": "Thank you for returning the agreement. We compared it with the version we sent. A few points need to change before we can countersign:\n\nClause 3 (Renewal): We accept this change.\n\nClause 4.2 (Payment Terms): We can extend payment to net forty-five days from the invoice date.\n\nClause 9 (Limitation of Liability): This change is under review.\n\nClause 15 (Governing Law): This change is under review.\n\nPlease send a corrected copy with the points above and we will countersign promptly. If it helps, we are glad to walk through the open points on a short call.",
- "closing": "Please send a corrected copy with the points above and we will countersign promptly. If it helps, we are glad to walk through the open points on a short call.",
+ "text": "Thank you for returning the agreement. We cannot sign the returned copy while the blocking findings remain unresolved. Here is where we stand on each point:\n\nClause 3 (Renewal): We accept this change.\n\nClause 4.2 (Payment Terms): We can extend payment to net forty-five days from the invoice date.\n\nClause 9 (Limitation of Liability): This change is under review.\n\nClause 15 (Governing Law): This change is under review.\n\nPlease send a corrected copy addressing the points above for our review. If it helps, we are glad to walk through the open points on a short call.",
+ "closing": "Please send a corrected copy addressing the points above for our review. If it helps, we are glad to walk through the open points on a short call.",
  "errors": [],
  "decisions": {
   "c1": "accept",

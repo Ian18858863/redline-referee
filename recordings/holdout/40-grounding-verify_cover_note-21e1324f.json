@@ -1,0 +1,131 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify cover note",
+ "request_hash": "21e1324fbb9f75fa44410cb29729d2996d4525336b6090c39b3f36be1cb034b1",
+ "request": {
+  "documents": [
+   {
+    "id": "v2",
+    "text": "Bonterms Service Level Agreement (Version 1.0) Attachment to Bonterms Cloud Terms How to Use: This Bonterms Service Level Agreement (Version 1.0) (“SLA”) operates as an Attachment to the Bonterms Cloud Terms. To use this SLA, Customer and Provider incorporate this SLA by reference on their Cover Page. The parties may modify any element of this SLA, including the SLA Key Terms Chart (see Section 7 below), by reference on their Cover Page. Capitalized terms not defined in this SLA have the meanings given in the Bonterms Cloud Terms.\n1. Service Levels\nProvider will use commercially reasonable efforts to provide the Cloud Service at or above Target Availability.\n2. Monitoring\nProvider will provide or otherwise make available to Customer, upon request, reports measuring the Monthly Uptime Percentage as against Target Availability.\n3. Service Credits\nIf there is a verified failure of the Cloud Service to meet Target Availability in a particular month and Customer makes a request for service credit within 5 days after the end of such month, Customer will be entitled to a Service Credit calculated in accordance with the SLA Key Terms Chart below. Provider will apply each Service Credit to Customer’s next invoice, provided that Customer’s account is fully paid up (without outstanding payment issues or disputes). Customer will receive no refund or other credit for unused Service Credits.\n4. Multiple Failures\nTo the extent that the Cloud Service experiences Multiple Failures, then Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service. In such case Provider will refund to Customer any pre-paid, unused fees for the terminated portion of the Subscription Term.\n5. Exclusive Remedies\nService Credits constitute liquidated damages and are not a penalty. Service Credits and the Multiple Failures termination right set forth in Section 4 above are Customer’s exclusive remedies, and Provider’s sole liability, for Provider’s failure to meet Target Availability.\n6. Definitions\n“Maintenance” means Provider’s routine maintenance of the Cloud Service conducted in accordance with its Maintenance Procedures or reasonable emergency maintenance. “Maintenance Procedures” means Provider’s standard Cloud Service maintenance schedule as posted or otherwise made available by Provider upon request by Customer. “Monthly Uptime Percentage” means the number of minutes the Cloud Service is accessible and not subject to an Outage during a calendar month divided by the total number of minutes in that calendar month. “Multiple Failures” is defined in the SLA Key Terms Chart. “Outage” means an unplanned interruption or material disruption of the Cloud Service, but excluding unavailability to the extent caused by (a) Customer’s use of the Cloud Service in a manner not authorized in the Agreement or Documentation, (b) general Internet problems, Force Majeure events or other factors outside of Provider’s reasonable control, (c) Provider ’s network connections or other infrastructure or (d) Maintenance. “Service Credit” means a credit issued by Provider based on the monthly fees due for the affected Cloud Service in such month. “Target Availability” is defined in the SLA Key Terms Chart.\n7. SLA Key Terms Chart\nSLA Key Terms Chart Monthly Uptime Percentage: Service Credit: Target Availability: 99.9% or higher None Credit Tier 1 99.00% - 99.89% 5% of monthly fees Credit Tier 2 97.00% - 98.99% 20% of monthly fees Credit Tier 3 95.00% - 96.99% 35% of monthly fees Credit Tier 4 < 95.00% 50% of monthly fees Multiple Failures: means Target Availability is not met for 2 consecutive months or any 3 months in a rolling 12-month period. Bonterms does not provide legal advice, does not guarantee the enforceability or effect of these terms and has no liability relating to use of these terms."
+   },
+   {
+    "id": "changes",
+    "text": "The returned copy changes 2 commercial or legal terms of the agreement we sent: clause 3 (Service Credits); clause 6 (Definitions).\nSubstantive change in clause 3 (Service Credits): 30 days → 5 days. We sent: \"for service credit within 30 days after the end\". The returned copy says: \"for service credit within 5 days after the end\".\nSubstantive change in clause 6 (Definitions): “Customer’s” → “Provider ’s”. We sent: \", (c) Customer’s network connections or other\". The returned copy says: \", (c) Provider ’s network connections or other\".\nClause 1 (Service Levels) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 2 (Monitoring) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 4 (Multiple Failures) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 5 (Exclusive Remedies) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 7 (SLA Key Terms Chart) is unchanged: the returned copy reads exactly as the agreement we sent."
+   }
+  ],
+  "answer": "Attached is our copy for signature. We did not change any wording we only adjusted spacing so that it still prints on a single page.",
+  "claims": [
+   "Attached is our copy for signature.",
+   "We did not change any wording",
+   "we only adjusted spacing so that it still prints on a single page."
+  ],
+  "instructions": "The answer is a cover note the counterparty wrote about the copy of the agreement they returned. Document 'v2' is that returned copy. Document 'changes' lists every difference found between the copy we sent and v2. A statement that a term is unchanged, or that no commercial or legal terms changed, is contradicted when 'changes' lists a substantive change to that term. A statement that describes a change is supported only when 'changes' or v2 shows that same change. A statement that a term is unchanged is supported when 'changes' says that the clause holding that term is unchanged. Judge each claim on these two documents alone.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 149.440453,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "981e3ccf-1d20-4abb-b8d9-aef0828a1bd6",
+  "request_id": null,
+  "trace": "a588340dfb01d6c9-IAD",
+  "wall_ms": 393,
+  "recorded_at": "2026-11-10T21:38:18+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0099,
+  "ungrounded": 0.9901,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "changes",
+    "share": 0,
+    "share_of_answer": 0.0064,
+    "claims": []
+   },
+   {
+    "id": "v2",
+    "share": 0,
+    "share_of_answer": 0.0035,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Attached is our copy for signature.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2692,
+    "supported": 0.0209,
+    "contradicted": 0.0339,
+    "not_stated": 0.8951,
+    "not_a_claim": 0.0501,
+    "verdict": "not_stated",
+    "sources": {
+     "v2": 0.4266,
+     "changes": 0.5734
+    },
+    "source": null
+   },
+   {
+    "claim": "We did not change any wording",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2231,
+    "supported": 0.0043,
+    "contradicted": 0.9917,
+    "not_stated": 0.002,
+    "not_a_claim": 0.002,
+    "verdict": "contradicted",
+    "sources": {
+     "v2": 0.2475,
+     "changes": 0.7525
+    },
+    "source": null,
+    "evidence": {
+     "document": "changes",
+     "quote": "The returned copy says: \"for service credit within 5 days after the end\".",
+     "start": 260,
+     "end": 333,
+     "confidence": 0.984
+    }
+   },
+   {
+    "claim": "we only adjusted spacing so that it still prints on a single page.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5077,
+    "supported": 0.0065,
+    "contradicted": 0.9824,
+    "not_stated": 0.0056,
+    "not_a_claim": 0.0054,
+    "verdict": "contradicted",
+    "sources": {
+     "v2": 0.2516,
+     "changes": 0.7484
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.0043
+  },
+  "timing": {
+   "read_ms": 159,
+   "total_ms": 164
+  }
+ }
+}

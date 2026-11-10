@@ -1,0 +1,105 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 7",
+ "request_hash": "d4b671b29b314f4bb90339e5a415919fb0af3e1517dfbc780fef834b1af9fbd2",
+ "request": {
+  "state": {
+   "clause": "7 Intellectual Property",
+   "change": "The Customer changed this term: Clause rewritten",
+   "we_sent": "Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement.",
+   "they_returned": "Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$184,000",
+    "initial_term": "thirty-six (36) months"
+   },
+   "playbook": "The playbook has no passage that covers this change."
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the applicable playbook explicitly authorizes the deal desk to offer a different term in response to this proposed change, without another approver. The alternative may restore our original term; it does not have to be strictly between our original term and the Customer's term. No if the applicable rule prohibits the desk from countering this request, every permitted response needs another approver, or no authorized alternative is named. A passage for a different deal size grants no authority."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 29.1408,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "c92c9e79-2f8d-462f-a4e5-053b7a22620d",
+  "request_id": null,
+  "trace": "a586e27cffdfc982-LAX",
+  "wall_ms": 456,
+  "recorded_at": "2026-11-10T17:47:51+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0019
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.0019
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9909,
+     "provider": 0.0059,
+     "neutral": 0.0032
+    },
+    "confidence": 0.9864
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.6918,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0071,
+     "1": 0.0058,
+     "2": 0.0092,
+     "3": 0.244,
+     "4": 0.7339
+    },
+    "confidence": 0.6673
+   }
+  },
+  "usage": {
+   "input_tokens": 413,
+   "output_tokens": 12
+  }
+ }
+}

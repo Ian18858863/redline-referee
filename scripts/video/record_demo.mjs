@@ -119,7 +119,7 @@ if (take === 'live') {
 }
 
 if (take === 'end') {
-  await card('<h1>Measured, not claimed</h1><div class="rc-row"><div class="stat"><b>30 / 30</b><span>planted edits held</span></div><div class="stat"><b>30 / 30</b><span>false statements caught</span></div><div class="stat"><b>0 / 41</b><span>cosmetic edits held</span></div><div class="stat"><b>15 / 15</b><span>final status correct</span></div></div><p style="margin-top:26px">Recorded answers of the live Clocked API against exact ground truth. Without Compare, 4 real changes would have been cleared. 900 tests.</p><small>github.com/Ian18858863/redline-referee</small>', 300);
+  await card('<h1>Measured, not claimed</h1><div class="rc-row"><div class="stat"><b>30 / 30</b><span>planted edits held</span></div><div class="stat"><b>30 / 30</b><span>false statements caught</span></div><div class="stat"><b>0 / 41</b><span>cosmetic edits held</span></div><div class="stat"><b>15 / 15</b><span>final status correct</span></div></div><p style="margin-top:26px">Recorded answers of the live Clocked API against exact ground truth. Checked again on a second corpus built blind to the fixes: 8 of 8 statuses, 6 of 6 edits held. 962 tests.</p><small>github.com/Ian18858863/redline-referee</small>', 300);
   const rec = await page.screencast({ path: 'take-end.webm', ffmpegPath: 'ffmpeg' }); T0 = Date.now();
   await wait(600); mark('end'); await wait(LINES.end.dur + 1400); marks.push(['__end', Date.now() - T0]); await rec.stop();
 }

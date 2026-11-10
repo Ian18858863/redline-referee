@@ -33,8 +33,8 @@
   }
  ],
  "removed": [],
- "text": "Thank you for returning the agreement. We compared it with the version we sent. Here is where we stand on each point:\n\nClause 4.1 (Fees): Clause 4.1 (Fees) is under review.\n\nClause 7 (Intellectual Property): Clause 7 (Intellectual Property) is under review.\n\nClause 11 (Termination): Clause 11 (Termination) is under review.\n\nWe will confirm as soon as our review is complete. If it helps, we are glad to walk through the open points on a short call.",
- "closing": "We will confirm as soon as our review is complete. If it helps, we are glad to walk through the open points on a short call.",
+ "text": "Thank you for returning the agreement. We cannot sign the returned copy while the blocking findings remain unresolved. Here is where we stand on each point:\n\nClause 4.1 (Fees): Clause 4.1 (Fees) is under review.\n\nClause 7 (Intellectual Property): Clause 7 (Intellectual Property) is under review.\n\nClause 11 (Termination): Clause 11 (Termination) is under review.\n\nWe will confirm the next step after the remaining checks and approvals. If it helps, we are glad to walk through the open points on a short call.",
+ "closing": "We will confirm the next step after the remaining checks and approvals. If it helps, we are glad to walk through the open points on a short call.",
  "errors": [],
  "decisions": {
   "c1": "escalate",

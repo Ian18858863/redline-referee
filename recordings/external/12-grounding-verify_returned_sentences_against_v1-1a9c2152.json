@@ -1,0 +1,94 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "1a9c2152997bdafa9a544d30968c7ef72e6345a4a911b6237c2876b616d5a543",
+ "request": {
+  "pdf": {
+   "sha256": "d9e659262239bdd7539bae8f1f69e3ee8ef1326357c10b1303c08f846c25b5b8"
+  },
+  "answer": "(b) not disclose Confidential Information to third parties without the Disclosing Party’s prior written approval, except that the Receiving Party may disclose Confidential Information to its employees, agents, advisors, contractors and other representatives having a reasonable need to know for the Purpose, provided these representatives are bound by confidentiality obligations no less protective of the Disclosing Party than the applicable terms in this MNDA and the Receiving Party remains responsible for their compliance with this MNDA; and (c) protect Confidential Information using at least the same protections the Receiving Party uses for its own similar information but no less than a reasonable level of care.",
+  "claims": [
+   "(b) not disclose Confidential Information to third parties without the Disclosing Party’s prior written approval, except that the Receiving Party may disclose Confidential Information to its employees, agents, advisors, contractors and other representatives having a reasonable need to know for the Purpose, provided these representatives are bound by confidentiality obligations no less protective of the Disclosing Party than the applicable terms in this MNDA and the Receiving Party remains responsible for their compliance with this MNDA; and (c) protect Confidential Information using at least the same protections the Receiving Party uses for its own similar information but no less than a reasonable level of care."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 132.841923,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "02d51a5a-374f-461a-b1b3-a9aace7d8f12",
+  "request_id": null,
+  "trace": "a586d796f8da73d0-LAX",
+  "wall_ms": 561,
+  "recorded_at": "2026-11-10T17:40:25+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.4054,
+  "ungrounded": 0.5946,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.4054,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "(b) not disclose Confidential Information to third parties without the Disclosing Party’s prior written approval, except that the Receiving Party may disclose Confidential Information to its employees, agents, advisors, contractors and other representatives having a reasonable need to know for the Purpose, provided these representatives are bound by confidentiality obligations no less protective of the Disclosing Party than the applicable terms in this MNDA and the Receiving Party remains responsible for their compliance with this MNDA; and (c) protect Confidential Information using at least the same protections the Receiving Party uses for its own similar information but no less than a reasonable level of care.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 1,
+    "supported": 0.4054,
+    "contradicted": 0.5399,
+    "not_stated": 0.0433,
+    "not_a_claim": 0.0114,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "2.",
+     "start": 1128,
+     "end": 1130,
+     "confidence": 0.988
+    }
+   }
+  ],
+  "unsupported_claims": [
+   0
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.4054
+  },
+  "timing": {
+   "read_ms": 143,
+   "total_ms": 144
+  },
+  "pdf": {
+   "pages": 2,
+   "selected": [
+    1,
+    2
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    4315
+   ],
+   "characters": 6935
+  }
+ }
+}

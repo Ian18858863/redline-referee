@@ -1,0 +1,141 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 4",
+ "request_hash": "3b758be3cde6eac25fcc39294d657a771f25f9deca2314924f538bfaed068546",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "To the extent that the Cloud Service experiences Multiple Failures, then Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service. In such case Provider will refund to Customer any pre-paid, unused fees for the terminated portion of the Subscription Term."
+   },
+   {
+    "id": "v2",
+    "text": "To the extent that the Cloud Service experiences Multiple Failures, Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service. In such case Provider will refund to Customer any pre-paid, unused fees for the terminated portion of the Subscription Term."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 126.701885,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "f3b87c81-39c5-45a0-bf82-2c694faeda29",
+  "request_id": null,
+  "trace": "a58834174fc5b154-IAD",
+  "wall_ms": 263,
+  "recorded_at": "2026-11-10T21:38:19+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9971,
+    "probabilities": {
+     "same": 0.9845,
+     "overlapping": 0.0071,
+     "conflicting": 0.0055,
+     "unrelated": 0.0029
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9816,
+       "restated": 0.0062,
+       "elaborated": 0.0068,
+       "different": 0.0054
+      },
+      "confidence": 0.9946,
+      "a": {
+       "document": "v1",
+       "quote": "To the extent that the Cloud Service experiences Multiple Failures, then Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service.",
+       "start": 0,
+       "end": 232,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "To the extent that the Cloud Service experiences Multiple Failures, Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service.",
+       "start": 0,
+       "end": 227,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9917,
+       "restated": 0.0029,
+       "elaborated": 0.0025,
+       "different": 0.0029
+      },
+      "confidence": 0.9971,
+      "a": {
+       "document": "v1",
+       "quote": "In such case Provider will refund to Customer any pre-paid, unused fees for the terminated portion of the Subscription Term.",
+       "start": 233,
+       "end": 357,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "In such case Provider will refund to Customer any pre-paid, unused fees for the terminated portion of the Subscription Term.",
+       "start": 228,
+       "end": 352,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 23,
+   "passage_reads": 1,
+   "passages_ms": 44,
+   "passages": 2,
+   "counterparts_ms": 68
+  },
+  "timing": {
+   "read_ms": 135,
+   "total_ms": 137
+  }
+ }
+}

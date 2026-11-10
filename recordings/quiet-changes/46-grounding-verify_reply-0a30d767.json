@@ -1,0 +1,142 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify reply",
+ "request_hash": "0a30d7670473e554503a90112843cf7fdaf5e9a6cab6108d09179a6c1c037eaa",
+ "request": {
+  "documents": [
+   {
+    "id": "brief",
+    "text": "Clause 3 (Renewal). The returned copy reads: \"of non-renewal at least thirty (30) days before the\". We accept this change.\nClause 4.2 (Payment Terms). The returned copy reads: \"each undisputed invoice within ninety (90) days of the\". This change is under review on our side.\nClause 9 (Limitation of Liability). The returned copy reads: \"this Agreement in the sixty (60) months before the\". This change is under review on our side.\nClause 15 (Governing Law). The returned copy reads: \"of the State of Oregon, without regard to\". This change is under review on our side."
+   }
+  ],
+  "answer": "We accept the change to Clause 3 (Renewal). Clause 4.2 (Payment Terms) is under review. Clause 9 is under review. Clause 15 (Governing Law) is under review.",
+  "claims": [
+   "We accept the change to Clause 3 (Renewal).",
+   "Clause 4.2 (Payment Terms) is under review.",
+   "Clause 9 is under review.",
+   "Clause 15 (Governing Law) is under review."
+  ],
+  "instructions": "The source is the brief the reply was written from. A claim is supported only if the brief states the same decision about the same clause: accepted, countered with that exact position, or under review. A claim that promises something the brief does not state, or names a different term, is contradicted or not stated.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 103.330627,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "7b9ce950-e433-4fc8-b508-f4cd47f94bc0",
+  "request_id": null,
+  "trace": "a586e2121ced2ff3-LAX",
+  "wall_ms": 537,
+  "recorded_at": "2026-11-10T17:47:34+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9935,
+  "ungrounded": 0.0065,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "brief",
+    "share": 1,
+    "share_of_answer": 0.9935,
+    "claims": [
+     0,
+     1,
+     2,
+     3
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "We accept the change to Clause 3 (Renewal).",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.281,
+    "supported": 0.9954,
+    "contradicted": 0.0017,
+    "not_stated": 0.0015,
+    "not_a_claim": 0.0013,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "Clause 3 (Renewal).",
+     "start": 0,
+     "end": 19,
+     "confidence": 0.998
+    }
+   },
+   {
+    "claim": "Clause 4.2 (Payment Terms) is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.281,
+    "supported": 0.9941,
+    "contradicted": 0.0021,
+    "not_stated": 0.0018,
+    "not_a_claim": 0.0019,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief"
+   },
+   {
+    "claim": "Clause 9 is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1634,
+    "supported": 0.99,
+    "contradicted": 0.0033,
+    "not_stated": 0.0039,
+    "not_a_claim": 0.0028,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief"
+   },
+   {
+    "claim": "Clause 15 (Governing Law) is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2745,
+    "supported": 0.993,
+    "contradicted": 0.0025,
+    "not_stated": 0.0024,
+    "not_a_claim": 0.002,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "Clause 15 (Governing Law).",
+     "start": 431,
+     "end": 457,
+     "confidence": 0.751
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 2,
+   "supported": 0.99
+  },
+  "timing": {
+   "read_ms": 111,
+   "total_ms": 114
+  }
+ }
+}

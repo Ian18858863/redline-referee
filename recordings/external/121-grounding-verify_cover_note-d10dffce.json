@@ -1,0 +1,95 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify cover note",
+ "request_hash": "d10dffcea76e108177881ac3d2a95441704ca65fe12609d9e1452b83f1ef2dd8",
+ "request": {
+  "documents": [
+   {
+    "id": "v2",
+    "text": "Bonterms Mutual NDA (Version 1.0)\n1. Introduction\nThis Mutual Non-Disclosure Agreement (“NDA”) is designed to allow each party (“Discloser”) to disclose its Confidential Information to the other party (“Recipient”). To use this NDA, the parties complete and sign a Bonterms Cover Page or other compatible addendum incorporating this NDA (“Cover Page”). Each party is identified on the Cover Page and capitalized terms have the meanings given on the Cover Page or below.\n2. Confidential Information\n“Confidential Information” means information (including technical or business information, product designs or roadmaps, requirements, pricing, security and compliance documentation, technology, inventions or know-how) disclosed by or on behalf of Discloser to Recipient in connection with the Purpose, in any form, which (a) Discloser identifies to Recipient as “confidential” or “proprietary” or (b) should be reasonably understood as confidential or proprietary due to its nature and the circumstances of its disclosure. Each party’s Confidential Information also includes the existence and status of the parties’ discussions and information on the Cover Page.\n3. Use and Protection of Confidential Information\nRecipient will: (a) use Confidential Information only for the Purpose, (b) not disclose Confidential Information to third parties without Discloser’s prior approval, except pursuant to Section 5 (Permitted Disclosures), (c) protect Confidential Information using at least the same precautions Recipient uses for its own similar information and no less than a reasonable level of care , (d) not remove proprietary markings from Confidential Information or reverse engineer technology provided as Confidential Information and (e) not export Confidential Information or any direct product of Confidential Information in violation of export laws.\n4. Exceptions\nRecipient’s obligations in this NDA do not apply to information that it can document: (a) is or becomes publicly available through no fault of Recipient, (b) it rightfully knew or possessed prior to receipt from Discloser without confidentiality restrictions, (c) it rightfully received from a third party without confidentiality restrictions or (d) it independently developed without using or referencing Confidential Information.\n5. Permitted Disclosures\na. Representatives. Recipient may disclose Confidential Information to its employees, agents, advisors, contractors and other representatives having a legitimate need to know for the Purpose, provided these representatives are bound by confidentiality obligations no less protective of Discloser than this NDA and Recipient remains responsible for their compliance with this NDA. Each party may also disclose the terms of this NDA, in confidence, to its current or prospective investors, lenders or acquirers. b. Required by Law. Recipient may disclose Confidential Information to the extent required by law, subpoena or court order, provided (to the extent legally permitted) it provides Discloser reasonable advance notice of the required disclosure and reasonably cooperates, at Discloser’s expense, with Discloser’s efforts to obtain confidential treatment for the Confidential Information.\n6. Term and Termination\nThis NDA starts on the Effective Date and expires at the end of the Term of NDA. Either party may terminate this NDA for any or no reason upon notice to the other party. Recipient’s obligations relating to Confidential Information will survive for the Confidentiality Period, despite expiration or termination of this NDA.\n7. Return or Destruction of Confidential Information\nWhen this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) cease using Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing. As an exception to part (b), Recipient may retain Confidential Information in accordance with its standard backup or record retention policies or as required by law, but this NDA will continue to apply to the retained Confidential Information.\n8. Proprietary Rights\nDiscloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient grants no license under such rights. Nothing in this NDA prohibits Recipient from developing products, concepts, systems or techniques that are similar to or compete with products, concepts, systems or techniques described in Confidential Information, provided Recipient does not violate any of its obligations under this NDA in connection with such development.\n9. Disclaimer\nConfidential Information is provided without warranties, “AS IS” and with all faults.\n10. Governing Law and Courts\nThe Governing Law governs this NDA and any action arising out of or relating to this NDA, without reference to conflict of law rules. The parties will adjudicate any such action in the Courts and each party consents to the exclusive jurisdiction and venue of the Courts for these purposes. Nonetheless, either party may seek equitable relief or enforcement of a judgment in any court of competent jurisdiction.\n11. Equitable Relief\nA breach of this NDA may cause irreparable harm for which monetary damages are an insufficient remedy. Upon a breach of this NDA, Discloser is entitled to seek appropriate equitable relief, including an injunction, in addition to its other remedies.\n12. General\nNeither party has an obligation under this NDA to disclose Confidential Information to the other or proceed with any proposed transaction. Neither party may assign this NDA without the prior approval of the other party, except that either party may assign this NDA in connection with a merger, reorganization, acquisition or other transfer of all or substantially all its assets or voting securities. Any non-permitted assignment is void. This NDA will bind and inure to the benefit of each party’s permitted successors and assigns. Waivers must be signed by the waiving party’s authorized representative and cannot be implied from conduct. Any amendments to this NDA must be in writing and signed by each party’s authorized representatives. If any provision of this NDA is held unenforceable, it will be limited to the minimum extent necessary so the rest of this NDA remains in effect. This NDA (which includes the Cover Page) is the parties’ entire agreement regarding its subject matter and supersedes any prior or contemporaneous agreements, statements or representations regarding its subject matter. In this NDA, headings are for convenience only and “including” and similar terms are to be construed without limitation. Notices, requests and approvals under this NDA must be sent in writing to the email or postal addresses on the Cover Page and are deemed delivered on receipt. This NDA may be executed in counterparts, including electronic copies, each of which is deemed an original and which together form the same agreement. This NDA is solely between Discloser and Recipient. The publisher of this form does not provide legal advice, does not guarantee the enforceability or effect of this NDA and has no liability relating to use of this NDA."
+   },
+   {
+    "id": "changes",
+    "text": "The returned copy does not change any commercial or legal term of the agreement we sent. The only differences are the ones listed below.\nClause 3 (Use and Protection of Confidential Information) was reworded without changing its meaning. We sent: \"less than a reasonable standard of care, (\". The returned copy says: \"less than a reasonable level of care , (\".\nClause 1 (Introduction) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 2 (Confidential Information) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 3 (Use and Protection of Confidential Information): no commercial or legal term of this clause changed. The only differences in it are spelling, formatting, an address or wording that keeps the same meaning.\nClause 4 (Exceptions) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 5 (Permitted Disclosures) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 6 (Term and Termination) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 7 (Return or Destruction of Confidential Information) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 8 (Proprietary Rights) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 9 (Disclaimer) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 10 (Governing Law and Courts) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 11 (Equitable Relief) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 12 (General) is unchanged: the returned copy reads exactly as the agreement we sent."
+   }
+  ],
+  "answer": "We reworded one sentence without changing its meaning.",
+  "claims": [
+   "We reworded one sentence without changing its meaning."
+  ],
+  "instructions": "The answer is a cover note the counterparty wrote about the copy of the agreement they returned. Document 'v2' is that returned copy. Document 'changes' lists every difference found between the copy we sent and v2. A statement that a term is unchanged, or that no commercial or legal terms changed, is contradicted when 'changes' lists a substantive change to that term. A statement that describes a change is supported only when 'changes' or v2 shows that same change. A statement that a term is unchanged is supported when 'changes' says that the clause holding that term is unchanged. Judge each claim on these two documents alone.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 143.389252,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "d154b24d-d3e9-4aba-bdc0-6cad852dc017",
+  "request_id": null,
+  "trace": "a58828c08c5e883b-IAD",
+  "wall_ms": 469,
+  "recorded_at": "2026-11-10T21:30:35+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9932,
+  "ungrounded": 0.0068,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "changes",
+    "share": 0.9986,
+    "share_of_answer": 0.9918,
+    "claims": [
+     0
+    ]
+   },
+   {
+    "id": "v2",
+    "share": 0.0014,
+    "share_of_answer": 0.0014,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "We reworded one sentence without changing its meaning.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 1,
+    "supported": 0.9932,
+    "contradicted": 0.0028,
+    "not_stated": 0.0021,
+    "not_a_claim": 0.0018,
+    "verdict": "supported",
+    "sources": {
+     "v2": 0.0014,
+     "changes": 0.9986
+    },
+    "source": "changes",
+    "evidence": {
+     "document": "changes",
+     "quote": "Clause 3 (Use and Protection of Confidential Information) was reworded without changing its meaning.",
+     "start": 137,
+     "end": 237,
+     "confidence": 1
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.9932
+  },
+  "timing": {
+   "read_ms": 157,
+   "total_ms": 165
+  }
+ }
+}

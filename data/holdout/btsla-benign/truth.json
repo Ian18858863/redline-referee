@@ -1,0 +1,30 @@
+{
+  "id": "btsla-benign",
+  "source": "bonterms-sla",
+  "kind": "benign",
+  "substantive": [],
+  "faithful": [
+    [
+      "upon request,",
+      "on request,"
+    ],
+    [
+      "Multiple Failures, then Customer may,",
+      "Multiple Failures, Customer may,"
+    ]
+  ],
+  "faithful_why": [
+    "'upon request' and 'on request' mean the same; who asks and what is provided are untouched.",
+    "'then' after the conditional clause 'To the extent that ...,' adds nothing; the condition and the right are unchanged."
+  ],
+  "expected_status": "ready",
+  "false_cover": false,
+  "concealed_new": false,
+  "inherited_fine_print": true,
+  "substantive_type": [],
+  "faithful_type": [
+    "synonym for a non-term-of-art preposition (upon/on)",
+    "redundant connective removed"
+  ],
+  "notes": "Two faithful rewordings made in place in the publisher PDF; the cover note is true. The publisher PDF carries 6 pt header text and one 1 pt whitespace-only span in v1 and v2 alike, so this pair also must not be blocked for inherited fine print."
+}

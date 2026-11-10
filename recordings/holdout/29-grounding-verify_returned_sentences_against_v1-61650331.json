@@ -1,0 +1,106 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "616503310f6715d1dd82812f43fe5872c170731e2904ebb71365f3e10668945c",
+ "request": {
+  "pdf": {
+   "sha256": "33ce49af2d533bacf7b9d54d8bcece370233b29e9d9958df7cc67dc077837c7f"
+  },
+  "answer": "If you create IP outside the scope of your employment or contract or before or after your employment or contract (\"Your IP\"), the Company doesn't own it, and this is true regardless of the computer you use to develop Your IP, including the one furnished to you by the Company. If any court, agency, or arbiter with jurisdiction over this Agreement finds any terms of this Agreement invalid or unenforceable, the remaining terms will survive with full effect.",
+  "claims": [
+   "If you create IP outside the scope of your employment or contract or before or after your employment or contract (\"Your IP\"), the Company doesn't own it, and this is true regardless of the computer you use to develop Your IP, including the one furnished to you by the Company.",
+   "If any court, agency, or arbiter with jurisdiction over this Agreement finds any terms of this Agreement invalid or unenforceable, the remaining terms will survive with full effect."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 151.094177,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "cce6da9a-c2e0-47c0-92a9-79f6d5282b3b",
+  "request_id": null,
+  "trace": "a58833f47fa06cf9-IAD",
+  "wall_ms": 288,
+  "recorded_at": "2026-11-10T21:38:14+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9934,
+  "ungrounded": 0.0066,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.9934,
+    "claims": [
+     0,
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "If you create IP outside the scope of your employment or contract or before or after your employment or contract (\"Your IP\"), the Company doesn't own it, and this is true regardless of the computer you use to develop Your IP, including the one furnished to you by the Company.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6039,
+    "supported": 0.9934,
+    "contradicted": 0.0026,
+    "not_stated": 0.0024,
+    "not_a_claim": 0.0017,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "If any court, agency, or arbiter with jurisdiction over this Agreement finds any terms of this Agreement invalid or unenforceable, the remaining terms will survive with full effect.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3961,
+    "supported": 0.9935,
+    "contradicted": 0.0023,
+    "not_stated": 0.0023,
+    "not_a_claim": 0.002,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.9934
+  },
+  "timing": {
+   "read_ms": 161,
+   "total_ms": 164
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    3813,
+    7377
+   ],
+   "characters": 7422
+  }
+ }
+}

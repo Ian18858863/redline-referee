@@ -1,0 +1,117 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 3",
+ "request_hash": "d28832bb413879a918096db9ad8073e80da6f70e4aa3d878d67fc3c0c72c3bd7",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Recipient will: (a) use Confidential Information only for the Purpose, (b) not disclose Confidential Information to third parties without Discloser’s prior approval, except pursuant to Section 5 (Permitted Disclosures), (c) protect Confidential Information using at least the same precautions Recipient uses for its own similar information and no less than a reasonable standard of care, (d) not remove proprietary markings from Confidential Information or reverse engineer technology provided as Confidential Information and (e) not export Confidential Information or any direct product of Confidential Information in violation of export laws."
+   },
+   {
+    "id": "v2",
+    "text": "Recipient will: (a) use Confidential Information only for the Purpose, (b) not disclose Confidential Information to third parties without Discloser’s prior approval, except pursuant to Section 5 (Permitted Disclosures), (c) protect Confidential Information using at least the same precautions Recipient uses for its own similar information and no less than a reasonable level of care , (d) not remove proprietary markings from Confidential Information or reverse engineer technology provided as Confidential Information and (e) not export Confidential Information or any direct product of Confidential Information in violation of export laws."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 129.490784,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "8f01d1ce-cdbd-4fda-97a1-1cc35c767547",
+  "request_id": null,
+  "trace": "a586deb798ab062a-LAX",
+  "wall_ms": 865,
+  "recorded_at": "2026-11-10T17:45:17+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9962,
+    "probabilities": {
+     "same": 0.9781,
+     "overlapping": 0.0113,
+     "conflicting": 0.0069,
+     "unrelated": 0.0038
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0414,
+       "restated": 0.9313,
+       "elaborated": 0.0129,
+       "different": 0.0144
+      },
+      "confidence": 0.9856,
+      "a": {
+       "document": "v1",
+       "quote": "Recipient will: (a) use Confidential Information only for the Purpose, (b) not disclose Confidential Information to third parties without Discloser’s prior approval, except pursuant to Section 5 (Permitted Disclosures), (c) protect Confidential Information using at least the same precautions Recipient uses for its own similar information and no less than a reasonable standard of care, (d) not remove proprietary markings from Confidential Information or reverse engineer technology provided as Confidential Information and (e) not export Confidential Information or any direct product of Confidential Information in violation of export laws.",
+       "start": 0,
+       "end": 644,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Recipient will: (a) use Confidential Information only for the Purpose, (b) not disclose Confidential Information to third parties without Discloser’s prior approval, except pursuant to Section 5 (Permitted Disclosures), (c) protect Confidential Information using at least the same precautions Recipient uses for its own similar information and no less than a reasonable level of care , (d) not remove proprietary markings from Confidential Information or reverse engineer technology provided as Confidential Information and (e) not export Confidential Information or any direct product of Confidential Information in violation of export laws.",
+       "start": 0,
+       "end": 642,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 25,
+   "passage_reads": 1,
+   "passages_ms": 43,
+   "passages": 1,
+   "counterparts_ms": 70
+  },
+  "timing": {
+   "read_ms": 138,
+   "total_ms": 142
+  }
+ }
+}

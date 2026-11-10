@@ -1,0 +1,14 @@
+{
+  "id": "bonterms-benign",
+  "source": "bonterms",
+  "kind": "benign",
+  "substantive": [],
+  "faithful": [
+    [
+      "reasonable standard of care",
+      "reasonable level of care"
+    ]
+  ],
+  "expected_status": "ready",
+  "false_cover": false
+}

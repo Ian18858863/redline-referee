@@ -1,0 +1,141 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 8",
+ "request_hash": "a0c0f8cd399706512cd542f4bf70c870d6a3cfdf99063c03542744c1a39b85d9",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "If any terms of this Agreement are found invalid or unenforceable by any court, agency, or arbiter with jurisdiction over this Agreement, the remaining terms will survive with full effect. Print Name: ________________ Sign: ________________ Date: ________________"
+   },
+   {
+    "id": "v2",
+    "text": "If any court, agency, or arbiter with jurisdiction over this Agreement finds any terms of this Agreement invalid or unenforceable, the remaining terms will survive with full effect. Print Name: ________________ Sign: ________________ Date: ________________"
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 123.010944,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "c6e7d41b-bdb3-4d05-8f99-49b7851b146b",
+  "request_id": null,
+  "trace": "a58833f2b9836cf9-IAD",
+  "wall_ms": 275,
+  "recorded_at": "2026-11-10T21:38:13+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9978,
+    "probabilities": {
+     "same": 0.99,
+     "overlapping": 0.0046,
+     "conflicting": 0.0032,
+     "unrelated": 0.0022
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0068,
+       "restated": 0.9853,
+       "elaborated": 0.004,
+       "different": 0.0039
+      },
+      "confidence": 0.9961,
+      "a": {
+       "document": "v1",
+       "quote": "If any terms of this Agreement are found invalid or unenforceable by any court, agency, or arbiter with jurisdiction over this Agreement, the remaining terms will survive with full effect.",
+       "start": 0,
+       "end": 188,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "If any court, agency, or arbiter with jurisdiction over this Agreement finds any terms of this Agreement invalid or unenforceable, the remaining terms will survive with full effect.",
+       "start": 0,
+       "end": 181,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9933,
+       "restated": 0.0026,
+       "elaborated": 0.0019,
+       "different": 0.0022
+      },
+      "confidence": 0.9978,
+      "a": {
+       "document": "v1",
+       "quote": "Print Name: ________________ Sign: ________________ Date: ________________",
+       "start": 189,
+       "end": 263,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Print Name: ________________ Sign: ________________ Date: ________________",
+       "start": 182,
+       "end": 256,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 22,
+   "passage_reads": 1,
+   "passages_ms": 46,
+   "passages": 2,
+   "counterparts_ms": 63
+  },
+  "timing": {
+   "read_ms": 130,
+   "total_ms": 132
+  }
+ }
+}

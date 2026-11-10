@@ -1,0 +1,141 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 7.3",
+ "request_hash": "c59fbbd370654eda1d30830297f67d57ceb500a008e48ac2ef7ed65c0a9fa3bb",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "The Governing Law will govern all interpretations and disputes about this Agreement, without regard to its conflict of laws provisions. The parties will bring any legal suit, action, or proceeding about this Agreement in the Chosen Courts and each party irrevocably submits to the exclusive jurisdiction of the Chosen Courts."
+   },
+   {
+    "id": "v2",
+    "text": "All interpretations and disputes about this Agreement will be governed by the Governing Law, without regard to its conflict of laws provisions. The parties will bring any legal suit, action, or proceeding about this Agreement in the Chosen Courts and each party irrevocably submits to the exclusive jurisdiction of the Chosen Courts."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 128.530148,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "1e7af838-50cb-4711-9a1d-20a7b6655e27",
+  "request_id": null,
+  "trace": "a588343febc69988-EWR",
+  "wall_ms": 250,
+  "recorded_at": "2026-11-10T21:38:26+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9977,
+    "probabilities": {
+     "same": 0.9887,
+     "overlapping": 0.0055,
+     "conflicting": 0.0035,
+     "unrelated": 0.0023
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0605,
+       "restated": 0.9231,
+       "elaborated": 0.0089,
+       "different": 0.0075
+      },
+      "confidence": 0.9925,
+      "a": {
+       "document": "v1",
+       "quote": "The Governing Law will govern all interpretations and disputes about this Agreement, without regard to its conflict of laws provisions.",
+       "start": 0,
+       "end": 135,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "All interpretations and disputes about this Agreement will be governed by the Governing Law, without regard to its conflict of laws provisions.",
+       "start": 0,
+       "end": 143,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9923,
+       "restated": 0.003,
+       "elaborated": 0.0023,
+       "different": 0.0024
+      },
+      "confidence": 0.9976,
+      "a": {
+       "document": "v1",
+       "quote": "The parties will bring any legal suit, action, or proceeding about this Agreement in the Chosen Courts and each party irrevocably submits to the exclusive jurisdiction of the Chosen Courts.",
+       "start": 136,
+       "end": 325,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "The parties will bring any legal suit, action, or proceeding about this Agreement in the Chosen Courts and each party irrevocably submits to the exclusive jurisdiction of the Chosen Courts.",
+       "start": 144,
+       "end": 333,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 23,
+   "passage_reads": 1,
+   "passages_ms": 46,
+   "passages": 2,
+   "counterparts_ms": 69
+  },
+  "timing": {
+   "read_ms": 138,
+   "total_ms": 140
+  }
+ }
+}

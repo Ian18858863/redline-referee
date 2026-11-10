@@ -1,0 +1,141 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 3.1",
+ "request_hash": "47749f7d5e7cbcdb869bd9e89993ebb1ee48b0303682d28b568c3f955dc720da",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "This Agreement will start on the Effective Date and continue for the Term. Provider and Partner may mutually agree to extend the Term, including by email communication."
+   },
+   {
+    "id": "v2",
+    "text": "This Agreement will begin on the Effective Date and continue for the Term. Provider and Partner may mutually agree to extend the Term, including by email communication."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 117.244383,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "48789b57-ff41-4fc1-8e94-f0cb7821fc9f",
+  "request_id": null,
+  "trace": "a58833cf3e306a57-EWR",
+  "wall_ms": 273,
+  "recorded_at": "2026-11-10T21:38:08+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9981,
+    "probabilities": {
+     "same": 0.9913,
+     "overlapping": 0.0043,
+     "conflicting": 0.0026,
+     "unrelated": 0.0019
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.4674,
+       "restated": 0.5005,
+       "elaborated": 0.0162,
+       "different": 0.016
+      },
+      "confidence": 0.984,
+      "a": {
+       "document": "v1",
+       "quote": "This Agreement will start on the Effective Date and continue for the Term.",
+       "start": 0,
+       "end": 74,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "This Agreement will begin on the Effective Date and continue for the Term.",
+       "start": 0,
+       "end": 74,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9848,
+       "restated": 0.0068,
+       "elaborated": 0.0039,
+       "different": 0.0045
+      },
+      "confidence": 0.9955,
+      "a": {
+       "document": "v1",
+       "quote": "Provider and Partner may mutually agree to extend the Term, including by email communication.",
+       "start": 75,
+       "end": 168,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Provider and Partner may mutually agree to extend the Term, including by email communication.",
+       "start": 75,
+       "end": 168,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 23,
+   "passage_reads": 1,
+   "passages_ms": 45,
+   "passages": 2,
+   "counterparts_ms": 58
+  },
+  "timing": {
+   "read_ms": 126,
+   "total_ms": 127
+  }
+ }
+}

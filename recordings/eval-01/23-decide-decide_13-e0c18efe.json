@@ -1,0 +1,107 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 13",
+ "request_hash": "e0c18efe97a9503a967625c02eda709e880aa7ce9dc489ab37749515c7824abd",
+ "request": {
+  "state": {
+   "clause": "13 Assignment",
+   "change": "The Customer changed this term: Clause rewritten",
+   "we_sent": "Neither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets.",
+   "they_returned": "Customer may assign this Agreement to any affiliate or acquirer without consent.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$184,000",
+    "initial_term": "thirty-six (36) months"
+   },
+   "playbook": [
+    "Assignment: consent: Assignment needs the other party's consent except in a merger or sale of the business. The deal desk may allow the customer to assign to an affiliate that is not a competitor. One-sided assignment rights go to Legal."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the applicable playbook explicitly authorizes the deal desk to offer a different term in response to this proposed change, without another approver. The alternative may restore our original term; it does not have to be strictly between our original term and the Customer's term. No if the applicable rule prohibits the desk from countering this request, every permitted response needs another approver, or no authorized alternative is named. A passage for a different deal size grants no authority."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 49.065887,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "3486bbcd-6d8c-4343-a5eb-ac3da84e3259",
+  "request_id": null,
+  "trace": "a586e2613bea1659-LAX",
+  "wall_ms": 418,
+  "recorded_at": "2026-11-10T17:47:46+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0074
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.0222
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9786,
+     "provider": 0.0127,
+     "neutral": 0.0086
+    },
+    "confidence": 0.9679
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.6573,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0094,
+     "1": 0.0215,
+     "2": 0.046,
+     "3": 0.1486,
+     "4": 0.7745
+    },
+    "confidence": 0.7181
+   }
+  },
+  "usage": {
+   "input_tokens": 444,
+   "output_tokens": 12
+  }
+ }
+}

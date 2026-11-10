@@ -1,0 +1,117 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 4",
+ "request_hash": "87dac736afc447be6a928cb9071b08a2979bc8a7a035ff2d81d31450c4f95680",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Recipient’s obligations in this NDA do not apply to information that it can document: (a) is or becomes publicly available through no fault of Recipient, (b) it rightfully knew or possessed prior to receipt from Discloser without confidentiality restrictions, (c) it rightfully received from a third party without confidentiality restrictions or (d) it independently developed without using or referencing Confidential Information."
+   },
+   {
+    "id": "v2",
+    "text": "Recipient’s obligations in this NDA do not apply to information that it can document: (a) is or becomes publicly available through no fault of Recipient, (b) it rightfully knew or possessed before receipt from Discloser without confidentiality restrictions, (c) it rightfully received from a third party without confidentiality restrictions or (d) it independently developed without using or referencing Confidential Information."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 124.671585,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "33a52c48-6ea9-47b3-a74f-a6e015e39d7b",
+  "request_id": null,
+  "trace": "a58834292955578c-IAD",
+  "wall_ms": 278,
+  "recorded_at": "2026-11-10T21:38:22+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9979,
+    "probabilities": {
+     "same": 0.9907,
+     "overlapping": 0.0044,
+     "conflicting": 0.0028,
+     "unrelated": 0.0021
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0708,
+       "restated": 0.9024,
+       "elaborated": 0.0151,
+       "different": 0.0117
+      },
+      "confidence": 0.9883,
+      "a": {
+       "document": "v1",
+       "quote": "Recipient’s obligations in this NDA do not apply to information that it can document: (a) is or becomes publicly available through no fault of Recipient, (b) it rightfully knew or possessed prior to receipt from Discloser without confidentiality restrictions, (c) it rightfully received from a third party without confidentiality restrictions or (d) it independently developed without using or referencing Confidential Information.",
+       "start": 0,
+       "end": 431,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Recipient’s obligations in this NDA do not apply to information that it can document: (a) is or becomes publicly available through no fault of Recipient, (b) it rightfully knew or possessed before receipt from Discloser without confidentiality restrictions, (c) it rightfully received from a third party without confidentiality restrictions or (d) it independently developed without using or referencing Confidential Information.",
+       "start": 0,
+       "end": 429,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 24,
+   "passage_reads": 1,
+   "passages_ms": 45,
+   "passages": 1,
+   "counterparts_ms": 65
+  },
+  "timing": {
+   "read_ms": 134,
+   "total_ms": 137
+  }
+ }
+}

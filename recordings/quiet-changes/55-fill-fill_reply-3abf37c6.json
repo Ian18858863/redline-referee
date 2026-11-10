@@ -1,0 +1,147 @@
+{
+ "endpoint": "/clocked/fill",
+ "label": "fill reply",
+ "request_hash": "3abf37c623cad2cbe6ae970e37f99c54e01bf341aecce281c247c4848b272e73",
+ "request": {
+  "text": "Clause 3 (Renewal). The returned copy reads: \"of non-renewal at least thirty (30) days before the\". We accept this change.\nClause 4.2 (Payment Terms). The returned copy reads: \"each undisputed invoice within ninety (90) days of the\". We do not accept this change as written. What we can agree to instead: We can extend payment to net forty-five days from the invoice date.\nClause 9 (Limitation of Liability). The returned copy reads: \"this Agreement in the sixty (60) months before the\". We do not accept this change as written. We ask for the wording we sent to be put back: \"Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.\".\nClause 15 (Governing Law). The returned copy reads: \"of the State of Oregon, without regard to\". This change is under review on our side.",
+  "instructions": "You are writing for the Provider's deal desk to the Customer's procurement contact, about a copy of an agreement the Customer returned with changes. Use only the brief. Be plain, courteous and specific. For an accepted change, say we accept it. For a countered change, state the position we can agree to, exactly as the brief gives it, and ask for the clause to be put back or changed to that. For a change that is with our approvers, say only that it is under review; do not promise an outcome. Never mention internal approvers, approval limits, playbooks or percentages of confidence.",
+  "fields": {
+   "reply_c1": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 3 (Renewal), saying what we decided: accept."
+   },
+   "reply_c2": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 4.2 (Payment Terms), saying what we decided: counter."
+   },
+   "reply_c3": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 9 (Limitation of Liability), saying what we decided: counter."
+   },
+   "reply_c4": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 15 (Governing Law), saying what we decided: escalate."
+   },
+   "position_c2": {
+    "type": "extract",
+    "infer": false,
+    "description": "The sentence stating what we can agree to instead for clause 4.2 (Payment Terms)"
+   },
+   "position_c3": {
+    "type": "extract",
+    "infer": false,
+    "description": "The sentence stating what we can agree to instead for clause 9 (Limitation of Liability)"
+   },
+   "corrected_copy": {
+    "type": "yes_no",
+    "description": "Does at least one change need the customer to send a corrected copy (a change we countered)?"
+   },
+   "call_needed": {
+    "type": "yes_no",
+    "description": "Are two or more changes still under review on our side, so that a short call would help?"
+   },
+   "tone": {
+    "type": "choice",
+    "options": [
+     "routine",
+     "firm"
+    ],
+    "description": "routine if everything is accepted or under review; firm if we refuse any change as written"
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 14,
+  "model_ms": 346.223578,
+  "cost_usd": 0.002789,
+  "attempts": 1,
+  "idempotency_key": "4c070d96-28ef-415a-bf07-bafd5b4b7568",
+  "request_id": null,
+  "trace": "a586ea7ed9315f80-LAX",
+  "wall_ms": 1016,
+  "recorded_at": "2026-11-10T17:53:19+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "reply_c1": {
+    "value": "We accept this change",
+    "confidence": 0.8939477947123996,
+    "source": "generated"
+   },
+   "reply_c2": {
+    "value": "We can extend payment to net forty-five days from the invoice date. Please change the clause to reflect this",
+    "confidence": 0.2422933505242021,
+    "source": "generated"
+   },
+   "reply_c3": {
+    "value": "We do not accept this change as written. We ask for the wording we sent to be put back: \"Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise",
+    "confidence": null,
+    "source": "generated",
+    "finish_reason": "length"
+   },
+   "reply_c4": {
+    "value": "This change is under review",
+    "confidence": 0.8739754599146672,
+    "source": "generated"
+   },
+   "position_c2": {
+    "value": "We can extend payment to net forty-five days from the invoice date.",
+    "start": 305,
+    "end": 372,
+    "confidence": 0.999999999722782,
+    "p_verify": 0.999999999722782
+   },
+   "position_c3": {
+    "value": "\"Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.\"",
+    "start": 576,
+    "end": 832,
+    "confidence": 0.9999870720334104,
+    "p_verify": 0.9999870720334104
+   },
+   "corrected_copy": {
+    "value": true,
+    "confidence": 0.982,
+    "probabilities": {
+     "yes": 0.9911218120015662,
+     "no": 0.008878187998433762
+    }
+   },
+   "call_needed": {
+    "value": false,
+    "confidence": 0.985,
+    "probabilities": {
+     "yes": 0.00754627404632624,
+     "no": 0.9924537259536738
+    }
+   },
+   "tone": {
+    "value": "firm",
+    "confidence": 0.86,
+    "probabilities": {
+     "routine": 0.07021082087244235,
+     "firm": 0.9297891791275577
+    }
+   }
+  },
+  "timing": {
+   "read_ms": 178,
+   "generate_ms": 333,
+   "total_ms": 356,
+   "source_states": 1,
+   "source_prefills": 1,
+   "shared_source_tokens": 496,
+   "shared_read_generate_forwards": 1,
+   "engine": "unified"
+  }
+ }
+}

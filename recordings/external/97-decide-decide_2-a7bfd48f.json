@@ -1,0 +1,106 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 2",
+ "request_hash": "a7bfd48fc94581b0360ca94c149bc0221b8e835968cb05685e4cce1572ce994b",
+ "request": {
+  "state": {
+   "clause": "2 Payment",
+   "change": "The Customer changed this term: 30 became 45 days",
+   "we_sent": "Customer shall pay invoices within 30 days.",
+   "they_returned": "Customer shall pay invoices within 45 days.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$250,000"
+   },
+   "playbook": [
+    "Payment: annual fees at least $100,000: Applies only when annual fees are $100,000 or more. The desk may accept payment up to 30 days. For 31 to 45 days the desk must counter with 30 days and may do so without approval. Payment of 46 days or more requires Finance approval: the desk may neither accept nor counter. Never apply this passage to smaller deals."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages name a different term that the deal desk may agree to on its own authority and could offer instead. The alternative may restore our original term or be between our original term and what the Customer wrote. No if every alternative needs another approver, the passages name no alternative, or the applicable rule explicitly prohibits the desk from countering this request. Use only passages that apply to this deal's facts."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 1,
+  "model_ms": 24.149153,
+  "cost_usd": 0.000199,
+  "attempts": 1,
+  "idempotency_key": "7a983860-7423-4db2-98a6-f5b43983d785",
+  "request_id": null,
+  "trace": "a586e64fba0169eb-LAX",
+  "wall_ms": 467,
+  "recorded_at": "2026-11-10T17:50:28+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0038
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.5051
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9893,
+     "provider": 0.0067,
+     "neutral": 0.004
+    },
+    "confidence": 0.9839
+   },
+   "materiality": {
+    "type": "score",
+    "score": 2.0888,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0131,
+     "1": 0.024,
+     "2": 0.8778,
+     "3": 0.0315,
+     "4": 0.0537
+    },
+    "confidence": 0.8472
+   }
+  },
+  "usage": {
+   "input_tokens": 446,
+   "output_tokens": 12
+  }
+ }
+}

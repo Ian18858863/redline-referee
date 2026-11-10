@@ -1,0 +1,108 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 4.2",
+ "request_hash": "a1b28503095cb5a4c60ebf41a35883e073395d4e5ac9bf0c4f6443d9965a118c",
+ "request": {
+  "state": {
+   "clause": "4.2 Payment Terms",
+   "change": "The Customer changed this term: 30 days became 90 days",
+   "we_sent": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+   "they_returned": "Customer shall pay each undisputed invoice within ninety (90) days of the invoice date.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$184,000",
+    "initial_term": "thirty-six (36) months"
+   },
+   "playbook": [
+    "Payment terms: deals of $100,000 a year or more: For subscriptions of $100,000 or more in annual fees, the deal desk may agree to net forty-five days. Net sixty days needs the approval of the VP Finance. Anything longer than sixty days is refused.",
+    "Payment terms: standard position: Our standard is net thirty days from the invoice date. Do not volunteer anything longer."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the applicable playbook explicitly authorizes the deal desk to offer a different term in response to this proposed change, without another approver. The alternative may restore our original term; it does not have to be strictly between our original term and the Customer's term. No if the applicable rule prohibits the desk from countering this request, every permitted response needs another approver, or no authorized alternative is named. A passage for a different deal size grants no authority."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 1,
+  "model_ms": 24.376287,
+  "cost_usd": 0.000199,
+  "attempts": 1,
+  "idempotency_key": "f033474d-d244-4aa8-b2e6-c5fe3050218b",
+  "request_id": null,
+  "trace": "a586e2c39d0b314f-LAX",
+  "wall_ms": 646,
+  "recorded_at": "2026-11-10T17:48:02+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0022
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.0036
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.991,
+     "provider": 0.0052,
+     "neutral": 0.0038
+    },
+    "confidence": 0.9864
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.9356,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0051,
+     "1": 0.005,
+     "2": 0.0056,
+     "3": 0.0178,
+     "4": 0.9665
+    },
+    "confidence": 0.9581
+   }
+  },
+  "usage": {
+   "input_tokens": 486,
+   "output_tokens": 12
+  }
+ }
+}
