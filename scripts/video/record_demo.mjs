@@ -7,7 +7,6 @@
 //   python scripts/video/mux.py demo.mp4                            (puts each take back on the clock and lays the narration at its marks)
 // Each scene stays on screen for as long as its sentence takes to say. Captions are drawn in the page while it is recorded.
 import puppeteer from 'puppeteer-core';
-import puppeteer from 'puppeteer-core';
 const base = process.argv[2] || 'http://localhost:8787';
 const take = process.argv[3] || 'main';
 const CASES = new URL('../../data/cases', import.meta.url).pathname.replace(/%20/g, ' ');
