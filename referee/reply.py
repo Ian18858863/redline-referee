@@ -76,7 +76,8 @@ def customer_position(change: dict) -> tuple[str, str]:
     position is the sentence we sent in the first place.
     """
     say = _say()
-    for p in (change.get("playbook") or {}).get("passages") or []:
+    restoring = (change.get("decide") or {}).get("counter_kind") == "restore"     # the position is our own sentence
+    for p in ([] if restoring else (change.get("playbook") or {}).get("passages") or []):
         if p.get("id") in say:
             return say[p["id"]], "playbook"
     sent = (change.get("compare") or {}).get("v1_quote") or change["parts"][0]["v1"].get("quote") or ""

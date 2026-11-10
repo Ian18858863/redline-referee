@@ -79,3 +79,57 @@ def test_round_budget_survives_restart_and_does_not_charge_replays(tmp_path, mon
     with pytest.raises(StepError, match="Round budget"):
         again.call("compare", {"x": 2}, "not sent")
     assert again.sent == 0
+
+
+# ---- maintainer follow-up: fine print in both versions, and PDFs edited in place --------------------------
+def test_a_pdf_edited_in_place_is_recognised_by_its_text_layer_and_a_clean_export_is_not():
+    from referee.engine import drawn_out_of_order
+    d = ROOT / "data/external/bonterms-benign"
+    assert drawn_out_of_order(read_pdf(d / "v1.pdf", "v1")) == []          # the publisher's own file reads in order
+    assert drawn_out_of_order(read_pdf(d / "v2.pdf", "v2")) == [1]         # the replacement words were drawn last
+    for name in ("commonpaper-benign", "sixarm-changed"):
+        e = ROOT / "data/external" / name
+        assert drawn_out_of_order(read_pdf(e / "v2.pdf", "v2")) == []
+
+
+def _replay(cid, tmp_path):
+    from eval.round_budget import RoundGateway
+    from referee.engine import review
+    d = ROOT / "data/external" / cid
+    gw = RoundGateway(False)
+    r = review(d / "v1.pdf", d / "v2.pdf", (d / "cover.txt").read_text(), gw, tmp_path / cid,
+               route=False, terms=False, concurrency=1)
+    return r, gw
+
+
+def test_verify_reads_an_edited_pdf_in_reading_order(tmp_path):
+    """The sentence we sent is checked against the returned copy as it reads, not with a hole where the edit is."""
+    r, gw = _replay("bonterms-benign", tmp_path)
+    assert r["errors"] == [] and all(a["replayed"] for a in gw.audit)
+    assert any(w.get("kind") == "edited_in_place" and "returned copy" in w["text"] for w in r["warnings"])
+    change = next(c for c in r["changes"] if "level" in c["summary"])
+    v = change["verify"]
+    assert v["sent_against_returned"]["supported"] >= 0.8 and v["returned_against_sent"]["supported"] >= 0.8
+    assert change["cls"] == "reworded" and not change["blocking"]
+
+
+def test_publisher_fine_print_in_both_versions_is_listed_and_does_not_block(tmp_path):
+    r, _ = _replay("bonterms-benign", tmp_path)
+    assert [(h["text"], h["inherited"]) for h in r["hidden_text"]] == [("CC-BY-4.0", True)]
+    assert r["status"] == "ready" and not any(x["level"] == "block" for x in r["reasons"])
+    assert any(x["level"] == "note" and "also in the version we sent" in x["text"] for x in r["reasons"])
+
+
+def test_substantive_edits_in_an_edited_pdf_are_still_held_and_the_false_note_still_blocks(tmp_path):
+    r, _ = _replay("bonterms-changed", tmp_path)
+    held = [c for c in r["changes"] if c["blocking"]]
+    assert len(held) == 2 and all(c["readers"]["verify"] == "changed" and c["readers"]["compare"] == "conflict" for c in held)
+    assert r["status"] == "blocked" and any(x["source"] == "Verify" for x in r["reasons"])
+
+
+def test_a_disagreement_between_the_readers_stays_held(tmp_path):
+    """Common Paper, the same two words: Verify reads a change, Compare the same meaning. Nothing was tuned to
+    clear it; the stricter reading wins and the card says the meaning needs review."""
+    r, _ = _replay("commonpaper-benign", tmp_path)
+    change = next(c for c in r["changes"] if "level" in c["summary"])
+    assert change["blocking"] and change["readers"] == {"rules": "substantive", "verify": "changed", "compare": "same", "agree": False}

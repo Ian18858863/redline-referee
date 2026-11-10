@@ -262,3 +262,6 @@
 {"endpoint": "decide", "label": "decide 3", "request_hash": "f7a1ec9329306214edc9772965b8a1839bbeba15eab3ab3ea4170ee51f22a909", "charged": 2, "uncertain": 0, "round_accounted": 641}
 {"endpoint": "decide", "label": "decide 4", "request_hash": "e51ddda19fc1d7cffe8232457f195b84287056e9ed7e7e822455ef55df5c6d8c", "charged": 2, "uncertain": 0, "round_accounted": 643}
 {"endpoint": "decide", "label": "decide 8", "request_hash": "be478fac4a0aa3ebb4d4f37b444f0104f9a43666006eb5bc03990d2d74445232", "charged": 2, "uncertain": 0, "round_accounted": 645}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "21391c28ede85b3e8c414dfbd876ecf161bd550fb7c43144df1557042d620eb6", "charged": 7, "uncertain": 0, "round_accounted": 652}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "063ea9f008db34605845be93f40652c270c46830893fc516ff526fc7e16280ca", "charged": 6, "uncertain": 0, "round_accounted": 658}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "d10dffcea76e108177881ac3d2a95441704ca65fe12609d9e1452b83f1ef2dd8", "charged": 6, "uncertain": 0, "round_accounted": 664}

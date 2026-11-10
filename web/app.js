@@ -95,7 +95,7 @@ async function getJSON(url) {
 const STATUSES = ['ready', 'changes', 'blocked', 'incomplete'];
 const HEADLINES = { ready: 'Ready to sign', changes: 'Changes to resolve before signing', blocked: 'Do not sign', incomplete: 'Review incomplete' };
 const STATUS_ICON = { ready: 'check', changes: 'open', blocked: 'stop', incomplete: 'dots' };
-const LEVEL_TONE = { block: 't-red', open: 't-amber', incomplete: 't-grey', ok: 't-green' };
+const LEVEL_TONE = { block: 't-red', open: 't-amber', incomplete: 't-grey', ok: 't-green', note: 't-grey' };
 const CLASSES = {
   substantive: 'Substantive', reworded: 'Reworded, same meaning', administrative: 'Administrative',
   spelling: 'Spelling', formatting: 'Formatting',
@@ -177,11 +177,14 @@ function statusOf(r) {
   if (arr(r.errors).length && r.status !== 'blocked') return 'incomplete';   // never green when a step failed
   return STATUSES.includes(r.status) ? r.status : 'incomplete';
 }
+// Concealed text blocks only when the version we sent does not carry it too. Fine print that is in
+// both versions (`inherited`) is listed for inspection and is not a finding.
 function guardInfo(r = S.review) {
   const flagged = arr(r?.guard).filter((g) => g.flagged);
-  const hidden = arr(r?.hidden_text);
+  const hidden = arr(r?.hidden_text).filter((x) => !x.inherited);
   return flagged.length || hidden.length ? { flagged, hidden } : null;
 }
+const inheritedFinePrint = (r = S.review) => arr(r?.hidden_text).filter((x) => x.inherited);
 // Why the rule layer calls a passage hidden. Newer reviews say it in words (`reason_text`).
 const hiddenReason = (x) => {
   const reason = x && typeof x === 'object' ? x.reason : x;
@@ -611,6 +614,15 @@ function renderChanges(r) {
     const list = buckets.get(g.key);
     if (!list.length) continue;
     out.push(section(g.key, g.title, list.map(changeRow), g.collapsed));
+  }
+
+  const fine = inheritedFinePrint(r);
+  if (fine.length) {
+    out.push(h('section', { class: 'group', dataset: { open: true } },
+      h('div', { class: 'group-head' }, h('span', null, 'Fine print in both versions'), h('span', { class: 'n' }, fine.length)),
+      fine.map((x) => h('div', { class: 'unplaced fineprint' },
+        h('div', { class: 'quote' }, x.text ?? ''),
+        h('small', null, `${x.page ? `Page ${x.page} · ` : ''}${hiddenReason(x)}. The version we sent carries the same text, so it is not a change and does not block.`)))));
   }
 
   const unplaced = arr(r.compare?.unplaced ?? cmpDoc(r)?.unplaced);

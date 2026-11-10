@@ -4,12 +4,12 @@
     "cases": 6,
     "held": 6,
     "substantive": 6,
-    "faithful_cleared": 1,
+    "faithful_cleared": 2,
     "faithful": 3,
     "false_cover_caught": 3,
     "false_covers": 3,
-    "status_correct": 4,
-    "new_actual_credits": 0,
+    "status_correct": 5,
+    "new_actual_credits": 19,
     "new_uncertain_credits": 0
   },
   "pairs": [
@@ -84,11 +84,11 @@
       "false_cover": true,
       "false_cover_caught": true,
       "claims_checked": 2,
-      "audit_credits": 103
+      "audit_credits": 104
     },
     {
       "id": "bonterms-benign",
-      "status": "blocked",
+      "status": "ready",
       "expected_status": "ready",
       "frozen_original_status": "ready",
       "complete": true,
@@ -98,14 +98,14 @@
         {
           "old": "reasonable standard of care",
           "new": "reasonable level of care",
-          "cleared": false
+          "cleared": true
         }
       ],
-      "unexpected_blocking": 1,
+      "unexpected_blocking": 0,
       "false_cover": false,
       "false_cover_caught": false,
       "claims_checked": 1,
-      "audit_credits": 131
+      "audit_credits": 134
     },
     {
       "id": "sixarm-changed",
@@ -131,7 +131,7 @@
       "false_cover": true,
       "false_cover_caught": true,
       "claims_checked": 2,
-      "audit_credits": 172
+      "audit_credits": 175
     },
     {
       "id": "sixarm-benign",
@@ -152,7 +152,7 @@
       "false_cover": false,
       "false_cover_caught": false,
       "claims_checked": 1,
-      "audit_credits": 210
+      "audit_credits": 213
     }
   ]
 }
