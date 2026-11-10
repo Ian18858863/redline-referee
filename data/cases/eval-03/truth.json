@@ -8,47 +8,63 @@
   "style": "misleading",
   "substantive": [
     {
-      "id": "assignment",
-      "clause": "13",
-      "label": "Assignment",
-      "kind": "wording",
-      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
-      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
-      "v1_value": "Mutual consent required",
-      "v2_value": "Customer may assign freely"
-    },
-    {
-      "id": "liability_cap",
-      "clause": "9",
-      "label": "Liability cap",
-      "kind": "duration",
-      "v1_quote": "in the twelve (12) months before the event",
-      "v2_quote": "in the sixty (60) months before the event",
-      "v1_value": "12 months of fees",
-      "v2_value": "60 months of fees"
-    },
-    {
-      "id": "sla_uptime",
+      "id": "sla_credit_cap",
       "clause": "5",
-      "label": "Availability commitment",
+      "label": "Service credit cap",
       "kind": "percent",
-      "v1_quote": "of at least 99.9%",
-      "v2_quote": "of at least 99.99%",
-      "v1_value": "99.9%",
-      "v2_value": "99.99%"
+      "v1_quote": "up to a maximum of 10% of the monthly fee",
+      "v2_quote": "up to a maximum of 50% of the monthly fee",
+      "v1_value": "10%",
+      "v2_value": "50%"
     },
     {
-      "id": "governing_law",
-      "clause": "15",
-      "label": "Governing law and venue",
-      "kind": "place",
-      "v1_quote": "governed by the laws of the State of Delaware, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.",
-      "v2_quote": "governed by the laws of the State of Oregon, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Portland, Oregon.",
-      "v1_value": "Delaware law, Wilmington courts",
-      "v2_value": "Oregon law, Portland courts"
+      "id": "renewal_notice",
+      "clause": "3",
+      "label": "Non-renewal notice period",
+      "kind": "duration",
+      "v1_quote": "at least sixty (60) days before",
+      "v2_quote": "at least ten (10) days before",
+      "v1_value": "60 days",
+      "v2_value": "10 days"
+    },
+    {
+      "id": "data_export",
+      "clause": "6",
+      "label": "Data export window",
+      "kind": "duration",
+      "v1_quote": "For thirty (30) days after termination",
+      "v2_quote": "For one hundred eighty (180) days after termination",
+      "v1_value": "30 days",
+      "v2_value": "180 days"
+    },
+    {
+      "id": "ip_ownership",
+      "clause": "7",
+      "label": "Ownership of configurations",
+      "kind": "wording",
+      "v1_quote": "including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+      "v2_quote": "excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
+      "v1_value": "Provider owns configurations",
+      "v2_value": "Customer owns configurations"
     }
   ],
   "cosmetic": [
+    {
+      "id": "reword_dispute",
+      "clause": "4.2",
+      "label": "Rewording, same meaning",
+      "kind": "reword",
+      "v1_quote": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+      "v2_quote": "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time."
+    },
+    {
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
+    },
     {
       "id": "typo_separate",
       "clause": "13",
@@ -56,17 +72,19 @@
       "kind": "typo",
       "v1_quote": "seperate attempt",
       "v2_quote": "separate attempt"
-    },
-    {
-      "id": "fmt_email",
-      "clause": "14",
-      "label": "Spelling variant",
-      "kind": "format",
-      "v1_quote": "E-mail notice",
-      "v2_quote": "Email notice"
     }
   ],
   "letter_claims": [
+    {
+      "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+      "expected": "supported",
+      "about": "reword_dispute"
+    },
+    {
+      "text": "We updated our notice address in Section 14.",
+      "expected": "supported",
+      "about": "address"
+    },
     {
       "text": "We corrected a few typographical errors.",
       "expected": "supported",
@@ -78,19 +96,19 @@
       "about": "global"
     },
     {
-      "text": "The assignment clause is unchanged.",
+      "text": "Service credits are unchanged.",
       "expected": "contradicted",
-      "about": "assignment"
+      "about": "sla_credit_cap"
     },
     {
-      "text": "The limitation of liability is unchanged.",
+      "text": "The renewal mechanics are unchanged.",
       "expected": "contradicted",
-      "about": "liability_cap"
+      "about": "renewal_notice"
     },
     {
-      "text": "Intellectual property ownership is exactly as you proposed.",
+      "text": "The late payment clause is as you sent it.",
       "expected": "supported",
-      "about": "ip_ownership"
+      "about": "late_interest"
     }
   ]
 }

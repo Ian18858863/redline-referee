@@ -169,7 +169,12 @@ SUBSTANTIVE: list[Edit] = [
          "up to a maximum of 10% of the monthly fee", "up to a maximum of 50% of the monthly fee",
          True, "percent", "10%", "50%", "counterparty", 2,
          "Service credits are unchanged.",
-         "We raised the service credit cap to 50% of the monthly fee."),
+         "We raised the service credit cap to 50% of the monthly fee.", excludes=("min_max",)),
+    Edit("min_max", "5", "Service credit floor",
+         "up to a maximum of 10% of the monthly fee", "up to a minimum of 10% of the monthly fee",
+         True, "wording", "Credits capped at 10%", "Credits of at least 10%", "counterparty", 3,
+         "Service credits are unchanged.",
+         "We changed the service credit cap into a 10% minimum.", excludes=("sla_credit_cap",)),
     Edit("data_export", "6", "Data export window",
          "For thirty (30) days after termination", "For one hundred eighty (180) days after termination",
          True, "duration", "30 days", "180 days", "counterparty", 1,
@@ -236,6 +241,10 @@ COSMETIC: list[Edit] = [
     Edit("fmt_caps", "1", "Capitalisation", "in accordance with this agreement", "in accordance with this Agreement",
          False, "format"),
     Edit("fmt_email", "14", "Spelling variant", "E-mail notice", "Email notice", False, "format"),
+    Edit("reword_dispute", "4.2", "Rewording, same meaning",
+         "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+         "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time.",
+         False, "reword", disclosure="We tidied the wording of the invoice dispute sentence without changing its meaning."),
     Edit("fmt_ampersand", "16", "Punctuation", "is the entire agreement between the parties and supersedes",
          "is the entire agreement between the parties, and supersedes", False, "format"),
 ]
@@ -348,7 +357,7 @@ def demo_pairs() -> list[Pair]:
         make_pair(
             "quiet-changes",
             ["pay_terms", "liability_cap", "renewal_notice", "governing_law",
-             "typo_written", "typo_receive", "address", "fmt_confidentiality"], "misleading",
+             "typo_written", "typo_receive", "address", "fmt_confidentiality", "reword_dispute"], "misleading",
             title="Quiet changes",
             description="The cover note says only typos and an address changed. Four terms moved.",
             decoy="fee_amount"),
@@ -360,9 +369,9 @@ def demo_pairs() -> list[Pair]:
             description="One digit pair swapped in the fee, two rewritten clauses, and white text addressed to AI reviewers.",
             injection=True, decoy="governing_law"),
         make_pair(
-            "disclosed-changes", ["price_cap", "data_export", "typo_written", "address"], "honest",
+            "disclosed-changes", ["price_cap", "data_export", "min_max", "typo_written", "address"], "honest",
             title="Disclosed changes",
-            description="The customer changed two terms and said so. Nothing is hidden, but both still need a decision.",
+            description="The customer changed three terms and said so. Nothing is hidden, but each still needs a decision.",
         ),
     ]
 

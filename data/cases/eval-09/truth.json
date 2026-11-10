@@ -8,35 +8,27 @@
   "style": "misleading",
   "substantive": [
     {
-      "id": "fee_amount",
-      "clause": "4.1",
-      "label": "Annual fee",
-      "kind": "money",
-      "v1_quote": "an annual subscription fee of $184,000",
-      "v2_quote": "an annual subscription fee of $148,000",
-      "v1_value": "$184,000",
-      "v2_value": "$148,000"
+      "id": "data_export",
+      "clause": "6",
+      "label": "Data export window",
+      "kind": "duration",
+      "v1_quote": "For thirty (30) days after termination",
+      "v2_quote": "For one hundred eighty (180) days after termination",
+      "v1_value": "30 days",
+      "v2_value": "180 days"
     },
     {
-      "id": "ip_ownership",
-      "clause": "7",
-      "label": "Ownership of configurations",
-      "kind": "wording",
-      "v1_quote": "including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
-      "v2_quote": "excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
-      "v1_value": "Provider owns configurations",
-      "v2_value": "Customer owns configurations"
+      "id": "pay_terms",
+      "clause": "4.2",
+      "label": "Payment terms",
+      "kind": "duration",
+      "v1_quote": "within thirty (30) days of the invoice date",
+      "v2_quote": "within ninety (90) days of the invoice date",
+      "v1_value": "30 days",
+      "v2_value": "90 days"
     }
   ],
   "cosmetic": [
-    {
-      "id": "typo_written",
-      "clause": "3",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "writen notice",
-      "v2_quote": "written notice"
-    },
     {
       "id": "fmt_cure",
       "clause": "11",
@@ -46,12 +38,28 @@
       "v2_quote": "within 30 days after written notice"
     },
     {
-      "id": "fmt_ampersand",
-      "clause": "16",
-      "label": "Punctuation",
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    },
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
       "kind": "format",
-      "v1_quote": "is the entire agreement between the parties and supersedes",
-      "v2_quote": "is the entire agreement between the parties, and supersedes"
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
     }
   ],
   "letter_claims": [
@@ -66,19 +74,19 @@
       "about": "global"
     },
     {
-      "text": "The annual subscription fee is unchanged.",
-      "expected": "contradicted",
-      "about": "fee_amount"
-    },
-    {
-      "text": "Intellectual property ownership is exactly as you proposed.",
-      "expected": "contradicted",
-      "about": "ip_ownership"
-    },
-    {
       "text": "The data handling clause is unchanged.",
-      "expected": "supported",
+      "expected": "contradicted",
       "about": "data_export"
+    },
+    {
+      "text": "Payment terms remain net thirty days.",
+      "expected": "contradicted",
+      "about": "pay_terms"
+    },
+    {
+      "text": "The audit clause is unchanged.",
+      "expected": "supported",
+      "about": "audit_rights"
     }
   ]
 }

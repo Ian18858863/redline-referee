@@ -9,12 +9,12 @@
   "substantive": [],
   "cosmetic": [
     {
-      "id": "address",
-      "clause": "14",
-      "label": "Notice address",
-      "kind": "address",
-      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
-      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
+      "id": "reword_dispute",
+      "clause": "4.2",
+      "label": "Rewording, same meaning",
+      "kind": "reword",
+      "v1_quote": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+      "v2_quote": "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time."
     },
     {
       "id": "fmt_email",
@@ -23,26 +23,13 @@
       "kind": "format",
       "v1_quote": "E-mail notice",
       "v2_quote": "Email notice"
-    },
-    {
-      "id": "typo_receive",
-      "clause": "5",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "will recieve a service credit",
-      "v2_quote": "will receive a service credit"
     }
   ],
   "letter_claims": [
     {
-      "text": "We updated our notice address in Section 14.",
+      "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
       "expected": "supported",
-      "about": "address"
-    },
-    {
-      "text": "We corrected a few typographical errors.",
-      "expected": "supported",
-      "about": "typo_receive"
+      "about": "reword_dispute"
     },
     {
       "text": "No commercial or legal terms were changed.",
@@ -50,9 +37,9 @@
       "about": "global"
     },
     {
-      "text": "The late payment clause is as you sent it.",
+      "text": "Termination rights are unchanged.",
       "expected": "supported",
-      "about": "late_interest"
+      "about": "termination_convenience"
     }
   ]
 }

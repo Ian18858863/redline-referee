@@ -8,34 +8,14 @@
   "style": "misleading",
   "substantive": [
     {
-      "id": "assignment",
-      "clause": "13",
-      "label": "Assignment",
-      "kind": "wording",
-      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
-      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
-      "v1_value": "Mutual consent required",
-      "v2_value": "Customer may assign freely"
-    },
-    {
-      "id": "price_cap",
-      "clause": "4.4",
-      "label": "Renewal price increase cap",
-      "kind": "percent",
-      "v1_quote": "by up to 5% over the fees",
-      "v2_quote": "by up to 1% over the fees",
-      "v1_value": "5%",
-      "v2_value": "1%"
-    },
-    {
-      "id": "sla_credit_cap",
+      "id": "min_max",
       "clause": "5",
-      "label": "Service credit cap",
-      "kind": "percent",
+      "label": "Service credit floor",
+      "kind": "wording",
       "v1_quote": "up to a maximum of 10% of the monthly fee",
-      "v2_quote": "up to a maximum of 50% of the monthly fee",
-      "v1_value": "10%",
-      "v2_value": "50%"
+      "v2_quote": "up to a minimum of 10% of the monthly fee",
+      "v1_value": "Credits capped at 10%",
+      "v2_value": "Credits of at least 10%"
     },
     {
       "id": "pay_terms",
@@ -50,20 +30,12 @@
   ],
   "cosmetic": [
     {
-      "id": "fmt_confidentiality",
-      "clause": "8",
+      "id": "fmt_cure",
+      "clause": "11",
       "label": "Number formatting",
       "kind": "format",
-      "v1_quote": "three (3) years",
-      "v2_quote": "3 years"
-    },
-    {
-      "id": "typo_written",
-      "clause": "3",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "writen notice",
-      "v2_quote": "written notice"
+      "v1_quote": "within thirty (30) days after written notice",
+      "v2_quote": "within 30 days after written notice"
     },
     {
       "id": "fmt_caps",
@@ -86,7 +58,7 @@
     {
       "text": "We corrected a few typographical errors.",
       "expected": "supported",
-      "about": "typo_written"
+      "about": "typo_separate"
     },
     {
       "text": "No commercial or legal terms were changed.",
@@ -94,19 +66,19 @@
       "about": "global"
     },
     {
+      "text": "Service credits are unchanged.",
+      "expected": "contradicted",
+      "about": "min_max"
+    },
+    {
+      "text": "Payment terms remain net thirty days.",
+      "expected": "contradicted",
+      "about": "pay_terms"
+    },
+    {
       "text": "The assignment clause is unchanged.",
-      "expected": "contradicted",
-      "about": "assignment"
-    },
-    {
-      "text": "The fee adjustment clause was not touched.",
-      "expected": "contradicted",
-      "about": "price_cap"
-    },
-    {
-      "text": "The data handling clause is unchanged.",
       "expected": "supported",
-      "about": "data_export"
+      "about": "assignment"
     }
   ]
 }

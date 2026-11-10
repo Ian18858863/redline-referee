@@ -8,42 +8,42 @@
   "style": "misleading",
   "substantive": [
     {
-      "id": "ip_ownership",
-      "clause": "7",
-      "label": "Ownership of configurations",
-      "kind": "wording",
-      "v1_quote": "including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
-      "v2_quote": "excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
-      "v1_value": "Provider owns configurations",
-      "v2_value": "Customer owns configurations"
+      "id": "late_interest",
+      "clause": "4.3",
+      "label": "Late payment interest",
+      "kind": "percent",
+      "v1_quote": "at the rate of 1.5% per month",
+      "v2_quote": "at the rate of 0.5% per month",
+      "v1_value": "1.5% per month",
+      "v2_value": "0.5% per month"
     },
     {
-      "id": "assignment",
-      "clause": "13",
-      "label": "Assignment",
-      "kind": "wording",
-      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
-      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
-      "v1_value": "Mutual consent required",
-      "v2_value": "Customer may assign freely"
+      "id": "renewal_notice",
+      "clause": "3",
+      "label": "Non-renewal notice period",
+      "kind": "duration",
+      "v1_quote": "at least sixty (60) days before",
+      "v2_quote": "at least ten (10) days before",
+      "v1_value": "60 days",
+      "v2_value": "10 days"
     }
   ],
   "cosmetic": [
     {
-      "id": "typo_written",
-      "clause": "3",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "writen notice",
-      "v2_quote": "written notice"
+      "id": "fmt_caps",
+      "clause": "1",
+      "label": "Capitalisation",
+      "kind": "format",
+      "v1_quote": "in accordance with this agreement",
+      "v2_quote": "in accordance with this Agreement"
     },
     {
-      "id": "typo_receive",
-      "clause": "5",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "will recieve a service credit",
-      "v2_quote": "will receive a service credit"
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
     },
     {
       "id": "fmt_email",
@@ -52,13 +52,26 @@
       "kind": "format",
       "v1_quote": "E-mail notice",
       "v2_quote": "Email notice"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
     }
   ],
   "letter_claims": [
     {
+      "text": "We updated our notice address in Section 14.",
+      "expected": "supported",
+      "about": "address"
+    },
+    {
       "text": "We corrected a few typographical errors.",
       "expected": "supported",
-      "about": "typo_written"
+      "about": "typo_receive"
     },
     {
       "text": "No commercial or legal terms were changed.",
@@ -66,19 +79,19 @@
       "about": "global"
     },
     {
-      "text": "Intellectual property ownership is exactly as you proposed.",
+      "text": "The late payment clause is as you sent it.",
       "expected": "contradicted",
-      "about": "ip_ownership"
+      "about": "late_interest"
     },
     {
-      "text": "The assignment clause is unchanged.",
+      "text": "The renewal mechanics are unchanged.",
       "expected": "contradicted",
-      "about": "assignment"
+      "about": "renewal_notice"
     },
     {
-      "text": "Termination rights are unchanged.",
+      "text": "The annual subscription fee is unchanged.",
       "expected": "supported",
-      "about": "termination_convenience"
+      "about": "fee_amount"
     }
   ]
 }

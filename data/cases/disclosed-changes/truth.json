@@ -2,7 +2,7 @@
   "case_id": "disclosed-changes",
   "group": "demo",
   "title": "Disclosed changes",
-  "description": "The customer changed two terms and said so. Nothing is hidden, but both still need a decision.",
+  "description": "The customer changed three terms and said so. Nothing is hidden, but each still needs a decision.",
   "injection": false,
   "expected_status": "changes",
   "style": "honest",
@@ -26,6 +26,16 @@
       "v2_quote": "For one hundred eighty (180) days after termination",
       "v1_value": "30 days",
       "v2_value": "180 days"
+    },
+    {
+      "id": "min_max",
+      "clause": "5",
+      "label": "Service credit floor",
+      "kind": "wording",
+      "v1_quote": "up to a maximum of 10% of the monthly fee",
+      "v2_quote": "up to a minimum of 10% of the monthly fee",
+      "v1_value": "Credits capped at 10%",
+      "v2_value": "Credits of at least 10%"
     }
   ],
   "cosmetic": [
@@ -66,6 +76,11 @@
       "text": "We extended the post-termination data export window to 180 days.",
       "expected": "supported",
       "about": "data_export"
+    },
+    {
+      "text": "We changed the service credit cap into a 10% minimum.",
+      "expected": "supported",
+      "about": "min_max"
     }
   ]
 }

@@ -9,14 +9,6 @@
   "substantive": [],
   "cosmetic": [
     {
-      "id": "typo_separate",
-      "clause": "13",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "seperate attempt",
-      "v2_quote": "separate attempt"
-    },
-    {
       "id": "fmt_cure",
       "clause": "11",
       "label": "Number formatting",
@@ -31,13 +23,34 @@
       "kind": "typo",
       "v1_quote": "writen notice",
       "v2_quote": "written notice"
+    },
+    {
+      "id": "reword_dispute",
+      "clause": "4.2",
+      "label": "Rewording, same meaning",
+      "kind": "reword",
+      "v1_quote": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+      "v2_quote": "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time."
+    },
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
     }
   ],
   "letter_claims": [
     {
       "text": "We corrected a few typographical errors.",
       "expected": "supported",
-      "about": "typo_separate"
+      "about": "typo_written"
+    },
+    {
+      "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+      "expected": "supported",
+      "about": "reword_dispute"
     },
     {
       "text": "No commercial or legal terms were changed.",
@@ -45,9 +58,9 @@
       "about": "global"
     },
     {
-      "text": "The annual subscription fee is unchanged.",
+      "text": "The audit clause is unchanged.",
       "expected": "supported",
-      "about": "fee_amount"
+      "about": "audit_rights"
     }
   ]
 }

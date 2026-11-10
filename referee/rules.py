@@ -169,6 +169,9 @@ def _classify(ca: Clause, cb: Clause, q1: str, q2: str, c1: str, c2: str) -> Hun
             new = ", ".join(x for x in v2[kind] if x not in v1[kind]) or ", ".join(v2[kind]) or "none"
             return Hunk(cls="substantive", kind=kind, summary=f"{old} → {new}",
                         why=f"A {kind} value differs between the two versions.", extra={"old": old, "new": new}, **base)
+    if c1 and c2 and len(c1) <= 44 and len(c2) <= 44:
+        return Hunk(cls="substantive", kind="wording", summary=f"“{c1.strip()}” → “{c2.strip()}”",
+                    why="The words differ and the difference is not just formatting or spelling.", **base)
     return Hunk(cls="substantive", kind="wording", summary="Wording changed",
                 why="The words differ and the difference is not just formatting or spelling.", **base)
 

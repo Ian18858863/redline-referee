@@ -8,53 +8,27 @@
   "style": "honest",
   "substantive": [
     {
-      "id": "liability_cap",
-      "clause": "9",
-      "label": "Liability cap",
+      "id": "assignment",
+      "clause": "13",
+      "label": "Assignment",
+      "kind": "wording",
+      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
+      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
+      "v1_value": "Mutual consent required",
+      "v2_value": "Customer may assign freely"
+    },
+    {
+      "id": "data_export",
+      "clause": "6",
+      "label": "Data export window",
       "kind": "duration",
-      "v1_quote": "in the twelve (12) months before the event",
-      "v2_quote": "in the sixty (60) months before the event",
-      "v1_value": "12 months of fees",
-      "v2_value": "60 months of fees"
-    },
-    {
-      "id": "late_interest",
-      "clause": "4.3",
-      "label": "Late payment interest",
-      "kind": "percent",
-      "v1_quote": "at the rate of 1.5% per month",
-      "v2_quote": "at the rate of 0.5% per month",
-      "v1_value": "1.5% per month",
-      "v2_value": "0.5% per month"
-    },
-    {
-      "id": "price_cap",
-      "clause": "4.4",
-      "label": "Renewal price increase cap",
-      "kind": "percent",
-      "v1_quote": "by up to 5% over the fees",
-      "v2_quote": "by up to 1% over the fees",
-      "v1_value": "5%",
-      "v2_value": "1%"
+      "v1_quote": "For thirty (30) days after termination",
+      "v2_quote": "For one hundred eighty (180) days after termination",
+      "v1_value": "30 days",
+      "v2_value": "180 days"
     }
   ],
   "cosmetic": [
-    {
-      "id": "fmt_email",
-      "clause": "14",
-      "label": "Spelling variant",
-      "kind": "format",
-      "v1_quote": "E-mail notice",
-      "v2_quote": "Email notice"
-    },
-    {
-      "id": "fmt_confidentiality",
-      "clause": "8",
-      "label": "Number formatting",
-      "kind": "format",
-      "v1_quote": "three (3) years",
-      "v2_quote": "3 years"
-    },
     {
       "id": "typo_receive",
       "clause": "5",
@@ -64,12 +38,12 @@
       "v2_quote": "will receive a service credit"
     },
     {
-      "id": "typo_written",
-      "clause": "3",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "writen notice",
-      "v2_quote": "written notice"
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
     }
   ],
   "letter_claims": [
@@ -79,19 +53,19 @@
       "about": "typo_receive"
     },
     {
-      "text": "We raised the liability cap to the fees paid in the prior sixty months.",
+      "text": "We updated our notice address in Section 14.",
       "expected": "supported",
-      "about": "liability_cap"
+      "about": "address"
     },
     {
-      "text": "We lowered the late payment interest rate to 0.5% per month.",
+      "text": "We changed the assignment clause so Customer can assign to affiliates without consent.",
       "expected": "supported",
-      "about": "late_interest"
+      "about": "assignment"
     },
     {
-      "text": "We reduced the renewal price increase cap from 5% to 1%.",
+      "text": "We extended the post-termination data export window to 180 days.",
       "expected": "supported",
-      "about": "price_cap"
+      "about": "data_export"
     }
   ]
 }

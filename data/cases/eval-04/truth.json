@@ -8,14 +8,14 @@
   "style": "honest",
   "substantive": [
     {
-      "id": "initial_term",
-      "clause": "2",
-      "label": "Initial term",
-      "kind": "duration",
-      "v1_quote": "thirty-six (36) months",
-      "v2_quote": "twelve (12) months",
-      "v1_value": "36 months",
-      "v2_value": "12 months"
+      "id": "min_max",
+      "clause": "5",
+      "label": "Service credit floor",
+      "kind": "wording",
+      "v1_quote": "up to a maximum of 10% of the monthly fee",
+      "v2_quote": "up to a minimum of 10% of the monthly fee",
+      "v1_value": "Credits capped at 10%",
+      "v2_value": "Credits of at least 10%"
     },
     {
       "id": "late_interest",
@@ -38,24 +38,19 @@
       "v2_quote": "3 years"
     },
     {
-      "id": "typo_receive",
-      "clause": "5",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "will recieve a service credit",
-      "v2_quote": "will receive a service credit"
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
     }
   ],
   "letter_claims": [
     {
-      "text": "We corrected a few typographical errors.",
+      "text": "We changed the service credit cap into a 10% minimum.",
       "expected": "supported",
-      "about": "typo_receive"
-    },
-    {
-      "text": "We shortened the initial term to twelve months.",
-      "expected": "supported",
-      "about": "initial_term"
+      "about": "min_max"
     },
     {
       "text": "We lowered the late payment interest rate to 0.5% per month.",

@@ -8,69 +8,64 @@
   "style": "misleading",
   "substantive": [
     {
-      "id": "assignment",
-      "clause": "13",
-      "label": "Assignment",
-      "kind": "wording",
-      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
-      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
-      "v1_value": "Mutual consent required",
-      "v2_value": "Customer may assign freely"
+      "id": "initial_term",
+      "clause": "2",
+      "label": "Initial term",
+      "kind": "duration",
+      "v1_quote": "thirty-six (36) months",
+      "v2_quote": "twelve (12) months",
+      "v1_value": "36 months",
+      "v2_value": "12 months"
     },
     {
-      "id": "sla_uptime",
-      "clause": "5",
-      "label": "Availability commitment",
-      "kind": "percent",
-      "v1_quote": "of at least 99.9%",
-      "v2_quote": "of at least 99.99%",
-      "v1_value": "99.9%",
-      "v2_value": "99.99%"
+      "id": "pay_terms",
+      "clause": "4.2",
+      "label": "Payment terms",
+      "kind": "duration",
+      "v1_quote": "within thirty (30) days of the invoice date",
+      "v2_quote": "within ninety (90) days of the invoice date",
+      "v1_value": "30 days",
+      "v2_value": "90 days"
     }
   ],
   "cosmetic": [
     {
-      "id": "typo_separate",
-      "clause": "13",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "seperate attempt",
-      "v2_quote": "separate attempt"
+      "id": "fmt_confidentiality",
+      "clause": "8",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "three (3) years",
+      "v2_quote": "3 years"
     },
     {
-      "id": "typo_written",
-      "clause": "3",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "writen notice",
-      "v2_quote": "written notice"
+      "id": "fmt_cure",
+      "clause": "11",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "within thirty (30) days after written notice",
+      "v2_quote": "within 30 days after written notice"
     }
   ],
   "letter_claims": [
-    {
-      "text": "We corrected a few typographical errors.",
-      "expected": "supported",
-      "about": "typo_separate"
-    },
     {
       "text": "No commercial or legal terms were changed.",
       "expected": "contradicted",
       "about": "global"
     },
     {
-      "text": "The assignment clause is unchanged.",
+      "text": "The initial term is still thirty-six months.",
       "expected": "contradicted",
-      "about": "assignment"
+      "about": "initial_term"
     },
     {
-      "text": "The availability commitment is the same as in your draft.",
+      "text": "Payment terms remain net thirty days.",
       "expected": "contradicted",
-      "about": "sla_uptime"
+      "about": "pay_terms"
     },
     {
-      "text": "The annual subscription fee is unchanged.",
+      "text": "The fee adjustment clause was not touched.",
       "expected": "supported",
-      "about": "fee_amount"
+      "about": "price_cap"
     }
   ]
 }

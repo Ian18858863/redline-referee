@@ -8,24 +8,24 @@
   "style": "misleading",
   "substantive": [
     {
-      "id": "sla_credit_cap",
-      "clause": "5",
-      "label": "Service credit cap",
-      "kind": "percent",
-      "v1_quote": "up to a maximum of 10% of the monthly fee",
-      "v2_quote": "up to a maximum of 50% of the monthly fee",
-      "v1_value": "10%",
-      "v2_value": "50%"
+      "id": "audit_rights",
+      "clause": "12",
+      "label": "Audit frequency",
+      "kind": "wording",
+      "v1_quote": "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports.",
+      "v2_quote": "At any time, and on at least five (5) days' written notice, Customer may audit Provider's systems, facilities and records.",
+      "v1_value": "Once per year, 30 days' notice, reports only",
+      "v2_value": "Any time, 5 days' notice, systems and facilities"
     },
     {
-      "id": "termination_convenience",
-      "clause": "11",
-      "label": "Termination for convenience",
-      "kind": "wording",
-      "v1_quote": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
-      "v2_quote": "Customer may terminate this Agreement for convenience at any time on thirty (30) days' written notice and will receive a pro-rata refund of prepaid fees.",
-      "v1_value": "No termination for convenience",
-      "v2_value": "Customer may terminate on 30 days' notice"
+      "id": "liability_cap",
+      "clause": "9",
+      "label": "Liability cap",
+      "kind": "duration",
+      "v1_quote": "in the twelve (12) months before the event",
+      "v2_quote": "in the sixty (60) months before the event",
+      "v1_value": "12 months of fees",
+      "v2_value": "60 months of fees"
     }
   ],
   "cosmetic": [
@@ -38,35 +38,19 @@
       "v2_quote": "Email notice"
     },
     {
-      "id": "fmt_caps",
-      "clause": "1",
-      "label": "Capitalisation",
-      "kind": "format",
-      "v1_quote": "in accordance with this agreement",
-      "v2_quote": "in accordance with this Agreement"
-    },
-    {
-      "id": "fmt_ampersand",
-      "clause": "16",
-      "label": "Punctuation",
-      "kind": "format",
-      "v1_quote": "is the entire agreement between the parties and supersedes",
-      "v2_quote": "is the entire agreement between the parties, and supersedes"
-    },
-    {
-      "id": "typo_receive",
-      "clause": "5",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "will recieve a service credit",
-      "v2_quote": "will receive a service credit"
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
     }
   ],
   "letter_claims": [
     {
-      "text": "We corrected a few typographical errors.",
+      "text": "We updated our notice address in Section 14.",
       "expected": "supported",
-      "about": "typo_receive"
+      "about": "address"
     },
     {
       "text": "No commercial or legal terms were changed.",
@@ -74,19 +58,19 @@
       "about": "global"
     },
     {
+      "text": "The audit clause is unchanged.",
+      "expected": "contradicted",
+      "about": "audit_rights"
+    },
+    {
+      "text": "The limitation of liability is unchanged.",
+      "expected": "contradicted",
+      "about": "liability_cap"
+    },
+    {
       "text": "Service credits are unchanged.",
-      "expected": "contradicted",
-      "about": "sla_credit_cap"
-    },
-    {
-      "text": "Termination rights are unchanged.",
-      "expected": "contradicted",
-      "about": "termination_convenience"
-    },
-    {
-      "text": "The assignment clause is unchanged.",
       "expected": "supported",
-      "about": "assignment"
+      "about": "sla_credit_cap"
     }
   ]
 }

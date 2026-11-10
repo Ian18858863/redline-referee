@@ -18,50 +18,42 @@
       "v2_value": "10 days"
     },
     {
-      "id": "ip_ownership",
-      "clause": "7",
-      "label": "Ownership of configurations",
+      "id": "assignment",
+      "clause": "13",
+      "label": "Assignment",
       "kind": "wording",
-      "v1_quote": "including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
-      "v2_quote": "excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
-      "v1_value": "Provider owns configurations",
-      "v2_value": "Customer owns configurations"
+      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
+      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
+      "v1_value": "Mutual consent required",
+      "v2_value": "Customer may assign freely"
     },
     {
-      "id": "audit_rights",
-      "clause": "12",
-      "label": "Audit frequency",
-      "kind": "wording",
-      "v1_quote": "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports.",
-      "v2_quote": "At any time, and on at least five (5) days' written notice, Customer may audit Provider's systems, facilities and records.",
-      "v1_value": "Once per year, 30 days' notice, reports only",
-      "v2_value": "Any time, 5 days' notice, systems and facilities"
+      "id": "confidentiality",
+      "clause": "8",
+      "label": "Confidentiality period",
+      "kind": "duration",
+      "v1_quote": "continue for three (3) years after",
+      "v2_quote": "continue for ten (10) years after",
+      "v1_value": "3 years",
+      "v2_value": "10 years"
     }
   ],
   "cosmetic": [
     {
-      "id": "fmt_email",
-      "clause": "14",
-      "label": "Spelling variant",
+      "id": "fmt_caps",
+      "clause": "1",
+      "label": "Capitalisation",
       "kind": "format",
-      "v1_quote": "E-mail notice",
-      "v2_quote": "Email notice"
+      "v1_quote": "in accordance with this agreement",
+      "v2_quote": "in accordance with this Agreement"
     },
     {
-      "id": "fmt_cure",
-      "clause": "11",
-      "label": "Number formatting",
+      "id": "fmt_ampersand",
+      "clause": "16",
+      "label": "Punctuation",
       "kind": "format",
-      "v1_quote": "within thirty (30) days after written notice",
-      "v2_quote": "within 30 days after written notice"
-    },
-    {
-      "id": "typo_separate",
-      "clause": "13",
-      "label": "Typo fix",
-      "kind": "typo",
-      "v1_quote": "seperate attempt",
-      "v2_quote": "separate attempt"
+      "v1_quote": "is the entire agreement between the parties and supersedes",
+      "v2_quote": "is the entire agreement between the parties, and supersedes"
     },
     {
       "id": "typo_receive",
@@ -70,13 +62,21 @@
       "kind": "typo",
       "v1_quote": "will recieve a service credit",
       "v2_quote": "will receive a service credit"
+    },
+    {
+      "id": "fmt_cure",
+      "clause": "11",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "within thirty (30) days after written notice",
+      "v2_quote": "within 30 days after written notice"
     }
   ],
   "letter_claims": [
     {
       "text": "We corrected a few typographical errors.",
       "expected": "supported",
-      "about": "typo_separate"
+      "about": "typo_receive"
     },
     {
       "text": "No commercial or legal terms were changed.",
@@ -89,14 +89,14 @@
       "about": "renewal_notice"
     },
     {
-      "text": "Intellectual property ownership is exactly as you proposed.",
+      "text": "The assignment clause is unchanged.",
       "expected": "contradicted",
-      "about": "ip_ownership"
+      "about": "assignment"
     },
     {
-      "text": "The confidentiality term is unchanged.",
+      "text": "The availability commitment is the same as in your draft.",
       "expected": "supported",
-      "about": "confidentiality"
+      "about": "sla_uptime"
     }
   ]
 }

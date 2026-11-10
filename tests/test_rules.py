@@ -11,6 +11,11 @@ CASES = Path(__file__).resolve().parents[1] / "data" / "cases"
 IDS = [c["id"] for c in json.loads((CASES / "index.json").read_text())]
 
 
+# Documented limits of a layer that cannot read meaning. Compare covers both.
+RULES_BLIND = {"min_max"}             # "maximum" -> "minimum" looks like a spelling fix
+RULES_OVERCALL = {"reword_dispute"}   # a faithful rewording looks like a change
+
+
 def _load(case):
     d = CASES / case
     return read_pdf(d / "v1.pdf", "v1"), read_pdf(d / "v2.pdf", "v2"), json.loads((d / "truth.json").read_text())
@@ -27,6 +32,8 @@ def test_every_planted_substantive_edit_is_found(case):
     v1, v2, truth = _load(case)
     subs = [h for h in compare_documents(v1, v2) if h.substantive]
     for edit in truth["substantive"]:
+        if edit["id"] in RULES_BLIND:
+            continue
         assert any(_hit(h, edit) for h in subs), f"missed {edit['id']}"
 
 
@@ -35,6 +42,7 @@ def test_no_cosmetic_edit_is_called_substantive(case):
     v1, v2, truth = _load(case)
     subs = [h for h in compare_documents(v1, v2) if h.substantive]
     planted = {e["clause"] for e in truth["substantive"]}
+    planted |= {e["clause"] for e in truth["cosmetic"] if e["id"] in RULES_OVERCALL}
     extra = [h for h in subs if h.clause not in planted]
     assert not extra, [(h.clause, h.summary, h.v2_changed) for h in extra]
 
@@ -74,3 +82,13 @@ def test_scanned_pdf_is_refused(tmp_path):
     doc.save(p)
     with pytest.raises(NoTextLayer):
         read_pdf(p)
+
+
+def test_rules_alone_misread_meaning_changes_exactly_as_documented():
+    """One word that flips the meaning is classed as spelling; a faithful rewording as a change."""
+    v1, v2, _ = _load("disclosed-changes")
+    hunks = compare_documents(v1, v2)
+    assert any(h.cls == "spelling" and "minimum" in h.v2_changed for h in hunks)
+    v1, v2, _ = _load("quiet-changes")
+    hunks = compare_documents(v1, v2)
+    assert any(h.substantive and h.kind == "wording" and "tell Provider" in h.v2_quote + h.v2_changed for h in hunks)
