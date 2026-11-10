@@ -132,7 +132,7 @@ def test_every_open_change_is_routed_with_or_without_guidance(case, tmp_path_fac
         assert c["route"] in ("accept", "counter", "escalate") and c["route_reason"]
         if c["playbook"]["status"] == "none":
             assert c["route"] == "escalate"
-        if (c["decide"]["route_confidence"] or 0) < 0.6:
+        if c["decide"]["route"] is None:                # Decide gave no clear yes or no
             assert c["route"] == "escalate"
         assert all(p["relevance"] >= 0.9 for p in c["playbook"]["passages"])
 

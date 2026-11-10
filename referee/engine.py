@@ -470,11 +470,13 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
 
     # ---- Rerank the playbook, then Decide, per open change
     fee = ((term_rows.get("annual_fee") or {}).get("v1") or {}).get("value")
+    deal = {"annual_fee": fee, "initial_term": ((term_rows.get("initial_term") or {}).get("v1") or {}).get("value")}
+    deal = {k: v for k, v in deal.items() if v}
     open_changes = [c for c in changes if c["blocking"]] if route else []
 
     def route_one(c: dict):
         c["playbook"] = _rerank(c, playbook, fee, run)
-        c["decide"] = _decide(c, run)
+        c["decide"] = _decide(c, run, deal)
         _final_route(c)
     with ThreadPoolExecutor(max_workers=workers) as pool:
         list(pool.map(route_one, open_changes))
@@ -686,12 +688,31 @@ def _rerank(c: dict, playbook: dict, fee: str | None, run) -> dict:
             "expanded": expanded, "query": query, "read": len(passages)}
 
 
-def _decide(c: dict, run) -> dict | None:
+def _route_from_answers(may_accept: float | None, may_counter: float | None) -> tuple[str | None, float]:
+    """Turn two yes/no readings of the playbook into a route and how sure it is.
+    A probability between 1 - floor and floor is not an answer; the route is then None."""
+    hi, lo = P.ROUTE_CONFIDENCE_FLOOR, 1 - P.ROUTE_CONFIDENCE_FLOOR
+    if may_accept is None or may_counter is None:
+        return None, 0.0
+    if may_accept >= hi:
+        return "accept", may_accept
+    if may_accept <= lo and may_counter >= hi:
+        return "counter", min(1 - may_accept, may_counter)
+    if may_accept <= lo and may_counter <= lo:
+        return "escalate", min(1 - may_accept, 1 - may_counter)
+    return None, max(min(may_accept, 1 - may_accept), min(may_counter, 1 - may_counter))
+
+
+def _decide(c: dict, run, deal: dict | None = None) -> dict | None:
     part = c["parts"][0]
     guidance = (c["playbook"] or {}).get("passages") or []
+    cmpv = c.get("compare") or {}
     state = {
-        "clause": f"{c['clause']} {c['title']}", "change": c["summary"],
-        "we_sent": squash(part["v1"]["quote"]), "they_returned": squash(part["v2"]["quote"]),
+        "clause": f"{c['clause']} {c['title']}",
+        "change": "The Customer changed this term: " + c["summary"].replace(" → ", " became "),
+        "we_sent": cmpv.get("v1_quote") or squash(part["v1"]["quote"]),
+        "they_returned": cmpv.get("v2_quote") or squash(part["v2"]["quote"]),
+        "deal_facts_from_our_version": deal or {},
         "playbook": [f"{p['title']}: {p['text']}" for p in guidance] or "The playbook has no passage that covers this change.",
     }
     r = run("decide", {"state": state, "instructions": P.DECIDE_INSTRUCTIONS, "questions": P.DECIDE_QUESTIONS},
@@ -699,7 +720,9 @@ def _decide(c: dict, run) -> dict | None:
     if r is None:
         return None
     a = r.get("answers") or {}
-    route, fav, mat = a.get("route") or {}, a.get("favors") or {}, a.get("materiality") or {}
+    may_accept, may_counter = (a.get("desk_may_accept") or {}).get("noul"), (a.get("desk_may_counter") or {}).get("noul")
+    route, confidence = _route_from_answers(may_accept, may_counter)
+    fav, mat = a.get("favors") or {}, a.get("materiality") or {}
     legend = mat.get("legend") or P.DECIDE_QUESTIONS["materiality"]["criteria"]
     score = mat.get("score")
     label = None
@@ -707,8 +730,7 @@ def _decide(c: dict, run) -> dict | None:
         legend = [legend[k] for k in sorted(legend, key=lambda k: int(k))]
     if isinstance(score, (int, float)) and legend:
         label = str(legend[min(len(legend) - 1, max(0, round(score)))]).split(":")[0]
-    return {"route": route.get("choice"), "route_confidence": route.get("confidence"),
-            "route_probabilities": route.get("probabilities"),
+    return {"route": route, "route_confidence": confidence, "desk_may_accept": may_accept, "desk_may_counter": may_counter,
             "favors": fav.get("choice"), "favors_confidence": fav.get("confidence"),
             "materiality": score, "materiality_label": label}
 
@@ -720,13 +742,13 @@ def _final_route(c: dict) -> None:
         c["route"], c["route_reason"] = "escalate", "A routing step failed, so a person decides."
     elif pb.get("status") == "none":
         c["route"], c["route_reason"] = "escalate", "The playbook has no guidance for this change, so it goes to Legal."
-    elif not d.get("route") or (d.get("route_confidence") or 0) < P.ROUTE_CONFIDENCE_FLOOR:
-        c["route"], c["route_reason"] = "escalate", "Decide was not confident about the route, so a person decides."
+    elif not d.get("route"):
+        c["route"], c["route_reason"] = "escalate", "Decide was not sure how the playbook applies, so a person decides."
     else:
         c["route"] = d["route"]
-        c["route_reason"] = {"accept": "Within what the playbook lets the deal desk accept.",
-                             "counter": "The playbook gives a position to send back.",
-                             "escalate": "The playbook reserves this for another approver."}.get(d["route"], "")
+        c["route_reason"] = {"accept": "The playbook lets the deal desk accept this as written.",
+                             "counter": "The playbook does not allow this as written, but gives the deal desk a term to send back.",
+                             "escalate": "The playbook reserves this for an approver outside the deal desk."}.get(d["route"], "")
 
 
 def _status(changes, note, guard, v2: TextDoc, errors, cmp=None) -> tuple[str, str, list[dict]]:

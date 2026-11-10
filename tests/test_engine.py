@@ -259,3 +259,11 @@ def test_extracted_terms_compare_by_value_not_by_wording():
     assert not _same_term("thirty (30)", "ninety (90)")
     assert not _same_term("up to a maximum of 10% of the monthly fee", "up to a minimum of 10% of the monthly fee")
     assert not _same_term("30", "130") and not _same_term("Delaware", "Oregon")
+
+
+def test_route_comes_from_two_yes_no_readings_and_the_middle_is_not_an_answer():
+    from referee.engine import _route_from_answers as route
+    assert route(0.95, 0.10)[0] == "accept" and route(0.95, 0.90)[0] == "accept"
+    assert route(0.05, 0.92)[0] == "counter"
+    assert route(0.05, 0.08)[0] == "escalate"
+    assert route(0.50, 0.90)[0] is None and route(0.10, 0.50)[0] is None and route(None, 0.9)[0] is None

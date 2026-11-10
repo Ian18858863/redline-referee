@@ -50,17 +50,22 @@ GUARD_INSTRUCTIONS = (
 
 DECIDE_INSTRUCTIONS = (
     "You support the deal desk of the Provider, the party that sent the original agreement. The state describes "
-    "one change the Customer made in the copy it returned, and the playbook passages that apply to it, if any. "
-    "Judge only this change. The deal desk may accept or counter only what the playbook says it may; anything "
-    "the playbook reserves for Legal, Finance or another approver, or does not cover, is escalated."
+    "one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that "
+    "apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk "
+    "itself may do. Compare the term the Customer wrote with each limit the playbook states."
 )
 
+# Two yes/no questions instead of one three-way choice: each is a plain reading of the playbook,
+# and code turns the pair into a route (see engine._route_from_answers).
 DECIDE_QUESTIONS = {
-    "route": {"type": "choice", "criteria": {
-        "accept": "The playbook lets the deal desk accept this change as written, or the change is purely administrative.",
-        "counter": "The playbook gives the deal desk a position or fallback to send back instead of this change.",
-        "escalate": "The change needs an approver outside the deal desk, is refused by the playbook, or is not covered by it.",
-    }},
+    "desk_may_accept": {"type": "noul", "instructions":
+        "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its "
+        "own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree "
+        "to, needs another approver, is refused, or is not covered by the passages."},
+    "desk_may_counter": {"type": "noul", "instructions":
+        "Yes if the playbook passages name a different term, between our original term and what the Customer wrote, "
+        "that the deal desk may agree to on its own authority and could offer instead. No if every alternative needs "
+        "another approver, or the passages name no alternative."},
     "favors": {"type": "choice", "criteria": {
         "customer": "The change shifts money, risk or flexibility toward the Customer.",
         "provider": "The change shifts money, risk or flexibility toward the Provider.",
@@ -75,7 +80,7 @@ DECIDE_QUESTIONS = {
     ]},
 }
 ROUTE_LABELS = {"accept": "Accept", "counter": "Counter", "escalate": "Escalate"}
-ROUTE_CONFIDENCE_FLOOR = 0.6       # below this, Decide's route is shown but not followed
+ROUTE_CONFIDENCE_FLOOR = 0.6       # a yes needs this probability and a no needs 1 minus it; in between, a person decides
 CONFLICT_CONFIDENCE_FLOOR = 0.6    # a Compare conflict below this does not overrule the rule layer
 RESTATED_CONFIDENCE_FLOOR = 0.8    # a rewording is cleared only when Compare is this sure it says the same
 VERIFY_THRESHOLD = 0.6

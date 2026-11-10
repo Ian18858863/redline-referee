@@ -1,26 +1,30 @@
 {
  "endpoint": "/clocked/decide",
  "label": "decide 11",
- "request_hash": "5280e26783b8d840ed469df73efb11b322a08e2b7db58daca337d2edc502a982",
+ "request_hash": "ee44fdcead1fa4e171584a2cb2af72835ff87997a1a9675569c2254e11ffea09",
  "request": {
   "state": {
    "clause": "11 Termination",
-   "change": "Clause rewritten",
+   "change": "The Customer changed this term: Clause rewritten",
    "we_sent": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
    "they_returned": "Customer may terminate this Agreement for convenience at any time on thirty (30) days' written notice and will receive a pro-rata refund of prepaid fees.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$184,000",
+    "initial_term": "thirty-six (36) months"
+   },
    "playbook": [
     "Term: termination for convenience: We do not give customers a right to terminate for convenience. If the customer insists, escalate to Legal. Legal may offer termination for convenience after the first twelve months with no refund of prepaid fees."
    ]
   },
-  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, and the playbook passages that apply to it, if any. Judge only this change. The deal desk may accept or counter only what the playbook says it may; anything the playbook reserves for Legal, Finance or another approver, or does not cover, is escalated.",
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
   "questions": {
-   "route": {
-    "type": "choice",
-    "criteria": {
-     "accept": "The playbook lets the deal desk accept this change as written, or the change is purely administrative.",
-     "counter": "The playbook gives the deal desk a position or fallback to send back instead of this change.",
-     "escalate": "The change needs an approver outside the deal desk, is refused by the playbook, or is not covered by it."
-    }
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages name a different term, between our original term and what the Customer wrote, that the deal desk may agree to on its own authority and could offer instead. No if every alternative needs another approver, or the passages name no alternative."
    },
    "favors": {
     "type": "choice",
@@ -45,40 +49,38 @@
  "meta": {
   "status": 200,
   "credits": 2,
-  "model_ms": 29.223583,
+  "model_ms": 29.459393,
   "cost_usd": 0.000398,
   "attempts": 1,
-  "idempotency_key": "abe84959-d5d7-40d4-b15f-637e592afe73",
-  "request_id": "a5846e69aabf910c-BOS",
-  "wall_ms": 256,
-  "recorded_at": "2026-11-10T10:39:05+00:00"
+  "idempotency_key": "84ddb98f-ccf0-434e-9ded-8df82dd71365",
+  "request_id": "a5847d30cd5bdc93-BOS",
+  "wall_ms": 372,
+  "recorded_at": "2026-11-10T10:49:10+00:00"
  },
  "response": {
   "model": "clocked-1.0",
   "answers": {
-   "route": {
-    "type": "choice",
-    "choice": "escalate",
-    "probabilities": {
-     "accept": 0.0107,
-     "counter": 0.0138,
-     "escalate": 0.9756
-    },
-    "confidence": 0.9633
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0023
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.0541
    },
    "favors": {
     "type": "choice",
     "choice": "customer",
     "probabilities": {
-     "customer": 0.9924,
-     "provider": 0.0042,
-     "neutral": 0.0034
+     "customer": 0.992,
+     "provider": 0.0046,
+     "neutral": 0.0035
     },
-    "confidence": 0.9886
+    "confidence": 0.988
    },
    "materiality": {
     "type": "score",
-    "score": 3.6814,
+    "score": 3.8118,
     "legend": {
      "0": "Trivial: no commercial or legal effect",
      "1": "Minor: small effect, routine to accept",
@@ -87,18 +89,18 @@
      "4": "Critical: should not be signed without senior approval"
     },
     "probabilities": {
-     "0": 0.0051,
-     "1": 0.0107,
-     "2": 0.0364,
-     "3": 0.1933,
-     "4": 0.7545
+     "0": 0.0062,
+     "1": 0.009,
+     "2": 0.014,
+     "3": 0.1083,
+     "4": 0.8625
     },
-    "confidence": 0.6931
+    "confidence": 0.8281
    }
   },
   "usage": {
-   "input_tokens": 230,
-   "output_tokens": 11
+   "input_tokens": 403,
+   "output_tokens": 12
   }
  }
 }

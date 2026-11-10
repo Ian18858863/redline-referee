@@ -203,10 +203,11 @@ class FakeClocked:
     def decide(self, request, idempotency_key=None, timeout=None):
         self._pre("decide")
         clause = request["state"]["clause"].split()[0]
-        route = "escalate" if clause in ESCALATE else "counter"
-        conf = 0.4 if self.low else 0.93
+        yes, no = (0.5, 0.5) if self.low else (0.95, 0.04)
+        accept, counter = (no, no) if clause in ESCALATE else (no, yes)
         return FakeResult({"model": "fake", "answers": {
-            "route": {"type": "choice", "choice": route, "confidence": conf, "probabilities": {route: conf}},
+            "desk_may_accept": {"type": "noul", "noul": accept, "decision": accept >= 0.5},
+            "desk_may_counter": {"type": "noul", "noul": counter, "decision": counter >= 0.5},
             "favors": {"type": "choice", "choice": "customer", "confidence": 0.9},
             "materiality": {"type": "score", "score": 2.9, "confidence": 0.8,
                             "legend": {str(i): c for i, c in enumerate(request["questions"]["materiality"]["criteria"])}}}},
