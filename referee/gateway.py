@@ -31,6 +31,24 @@ PRODUCT_NAME = {"compare": "Compare", "grounding": "Verify", "rerank": "Rerank",
                 "extract": "Extract", "injection": "Guard"}
 
 
+def load_env_file() -> None:
+    """Read CLOCKED_* settings from a git-ignored .env file next to the project, if the shell did not set them."""
+    env = Path(__file__).resolve().parents[1] / ".env"
+    if not env.is_file():
+        return
+    for line in env.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line.startswith("export "):
+            line = line[7:]
+        if "=" in line and not line.startswith("#"):
+            k, v = line.split("=", 1)
+            if k.strip().startswith("CLOCKED_"):
+                os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
+load_env_file()
+
+
 class StepError(Exception):
     def __init__(self, endpoint: str, label: str, message: str, status: int | None = None, kind: str = "error"):
         super().__init__(message)
