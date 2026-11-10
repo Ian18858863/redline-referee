@@ -1,11 +1,5 @@
 [
   {
-    "id": "clean-return",
-    "group": "demo",
-    "title": "Clean return",
-    "description": "The customer fixed typos and updated its notice address. The cover note is accurate."
-  },
-  {
     "id": "quiet-changes",
     "group": "demo",
     "title": "Quiet changes",
@@ -22,6 +16,12 @@
     "group": "demo",
     "title": "Disclosed changes",
     "description": "The customer changed three terms and said so. Nothing is hidden, but each still needs a decision."
+  },
+  {
+    "id": "clean-return",
+    "group": "demo",
+    "title": "Clean return",
+    "description": "The customer fixed typos and updated its notice address. The cover note is accurate."
   },
   {
     "id": "eval-01",

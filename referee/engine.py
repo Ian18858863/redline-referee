@@ -24,7 +24,7 @@ from pathlib import Path
 from . import prompts as P
 from .gateway import PRODUCT_NAME, Gateway, StepError, pdf_b64
 from .rules import Hunk, compare_documents, normalise
-from .textdoc import TextDoc, locate, read_pdf, render_pages, squash
+from .textdoc import TextDoc, content_box, locate, read_pdf, remap_rects, render_pages, squash
 
 ROOT = Path(__file__).resolve().parents[1]
 SENTENCE = re.compile(r"(?<=[.!?])\s+")
@@ -207,9 +207,10 @@ def build_changes(labelled: list[dict], v1: TextDoc, v2: TextDoc) -> list[dict]:
 
 
 def _side(doc: TextDoc, quote: str, changed: str, page: int) -> dict:
-    found = locate(doc.path, changed, page) if changed and len(squash(changed)) >= 12 else []
-    if not found and quote:
-        found = locate(doc.path, quote, page)
+    # The quote carries a few words of context on each side, so it is the less ambiguous thing to look for.
+    found = locate(doc.path, quote, page) if quote else []
+    if not found and changed and len(squash(changed)) >= 12:
+        found = locate(doc.path, changed, page)
     return {"quote": quote, "changed": changed, "page": found[0]["page"] if found else (page or None),
             "rects": found[0]["rects"] if found else [], "located": bool(found)}
 
@@ -321,7 +322,8 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
         if c["cls"] == "administrative":
             c["route"], c["route_reason"] = "accept", "Administrative: acknowledge and update the account record."
 
-    docs = _assets(out, v1, v2, res, cmp)
+    crop = content_box([v1.path, v2.path])
+    docs = _assets(out, v1, v2, res, cmp, crop)
     status, headline, reasons = _status(changes, note, guard, v2, errors)
     result = {
         "schema": 1,
@@ -348,6 +350,8 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
                   "calls": len(gw.audit)},
         "playbook_topics": [{"id": t["id"], "title": t["title"]} for t in playbook["topics"]],
     }
+    if crop:
+        remap_rects(result, crop)
     (out / "review.json").write_text(json.dumps(result, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     return result
 
@@ -589,7 +593,7 @@ def _endpoint_summary(gw: Gateway, changes, note, guard, cmp) -> list[dict]:
     return out
 
 
-def _assets(out: Path, v1: TextDoc, v2: TextDoc, res: dict, cmp: dict | None) -> dict:
+def _assets(out: Path, v1: TextDoc, v2: TextDoc, res: dict, cmp: dict | None, crop=None) -> dict:
     docs = {}
     for key, doc in (("v1", v1), ("v2", v2)):
         src = out / f"{key}.pdf"
@@ -613,6 +617,6 @@ def _assets(out: Path, v1: TextDoc, v2: TextDoc, res: dict, cmp: dict | None) ->
                 name = f"{key}-{'terms' if 'terms' in rkey else 'guard'}-box.pdf"
                 (out / name).write_bytes(base64.b64decode(m["document"]))
                 entry["extra_pdfs"].append({"label": label, "file": name})
-        entry["pages"] = render_pages(render_from, out, key)
+        entry["pages"] = render_pages(render_from, out, key, crop=crop)
         docs[key] = entry
     return docs

@@ -45,6 +45,8 @@ class Hunk:
     v2_page: int = 0
     why: str = ""
     extra: dict = field(default_factory=dict)
+    v1_sentence: str = ""          # the sentence of v1 that holds the change (sent to Verify)
+    v2_sentence: str = ""
 
     @property
     def substantive(self) -> bool:
@@ -111,6 +113,26 @@ def align(a: TextDoc, b: TextDoc) -> list[tuple[Clause | None, Clause | None]]:
     return pairs
 
 
+_BOUNDARY = re.compile(r"(?<!\bInc)(?<!\bLtd)(?<!\bCo)(?<!\bCorp)(?<!\bNo)(?<!U\.S)[.;]\s+(?=[A-Z\"(])")
+
+
+def sentence_at(text: str, a: int, b: int) -> str:
+    """The sentence(s) of text covering characters [a, b)."""
+    cuts = [0] + [m.end() for m in _BOUNDARY.finditer(text)] + [len(text)]
+    start = max(c for c in cuts if c <= a)
+    end = min((c for c in cuts if c >= max(b, a + 1)), default=len(text))
+    return text[start:end].strip()[:900]
+
+
+def _span(toks, i1: int, i2: int, text: str) -> tuple[int, int]:
+    if not toks:
+        return 0, 0
+    if i2 > i1:
+        return toks[i1][1], toks[i2 - 1][2]
+    pos = toks[i1][1] if i1 < len(toks) else len(text)
+    return pos, pos
+
+
 def _snippet(text: str, toks, i1: int, i2: int) -> tuple[str, str]:
     """(quote with context, exactly-changed text) for token range [i1, i2)."""
     if not toks:
@@ -145,7 +167,10 @@ def diff_clause(ca: Clause, cb: Clause) -> list[Hunk]:
             q1, _ = _snippet(ca.text, ta, max(0, i1 - 1), min(len(ta), i1 + 1))
         if not c2 and tb:
             q2, _ = _snippet(cb.text, tb, max(0, j1 - 1), min(len(tb), j1 + 1))
-        hunks.append(_classify(ca, cb, q1, q2, c1, c2))
+        h = _classify(ca, cb, q1, q2, c1, c2)
+        h.v1_sentence = sentence_at(ca.text, *_span(ta, i1, i2, ca.text))
+        h.v2_sentence = sentence_at(cb.text, *_span(tb, j1, j2, cb.text))
+        hunks.append(h)
     return hunks
 
 
@@ -181,10 +206,12 @@ def compare_documents(a: TextDoc, b: TextDoc) -> list[Hunk]:
     for ca, cb in align(a, b):
         if ca is None and cb is not None:
             hunks.append(Hunk(cb.number, cb.title, "substantive", "added", "", cb.text[:400], "", cb.text[:400],
-                              "Clause added", 0, cb.page, "This clause exists only in the returned version."))
+                              "Clause added", 0, cb.page, "This clause exists only in the returned version.",
+                              v2_sentence=cb.text[:900]))
         elif cb is None and ca is not None:
             hunks.append(Hunk(ca.number, ca.title, "substantive", "removed", ca.text[:400], "", ca.text[:400], "",
-                              "Clause removed", ca.page, 0, "This clause exists only in the version we sent."))
+                              "Clause removed", ca.page, 0, "This clause exists only in the version we sent.",
+                              v1_sentence=ca.text[:900]))
         elif ca is not None and cb is not None:
             if ca.title.strip().lower() != cb.title.strip().lower():
                 cls = "formatting" if normalise(ca.title) == normalise(cb.title) else "substantive"
@@ -203,7 +230,8 @@ def _merge_rewrites(hunks: list[Hunk], ca: Clause, cb: Clause) -> list[Hunk]:
         others = [h for h in hunks if h.cls != "substantive"]
         merged = Hunk(cb.number, cb.title, "substantive", "wording", _sentence(ca.text, subs[0].v1_changed, subs[-1].v1_changed),
                       _sentence(cb.text, subs[0].v2_changed, subs[-1].v2_changed), ca.text, cb.text,
-                      "Clause rewritten", ca.page, cb.page, "Most of this clause was replaced.")
+                      "Clause rewritten", ca.page, cb.page, "Most of this clause was replaced.",
+                      v1_sentence=ca.text[:900], v2_sentence=cb.text[:900])
         return others + [merged]
     return hunks
 

@@ -350,11 +350,6 @@ def make_pair(case_id: str, edit_ids: list[str], style: str, *, title: str = "",
 def demo_pairs() -> list[Pair]:
     return [
         make_pair(
-            "clean-return", ["typo_written", "typo_receive", "address", "fmt_cure", "fmt_email"], "misleading",
-            title="Clean return",
-            description="The customer fixed typos and updated its notice address. The cover note is accurate.",
-            decoy="pay_terms"),
-        make_pair(
             "quiet-changes",
             ["pay_terms", "liability_cap", "renewal_notice", "governing_law",
              "typo_written", "typo_receive", "address", "fmt_confidentiality", "reword_dispute"], "misleading",
@@ -373,6 +368,11 @@ def demo_pairs() -> list[Pair]:
             title="Disclosed changes",
             description="The customer changed three terms and said so. Nothing is hidden, but each still needs a decision.",
         ),
+        make_pair(
+            "clean-return", ["typo_written", "typo_receive", "address", "fmt_cure", "fmt_email"], "misleading",
+            title="Clean return",
+            description="The customer fixed typos and updated its notice address. The cover note is accurate.",
+            decoy="pay_terms"),
     ]
 
 

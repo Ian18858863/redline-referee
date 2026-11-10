@@ -168,3 +168,29 @@ def test_ledger_states_plainly_when_nothing_substantive_changed(tmp_path):
     r, _ = run("clean-return", tmp_path)
     ledger, _ = build_ledger(r["changes"])
     assert ledger.startswith("The returned copy does not change any commercial or legal term")
+
+
+def test_a_phrase_that_also_appears_in_another_clause_is_placed_in_its_own_clause(tmp_path):
+    """'Portland, Oregon' is in the notices clause (page 2) and, after the edit, in the venue clause (page 3)."""
+    r, _ = run("quiet-changes", tmp_path)
+    law = next(c for c in r["changes"] if c["clause"] == "15")
+    assert {p["v2"]["page"] for p in law["parts"]} == {3}
+
+
+def test_overlays_stay_inside_the_cropped_page(tmp_path):
+    r, _ = run("quiet-changes-injected", tmp_path)
+
+    def walk(o):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k == "rects":
+                    for x0, y0, x1, y1 in v:
+                        assert 0 <= x0 < x1 <= 1 and 0 <= y0 < y1 <= 1
+                else:
+                    walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk(r)
+    page = r["documents"]["v2"]["pages"][0]
+    assert page["width"] < 0.9 * 8.5 * 132                # side margins were cropped

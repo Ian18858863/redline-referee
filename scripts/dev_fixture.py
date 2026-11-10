@@ -13,7 +13,7 @@ from referee.gateway import Gateway  # noqa: E402
 from tests.fake_clocked import FakeClocked, load_truth  # noqa: E402
 
 index = []
-for case in ("clean-return", "quiet-changes", "quiet-changes-injected", "disclosed-changes"):
+for case in ("quiet-changes", "quiet-changes-injected", "disclosed-changes", "clean-return"):
     d = ROOT / "data" / "cases" / case
     truth = load_truth(d)
     r = review(d / "v1.pdf", d / "v2.pdf", (d / "cover.txt").read_text(),

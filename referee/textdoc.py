@@ -186,10 +186,10 @@ def locate(pdf_path: str | Path, quote: str, hint_page: int | None = None) -> li
         return []
     doc = pymupdf.open(pdf_path)
     try:
+        # a clause can run over a page break, so look on the hinted page, then the following pages, then the rest
         order = list(range(len(doc)))
         if hint_page and 1 <= hint_page <= len(doc):
-            order.remove(hint_page - 1)
-            order.insert(0, hint_page - 1)
+            order = list(range(hint_page - 1, len(doc))) + list(range(0, hint_page - 1))
         for i in order:
             page = doc[i]
             quads = page.search_for(quote, quads=False)
@@ -202,7 +202,56 @@ def locate(pdf_path: str | Path, quote: str, hint_page: int | None = None) -> li
         doc.close()
 
 
-def render_pages(pdf_path: str | Path, out_dir: str | Path, prefix: str, dpi: int = 120) -> list[dict]:
+def content_box(pdf_paths: list[str | Path], pad: float = 22.0) -> tuple[float, float, float, float] | None:
+    """One crop box, as page fractions, that holds the text of every page of every document.
+
+    Margins carry nothing to read; cropping them makes two pages side by side legible.
+    Returns None when page sizes differ, in which case pages are shown whole.
+    """
+    size, box = None, None
+    for path in pdf_paths:
+        doc = pymupdf.open(path)
+        try:
+            for page in doc:
+                wh = (round(page.rect.width), round(page.rect.height))
+                if size is None:
+                    size = wh
+                elif wh != size:
+                    return None
+                for b in page.get_text("blocks"):
+                    if not str(b[4]).strip():
+                        continue
+                    r = pymupdf.Rect(b[:4])
+                    box = r if box is None else box | r
+        finally:
+            doc.close()
+    if size is None or box is None:
+        return None
+    w, h = size
+    x0, y0, x1, y1 = max(0, box.x0 - pad), max(0, box.y0 - pad), min(w, box.x1 + pad), min(h, box.y1 + pad)
+    if (x1 - x0) > 0.97 * w and (y1 - y0) > 0.97 * h:
+        return None
+    return (x0 / w, y0 / h, x1 / w, y1 / h)
+
+
+def remap_rects(obj, crop: tuple[float, float, float, float]):
+    """Rewrite every 'rects' list (fractions of the full page) into fractions of the cropped page, in place."""
+    cx0, cy0, cx1, cy1 = crop
+    cw, ch = cx1 - cx0, cy1 - cy0
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if k == "rects" and isinstance(v, list):
+                obj[k] = [[round((r[0] - cx0) / cw, 5), round((r[1] - cy0) / ch, 5),
+                           round((r[2] - cx0) / cw, 5), round((r[3] - cy0) / ch, 5)] for r in v]
+            else:
+                remap_rects(v, crop)
+    elif isinstance(obj, list):
+        for v in obj:
+            remap_rects(v, crop)
+
+
+def render_pages(pdf_path: str | Path, out_dir: str | Path, prefix: str, dpi: int = 132,
+                 crop: tuple[float, float, float, float] | None = None) -> list[dict]:
     """Rasterise every page (annotations included) and return [{image,width,height}]."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -210,7 +259,11 @@ def render_pages(pdf_path: str | Path, out_dir: str | Path, prefix: str, dpi: in
     pages = []
     try:
         for i, page in enumerate(doc, start=1):
-            pix = page.get_pixmap(dpi=dpi, annots=True)
+            clip = None
+            if crop:
+                w, h = page.rect.width, page.rect.height
+                clip = pymupdf.Rect(crop[0] * w, crop[1] * h, crop[2] * w, crop[3] * h)
+            pix = page.get_pixmap(dpi=dpi, annots=True, clip=clip)
             name = f"{prefix}-p{i}.png"
             pix.save(out_dir / name)
             pages.append({"image": name, "width": pix.width, "height": pix.height})
