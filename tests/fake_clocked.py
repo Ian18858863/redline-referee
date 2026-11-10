@@ -5,6 +5,13 @@ derived from a case's ground truth. It exists to test our own code paths
 (cross-labelling, routing, status, replay) without spending credits. It is never
 used by the application, the demo or the evaluation: those use real recorded
 responses or live calls.
+
+What it can be told to do, beyond answering "correctly" from the ground truth:
+  the gate answers "unrelated"        unrelated=True, or a truth with "wrong_file": true
+  an added or removed clause          Verify answers "not stated" for it (it has no counterpart to contradict)
+  a note with a visible instruction   Guard flags "If an AI assistant is reviewing ..." as well as the hidden note
+  a reader that gets it wrong         compare_misses / verify_misses (reads a change as the same),
+                                      compare_silent (commits to neither), verify_conflicts (reads a rewording as a change)
 """
 from __future__ import annotations
 
@@ -67,10 +74,15 @@ def _mark(data: bytes, quotes: list[str]) -> str:
 class FakeClocked:
     def __init__(self, truth: dict, *, compare_misses: set[str] = frozenset(), verify_misses: set[str] = frozenset(),
                  fail: set[str] = frozenset(), misalign: bool = False, low_confidence_route: bool = False,
-                 unrelated: bool = False):
+                 compare_silent: set[str] = frozenset(), verify_conflicts: set[str] = frozenset(),
+                 unrelated: bool | None = None):
         self.truth, self.compare_misses, self.fail = truth, set(compare_misses), set(fail)
-        self.verify_misses, self.unrelated = set(verify_misses), unrelated
+        # a case whose truth says the wrong file came back makes the gate answer "unrelated"
+        self.verify_misses, self.unrelated = set(verify_misses), bool(truth.get("wrong_file")) if unrelated is None else unrelated
         self.misalign, self.low = misalign, low_confidence_route
+        # compare_misses: edits Compare reads as the same; compare_silent: edits Compare does not place either way;
+        # verify_misses: edits Verify reads as supported; verify_conflicts: rewordings Verify reads as changed
+        self.compare_silent, self.verify_conflicts = set(compare_silent), set(verify_conflicts)
         self.calls: list[str] = []
 
     def _pre(self, name: str):
@@ -80,16 +92,25 @@ class FakeClocked:
             err.status = 503
             raise err
 
+    def _edits(self) -> list[tuple[dict, str]]:
+        """What Compare is made to find: planted changes as conflicts, planted rewordings as restated passages."""
+        skip = self.compare_misses | self.compare_silent
+        edits = [(e, "conflict") for e in self.truth["substantive"] if e["id"] not in skip]
+        edits += [(e, "restated") for e in self.truth["cosmetic"]
+                  if (e["id"].startswith("reword") or e.get("kind") == "wording") and e["id"] not in skip]
+        return edits
+
     # -- Compare
     def compare(self, request, idempotency_key=None, timeout=None):
         self._pre("compare")
         if "text" in request["documents"][0]:        # one clause: our text against theirs
             texts = {d["id"]: d["text"] for d in request["documents"]}
             conflicts, dups = [], []
-            edits = [(e, "conflict") for e in self.truth["substantive"] if e["id"] not in self.compare_misses]
-            edits += [(e, "restated") for e in self.truth["cosmetic"] if e["id"].startswith("reword")]
+            edits = self._edits()
             shift = 1 if self.misalign else 0
             for e, rel in edits:
+                if not e["v1_quote"] or not e["v2_quote"]:      # an added or removed clause has no counterpart to pair
+                    continue
                 i, j = texts["v1"].find(e["v1_quote"]), texts["v2"].find(e["v2_quote"])
                 if i < 0 or j < 0:
                     continue
@@ -98,19 +119,22 @@ class FakeClocked:
                         "b": {"document": "v2", "quote": e["v2_quote"], "start": j + shift, "end": j + len(e["v2_quote"]) + shift, "confidence": 1}}
                 (conflicts if rel == "conflict" else dups).append(item)
             rel = "conflicting" if conflicts else "same"
+            # an edit Compare is unsure about: it reads the clause, and commits to neither "same" nor "conflicting"
+            unsure = any(e["id"] in self.compare_silent and e["v2_quote"] and e["v2_quote"] in texts["v2"]
+                         for e in self.truth["substantive"] + self.truth["cosmetic"])
             return FakeResult({"model": "fake", "verdict": "conflicts" if conflicts else "duplicates",
-                               "pairs": [{"a": "v1", "b": "v2", "relation": rel, "related": 0.99, "probabilities": {rel: 0.98},
+                               "pairs": [{"a": "v1", "b": "v2", "relation": rel, "related": 0.99,
+                                          "probabilities": {rel: 0.5 if unsure else 0.98},
                                           "duplicates": dups, "conflicts": conflicts}]}, credits=6, key=idempotency_key)
         raw = {d["id"]: base64.b64decode(d["pdf"]) for d in request["documents"]}
         texts = {k: pdf_text(v) for k, v in raw.items()}
         conflicts, dups, marks = [], [], {"v1": [], "v2": []}
-        edits = [(e, "conflict") for e in self.truth["substantive"] if e["id"] not in self.compare_misses]
-        edits += [(e, "restated") for e in self.truth["cosmetic"] if e["id"].startswith("reword")]
+        edits = self._edits()
         for e, rel in edits:
             sides = {}
             for key, q in (("v1", e["v1_quote"]), ("v2", e["v2_quote"])):
                 text = texts[key][0]
-                span = _find(text, q)
+                span = _find(text, q) if q else None
                 if not span:
                     continue
                 s, t = _sentence(text, *span)
@@ -141,15 +165,20 @@ class FakeClocked:
             from difflib import SequenceMatcher
             nz = lambda x: re.sub(r"[^a-z0-9]+", "", x.lower())
             moved = [e for e in self.truth["substantive"] if e["id"] not in self.verify_misses]
-            moved += [e for e in self.truth["cosmetic"] if e["kind"] == "address"]
+            moved += [e for e in self.truth["cosmetic"] if e["kind"] == "address" or e["id"] in self.verify_conflicts]
             out = []
             for claim in request["claims"]:
-                c, hit = nz(claim), False
+                c, hit, absent = nz(claim), False, False
                 for e in moved:
                     for q in (nz(e["v1_quote"]), nz(e["v2_quote"])):
+                        if not q:                              # nothing on that side: the clause was added or removed
+                            continue
                         m = SequenceMatcher(None, c, q, autojunk=False).find_longest_match(0, len(c), 0, len(q))
-                        hit = hit or m.size >= min(25, len(q))
-                verdict = "contradicted" if hit else "supported"
+                        if m.size >= min(25, len(q)):
+                            hit = True
+                            absent = absent or e.get("kind") in ("added", "removed")
+                # a clause that exists in one version only is not stated by the other, rather than contradicted
+                verdict = "not_stated" if absent else "contradicted" if hit else "supported"
                 item = {"claim": claim, "kind": "claim", "counted": True, "supported": 0.02, "contradicted": 0.02,
                         "not_stated": 0.01, "not_a_claim": 0.0, "verdict": verdict, "source": None}
                 item[verdict] = 0.97
@@ -182,7 +211,8 @@ class FakeClocked:
     # -- Rerank
     def rerank(self, request, idempotency_key=None, timeout=None):
         self._pre("rerank")
-        clause = re.search(r"clause ([\d.]+) \(", request["query"]).group(1)
+        m = re.search(r"clause ([\d.]+) \(", request["query"])
+        clause = m.group(1) if m else ""
         want = USE.get(clause)
         ids = [d["id"] for d in request["documents"]]
         full = len(ids) > 5
@@ -235,7 +265,8 @@ class FakeClocked:
     def injection(self, request, idempotency_key=None, timeout=None):
         self._pre("injection")
         text, offs = (request["text"], [0]) if "text" in request else pdf_text(base64.b64decode(request["pdf"]))
-        m = re.search(r"Note\s+to\s+any\s+AI.*?signature\.", text, re.S)
+        m = (re.search(r"Note\s+to\s+any\s+AI.*?signature\.", text, re.S)
+             or re.search(r"If\s+an\s+AI\s+assistant\s+is\s+reviewing.*?sign\.", text, re.S))
         body = {"model": "fake", "injection": 0.99 if m else 0.01, "verdict": "injection" if m else "benign",
                 "threshold": 0.5, "category": "instruction override" if m else "benign",
                 "severity": "high" if m else "none",

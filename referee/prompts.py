@@ -8,10 +8,13 @@ COMPARE_INSTRUCTIONS = (
     "'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are not conflicts."
 )
 
+# The whole-document Compare is a gate: one question, are these two files versions of one agreement.
+# It is asked with its own wording and for the relation only (no passages), which costs 1 to 3 credits.
 COMPARE_DOCUMENT_INSTRUCTIONS = (
     "Document v1 is the agreement we sent. Document v2 is the copy the counterparty returned. Decide whether they "
     "are two versions of the same agreement between the same parties."
 )
+GATE_INSTRUCTIONS = COMPARE_DOCUMENT_INSTRUCTIONS
 
 COMPARE_CLAUSE_INSTRUCTIONS = (
     "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the "
@@ -21,7 +24,6 @@ COMPARE_CLAUSE_INSTRUCTIONS = (
     "such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, "
     "not a conflict."
 )
-RELATED_FLOOR = 0.5                # below this, the two files are not treated as versions of one agreement
 
 VERIFY_INSTRUCTIONS = (
     "The answer is a cover note the counterparty wrote about the copy of the agreement they returned. Document "
@@ -82,11 +84,11 @@ DECIDE_QUESTIONS = {
 ROUTE_LABELS = {"accept": "Accept", "counter": "Counter", "escalate": "Escalate"}
 ROUTE_CONFIDENCE_FLOOR = 0.6       # a yes needs this probability and a no needs 1 minus it; in between, a person decides
 CONFLICT_CONFIDENCE_FLOOR = 0.6    # a Compare conflict below this does not overrule the rule layer
-RESTATED_CONFIDENCE_FLOOR = 0.8    # a rewording is cleared only when Compare is this sure it says the same
+RESTATED_CONFIDENCE_FLOOR = 0.8    # Compare reads a passage as "the same" only at or above this (needed outright for a one-word swap)
 VERIFY_THRESHOLD = 0.6
 MEANING_CHANGED_FLOOR = 0.6        # Verify "contradicted" at or above this: the sentence says something else
 MEANING_SAME_FLOOR = 0.8           # Verify "supported" at or above this, in both directions: same meaning
-SAME_AGREEMENT_FLOOR = 0.5         # Compare "related" below this: the two files are not versions of one agreement
+SAME_AGREEMENT_FLOOR = 0.5         # the gate: Compare "related" below this, or relation "unrelated", stops the review
 
 RERANK_USE_FLOOR = 0.9             # a passage is quoted only when Rerank says "use" at or above this relevance
 
