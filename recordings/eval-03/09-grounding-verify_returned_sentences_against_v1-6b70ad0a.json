@@ -1,0 +1,195 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "6b70ad0aeda2506791d66ce0ef1f66df25b5f33606773931eb766ec5e6bd76a7",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least thirty (30) days before the end of the then-current term. Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 15% of the monthly fee for that month. For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it. Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation. Any separate attempt to assign is void.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least thirty (30) days before the end of the then-current term.",
+   "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 15% of the monthly fee for that month.",
+   "For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+   "Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
+   "Any separate attempt to assign is void."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 8,
+  "model_ms": 198.842621,
+  "cost_usd": 0.001594,
+  "attempts": 1,
+  "idempotency_key": "6c12ed46-c89d-4236-abd2-74d3e2b1971a",
+  "request_id": "a58472913f74f3e4-BOS",
+  "wall_ms": 482,
+  "recorded_at": "2026-11-10T10:41:55+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.1647,
+  "ungrounded": 0.8353,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.1647,
+    "claims": [
+     1,
+     5
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least thirty (30) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2289,
+    "supported": 0.0023,
+    "contradicted": 0.9913,
+    "not_stated": 0.0038,
+    "not_a_claim": 0.0027,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1238,
+    "supported": 0.9875,
+    "contradicted": 0.0062,
+    "not_stated": 0.0035,
+    "not_a_claim": 0.0028,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer must",
+     "start": 1339,
+     "end": 1352,
+     "confidence": 0.992
+    }
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 15% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2373,
+    "supported": 0.0021,
+    "contradicted": 0.9931,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.002,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1893,
+     "end": 1923,
+     "confidence": 0.939
+    }
+   },
+   {
+    "claim": "For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1509,
+    "supported": 0.005,
+    "contradicted": 0.9837,
+    "not_stated": 0.0074,
+    "not_a_claim": 0.0039,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2185,
+    "supported": 0.0019,
+    "contradicted": 0.9937,
+    "not_stated": 0.0024,
+    "not_a_claim": 0.0019,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Any separate attempt to assign is void.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0406,
+    "supported": 0.9918,
+    "contradicted": 0.0035,
+    "not_stated": 0.0026,
+    "not_a_claim": 0.0022,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Any seperate attempt to assign is void.",
+     "start": 4317,
+     "end": 4356,
+     "confidence": 0.999
+    }
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   2,
+   3,
+   4
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 4,
+   "supported": 0.0019
+  },
+  "timing": {
+   "read_ms": 283,
+   "total_ms": 284
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}

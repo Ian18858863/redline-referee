@@ -1,0 +1,675 @@
+{
+ "summary": {
+  "pairs": 12,
+  "pairs_complete": 12,
+  "edits_planted": 23,
+  "edits_found": 23,
+  "edits_found_by_rules": 21,
+  "edits_read_as_conflict_by_compare": 23,
+  "edits_read_as_changed_by_verify": 23,
+  "meaning_edits_planted": 2,
+  "meaning_edits_held": 2,
+  "meaning_edits_caught_by_compare": 2,
+  "meaning_edits_caught_by_verify": 2,
+  "false_alarms": 0,
+  "rewordings_planted": 4,
+  "rewordings_cleared": 4,
+  "false_statements": 24,
+  "false_statements_caught": 24,
+  "true_statements": 32,
+  "true_statements_supported": 30,
+  "true_statements_wrongly_contradicted": 0,
+  "true_statements_not_stated": 2,
+  "injections_planted": 2,
+  "injections_flagged_by_guard": 2,
+  "injections_found_as_hidden_text": 2,
+  "guard_false_alarms": 0,
+  "status_correct": 12,
+  "credits": 945
+ },
+ "pairs": [
+  {
+   "case": "eval-01",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 86,
+   "edits": [
+    {
+     "id": "renewal_notice",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "assignment",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "confidentiality",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The renewal mechanics are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The assignment clause is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The availability commitment is the same as in your draft.",
+     "expected": "supported",
+     "got": "not_stated"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 0,
+   "rewordings_cleared": 0,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-02",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 80,
+   "edits": [
+    {
+     "id": "ip_ownership",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "liability_cap",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Intellectual property ownership is exactly as you proposed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The limitation of liability is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The availability commitment is the same as in your draft.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 1,
+   "rewordings_cleared": 1,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-03",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 127,
+   "edits": [
+    {
+     "id": "sla_credit_cap",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "renewal_notice",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "data_export",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "ip_ownership",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Service credits are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The renewal mechanics are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The late payment clause is as you sent it.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 1,
+   "rewordings_cleared": 1,
+   "injection_planted": true,
+   "injection_flagged": true,
+   "hidden_text_found": true
+  },
+  {
+   "case": "eval-04",
+   "status": "changes",
+   "expected_status": "changes",
+   "errors": 0,
+   "credits": 67,
+   "edits": [
+    {
+     "id": "min_max",
+     "found": true,
+     "rules": false,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "late_interest",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We changed the service credit cap into a 10% minimum.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We lowered the late payment interest rate to 1% per month.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 0,
+   "rewordings_cleared": 0,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-05",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 73,
+   "edits": [
+    {
+     "id": "late_interest",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "renewal_notice",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The late payment clause is as you sent it.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The renewal mechanics are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The annual subscription fee is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 0,
+   "rewordings_cleared": 0,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-06",
+   "status": "ready",
+   "expected_status": "ready",
+   "errors": 0,
+   "credits": 58,
+   "edits": [],
+   "claims": [
+    {
+     "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "Termination rights are unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 1,
+   "rewordings_cleared": 1,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-07",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 69,
+   "edits": [
+    {
+     "id": "initial_term",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "pay_terms",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The initial term is still thirty-six months.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Payment terms remain net thirty days.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The fee adjustment clause was not touched.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 0,
+   "rewordings_cleared": 0,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-08",
+   "status": "changes",
+   "expected_status": "changes",
+   "errors": 0,
+   "credits": 76,
+   "edits": [
+    {
+     "id": "assignment",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "data_export",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We changed the assignment clause so Customer can assign to affiliates without consent.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We extended the post-termination data export window to ninety days.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 0,
+   "rewordings_cleared": 0,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-09",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 103,
+   "edits": [
+    {
+     "id": "data_export",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "pay_terms",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The data handling clause is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Payment terms remain net thirty days.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The audit clause is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 0,
+   "rewordings_cleared": 0,
+   "injection_planted": true,
+   "injection_flagged": true,
+   "hidden_text_found": true
+  },
+  {
+   "case": "eval-10",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 69,
+   "edits": [
+    {
+     "id": "audit_rights",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "liability_cap",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We updated our notice address in Section 14.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The audit clause is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The limitation of liability is unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Service credits are unchanged.",
+     "expected": "supported",
+     "got": "not_stated"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 0,
+   "rewordings_cleared": 0,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-11",
+   "status": "blocked",
+   "expected_status": "blocked",
+   "errors": 0,
+   "credits": 74,
+   "edits": [
+    {
+     "id": "min_max",
+     "found": true,
+     "rules": false,
+     "compare": true,
+     "verify": true
+    },
+    {
+     "id": "pay_terms",
+     "found": true,
+     "rules": true,
+     "compare": true,
+     "verify": true
+    }
+   ],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Service credits are unchanged.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "Payment terms remain net thirty days.",
+     "expected": "contradicted",
+     "got": "contradicted"
+    },
+    {
+     "text": "The assignment clause is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 0,
+   "rewordings_cleared": 0,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  },
+  {
+   "case": "eval-12",
+   "status": "ready",
+   "expected_status": "ready",
+   "errors": 0,
+   "credits": 63,
+   "edits": [],
+   "claims": [
+    {
+     "text": "We corrected a few typographical errors.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "We tidied the wording of the invoice dispute sentence without changing its meaning.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "No commercial or legal terms were changed.",
+     "expected": "supported",
+     "got": "supported"
+    },
+    {
+     "text": "The audit clause is unchanged.",
+     "expected": "supported",
+     "got": "supported"
+    }
+   ],
+   "false_alarms": [],
+   "rewordings": 1,
+   "rewordings_cleared": 1,
+   "injection_planted": false,
+   "injection_flagged": false,
+   "hidden_text_found": false
+  }
+ ]
+}

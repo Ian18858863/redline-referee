@@ -1,0 +1,130 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "4797dacd045b4e17ffcf69ed227c5b06c9675244f65eb383d4087a7883f0ec91",
+ "request": {
+  "pdf": {
+   "sha256": "b65e757fe5c579e1d29bfe7b27f8dce424e7592ccffebfe117bb719942ec6beb"
+  },
+  "answer": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it. Neither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets. Any seperate attempt to assign is void.",
+  "claims": [
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+   "Neither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets. Any seperate attempt to assign is void."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 137.923489,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "d62bddbe-1aa2-4f34-9964-d40faa86fd3e",
+  "request_id": "a58472f3efd127c1-BOS",
+  "wall_ms": 373,
+  "recorded_at": "2026-11-10T10:42:11+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.3891,
+  "ungrounded": 0.6109,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.3891,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3904,
+    "supported": 0.987,
+    "contradicted": 0.0073,
+    "not_stated": 0.003,
+    "not_a_claim": 0.0027,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2483,
+    "supported": 0.0053,
+    "contradicted": 0.9785,
+    "not_stated": 0.0117,
+    "not_a_claim": 0.0045,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "For ninety (90) days after termination or expiration, Provider will make",
+     "start": 2344,
+     "end": 2416,
+     "confidence": 0.996
+    }
+   },
+   {
+    "claim": "Neither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets. Any seperate attempt to assign is void.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3613,
+    "supported": 0.0067,
+    "contradicted": 0.9821,
+    "not_stated": 0.0066,
+    "not_a_claim": 0.0046,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   1,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.0053
+  },
+  "timing": {
+   "read_ms": 187,
+   "total_ms": 191
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4737
+   ],
+   "characters": 5449
+  }
+ }
+}

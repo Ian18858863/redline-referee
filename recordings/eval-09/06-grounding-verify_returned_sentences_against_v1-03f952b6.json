@@ -1,0 +1,154 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "03f952b60f7de7826b338de095c612e3c91bc7e052de47680114938ff5502ad9",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term. Customer shall pay each undisputed invoice within ninety (90) days of the invoice date. If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Customer shall pay each undisputed invoice within ninety (90) days of the invoice date.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 157.439072,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "5227474a-ac2b-4be7-8ad1-5c8283191b76",
+  "request_id": "a584730bdbc78fbb-BOS",
+  "wall_ms": 523,
+  "recorded_at": "2026-11-10T10:42:15+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.6514,
+  "ungrounded": 0.3486,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.6514,
+    "claims": [
+     0,
+     2
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3235,
+    "supported": 0.9926,
+    "contradicted": 0.0032,
+    "not_stated": 0.0023,
+    "not_a_claim": 0.0019,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Customer shall pay each undisputed invoice within ninety (90) days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1279,
+    "supported": 0.002,
+    "contradicted": 0.9937,
+    "not_stated": 0.0025,
+    "not_a_claim": 0.0018,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3353,
+    "supported": 0.9824,
+    "contradicted": 0.0098,
+    "not_stated": 0.0039,
+    "not_a_claim": 0.0038,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1893,
+     "end": 1923,
+     "confidence": 0.988
+    }
+   },
+   {
+    "claim": "For ninety (90) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2132,
+    "supported": 0.0027,
+    "contradicted": 0.9912,
+    "not_stated": 0.0034,
+    "not_a_claim": 0.0026,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "For thirty (30) days after termination or expiration, Provider will make",
+     "start": 2344,
+     "end": 2416,
+     "confidence": 0.94
+    }
+   }
+  ],
+  "unsupported_claims": [
+   1,
+   3
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 311,
+   "total_ms": 313
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}

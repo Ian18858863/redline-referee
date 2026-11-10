@@ -1,0 +1,137 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "d50bb39db12a8b18a78ea7e7a9e084a77f70a831955879528f88200b4e26837c",
+ "request": {
+  "pdf": {
+   "sha256": "895612da8897f8f26636239a5cd6b849d1557a8a67d44029b459a7f2042071bb"
+  },
+  "answer": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. Any seperate attempt to assign is void.",
+  "claims": [
+   "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "Any seperate attempt to assign is void."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 138.788193,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "131dc03c-2dbe-4f69-941a-13900355d0f6",
+  "request_id": "a584733678b04d0d-BOS",
+  "wall_ms": 447,
+  "recorded_at": "2026-11-10T10:42:22+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.1973,
+  "ungrounded": 0.8027,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.1973,
+    "claims": [
+     2
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2458,
+    "supported": 0.002,
+    "contradicted": 0.9933,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.0018,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6441,
+    "supported": 0.1367,
+    "contradicted": 0.797,
+    "not_stated": 0.0406,
+    "not_a_claim": 0.0257,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1893,
+     "end": 1923,
+     "confidence": 0.999
+    }
+   },
+   {
+    "claim": "Any seperate attempt to assign is void.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1102,
+    "supported": 0.9868,
+    "contradicted": 0.0055,
+    "not_stated": 0.0042,
+    "not_a_claim": 0.0034,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Any separate attempt to assign is void.",
+     "start": 4308,
+     "end": 4347,
+     "confidence": 1
+    }
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 199,
+   "total_ms": 203
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4658
+   ],
+   "characters": 5370
+  }
+ }
+}

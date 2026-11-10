@@ -1,0 +1,164 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 5",
+ "request_hash": "c600f0de37d16ab72cfc5c1a08d08bf2918cea6172c5148aafe444dc4977805d",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Provider will maintain monthly availability of the Service of at least 99.9%. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. Service credits are Customer's sole remedy for unavailability."
+   },
+   {
+    "id": "v2",
+    "text": "Provider will maintain monthly availability of the Service of at least 99.9%. If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. Service credits are Customer's sole remedy for unavailability."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 110.735969,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "baec573b-25c0-48d9-9430-2b237af3116f",
+  "request_id": "a58472ea4e21ae09-BOS",
+  "wall_ms": 393,
+  "recorded_at": "2026-11-10T10:42:09+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9954,
+    "probabilities": {
+     "same": 0.9755,
+     "overlapping": 0.0119,
+     "conflicting": 0.0081,
+     "unrelated": 0.0046
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9903,
+       "restated": 0.0032,
+       "elaborated": 0.0031,
+       "different": 0.0035
+      },
+      "confidence": 0.9965,
+      "a": {
+       "document": "v1",
+       "quote": "Provider will maintain monthly availability of the Service of at least 99.9%.",
+       "start": 0,
+       "end": 77,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Provider will maintain monthly availability of the Service of at least 99.9%.",
+       "start": 0,
+       "end": 77,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9018,
+       "restated": 0.0646,
+       "elaborated": 0.0191,
+       "different": 0.0144
+      },
+      "confidence": 0.9856,
+      "a": {
+       "document": "v1",
+       "quote": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+       "start": 78,
+       "end": 306,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+       "start": 78,
+       "end": 306,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9902,
+       "restated": 0.0037,
+       "elaborated": 0.0028,
+       "different": 0.0033
+      },
+      "confidence": 0.9967,
+      "a": {
+       "document": "v1",
+       "quote": "Service credits are Customer's sole remedy for unavailability.",
+       "start": 307,
+       "end": 369,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Service credits are Customer's sole remedy for unavailability.",
+       "start": 307,
+       "end": 369,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 12,
+   "passage_reads": 1,
+   "passages_ms": 27,
+   "passages": 3,
+   "counterparts_ms": 79
+  },
+  "timing": {
+   "read_ms": 118,
+   "total_ms": 119
+  }
+ }
+}

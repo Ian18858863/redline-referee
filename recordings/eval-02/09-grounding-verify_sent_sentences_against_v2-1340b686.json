@@ -1,0 +1,161 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "1340b68630e5bf0f75029dbda443914fe149fbf8fea06bf8e46dff1d1511c4af",
+ "request": {
+  "pdf": {
+   "sha256": "385817ec27dc4eb372dc449985794ecedf3d41553a17a576bf605c9ad6ee1733"
+  },
+  "answer": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time. Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer. Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim. Any seperate attempt to assign is void.",
+  "claims": [
+   "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+   "Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+   "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+   "Any seperate attempt to assign is void."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 166.445698,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "55edeffb-4cb3-4d3b-aba9-acf4596223c2",
+  "request_id": "a584727668064b49-BOS",
+  "wall_ms": 558,
+  "recorded_at": "2026-11-10T10:41:51+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.2289,
+  "ungrounded": 0.7711,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.2289,
+    "claims": [
+     0,
+     3
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1697,
+    "supported": 0.9933,
+    "contradicted": 0.0029,
+    "not_stated": 0.002,
+    "not_a_claim": 0.0017,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer must tell",
+     "start": 1339,
+     "end": 1357,
+     "confidence": 0.98
+    }
+   },
+   {
+    "claim": "Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3864,
+    "supported": 0.002,
+    "contradicted": 0.9934,
+    "not_stated": 0.0025,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3848,
+    "supported": 0.0028,
+    "contradicted": 0.9912,
+    "not_stated": 0.0034,
+    "not_a_claim": 0.0026,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this",
+     "start": 3011,
+     "end": 3123,
+     "confidence": 0.857
+    }
+   },
+   {
+    "claim": "Any seperate attempt to assign is void.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0591,
+    "supported": 0.9899,
+    "contradicted": 0.0046,
+    "not_stated": 0.0027,
+    "not_a_claim": 0.0028,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Any separate attempt to assign is void.",
+     "start": 4269,
+     "end": 4308,
+     "confidence": 1
+    }
+   }
+  ],
+  "unsupported_claims": [
+   1,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 225,
+   "total_ms": 228
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2202,
+    4618
+   ],
+   "characters": 5330
+  }
+ }
+}

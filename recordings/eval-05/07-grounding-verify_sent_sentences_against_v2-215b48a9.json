@@ -1,0 +1,137 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "215b48a906297db90bb41929cde7f32dffedbcb79c5b8a6ee87f3a4c9c29820e",
+ "request": {
+  "pdf": {
+   "sha256": "db6699077631fa6306284848a4ab379fc7e5c65e131ea4daf44d87948e97066b"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 145.383297,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "0dfdf160-f0e4-4690-9c1f-e72146c7f16e",
+  "request_id": "a58472b8fc583535-BOS",
+  "wall_ms": 463,
+  "recorded_at": "2026-11-10T10:42:02+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.3849,
+  "ungrounded": 0.6151,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.3849,
+    "claims": [
+     2
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3737,
+    "supported": 0.0018,
+    "contradicted": 0.993,
+    "not_stated": 0.003,
+    "not_a_claim": 0.0023,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless",
+     "start": 831,
+     "end": 936,
+     "confidence": 0.811
+    }
+   },
+   {
+    "claim": "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2372,
+    "supported": 0.0022,
+    "contradicted": 0.9926,
+    "not_stated": 0.003,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3891,
+    "supported": 0.9861,
+    "contradicted": 0.0073,
+    "not_stated": 0.0036,
+    "not_a_claim": 0.003,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1892,
+     "end": 1922,
+     "confidence": 0.999
+    }
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0018
+  },
+  "timing": {
+   "read_ms": 272,
+   "total_ms": 276
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2194,
+    4662
+   ],
+   "characters": 5374
+  }
+ }
+}

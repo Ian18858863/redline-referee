@@ -1,0 +1,130 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "97825b8ee9e3f980f0e409f794db62275a05ff76883cf67d36537749a8449e5f",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "Customer shall pay each undisputed invoice within ninety (90) days of the invoice date. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a minimum of 10% of the monthly fee for that month. Any separate attempt to assign is void.",
+  "claims": [
+   "Customer shall pay each undisputed invoice within ninety (90) days of the invoice date.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a minimum of 10% of the monthly fee for that month.",
+   "Any separate attempt to assign is void."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 138.052544,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "3b5e6c57-c875-4438-b657-d93a536fcf6b",
+  "request_id": "a58473357d34d961-BOS",
+  "wall_ms": 363,
+  "recorded_at": "2026-11-10T10:42:22+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.1116,
+  "ungrounded": 0.8884,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.1116,
+    "claims": [
+     2
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Customer shall pay each undisputed invoice within ninety (90) days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2458,
+    "supported": 0.0017,
+    "contradicted": 0.9946,
+    "not_stated": 0.0021,
+    "not_a_claim": 0.0016,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a minimum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6441,
+    "supported": 0.003,
+    "contradicted": 0.992,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1893,
+     "end": 1923,
+     "confidence": 0.991
+    }
+   },
+   {
+    "claim": "Any separate attempt to assign is void.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1102,
+    "supported": 0.9916,
+    "contradicted": 0.0033,
+    "not_stated": 0.0027,
+    "not_a_claim": 0.0024,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0017
+  },
+  "timing": {
+   "read_ms": 144,
+   "total_ms": 146
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}

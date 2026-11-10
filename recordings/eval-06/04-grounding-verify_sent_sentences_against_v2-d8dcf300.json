@@ -1,0 +1,95 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "d8dcf300b1f5e555a08583a5d06d5717439909576c2ef3daa2fadad38b9cc229",
+ "request": {
+  "pdf": {
+   "sha256": "061de2434f6a41f5af84af8e5c7d492207d1e76cfefb8c281587a87cf9d98454"
+  },
+  "answer": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+  "claims": [
+   "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 102.605469,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "024ba470-47b8-41eb-871a-5b48daa06af1",
+  "request_id": "a58472c7bcda188c-BOS",
+  "wall_ms": 1010,
+  "recorded_at": "2026-11-10T10:42:05+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9938,
+  "ungrounded": 0.0062,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.9938,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 1,
+    "supported": 0.9938,
+    "contradicted": 0.0023,
+    "not_stated": 0.0022,
+    "not_a_claim": 0.0017,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer must tell",
+     "start": 1339,
+     "end": 1357,
+     "confidence": 0.776
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.9938
+  },
+  "timing": {
+   "read_ms": 737,
+   "total_ms": 741
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2202,
+    4673
+   ],
+   "characters": 5385
+  }
+ }
+}

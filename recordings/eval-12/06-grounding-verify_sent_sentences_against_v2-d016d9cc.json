@@ -1,0 +1,112 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "d016d9ccb86b4e19d355e90949f13c9bf4f783deb689bef7b85995d3da6dc814",
+ "request": {
+  "pdf": {
+   "sha256": "6bf8f60eeda5ef06bdb186fd362970ea1c4abd73ca4f82f0093a900707a710ec"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 124.809925,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "d80cb54b-4763-44d2-a95a-9844cdc13d93",
+  "request_id": "a5847349ac79b15f-BOS",
+  "wall_ms": 384,
+  "recorded_at": "2026-11-10T10:42:25+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9919,
+  "ungrounded": 0.0081,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.9919,
+    "claims": [
+     0,
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6616,
+    "supported": 0.9921,
+    "contradicted": 0.0033,
+    "not_stated": 0.0025,
+    "not_a_claim": 0.0021,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3384,
+    "supported": 0.9915,
+    "contradicted": 0.003,
+    "not_stated": 0.0026,
+    "not_a_claim": 0.0029,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer must tell",
+     "start": 1340,
+     "end": 1358,
+     "confidence": 0.872
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.9915
+  },
+  "timing": {
+   "read_ms": 131,
+   "total_ms": 134
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2203,
+    4665
+   ],
+   "characters": 5377
+  }
+ }
+}

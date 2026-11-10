@@ -1,0 +1,245 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify cover note",
+ "request_hash": "e0e513f08f28f62f3c8b873db9675d2367de2437e0b8316428a84827eb8543e0",
+ "request": {
+  "documents": [
+   {
+    "id": "v2",
+    "text": "MASTER SERVICES AGREEMENT This Master Services Agreement (the \"Agreement\") is entered into as of March 2, 2026 (the \"Effective Date\") between Larkspur Systems, Inc., a Delaware corporation (\"Provider\"), and Brightwater Logistics LLC, an Oregon limited liability company (\"Customer\"). Provider and Customer agree as follows.\n1. Services\nProvider will make the Larkspur Route Intelligence platform (the \"Service\") available to Customer and its authorized users in accordance with this Agreement and each order form signed by both parties. Provider may update the Service from time to time, provided that no update will materially reduce the functionality of the Service during a paid term.\n2. Term\nThe initial term of this Agreement begins on the Effective Date and continues for thirty-six (36) months (the \"Initial Term\").\n3. Renewal\nAfter the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least thirty (30) days before the end of the then-current term.\n4.1. Fees\nCustomer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in advance. Fees are stated in U.S. dollars and are exclusive of taxes.\n4.2. Payment Terms\nCustomer shall pay each undisputed invoice within thirty (30) days of the invoice date. Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.\n4.3. Late Payment\nOverdue amounts accrue interest at the rate of 1% per month, or the highest rate permitted by law if lower, from the due date until paid.\n4.4. Fee Adjustments\nProvider may increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.\n5. Service Levels\nProvider will maintain monthly availability of the Service of at least 99.9%. If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. Service credits are Customer's sole remedy for unavailability.\n6. Customer Data\nCustomer owns all data it submits to the Service (\"Customer Data\"). Provider will process Customer Data only to provide the Service. For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.\n7. Intellectual Property\nProvider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.\n8. Confidentiality\nEach party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement. These obligations continue for three (3) years after termination or expiration of this Agreement.\n9. Limitation of Liability\nExcept for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim. Neither party will be liable for indirect, incidental or consequential damages.\n10. Indemnification\nProvider will defend Customer against any third-party claim that the Service infringes a patent, copyright or trademark, and will pay damages finally awarded. Customer will defend Provider against any third-party claim arising from Customer Data.\n11. Termination\nEither party may terminate this Agreement for material breach if the breach is not cured within thirty (30) days after written notice. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.\n12. Audit\nNo more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports. Each audit will be conducted during business hours and at Customer's expense.\n13. Assignment\nNeither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets. Any seperate attempt to assign is void.\n14. Notices\nNotices must be in writing and sent to the addresses below. Provider: Larkspur Systems, Inc., 1200 Cascade Avenue, Suite 900, Wilmington, Delaware 19801. Customer: Brightwater Logistics LLC, 88 Foundry Row, Floor 6, Portland, Oregon 97209. Email notice is effective when acknowledged.\n15. Governing Law\nThis Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.\n16. General\nThis Agreement, together with each order form, is the entire agreement between the parties and supersedes all prior discussions. Any amendment must be in writing and signed by both parties. If any provision is unenforceable, the remaining provisions stay in effect. Larkspur Systems, Inc. Brightwater Logistics LLC By: ______________________ By: ______________________ Name: Dana Okafor Name: Priya Raman Title: VP, Deal Desk Title: Head of Procurement"
+   },
+   {
+    "id": "changes",
+    "text": "The returned copy changes 2 commercial or legal term(s) of the agreement we sent: clause 3 (Renewal); clause 4.3 (Late Payment).\nSubstantive change in clause 3 (Renewal): 60 days → 30 days. We sent: \"of non-renewal at least sixty (60) days before the\". The returned copy says: \"of non-renewal at least thirty (30) days before the\".\nSubstantive change in clause 4.3 (Late Payment): 1.5% → 1%. We sent: \"at the rate of 1.5% per month, or\". The returned copy says: \"at the rate of 1% per month, or\".\nAdministrative change in clause 14 (Notices): the notice address was updated. We sent: \"Brightwater Logistics LLC, 410 Quay Street, Suite 200, Portland, Oregon 97204\". The returned copy says: \"Brightwater Logistics LLC, 88 Foundry Row, Floor 6, Portland, Oregon 97209\".\nAdministrative change in clause 14 (Notices): the notice address was updated. We sent: \"200, Portland, Oregon 97204. E-mail notice is effective when\". The returned copy says: \"6, Portland, Oregon 97209. Email notice is effective when\".\nSpelling corrected in clause 5 (Service Levels): “recieve” → “receive”. No change of meaning.\nFormatting only in clause 1 (Services): \"in accordance with this agreement and each order form\" became \"in accordance with this Agreement and each order form\". Same words and numbers.\nClause 2 (Term) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 4.1 (Fees) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 4.2 (Payment Terms) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 4.4 (Fee Adjustments) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 6 (Customer Data) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 7 (Intellectual Property) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 8 (Confidentiality) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 9 (Limitation of Liability) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 10 (Indemnification) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 11 (Termination) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 12 (Audit) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 13 (Assignment) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 15 (Governing Law) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 16 (General) is unchanged: the returned copy reads exactly as the agreement we sent."
+   }
+  ],
+  "answer": "Attached is the clean copy of the Master Services Agreement, ready for countersignature. We updated our notice address in Section 14. We corrected a few typographical errors. No commercial or legal terms were changed. The late payment clause is as you sent it. The renewal mechanics are unchanged. The annual subscription fee is unchanged.",
+  "claims": [
+   "Attached is the clean copy of the Master Services Agreement, ready for countersignature.",
+   "We updated our notice address in Section 14.",
+   "We corrected a few typographical errors.",
+   "No commercial or legal terms were changed.",
+   "The late payment clause is as you sent it.",
+   "The renewal mechanics are unchanged.",
+   "The annual subscription fee is unchanged."
+  ],
+  "instructions": "The answer is a cover note the counterparty wrote about the copy of the agreement they returned. Document 'v2' is that returned copy. Document 'changes' lists every difference found between the copy we sent and v2. A statement that a term is unchanged, or that no commercial or legal terms changed, is contradicted when 'changes' lists a substantive change to that term. A statement that describes a change is supported only when 'changes' or v2 shows that same change. A statement that a term is unchanged is supported when 'changes' says that the clause holding that term is unchanged. Judge each claim on these two documents alone.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 10,
+  "model_ms": 225.974947,
+  "cost_usd": 0.001992,
+  "attempts": 1,
+  "idempotency_key": "1b8dff3a-54b9-4df9-a529-bcbc8c13098c",
+  "request_id": "a58472be8ac0df84-BOS",
+  "wall_ms": 530,
+  "recorded_at": "2026-11-10T10:42:03+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.4873,
+  "ungrounded": 0.5127,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "changes",
+    "share": 0.9901,
+    "share_of_answer": 0.4825,
+    "claims": [
+     1,
+     2,
+     6
+    ]
+   },
+   {
+    "id": "v2",
+    "share": 0.0099,
+    "share_of_answer": 0.0048,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Attached is the clean copy of the Master Services Agreement, ready for countersignature.",
+    "kind": "offer_or_question",
+    "kinds": {
+     "acknowledgement": 0.04316267369538728,
+     "offer_or_question": 0.9024082579081809,
+     "pointer": 0.01410889115745071,
+     "meta": 0.04032017723898109
+    },
+    "counted": false,
+    "weight": 0,
+    "supported": 0.0389,
+    "contradicted": 0.0394,
+    "not_stated": 0.3852,
+    "not_a_claim": 0.5365,
+    "verdict": "not_a_claim",
+    "sources": {
+     "v2": 0.4342,
+     "changes": 0.5658
+    },
+    "source": null
+   },
+   {
+    "claim": "We updated our notice address in Section 14.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1796,
+    "supported": 0.9801,
+    "contradicted": 0.0096,
+    "not_stated": 0.005,
+    "not_a_claim": 0.0053,
+    "verdict": "supported",
+    "sources": {
+     "v2": 0.0035,
+     "changes": 0.9965
+    },
+    "source": "changes",
+    "evidence": {
+     "document": "changes",
+     "quote": "Administrative change in clause 14 (Notices): the notice address was updated.",
+     "start": 767,
+     "end": 844,
+     "confidence": 1
+    }
+   },
+   {
+    "claim": "We corrected a few typographical errors.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1633,
+    "supported": 0.9708,
+    "contradicted": 0.0143,
+    "not_stated": 0.0093,
+    "not_a_claim": 0.0056,
+    "verdict": "supported",
+    "sources": {
+     "v2": 0.0039,
+     "changes": 0.9961
+    },
+    "source": "changes",
+    "evidence": {
+     "document": "changes",
+     "quote": "Spelling corrected in clause 5 (Service Levels): “recieve” → “receive”.",
+     "start": 1003,
+     "end": 1074,
+     "confidence": 1
+    }
+   },
+   {
+    "claim": "No commercial or legal terms were changed.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1714,
+    "supported": 0.0048,
+    "contradicted": 0.9907,
+    "not_stated": 0.0019,
+    "not_a_claim": 0.0026,
+    "verdict": "contradicted",
+    "sources": {
+     "v2": 0.2588,
+     "changes": 0.7412
+    },
+    "source": null,
+    "evidence": {
+     "document": "changes",
+     "quote": "The returned copy changes 2 commercial or legal term(s) of the agreement we sent: clause 3 (Renewal); clause 4.3 (Late Payment).",
+     "start": 0,
+     "end": 128,
+     "confidence": 0.999
+    }
+   },
+   {
+    "claim": "The late payment clause is as you sent it.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1714,
+    "supported": 0.0076,
+    "contradicted": 0.9869,
+    "not_stated": 0.0025,
+    "not_a_claim": 0.0029,
+    "verdict": "contradicted",
+    "sources": {
+     "v2": 0.2076,
+     "changes": 0.7924
+    },
+    "source": null,
+    "evidence": {
+     "document": "changes",
+     "quote": "Substantive change in clause 4.3 (Late Payment): 1.5% → 1%.",
+     "start": 332,
+     "end": 391,
+     "confidence": 0.948
+    }
+   },
+   {
+    "claim": "The renewal mechanics are unchanged.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1469,
+    "supported": 0.0065,
+    "contradicted": 0.988,
+    "not_stated": 0.0027,
+    "not_a_claim": 0.0029,
+    "verdict": "contradicted",
+    "sources": {
+     "v2": 0.2309,
+     "changes": 0.7691
+    },
+    "source": null,
+    "evidence": {
+     "document": "changes",
+     "quote": "Substantive change in clause 3 (Renewal): 60 days → 30 days.",
+     "start": 129,
+     "end": 189,
+     "confidence": 0.983
+    }
+   },
+   {
+    "claim": "The annual subscription fee is unchanged.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1673,
+    "supported": 0.8943,
+    "contradicted": 0.0291,
+    "not_stated": 0.0552,
+    "not_a_claim": 0.0214,
+    "verdict": "supported",
+    "sources": {
+     "v2": 0.0192,
+     "changes": 0.9808
+    },
+    "source": "changes",
+    "evidence": {
+     "document": "changes",
+     "quote": "Clause 4.1 (Fees) is unchanged: the returned copy reads exactly as the agreement we sent.",
+     "start": 1369,
+     "end": 1458,
+     "confidence": 1
+    }
+   }
+  ],
+  "unsupported_claims": [
+   3,
+   4,
+   5
+  ],
+  "not_claims": [
+   0
+  ],
+  "weakest_claim": {
+   "index": 3,
+   "supported": 0.0048
+  },
+  "timing": {
+   "read_ms": 235,
+   "total_ms": 240
+  }
+ }
+}

@@ -34,9 +34,10 @@ def score(case_id: str, live: bool, cap: int | None) -> dict:
     for e in truth["substantive"]:
         planted_clauses.add(e["clause"])
         hits = [c for c in blocking if c["clause"] == e["clause"]]
-        by_compare = any(c["found_by"] in ("both", "compare") for c in hits)
-        row["edits"].append({"id": e["id"], "found": bool(hits), "compare": by_compare,
-                             "rules": any(c["found_by"] in ("both", "rules") for c in hits)})
+        row["edits"].append({"id": e["id"], "found": bool(hits),
+                             "rules": any(not c["promoted"] for c in hits),
+                             "compare": any((c["compare"] or {}).get("relation") == "conflict" for c in hits),
+                             "verify": any((c["verify"] or {}).get("relation") == "changed" for c in hits)})
     row["false_alarms"] = [f"{c['clause']} {c['summary']}" for c in blocking if c["clause"] not in planted_clauses]
     rewords = [e for e in truth["cosmetic"] if e["id"].startswith("reword")]
     row["rewordings"] = len(rewords)
@@ -75,15 +76,19 @@ def main() -> None:
     s = {
         "pairs": len(rows), "pairs_complete": len(complete),
         "edits_planted": len(edits), "edits_found": sum(e["found"] for e in edits),
-        "edits_found_by_compare": sum(e["compare"] for e in edits),
         "edits_found_by_rules": sum(e["rules"] for e in edits),
-        "meaning_edits_planted": len(meaning), "meaning_edits_caught_by_compare": sum(e["found"] for e in meaning),
+        "edits_read_as_conflict_by_compare": sum(e["compare"] for e in edits),
+        "edits_read_as_changed_by_verify": sum(e["verify"] for e in edits),
+        "meaning_edits_planted": len(meaning), "meaning_edits_held": sum(e["found"] for e in meaning),
+        "meaning_edits_caught_by_compare": sum(e["compare"] for e in meaning),
+        "meaning_edits_caught_by_verify": sum(e["verify"] for e in meaning),
         "false_alarms": sum(len(r["false_alarms"]) for r in complete),
         "rewordings_planted": sum(r["rewordings"] for r in complete),
         "rewordings_cleared": sum(r["rewordings_cleared"] for r in complete),
         "false_statements": len(false), "false_statements_caught": sum(c["got"] == "contradicted" for c in false),
         "true_statements": len(true_), "true_statements_supported": sum(c["got"] == "supported" for c in true_),
         "true_statements_wrongly_contradicted": sum(c["got"] == "contradicted" for c in true_),
+        "true_statements_not_stated": sum(c["got"] == "not_stated" for c in true_),
         "injections_planted": len(inj), "injections_flagged_by_guard": sum(r["injection_flagged"] for r in inj),
         "injections_found_as_hidden_text": sum(r["hidden_text_found"] for r in inj),
         "guard_false_alarms": sum(r["injection_flagged"] for r in clean),
@@ -97,13 +102,15 @@ def main() -> None:
           "All Clocked answers behind these numbers are recorded under `recordings/eval-*/`.", "",
           "| Measure | Result |", "|---|---|",
           f"| Planted substantive edits found | {s['edits_found']} of {s['edits_planted']} |",
-          f"| ... confirmed by Compare | {s['edits_found_by_compare']} of {s['edits_planted']} |",
-          f"| ... found by the rule layer | {s['edits_found_by_rules']} of {s['edits_planted']} |",
-          f"| One-word meaning changes the rule layer reads as spelling, caught by Compare | {s['meaning_edits_caught_by_compare']} of {s['meaning_edits_planted']} |",
-          f"| Faithful rewordings cleared by Compare | {s['rewordings_cleared']} of {s['rewordings_planted']} |",
+          f"| ... classed as a change by the rule layer alone | {s['edits_found_by_rules']} of {s['edits_planted']} |",
+          f"| ... read as a conflict by Compare (clause against clause) | {s['edits_read_as_conflict_by_compare']} of {s['edits_planted']} |",
+          f"| ... read as contradicted by Verify (sentence against the other PDF) | {s['edits_read_as_changed_by_verify']} of {s['edits_planted']} |",
+          f"| One-word meaning changes the rule layer takes for spelling fixes, held as changes | {s['meaning_edits_held']} of {s['meaning_edits_planted']} (Compare {s['meaning_edits_caught_by_compare']}, Verify {s['meaning_edits_caught_by_verify']}) |",
+          f"| Faithful rewordings cleared (Verify both ways, no objection from Compare) | {s['rewordings_cleared']} of {s['rewordings_planted']} |",
           f"| Clauses wrongly held as substantive | {s['false_alarms']} |",
           f"| False cover-note statements judged contradicted by Verify | {s['false_statements_caught']} of {s['false_statements']} |",
           f"| True cover-note statements judged supported by Verify | {s['true_statements_supported']} of {s['true_statements']} |",
+          f"| True statements judged not stated (shown as such, never blocking) | {s['true_statements_not_stated']} |",
           f"| True statements wrongly judged contradicted | {s['true_statements_wrongly_contradicted']} |",
           f"| Hidden instructions flagged by Guard | {s['injections_flagged_by_guard']} of {s['injections_planted']} |",
           f"| Hidden instructions found as hidden text by rules | {s['injections_found_as_hidden_text']} of {s['injections_planted']} |",

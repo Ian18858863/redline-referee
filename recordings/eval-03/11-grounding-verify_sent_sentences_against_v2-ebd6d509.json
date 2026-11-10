@@ -1,0 +1,209 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "ebd6d509c069810ca58183025e672f9c73383937d753742eb0a69d6b9219cbbb",
+ "request": {
+  "pdf": {
+   "sha256": "30950b79737256f8303036b20a77f0d31af4e4648683634827565ceaaa0e8657"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it. Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer. Any seperate attempt to assign is void.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+   "Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+   "Any seperate attempt to assign is void."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 8,
+  "model_ms": 197.657028,
+  "cost_usd": 0.001594,
+  "attempts": 1,
+  "idempotency_key": "b85c6b3b-7016-44c3-ada4-ef515bac4603",
+  "request_id": "a5847291bd7278bc-BOS",
+  "wall_ms": 576,
+  "recorded_at": "2026-11-10T10:41:56+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.1523,
+  "ungrounded": 0.8477,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.1523,
+    "claims": [
+     1,
+     5
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2194,
+    "supported": 0.0021,
+    "contradicted": 0.9905,
+    "not_stated": 0.0046,
+    "not_a_claim": 0.0028,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1122,
+    "supported": 0.9896,
+    "contradicted": 0.0049,
+    "not_stated": 0.003,
+    "not_a_claim": 0.0025,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer must tell",
+     "start": 1340,
+     "end": 1358,
+     "confidence": 0.999
+    }
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2285,
+    "supported": 0.0028,
+    "contradicted": 0.9909,
+    "not_stated": 0.0035,
+    "not_a_claim": 0.0028,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1901,
+     "end": 1931,
+     "confidence": 0.997
+    }
+   },
+   {
+    "claim": "For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider will delete it.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1453,
+    "supported": 0.0071,
+    "contradicted": 0.9745,
+    "not_stated": 0.0128,
+    "not_a_claim": 0.0056,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "For ninety (90) days after termination or expiration, Provider will make",
+     "start": 2352,
+     "end": 2424,
+     "confidence": 0.868
+    }
+   },
+   {
+    "claim": "Provider retains all right, title and interest in the Service, including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2555,
+    "supported": 0.0022,
+    "contradicted": 0.9927,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "Provider retains all right, title and interest in the Service, excluding configurations, integrations and",
+     "start": 2522,
+     "end": 2627,
+     "confidence": 0.731
+    }
+   },
+   {
+    "claim": "Any seperate attempt to assign is void.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0391,
+    "supported": 0.9874,
+    "contradicted": 0.0049,
+    "not_stated": 0.0038,
+    "not_a_claim": 0.0039,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Any separate attempt to assign is void.",
+     "start": 4280,
+     "end": 4319,
+     "confidence": 1
+    }
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   2,
+   3,
+   4
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0021
+  },
+  "timing": {
+   "read_ms": 351,
+   "total_ms": 355
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2203,
+    4860
+   ],
+   "characters": 5572
+  }
+ }
+}

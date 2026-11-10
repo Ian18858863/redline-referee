@@ -1,0 +1,140 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 13",
+ "request_hash": "8832d5ecd59768fcc7481d8e9262228bd5752fe6cb5316309fd702b0aeb02924",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Neither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets. Any seperate attempt to assign is void."
+   },
+   {
+    "id": "v2",
+    "text": "Neither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets. Any separate attempt to assign is void."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 88.241822,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "6c568b23-cd3a-499c-a3fc-bdf1f15a0ba4",
+  "request_id": "a58473317894d961-BOS",
+  "wall_ms": 699,
+  "recorded_at": "2026-11-10T10:42:21+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9978,
+    "probabilities": {
+     "same": 0.9896,
+     "overlapping": 0.0047,
+     "conflicting": 0.0036,
+     "unrelated": 0.0022
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9853,
+       "restated": 0.0057,
+       "elaborated": 0.0052,
+       "different": 0.0037
+      },
+      "confidence": 0.9963,
+      "a": {
+       "document": "v1",
+       "quote": "Neither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets.",
+       "start": 0,
+       "end": 171,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Neither party may assign this Agreement without the prior written consent of the other party, except to a successor in a merger or sale of substantially all of its assets.",
+       "start": 0,
+       "end": 171,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.5003,
+       "restated": 0.4466,
+       "elaborated": 0.029,
+       "different": 0.024
+      },
+      "confidence": 0.976,
+      "a": {
+       "document": "v1",
+       "quote": "Any seperate attempt to assign is void.",
+       "start": 172,
+       "end": 211,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Any separate attempt to assign is void.",
+       "start": 172,
+       "end": 211,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 316,
+   "passage_reads": 1,
+   "passages_ms": 47,
+   "passages": 2,
+   "counterparts_ms": 127
+  },
+  "timing": {
+   "read_ms": 490,
+   "total_ms": 492
+  }
+ }
+}

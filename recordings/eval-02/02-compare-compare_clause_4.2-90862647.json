@@ -1,0 +1,140 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 4.2",
+ "request_hash": "90862647de85c502930ff44a4259da368dc68482570cf321a57efceaa8d64b3b",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date. Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time."
+   },
+   {
+    "id": "v2",
+    "text": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date. Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 115.339392,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "0f25b798-9cf6-4812-a04e-84152b7f19af",
+  "request_id": "a584726bbddc79f0-BOS",
+  "wall_ms": 475,
+  "recorded_at": "2026-11-10T10:41:49+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9982,
+    "probabilities": {
+     "same": 0.9914,
+     "overlapping": 0.0042,
+     "conflicting": 0.0026,
+     "unrelated": 0.0018
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.988,
+       "restated": 0.005,
+       "elaborated": 0.0032,
+       "different": 0.0038
+      },
+      "confidence": 0.9962,
+      "a": {
+       "document": "v1",
+       "quote": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+       "start": 88,
+       "end": 200,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+       "start": 0,
+       "end": 87,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0028,
+       "restated": 0.9926,
+       "elaborated": 0.002,
+       "different": 0.0026
+      },
+      "confidence": 0.9974,
+      "a": {
+       "document": "v1",
+       "quote": "Customer must notify Provider of any disputed amount before the due date and pay the undisputed portion on time.",
+       "start": 88,
+       "end": 200,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Customer must tell Provider about any disputed amount before the due date, and must pay the undisputed portion on time.",
+       "start": 88,
+       "end": 207,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 19,
+   "passage_reads": 1,
+   "passages_ms": 42,
+   "passages": 2,
+   "counterparts_ms": 60
+  },
+  "timing": {
+   "read_ms": 121,
+   "total_ms": 122
+  }
+ }
+}

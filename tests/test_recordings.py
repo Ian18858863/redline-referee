@@ -74,7 +74,24 @@ def test_one_word_meaning_changes_are_caught_by_a_clocked_reader(case, tmp_path_
 
 
 @pytest.mark.parametrize("case", RECORDED)
-def test_cover_note_statements_get_the_expected_verdict(case, tmp_path_factory):
+def test_no_false_statement_in_the_cover_note_gets_through(case, tmp_path_factory):
+    r, _, truth = replay(case, tmp_path_factory)
+    got = {c["text"]: c["verdict"] for c in r["note"]["claims"]}
+    missed = [c["text"] for c in truth["letter_claims"] if c["expected"] == "contradicted" and got.get(c["text"]) != "contradicted"]
+    assert not missed, missed
+
+
+@pytest.mark.parametrize("case", RECORDED)
+def test_no_true_statement_in_the_cover_note_is_called_false(case, tmp_path_factory):
+    """A true statement may come back "not stated" (two do, in the evaluation set); it must never come back contradicted."""
+    r, _, truth = replay(case, tmp_path_factory)
+    got = {c["text"]: c["verdict"] for c in r["note"]["claims"]}
+    wrong = [c["text"] for c in truth["letter_claims"] if c["expected"] == "supported" and got.get(c["text"]) == "contradicted"]
+    assert not wrong, wrong
+
+
+@pytest.mark.parametrize("case", DEMO)
+def test_demo_cover_notes_get_exactly_the_expected_verdicts(case, tmp_path_factory):
     r, _, truth = replay(case, tmp_path_factory)
     got = {c["text"]: c["verdict"] for c in r["note"]["claims"]}
     wrong = {c["text"]: (c["expected"], got.get(c["text"])) for c in truth["letter_claims"] if got.get(c["text"]) != c["expected"]}

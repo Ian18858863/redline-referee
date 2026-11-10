@@ -1,0 +1,105 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "a31d3d6d25e10a69a6da6ec0d9919680ad78fc7491e0ff4fbc3eaca6ee072e11",
+ "request": {
+  "pdf": {
+   "sha256": "3940a14f0cf12ac77113f1a226056385568d011b4f3b174a185cb8f392eeb786"
+  },
+  "answer": "The initial term of this Agreement begins on the Effective Date and continues for thirty-six (36) months (the \"Initial Term\"). Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+  "claims": [
+   "The initial term of this Agreement begins on the Effective Date and continues for thirty-six (36) months (the \"Initial Term\").",
+   "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 131.738018,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "0aab7a17-1808-48c2-b87a-5740be958fa7",
+  "request_id": "a58472deaf80903e-BOS",
+  "wall_ms": 412,
+  "recorded_at": "2026-11-10T10:42:08+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0019,
+  "ungrounded": 0.9981,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 0,
+    "share_of_answer": 0.0019,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "The initial term of this Agreement begins on the Effective Date and continues for thirty-six (36) months (the \"Initial Term\").",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5915,
+    "supported": 0.0015,
+    "contradicted": 0.9949,
+    "not_stated": 0.002,
+    "not_a_claim": 0.0016,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4085,
+    "supported": 0.0025,
+    "contradicted": 0.9927,
+    "not_stated": 0.0027,
+    "not_a_claim": 0.0021,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0015
+  },
+  "timing": {
+   "read_ms": 163,
+   "total_ms": 168
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2191,
+    4646
+   ],
+   "characters": 5358
+  }
+ }
+}

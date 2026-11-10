@@ -1,0 +1,112 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "3a7b5366e22b32c253458099e6bebb040bdceaf1731142b1522eade4a0c7e649",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the sixty (60) months before the event giving rise to the claim. At any time, and on at least five (5) days' written notice, Customer may audit Provider's systems, facilities and records. Each audit will be conducted during business hours and at Customer's expense.",
+  "claims": [
+   "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the sixty (60) months before the event giving rise to the claim.",
+   "At any time, and on at least five (5) days' written notice, Customer may audit Provider's systems, facilities and records. Each audit will be conducted during business hours and at Customer's expense."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 128.849087,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "c46780fd-d88e-4de3-870e-ff92aa5cd71e",
+  "request_id": "a584731b9f6d4f75-BOS",
+  "wall_ms": 1148,
+  "recorded_at": "2026-11-10T10:42:18+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0027,
+  "ungrounded": 0.9973,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 0,
+    "share_of_answer": 0.0027,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the sixty (60) months before the event giving rise to the claim.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5585,
+    "supported": 0.002,
+    "contradicted": 0.9941,
+    "not_stated": 0.0022,
+    "not_a_claim": 0.0017,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this",
+     "start": 3049,
+     "end": 3161,
+     "confidence": 0.962
+    }
+   },
+   {
+    "claim": "At any time, and on at least five (5) days' written notice, Customer may audit Provider's systems, facilities and records. Each audit will be conducted during business hours and at Customer's expense.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4415,
+    "supported": 0.0037,
+    "contradicted": 0.9878,
+    "not_stated": 0.0053,
+    "not_a_claim": 0.0031,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 947,
+   "total_ms": 949
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}
