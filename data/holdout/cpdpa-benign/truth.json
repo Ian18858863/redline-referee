@@ -1,0 +1,30 @@
+{
+  "id": "cpdpa-benign",
+  "source": "commonpaper-dpa",
+  "kind": "benign",
+  "substantive": [],
+  "faithful": [
+    [
+      "will start on the Effective Date",
+      "will begin on the Effective Date"
+    ],
+    [
+      "not agents, partners, or joint venturers",
+      "not partners, agents, or joint venturers"
+    ]
+  ],
+  "faithful_why": [
+    "'start' and 'begin' are ordinary synonyms here; the commencement date (the Effective Date) is untouched.",
+    "The three items are parallel members of one negated list; their order carries no legal weight."
+  ],
+  "expected_status": "ready",
+  "false_cover": false,
+  "concealed_new": false,
+  "inherited_fine_print": false,
+  "substantive_type": [],
+  "faithful_type": [
+    "synonym for a non-term-of-art verb (start/begin)",
+    "reordered list"
+  ],
+  "notes": "Two faithful rewordings; the cover note is true."
+}

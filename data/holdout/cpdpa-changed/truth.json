@@ -1,0 +1,27 @@
+{
+  "id": "cpdpa-changed",
+  "source": "commonpaper-dpa",
+  "kind": "changed",
+  "substantive": [
+    [
+      "this Section 5 and Recipient remains",
+      "this Section 5 or Recipient remains"
+    ],
+    [
+      "submits to the exclusive jurisdiction",
+      "submits to the non-exclusive jurisdiction"
+    ]
+  ],
+  "faithful": [],
+  "faithful_why": [],
+  "expected_status": "blocked",
+  "false_cover": true,
+  "concealed_new": false,
+  "inherited_fine_print": false,
+  "substantive_type": [
+    "'and' -> 'or' in a condition (5.4: onward disclosure now needs only one of the two safeguards)",
+    "negation (7.3: exclusive -> non-exclusive jurisdiction of the Chosen Courts)"
+  ],
+  "faithful_type": [],
+  "notes": "Two substantive edits; the cover note denies any change to the terms, which is false."
+}

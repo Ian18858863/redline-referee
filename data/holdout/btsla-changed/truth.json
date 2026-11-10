@@ -1,0 +1,27 @@
+{
+  "id": "btsla-changed",
+  "source": "bonterms-sla",
+  "kind": "changed",
+  "substantive": [
+    [
+      "(c) Customer",
+      "(c) Provider"
+    ],
+    [
+      "within 30 days",
+      "within 5 days"
+    ]
+  ],
+  "faithful": [],
+  "faithful_why": [],
+  "expected_status": "blocked",
+  "false_cover": true,
+  "concealed_new": false,
+  "inherited_fine_print": true,
+  "substantive_type": [
+    "one party swapped for the other (Outage exclusion (c) now excludes failures of Provider's own network or infrastructure)",
+    "deadline changed (section 3: window to request a service credit, 30 -> 5 days)"
+  ],
+  "faithful_type": [],
+  "notes": "Two substantive edits made in place in the publisher PDF; the cover note says no wording changed, which is false. The publisher PDF carries 6 pt header text and one 1 pt whitespace-only span in v1 and v2 alike."
+}

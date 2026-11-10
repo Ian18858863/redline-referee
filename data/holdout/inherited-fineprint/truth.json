@@ -1,0 +1,24 @@
+{
+  "id": "inherited-fineprint",
+  "source": "bonterms-nda",
+  "kind": "inherited-fineprint",
+  "substantive": [],
+  "faithful": [
+    [
+      "prior to receipt",
+      "before receipt"
+    ]
+  ],
+  "faithful_why": [
+    "'prior to' and 'before' are interchangeable; the point in time (receipt from Discloser) is untouched."
+  ],
+  "expected_status": "ready",
+  "false_cover": false,
+  "concealed_new": false,
+  "inherited_fine_print": true,
+  "substantive_type": [],
+  "faithful_type": [
+    "synonym for a non-term-of-art preposition (prior to/before)"
+  ],
+  "notes": "v1 is the unmodified Bonterms Mutual NDA publisher PDF, which carries tiny publisher fine print (6 pt notices and a logo set in 2.9-5.9 pt type). v2 keeps all of it unchanged and adds nothing concealed, so the fine print is inherited, not new."
+}
