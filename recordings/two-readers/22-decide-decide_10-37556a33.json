@@ -1,0 +1,105 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 10",
+ "request_hash": "37556a3329e2fdb48123adb2140cc61445fc343281023b97c4724d083841f4ba",
+ "request": {
+  "state": {
+   "clause": "10 Indemnification",
+   "change": "The Customer changed this term: “will” became “may”",
+   "we_sent": "Customer will defend Provider against any third-party claim arising from Customer Data.",
+   "they_returned": "Customer may defend Provider against any third-party claim arising from Customer Data.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$184,000",
+    "initial_term": "thirty-six (36) months"
+   },
+   "playbook": "The playbook has no passage that covers this change."
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the applicable playbook explicitly authorizes the deal desk to offer a different term in response to this proposed change, without another approver. The alternative may restore our original term; it does not have to be strictly between our original term and the Customer's term. No if the applicable rule prohibits the desk from countering this request, every permitted response needs another approver, or no authorized alternative is named. A passage for a different deal size grants no authority."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 29.421057,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "f0c21646-2f7a-4e9c-97d8-80535603f6f2",
+  "request_id": null,
+  "trace": "a586e2311e338626-LAX",
+  "wall_ms": 377,
+  "recorded_at": "2026-11-10T17:47:39+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0025
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.0021
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9704,
+     "provider": 0.0204,
+     "neutral": 0.0091
+    },
+    "confidence": 0.9556
+   },
+   "materiality": {
+    "type": "score",
+    "score": 2.9804,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0044,
+     "1": 0.0084,
+     "2": 0.0451,
+     "3": 0.8867,
+     "4": 0.0555
+    },
+    "confidence": 0.8584
+   }
+  },
+  "usage": {
+   "input_tokens": 390,
+   "output_tokens": 12
+  }
+ }
+}

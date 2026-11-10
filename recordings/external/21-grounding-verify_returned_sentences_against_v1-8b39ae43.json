@@ -1,0 +1,127 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "8b39ae435e7a9f72e7c451ee1e7798abb59fb0934fbf852553544170ea8808bb",
+ "request": {
+  "pdf": {
+   "sha256": "7f92b9d136f39f6d8bc4d22c2f726f90076bd95e2833bdc4724f2111a8d269be"
+  },
+  "answer": "Recipient’s obligations relating to Confidential Information will survive for the Confidentiality Period, despite expiration or termination of this NDA. keep using When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing. Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient a license grants under such rights.",
+  "claims": [
+   "Recipient’s obligations relating to Confidential Information will survive for the Confidentiality Period, despite expiration or termination of this NDA. keep using",
+   "When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing.",
+   "Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient a license grants under such rights."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 157.777988,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "61f7752b-248f-48f1-a464-0a8381ca1d7d",
+  "request_id": null,
+  "trace": "a586d7c63bcd7a17-LAX",
+  "wall_ms": 865,
+  "recorded_at": "2026-11-10T17:40:32+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.2117,
+  "ungrounded": 0.7883,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.2117,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Recipient’s obligations relating to Confidential Information will survive for the Confidentiality Period, despite expiration or termination of this NDA. keep using",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2422,
+    "supported": 0.7187,
+    "contradicted": 0.2141,
+    "not_stated": 0.0536,
+    "not_a_claim": 0.0135,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5097,
+    "supported": 0.0705,
+    "contradicted": 0.5557,
+    "not_stated": 0.3628,
+    "not_a_claim": 0.011,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "7.",
+     "start": 3949,
+     "end": 3951,
+     "confidence": 0.982
+    }
+   },
+   {
+    "claim": "Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient a license grants under such rights.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2481,
+    "supported": 0.0067,
+    "contradicted": 0.9813,
+    "not_stated": 0.0068,
+    "not_a_claim": 0.0052,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   1,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 2,
+   "supported": 0.0067
+  },
+  "timing": {
+   "read_ms": 168,
+   "total_ms": 174
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 7539
+  }
+ }
+}

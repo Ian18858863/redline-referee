@@ -1,0 +1,152 @@
+{
+  "summary": {
+    "completed": 6,
+    "cases": 6,
+    "held": 4,
+    "substantive": 6,
+    "faithful_cleared": 0,
+    "faithful": 3,
+    "false_cover_caught": 3,
+    "false_covers": 3,
+    "status_correct": 1,
+    "new_actual_credits": 213,
+    "new_uncertain_credits": 0
+  },
+  "pairs": [
+    {
+      "id": "commonpaper-changed",
+      "status": "blocked",
+      "expected_status": "changes",
+      "complete": true,
+      "errors": [],
+      "edits": [
+        {
+          "old": "prior written approval",
+          "new": "prior notification",
+          "held": true
+        },
+        {
+          "old": "cease using Confidential Information",
+          "new": "continue using Confidential Information",
+          "held": true
+        }
+      ],
+      "faithful": [],
+      "unexpected_blocking": 0,
+      "false_cover": true,
+      "false_cover_caught": true,
+      "claims_checked": 2,
+      "audit_credits": 36
+    },
+    {
+      "id": "commonpaper-benign",
+      "status": "changes",
+      "expected_status": "ready",
+      "complete": true,
+      "errors": [],
+      "edits": [],
+      "faithful": [
+        {
+          "old": "reasonable standard of care",
+          "new": "reasonable level of care",
+          "cleared": false
+        }
+      ],
+      "unexpected_blocking": 1,
+      "false_cover": false,
+      "false_cover_caught": false,
+      "claims_checked": 1,
+      "audit_credits": 67
+    },
+    {
+      "id": "bonterms-changed",
+      "status": "blocked",
+      "expected_status": "changes",
+      "complete": true,
+      "errors": [],
+      "edits": [
+        {
+          "old": "cease using",
+          "new": "keep using",
+          "held": false
+        },
+        {
+          "old": "no license",
+          "new": "a license",
+          "held": true
+        }
+      ],
+      "faithful": [],
+      "unexpected_blocking": 2,
+      "false_cover": true,
+      "false_cover_caught": true,
+      "claims_checked": 2,
+      "audit_credits": 109
+    },
+    {
+      "id": "bonterms-benign",
+      "status": "blocked",
+      "expected_status": "ready",
+      "complete": true,
+      "errors": [],
+      "edits": [],
+      "faithful": [
+        {
+          "old": "reasonable standard of care",
+          "new": "reasonable level of care",
+          "cleared": false
+        }
+      ],
+      "unexpected_blocking": 1,
+      "false_cover": false,
+      "false_cover_caught": false,
+      "claims_checked": 1,
+      "audit_credits": 136
+    },
+    {
+      "id": "sixarm-changed",
+      "status": "blocked",
+      "expected_status": "changes",
+      "complete": true,
+      "errors": [],
+      "edits": [
+        {
+          "old": "initial term of this Agreement is one calendar week",
+          "new": "initial term of this Agreement is four calendar weeks",
+          "held": false
+        },
+        {
+          "old": "one hundred percent (100%)",
+          "new": "two hundred percent (200%)",
+          "held": true
+        }
+      ],
+      "faithful": [],
+      "unexpected_blocking": 1,
+      "false_cover": true,
+      "false_cover_caught": true,
+      "claims_checked": 2,
+      "audit_credits": 176
+    },
+    {
+      "id": "sixarm-benign",
+      "status": "ready",
+      "expected_status": "ready",
+      "complete": true,
+      "errors": [],
+      "edits": [],
+      "faithful": [
+        {
+          "old": "All aspects of this section are mutual",
+          "new": "Every aspect of this section is mutual",
+          "cleared": false
+        }
+      ],
+      "unexpected_blocking": 0,
+      "false_cover": false,
+      "false_cover_caught": false,
+      "claims_checked": 1,
+      "audit_credits": 213
+    }
+  ]
+}

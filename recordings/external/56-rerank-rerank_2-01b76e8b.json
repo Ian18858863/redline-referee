@@ -1,0 +1,123 @@
+{
+ "endpoint": "/clocked/rerank",
+ "label": "rerank 2",
+ "request_hash": "01b76e8b5305484c523ece05817b9b7772c2c5291fa5d41b0f16cb657a8e84bf",
+ "request": {
+  "query": "The customer changed clause 2 (Payment): 30 → 45 days. We sent: \"Customer shall pay invoices within 30 days.\". They returned: \"Customer shall pay invoices within 45 days.\". How should the deal desk respond?",
+  "context": {
+   "our_role": "Provider (we sent the original agreement)",
+   "annual_fee_in_our_version": "$250,000"
+  },
+  "documents": [
+   {
+    "id": "small",
+    "title": "Payment: annual fees below $100,000",
+    "text": "Applies only when annual fees are below $100,000. The deal desk may accept payment up to 45 days. For 46 to 60 days the desk must counter with 45 days and may do so without approval. Never apply this passage to deals of $100,000 or more.",
+    "metadata": {
+     "topic": "Payment terms"
+    }
+   },
+   {
+    "id": "large",
+    "title": "Payment: annual fees at least $100,000",
+    "text": "Applies only when annual fees are $100,000 or more. The desk may accept payment up to 30 days. For 31 to 45 days the desk must counter with 30 days and may do so without approval. Payment of 46 days or more requires Finance approval: the desk may neither accept nor counter. Never apply this passage to smaller deals.",
+    "metadata": {
+     "topic": "Payment terms"
+    }
+   },
+   {
+    "id": "security",
+    "title": "Security incidents",
+    "text": "All requests for a security incident notification deadline below 72 hours require Legal approval.",
+    "metadata": {
+     "topic": "Security"
+    }
+   }
+  ],
+  "instructions": "The passages are internal playbook rules for the Provider's deal desk. A passage answers the query only if it tells the deal desk how to respond to this specific change for a deal of this size."
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 33.224575,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "5ec402a2-4fd4-445b-b767-8d21e0c7da08",
+  "request_id": null,
+  "trace": "a586daadf96dca79-LAX",
+  "wall_ms": 413,
+  "recorded_at": "2026-11-10T17:42:31+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "results": [
+   {
+    "index": 1,
+    "id": "large",
+    "action": "use",
+    "relevance_score": 0.9933,
+    "document_score": 0.9951,
+    "levels": {
+     "answers": 0.9933,
+     "elsewhere": 0.0018,
+     "different_case": 0.0022,
+     "unrelated": 0.0027
+    }
+   },
+   {
+    "index": 0,
+    "id": "small",
+    "action": "skip",
+    "reason": "different_case",
+    "relevance_score": 0.0018,
+    "document_score": 0.0051,
+    "levels": {
+     "answers": 0.0018,
+     "elsewhere": 0.0033,
+     "different_case": 0.9896,
+     "unrelated": 0.0053
+    }
+   },
+   {
+    "index": 2,
+    "id": "security",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0013,
+    "document_score": 0.0024,
+    "levels": {
+     "answers": 0.0013,
+     "elsewhere": 0.0011,
+     "different_case": 0.0021,
+     "unrelated": 0.9955
+    }
+   }
+  ],
+  "usage": {
+   "input_tokens": 657
+  },
+  "timing": {
+   "total_ms": 37,
+   "rerank_ms": 36,
+   "questions_ms": 0,
+   "model_ms": 31,
+   "engine": {
+    "rows": 870,
+    "branches": 3,
+    "forwards": 1,
+    "bins": 1,
+    "bucket_rows": 1024,
+    "long": 0,
+    "total_ms": 31,
+    "build_ms": 0,
+    "doc_ms": 0,
+    "forward_ms": 30,
+    "state_ms": 0,
+    "logits_ms": 0,
+    "state_chars": 0,
+    "row_buckets": "big",
+    "shared_opening_tokens": 176
+   }
+  }
+ }
+}

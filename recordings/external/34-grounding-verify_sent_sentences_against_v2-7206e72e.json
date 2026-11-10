@@ -1,0 +1,113 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "7206e72edee3aadd43cacccd03f612cd7c067a7c875ecfe4ec263bd078a9b005",
+ "request": {
+  "pdf": {
+   "sha256": "57d670d710d11adede1e43feec195ce4e41b2caa485af492c455c21e8a0b71de"
+  },
+  "answer": "Term The initial term of this Agreement is one calendar week. Limitation of liability Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement.",
+  "claims": [
+   "Term The initial term of this Agreement is one calendar week.",
+   "Limitation of liability Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 129.097889,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "a535b6e5-ef69-4555-8fc9-ece40ad04cc5",
+  "request_id": null,
+  "trace": "a586d80c1a191f54-LAX",
+  "wall_ms": 574,
+  "recorded_at": "2026-11-10T17:40:43+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0255,
+  "ungrounded": 0.9745,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.0255,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Term The initial term of this Agreement is one calendar week.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2155,
+    "supported": 0.0016,
+    "contradicted": 0.9949,
+    "not_stated": 0.002,
+    "not_a_claim": 0.0016,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Limitation of liability Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.7845,
+    "supported": 0.032,
+    "contradicted": 0.8292,
+    "not_stated": 0.1191,
+    "not_a_claim": 0.0197,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "In the case of per project pricing, or per work order pricing, Consultant's total aggregate liability for damages",
+     "start": 1496,
+     "end": 1609,
+     "confidence": 0.966
+    }
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0016
+  },
+  "timing": {
+   "read_ms": 138,
+   "total_ms": 143
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2397,
+    5141
+   ],
+   "characters": 5141
+  }
+ }
+}

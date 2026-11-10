@@ -39,6 +39,8 @@ The tests include injected failures and authored fake API responses to verify ap
 
 ## What would strengthen a subsequent submission
 
+The new [external-source results](eval/EXTERNAL_RESULTS.md) implement the pre-run source/label lock and the controlled retrieval comparison below. They also expose unfinished work: 1/3 faithful rewordings cleared, inherited tiny-print blocking, no routing uplift and no completed paired user observation. Post-fix results are regression evidence; the original six pairs cannot become a fresh holdout again. The [maintainer handoff](HANDOFF.md) gives concrete release gates and validation commands.
+
 1. **Independent documents before more features.** Obtain public or authorised contracts from several origins, preserve their original exports and define exact edit labels before running them. Include different deal sizes, absent deal facts, added clauses, meaningful address/notice changes, benign rewrites and failed API steps. Keep those cases separate from the examples used to tune prompts.
 2. **Lock the evaluation before tuning.** Commit case hashes, labels, thresholds and metrics before the first live run. Report the first result separately from fixes. Locking this project's existing, already-inspected samples now would not make them held-out data.
 3. **Measure the whole route.** Keep denominators for every expected change, every statement and every route, including failures. Distinguish the correct playbook passage, an overly strict route and a route that is too permissive. Exercise Rerank `expand` with real recorded responses; current evidence for that branch is a unit test.

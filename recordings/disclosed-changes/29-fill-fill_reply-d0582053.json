@@ -1,0 +1,123 @@
+{
+ "endpoint": "/clocked/fill",
+ "label": "fill reply",
+ "request_hash": "d0582053ed092c43ed620fc108a3d91663d7040fd52fbfa10ccac08c56ade3ce",
+ "request": {
+  "text": "Clause 4.4 (Fee Adjustments). The returned copy reads: \"term by up to 3% over the fees for\". We accept this change.\nClause 5 (Service Levels). The returned copy reads: \", up to a minimum of 10% of the\". This change is under review on our side.\nClause 6 (Customer Data). The returned copy reads: \"the Service. For ninety (90) days after termination\". We do not accept this change as written. What we can agree to instead: We can keep Customer Data available for export for ninety days after termination.",
+  "instructions": "You are writing for the Provider's deal desk to the Customer's procurement contact, about a copy of an agreement the Customer returned with changes. Use only the brief. Be plain, courteous and specific. For an accepted change, say we accept it. For a countered change, state the position we can agree to, exactly as the brief gives it, and ask for the clause to be put back or changed to that. For a change that is with our approvers, say only that it is under review; do not promise an outcome. Never mention internal approvers, approval limits, playbooks or percentages of confidence.",
+  "fields": {
+   "reply_c1": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 4.4 (Fee Adjustments), saying what we decided: accept."
+   },
+   "reply_c2": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 5 (Service Levels), saying what we decided: escalate."
+   },
+   "reply_c3": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 6 (Customer Data), saying what we decided: counter."
+   },
+   "position_c3": {
+    "type": "extract",
+    "infer": false,
+    "description": "The sentence stating what we can agree to instead for clause 6 (Customer Data)"
+   },
+   "corrected_copy": {
+    "type": "yes_no",
+    "description": "Does at least one change need the customer to send a corrected copy (a change we countered)?"
+   },
+   "call_needed": {
+    "type": "yes_no",
+    "description": "Are two or more changes still under review on our side, so that a short call would help?"
+   },
+   "tone": {
+    "type": "choice",
+    "options": [
+     "routine",
+     "firm"
+    ],
+    "description": "routine if everything is accepted or under review; firm if we refuse any change as written"
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 9,
+  "model_ms": 202.703039,
+  "cost_usd": 0.001793,
+  "attempts": 1,
+  "idempotency_key": "798c83a0-0933-49ac-9698-f3aedc6e25ad",
+  "request_id": null,
+  "trace": "a586e223fbdd13e6-LAX",
+  "wall_ms": 814,
+  "recorded_at": "2026-11-10T17:47:37+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "reply_c1": {
+    "value": "We accept this change",
+    "confidence": 0.8255786502557223,
+    "source": "generated"
+   },
+   "reply_c2": {
+    "value": "This change is under review",
+    "confidence": 0.7344005566529966,
+    "source": "generated"
+   },
+   "reply_c3": {
+    "value": "We can keep Customer Data available for export for ninety days after termination. Please update the clause to reflect this position",
+    "confidence": 0.6278493630141622,
+    "source": "generated"
+   },
+   "position_c3": {
+    "value": "We can keep Customer Data available for export for ninety days after termination.",
+    "start": 421,
+    "end": 502,
+    "confidence": 0.9999999994569753,
+    "p_verify": 0.9999999994569753
+   },
+   "corrected_copy": {
+    "value": true,
+    "confidence": 0.971,
+    "probabilities": {
+     "yes": 0.9853184292052329,
+     "no": 0.014681570794767063
+    }
+   },
+   "call_needed": {
+    "value": false,
+    "confidence": 0.985,
+    "probabilities": {
+     "yes": 0.007578159162543341,
+     "no": 0.9924218408374567
+    }
+   },
+   "tone": {
+    "value": "firm",
+    "confidence": 0.978,
+    "probabilities": {
+     "routine": 0.011063436102449087,
+     "firm": 0.9889365638975509
+    }
+   }
+  },
+  "timing": {
+   "read_ms": 117,
+   "generate_ms": 187,
+   "total_ms": 210,
+   "source_states": 1,
+   "source_prefills": 1,
+   "shared_source_tokens": 352,
+   "shared_read_generate_forwards": 1,
+   "engine": "unified"
+  }
+ }
+}

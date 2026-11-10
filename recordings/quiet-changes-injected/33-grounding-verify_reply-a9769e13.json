@@ -1,0 +1,132 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify reply",
+ "request_hash": "a9769e13197c2c8a8246ea15290bbea73c7fe3439ad551d44c1c1249ab1a6ff3",
+ "request": {
+  "documents": [
+   {
+    "id": "brief",
+    "text": "Clause 4.1 (Fees). The returned copy reads: \"annual subscription fee of $148,000 for the Service,\". This change is under review on our side.\nClause 7 (Intellectual Property). The returned copy reads: \"Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.\". This change is under review on our side.\nClause 11 (Termination). The returned copy reads: \"Customer may terminate this Agreement for convenience at any time on thirty (30) days' written notice and will receive a pro-rata refund of prepaid fees.\". We do not accept this change as written. We ask for the wording we sent to be put back: \"Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.\"."
+   }
+  ],
+  "answer": "This change is under review. This change is under review. We cannot accept this change as written. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+  "claims": [
+   "This change is under review.",
+   "This change is under review.",
+   "We cannot accept this change as written. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term."
+  ],
+  "instructions": "The source is the brief the reply was written from. A claim is supported only if the brief states the same decision about the same clause: accepted, countered with that exact position, or under review. A claim that promises something the brief does not state, or names a different term, is contradicted or not stated.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 90.478722,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "b0288c3b-93a4-4b00-82c3-2cb91a2509f7",
+  "request_id": null,
+  "trace": "a586e7ecad531ee0-LAX",
+  "wall_ms": 531,
+  "recorded_at": "2026-11-10T17:51:34+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9907,
+  "ungrounded": 0.0093,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "brief",
+    "share": 1,
+    "share_of_answer": 0.9907,
+    "claims": [
+     0,
+     1,
+     2
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "This change is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.14,
+    "supported": 0.987,
+    "contradicted": 0.0057,
+    "not_stated": 0.0045,
+    "not_a_claim": 0.0028,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "This change is under review on our side.",
+     "start": 100,
+     "end": 140,
+     "confidence": 0.642
+    }
+   },
+   {
+    "claim": "This change is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.14,
+    "supported": 0.9894,
+    "contradicted": 0.004,
+    "not_stated": 0.0044,
+    "not_a_claim": 0.0022,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "Clause 7 (Intellectual Property).",
+     "start": 141,
+     "end": 174,
+     "confidence": 0.967
+    }
+   },
+   {
+    "claim": "We cannot accept this change as written. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.72,
+    "supported": 0.9917,
+    "contradicted": 0.0031,
+    "not_stated": 0.0027,
+    "not_a_claim": 0.0025,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "Clause 11 (Termination).",
+     "start": 455,
+     "end": 479,
+     "confidence": 0.684
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.987
+  },
+  "timing": {
+   "read_ms": 97,
+   "total_ms": 100
+  }
+ }
+}

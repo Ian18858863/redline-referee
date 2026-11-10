@@ -33,8 +33,8 @@
   }
  ],
  "removed": [],
- "text": "Thank you for returning the agreement. We compared it with the version we sent. A few points need to change before we can countersign:\n\nClause 4.4 (Fee Adjustments): We accept this change.\n\nClause 5 (Service Levels): We can raise the service credit cap to 15% of the monthly fee.\n\nClause 6 (Customer Data): We can keep Customer Data available for export for ninety days after termination.\n\nPlease send a corrected copy with the points above and we will countersign promptly.",
- "closing": "Please send a corrected copy with the points above and we will countersign promptly.",
+ "text": "Thank you for returning the agreement. Here is where we stand on each point:\n\nClause 4.4 (Fee Adjustments): We accept this change.\n\nClause 5 (Service Levels): We can raise the service credit cap to 15% of the monthly fee.\n\nClause 6 (Customer Data): We can keep Customer Data available for export for ninety days after termination.\n\nPlease send a corrected copy addressing the points above for our review.",
+ "closing": "Please send a corrected copy addressing the points above for our review.",
  "errors": [],
  "decisions": {
   "c1": "accept",

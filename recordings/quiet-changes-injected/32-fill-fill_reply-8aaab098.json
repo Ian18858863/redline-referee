@@ -1,0 +1,123 @@
+{
+ "endpoint": "/clocked/fill",
+ "label": "fill reply",
+ "request_hash": "8aaab0982d9134f0e4c4ebf32af94bd8e7af75a2112e95c28f3b4b4bf875fb2a",
+ "request": {
+  "text": "Clause 4.1 (Fees). The returned copy reads: \"annual subscription fee of $148,000 for the Service,\". This change is under review on our side.\nClause 7 (Intellectual Property). The returned copy reads: \"Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.\". This change is under review on our side.\nClause 11 (Termination). The returned copy reads: \"Customer may terminate this Agreement for convenience at any time on thirty (30) days' written notice and will receive a pro-rata refund of prepaid fees.\". We do not accept this change as written. We ask for the wording we sent to be put back: \"Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.\".",
+  "instructions": "You are writing for the Provider's deal desk to the Customer's procurement contact, about a copy of an agreement the Customer returned with changes. Use only the brief. Be plain, courteous and specific. For an accepted change, say we accept it. For a countered change, state the position we can agree to, exactly as the brief gives it, and ask for the clause to be put back or changed to that. For a change that is with our approvers, say only that it is under review; do not promise an outcome. Never mention internal approvers, approval limits, playbooks or percentages of confidence.",
+  "fields": {
+   "reply_c1": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 4.1 (Fees), saying what we decided: escalate."
+   },
+   "reply_c2": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 7 (Intellectual Property), saying what we decided: escalate."
+   },
+   "reply_c3": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 11 (Termination), saying what we decided: counter."
+   },
+   "position_c3": {
+    "type": "extract",
+    "infer": false,
+    "description": "The sentence stating what we can agree to instead for clause 11 (Termination)"
+   },
+   "corrected_copy": {
+    "type": "yes_no",
+    "description": "Does at least one change need the customer to send a corrected copy (a change we countered)?"
+   },
+   "call_needed": {
+    "type": "yes_no",
+    "description": "Are two or more changes still under review on our side, so that a short call would help?"
+   },
+   "tone": {
+    "type": "choice",
+    "options": [
+     "routine",
+     "firm"
+    ],
+    "description": "routine if everything is accepted or under review; firm if we refuse any change as written"
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 10,
+  "model_ms": 249.098467,
+  "cost_usd": 0.001992,
+  "attempts": 1,
+  "idempotency_key": "7b13c918-abf0-4914-b7de-d605faa41d19",
+  "request_id": null,
+  "trace": "a586e7e87ec81ee0-LAX",
+  "wall_ms": 899,
+  "recorded_at": "2026-11-10T17:51:33+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "reply_c1": {
+    "value": "This change is under review",
+    "confidence": 0.5147884270196912,
+    "source": "generated"
+   },
+   "reply_c2": {
+    "value": "This change is under review",
+    "confidence": 0.8993719255424423,
+    "source": "generated"
+   },
+   "reply_c3": {
+    "value": "We cannot accept this change as written. We ask for the wording \"Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.\" to be put back",
+    "confidence": 0.7627703640263247,
+    "source": "generated"
+   },
+   "position_c3": {
+    "value": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+    "start": 751,
+    "end": 854,
+    "confidence": 0.9999999985628782,
+    "p_verify": 0.9999999985628782
+   },
+   "corrected_copy": {
+    "value": true,
+    "confidence": 0.983,
+    "probabilities": {
+     "yes": 0.9917118128695743,
+     "no": 0.008288187130425673
+    }
+   },
+   "call_needed": {
+    "value": true,
+    "confidence": 0.867,
+    "probabilities": {
+     "yes": 0.9333158841061328,
+     "no": 0.06668411589386725
+    }
+   },
+   "tone": {
+    "value": "firm",
+    "confidence": 0.95,
+    "probabilities": {
+     "routine": 0.02492335197111517,
+     "firm": 0.9750766480288848
+    }
+   }
+  },
+  "timing": {
+   "read_ms": 123,
+   "generate_ms": 236,
+   "total_ms": 258,
+   "source_states": 1,
+   "source_prefills": 1,
+   "shared_source_tokens": 416,
+   "shared_read_generate_forwards": 1,
+   "engine": "unified"
+  }
+ }
+}

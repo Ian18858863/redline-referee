@@ -130,7 +130,11 @@ def draft_reply(review: dict, decisions: dict[str, str], gw: Gateway) -> dict:
     except StepError as e:
         out["errors"].append(e.as_dict())
         return out
-    got = f.get("fields") or {}
+    got = f.get("fields") if isinstance(f, dict) else None
+    if not isinstance(got, dict) or any(not isinstance(v, dict) for v in got.values()):
+        out["errors"].append({"endpoint": "Fill", "step": "fill reply", "status": None,
+                              "kind": "invalid_response", "message": "Fill did not return structured reply fields."})
+        return out
     drafted = []
     for i in items:
         v = (got.get(f"reply_{i['id']}") or {}).get("value")
@@ -153,8 +157,8 @@ def draft_reply(review: dict, decisions: dict[str, str], gw: Gateway) -> dict:
         except StepError as e:
             out["errors"].append(e.as_dict())
             return out
-        claims = vr.get("claims") or []
-        if len(claims) != len(drafted):
+        claims = vr.get("claims") if isinstance(vr, dict) else None
+        if not isinstance(claims, list) or len(claims) != len(drafted):
             out["errors"].append({"endpoint": "Verify", "step": "verify reply", "message": "The response did not cover every drafted sentence.",
                                   "status": None, "kind": "invalid_response"})
             return out
@@ -166,8 +170,10 @@ def draft_reply(review: dict, decisions: dict[str, str], gw: Gateway) -> dict:
                                       "kind": "invalid_response", "message": "Verify did not return an aligned claim with a valid probability."})
                 out["paragraphs"] = []
                 return out
+            evidence = c.get("evidence")
+            quote = evidence.get("quote") if isinstance(evidence, dict) else None
             d.update(verdict=c.get("verdict"), supported=c.get("supported"),
-                     evidence=re.sub(r"\s+", " ", (c.get("evidence") or {}).get("quote") or "") or None)
+                     evidence=re.sub(r"\s+", " ", quote).strip() if isinstance(quote, str) else None)
             if c.get("verdict") == "supported" and (c.get("supported") or 0) >= VERIFY_FLOOR:
                 out["paragraphs"].append(d)
             else:

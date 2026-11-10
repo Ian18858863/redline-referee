@@ -148,11 +148,12 @@ def _straddles(pat: re.Pattern, a: str, b: str) -> tuple[int, int, int] | None:
 
 class _Line:
     __slots__ = ("text", "full", "bbox", "real", "page", "block", "first", "nblock", "size", "bold", "hidden", "margin",
-                 "row", "table", "header", "words", "key")
+                 "row", "table", "header", "words", "key", "baseline")
 
     def __init__(self, text, full, bbox, page, block, first, nblock, size, bold, hidden):
         self.text = text            # visible text
         self.full = full            # text as extracted, hidden parts included (what locate sees)
+        self.baseline = bbox[1]     # replaced by the actual text origin when available
         self.bbox = bbox            # box in the frame where the text runs left to right (used for layout)
         self.real = bbox            # box in the page's own coordinates (used for drawing)
         self.page = page
@@ -392,6 +393,7 @@ def _page_layout(doc, page, want_words: bool = False):
                    bool(live) and all(s["flags"] & 16 or "bold" in s["font"].lower() for s in live), why)
         seen_block.add(bi)
         ln.key = (pno, bi, li)
+        ln.baseline = max((s["origin"][1] for s in live), default=line["bbox"][1])
         if want_words:
             ln.words = [(w[0], w[1], w[2], w[3], w[4]) for w in words]
         lines.append(ln)
@@ -425,10 +427,13 @@ def _page_layout(doc, page, want_words: bool = False):
             x0, y0, x1, y1 = l.real
             if way == (0, 1):
                 l.bbox = (y0, W - x1, y1, W - x0)
+                l.baseline = W - x0
             elif way == (0, -1):
                 l.bbox = (H - y1, x0, H - y0, x1)
+                l.baseline = x0
             else:
                 l.bbox = (W - x1, H - y1, W - x0, H - y0)
+                l.baseline = H - l.baseline
         height = W if way[0] == 0 else H
     ordered = _order(lines)
     _mark_rows(ordered)
@@ -439,7 +444,10 @@ def _page_layout(doc, page, want_words: bool = False):
 # ------------------------------------------------------------- reading order
 
 def _yx(l: _Line):
-    return (round(l.bbox[1], 1), l.bbox[0])
+    # Different fonts have different ascenders at the same physical baseline.
+    # Sorting by the top of a glyph box can put an inserted word before its
+    # entire sentence, even on a visually correct PDF.
+    return (round(l.baseline, 1), l.bbox[0])
 
 
 def _order(lines: list[_Line], depth: int = 0) -> list[_Line]:

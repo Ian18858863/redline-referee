@@ -1,0 +1,107 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 5",
+ "request_hash": "1bd78073d1d9c945db4890c244c8931e40d356c529e41dd4885dd0b6b93142af",
+ "request": {
+  "state": {
+   "clause": "5 Service Levels",
+   "change": "The Customer changed this term: “maximum” became “minimum”",
+   "we_sent": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "they_returned": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a minimum of 10% of the monthly fee for that month.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$184,000",
+    "initial_term": "thirty-six (36) months"
+   },
+   "playbook": [
+    "Service levels: service credits: Service credits are capped at 10% of the monthly fee and are the sole remedy. The deal desk may raise the cap to 15%. Credits must always have a maximum: a minimum credit, or no cap, is refused."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the applicable playbook explicitly authorizes the deal desk to offer a different term in response to this proposed change, without another approver. The alternative may restore our original term; it does not have to be strictly between our original term and the Customer's term. No if the applicable rule prohibits the desk from countering this request, every permitted response needs another approver, or no authorized alternative is named. A passage for a different deal size grants no authority."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 49.363457,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "6e258ca8-4e1e-40fa-9f83-67a1814c21ab",
+  "request_id": null,
+  "trace": "a586e21babd407c6-LAX",
+  "wall_ms": 460,
+  "recorded_at": "2026-11-10T17:47:35+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0017
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.4992
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9891,
+     "provider": 0.0067,
+     "neutral": 0.0042
+    },
+    "confidence": 0.9836
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.9737,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.002,
+     "1": 0.0017,
+     "2": 0.0016,
+     "3": 0.0102,
+     "4": 0.9845
+    },
+    "confidence": 0.9807
+   }
+  },
+  "usage": {
+   "input_tokens": 511,
+   "output_tokens": 12
+  }
+ }
+}

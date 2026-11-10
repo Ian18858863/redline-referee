@@ -1,0 +1,465 @@
+{
+  "arms": {
+    "rerank": {
+      "correct": 4,
+      "complete": 6,
+      "cases": 6
+    },
+    "all_passages": {
+      "correct": 4,
+      "complete": 6,
+      "cases": 6
+    },
+    "first_topic_passage": {
+      "correct": 4,
+      "complete": 6,
+      "cases": 6
+    }
+  },
+  "rows": [
+    {
+      "id": "payment-50000-45",
+      "fee": "$50,000",
+      "days": 45,
+      "arm": "rerank",
+      "expected": "accept",
+      "route": "accept",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small"
+      ],
+      "decide": {
+        "route": "accept",
+        "route_confidence": 0.9949,
+        "desk_may_accept": 0.9949,
+        "desk_may_counter": 0.483,
+        "favors": "customer",
+        "favors_confidence": 0.8962,
+        "materiality": 1.0066,
+        "materiality_label": "Minor"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-50000-45",
+      "fee": "$50,000",
+      "days": 45,
+      "arm": "all_passages",
+      "expected": "accept",
+      "route": "accept",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small",
+        "large",
+        "security"
+      ],
+      "decide": {
+        "route": "accept",
+        "route_confidence": 0.9927,
+        "desk_may_accept": 0.9927,
+        "desk_may_counter": 0.5409,
+        "favors": "customer",
+        "favors_confidence": 0.8982,
+        "materiality": 0.985,
+        "materiality_label": "Minor"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-50000-45",
+      "fee": "$50,000",
+      "days": 45,
+      "arm": "first_topic_passage",
+      "expected": "accept",
+      "route": "accept",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small"
+      ],
+      "decide": {
+        "route": "accept",
+        "route_confidence": 0.9949,
+        "desk_may_accept": 0.9949,
+        "desk_may_counter": 0.483,
+        "favors": "customer",
+        "favors_confidence": 0.8962,
+        "materiality": 1.0066,
+        "materiality_label": "Minor"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-50000-60",
+      "fee": "$50,000",
+      "days": 60,
+      "arm": "rerank",
+      "expected": "counter",
+      "route": "counter",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small"
+      ],
+      "decide": {
+        "route": "counter",
+        "route_confidence": 0.8805,
+        "desk_may_accept": 0.0035,
+        "desk_may_counter": 0.8805,
+        "favors": "customer",
+        "favors_confidence": 0.9846,
+        "materiality": 2.7339,
+        "materiality_label": "Major"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-50000-60",
+      "fee": "$50,000",
+      "days": 60,
+      "arm": "all_passages",
+      "expected": "counter",
+      "route": "counter",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small",
+        "large",
+        "security"
+      ],
+      "decide": {
+        "route": "counter",
+        "route_confidence": 0.6189,
+        "desk_may_accept": 0.0051,
+        "desk_may_counter": 0.6189,
+        "favors": "customer",
+        "favors_confidence": 0.9758,
+        "materiality": 3.0093,
+        "materiality_label": "Major"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-50000-60",
+      "fee": "$50,000",
+      "days": 60,
+      "arm": "first_topic_passage",
+      "expected": "counter",
+      "route": "counter",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small"
+      ],
+      "decide": {
+        "route": "counter",
+        "route_confidence": 0.8805,
+        "desk_may_accept": 0.0035,
+        "desk_may_counter": 0.8805,
+        "favors": "customer",
+        "favors_confidence": 0.9846,
+        "materiality": 2.7339,
+        "materiality_label": "Major"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-100000-45",
+      "fee": "$100,000",
+      "days": 45,
+      "arm": "rerank",
+      "expected": "counter",
+      "route": "escalate",
+      "correct": false,
+      "complete": true,
+      "passages": [
+        "large"
+      ],
+      "decide": {
+        "route": null,
+        "route_confidence": 0.4998,
+        "desk_may_accept": 0.0034,
+        "desk_may_counter": 0.5002,
+        "favors": "customer",
+        "favors_confidence": 0.9822,
+        "materiality": 2.6451,
+        "materiality_label": "Major"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-100000-45",
+      "fee": "$100,000",
+      "days": 45,
+      "arm": "all_passages",
+      "expected": "counter",
+      "route": "escalate",
+      "correct": false,
+      "complete": true,
+      "passages": [
+        "small",
+        "large",
+        "security"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9693,
+        "desk_may_accept": 0.0028,
+        "desk_may_counter": 0.0307,
+        "favors": "customer",
+        "favors_confidence": 0.9703,
+        "materiality": 2.6982,
+        "materiality_label": "Major"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-100000-45",
+      "fee": "$100,000",
+      "days": 45,
+      "arm": "first_topic_passage",
+      "expected": "counter",
+      "route": "escalate",
+      "correct": false,
+      "complete": true,
+      "passages": [
+        "small"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9924,
+        "desk_may_accept": 0.0033,
+        "desk_may_counter": 0.0076,
+        "favors": "customer",
+        "favors_confidence": 0.933,
+        "materiality": 2.8361,
+        "materiality_label": "Major"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-100000-60",
+      "fee": "$100,000",
+      "days": 60,
+      "arm": "rerank",
+      "expected": "escalate",
+      "route": "escalate",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "large"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9707,
+        "desk_may_accept": 0.0031,
+        "desk_may_counter": 0.0293,
+        "favors": "customer",
+        "favors_confidence": 0.9715,
+        "materiality": 3.9469,
+        "materiality_label": "Critical"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-100000-60",
+      "fee": "$100,000",
+      "days": 60,
+      "arm": "all_passages",
+      "expected": "escalate",
+      "route": "escalate",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small",
+        "large",
+        "security"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9876,
+        "desk_may_accept": 0.0027,
+        "desk_may_counter": 0.0124,
+        "favors": "customer",
+        "favors_confidence": 0.9805,
+        "materiality": 3.9279,
+        "materiality_label": "Critical"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-100000-60",
+      "fee": "$100,000",
+      "days": 60,
+      "arm": "first_topic_passage",
+      "expected": "escalate",
+      "route": "escalate",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9931,
+        "desk_may_accept": 0.0032,
+        "desk_may_counter": 0.0069,
+        "favors": "customer",
+        "favors_confidence": 0.9794,
+        "materiality": 3.6956,
+        "materiality_label": "Critical"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-250000-45",
+      "fee": "$250,000",
+      "days": 45,
+      "arm": "rerank",
+      "expected": "counter",
+      "route": "escalate",
+      "correct": false,
+      "complete": true,
+      "passages": [
+        "large"
+      ],
+      "decide": {
+        "route": null,
+        "route_confidence": 0.4949,
+        "desk_may_accept": 0.0038,
+        "desk_may_counter": 0.5051,
+        "favors": "customer",
+        "favors_confidence": 0.9839,
+        "materiality": 2.0888,
+        "materiality_label": "Moderate"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-250000-45",
+      "fee": "$250,000",
+      "days": 45,
+      "arm": "all_passages",
+      "expected": "counter",
+      "route": "escalate",
+      "correct": false,
+      "complete": true,
+      "passages": [
+        "small",
+        "large",
+        "security"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.965,
+        "desk_may_accept": 0.0031,
+        "desk_may_counter": 0.035,
+        "favors": "customer",
+        "favors_confidence": 0.9688,
+        "materiality": 2.2061,
+        "materiality_label": "Moderate"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-250000-45",
+      "fee": "$250,000",
+      "days": 45,
+      "arm": "first_topic_passage",
+      "expected": "counter",
+      "route": "escalate",
+      "correct": false,
+      "complete": true,
+      "passages": [
+        "small"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9938,
+        "desk_may_accept": 0.0035,
+        "desk_may_counter": 0.0062,
+        "favors": "customer",
+        "favors_confidence": 0.9698,
+        "materiality": 3.0868,
+        "materiality_label": "Major"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-250000-60",
+      "fee": "$250,000",
+      "days": 60,
+      "arm": "rerank",
+      "expected": "escalate",
+      "route": "escalate",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "large"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9734,
+        "desk_may_accept": 0.007,
+        "desk_may_counter": 0.0266,
+        "favors": "customer",
+        "favors_confidence": 0.9805,
+        "materiality": 3.9562,
+        "materiality_label": "Critical"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-250000-60",
+      "fee": "$250,000",
+      "days": 60,
+      "arm": "all_passages",
+      "expected": "escalate",
+      "route": "escalate",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small",
+        "large",
+        "security"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9891,
+        "desk_may_accept": 0.0023,
+        "desk_may_counter": 0.0109,
+        "favors": "customer",
+        "favors_confidence": 0.9791,
+        "materiality": 3.9446,
+        "materiality_label": "Critical"
+      },
+      "errors": []
+    },
+    {
+      "id": "payment-250000-60",
+      "fee": "$250,000",
+      "days": 60,
+      "arm": "first_topic_passage",
+      "expected": "escalate",
+      "route": "escalate",
+      "correct": true,
+      "complete": true,
+      "passages": [
+        "small"
+      ],
+      "decide": {
+        "route": "escalate",
+        "route_confidence": 0.9928,
+        "desk_may_accept": 0.0034,
+        "desk_may_counter": 0.0072,
+        "favors": "customer",
+        "favors_confidence": 0.9786,
+        "materiality": 3.7326,
+        "materiality_label": "Critical"
+      },
+      "errors": []
+    }
+  ]
+}

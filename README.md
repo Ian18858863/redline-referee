@@ -21,11 +21,14 @@ Entry for the Clocked Build Challenge 2026, built on November 9 and 10, 2026.
 | Live demo, no key needed (replays recorded answers of the live Clocked API) | https://ian18858863.github.io/redline-referee/ |
 | Narrated video, 3 min 20 s | https://ian18858863.github.io/redline-referee/demo.mp4 |
 | Evaluation | [`eval/RESULTS.md`](eval/RESULTS.md) |
+| External-source challenge and routing control, including failed targets | [`eval/EXTERNAL_RESULTS.md`](eval/EXTERNAL_RESULTS.md) |
+
+The new public-source regression holds 6/6 planted substantive edits and contradicts 3/3 false cover notes, but clears only 1/3 faithful rewordings. Its routing control establishes no Rerank accuracy uplift. First-run scoring errata, rejected prompt experiments and the absence of a completed paired human study are disclosed in the external results; these are not general contract-accuracy or productivity claims.
 
 ### For judges: three minutes
 
 1. Open the demo. The first case is a returned copy whose note says nothing changed. The status is **Do not sign**, and the "Cover note" tab shows which three statements Verify contradicted.
-2. Use the "Start here" strip: **A changed number** opens the payment edit; **A faithful rewording** opens wording that should be cleared. **Two readers, one disagreement** is the case where Verify read two real changes as "same meaning" and Compare read them as conflicts. **A note that talks to your AI** is stopped by Guard alone. **The wrong file came back** stops after one Compare call that cost one credit.
+2. The first-screen evidence pair puts the customer's payment assurance next to **30 days → 90 days** from the open review. **Inspect this change** opens its actual page evidence. Expand **Explore the recorded cases** for a faithful rewording, a reader disagreement, a note addressed to an AI, or the wrong-file gate.
 3. Open "How it works" at the bottom of any case: what each endpoint decided in that review, what would have gone wrong without it, and every request with its credits.
 
 To run it on your own two PDFs, see [Run it](#run-it). For the evidence trail, reproduction checks and remaining work against the published criteria, see [the reviewer guide](JUDGING.md).
@@ -187,10 +190,10 @@ uv run python eval/run_hard.py --live            # the hard set
 
 ## Data and disclosure
 
-All documents, companies, people and playbook rules are fictional and were written for this project. No real contract or personal data is included. No API key is in the repository or its history.
+The original development documents, companies, people and playbook rules are fictional and were written for this project. The external challenge adds public, unexecuted contract templates by Common Paper, Bonterms and SixArm, plus our labelled mutations. Their source snapshots, licences and modifications are documented in [`data/external/SOURCES.md`](data/external/SOURCES.md). No customer agreement, participant answer or API key is included.
 
-The application was designed and written with AI coding assistance (Claude Code), including the adversarial reviews described above. The video is narrated by a synthetic voice. `tests/fake_clocked.py` is a stand-in for the API used only by unit tests of our own logic; the demo, the evaluation and `tests/test_recordings.py` use real recorded responses.
+The application was designed and written with AI coding assistance (Claude Code and Codex), including the adversarial reviews described above. The video is narrated by a synthetic voice. `tests/fake_clocked.py` is a stand-in for the API used only by unit tests of our own logic; the demo, the evaluation and `tests/test_recordings.py` use real recorded responses.
 
 Awards entered: Best Overall App, the three group awards, and People's Choice.
 
-MIT License.
+Code: MIT License. External source documents and their derivatives retain their original CC BY 4.0 or CC BY-SA 4.0 licences; see the source attribution above.

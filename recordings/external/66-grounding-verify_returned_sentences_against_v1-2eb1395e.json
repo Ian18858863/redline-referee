@@ -1,0 +1,102 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "2eb1395e16b7ab8b06ea17fa977a193035e8df19b66ef1a0c34de598c8995f1f",
+ "request": {
+  "pdf": {
+   "sha256": "7f92b9d136f39f6d8bc4d22c2f726f90076bd95e2833bdc4724f2111a8d269be"
+  },
+  "answer": "When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) keep using Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing. Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient grants a license under such rights.",
+  "claims": [
+   "When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) keep using Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing.",
+   "Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient grants a license under such rights."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 127.344383,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "8bbc228b-ef8f-4e51-a301-d2e274c79122",
+  "request_id": null,
+  "trace": "a586dea68e58c621-LAX",
+  "wall_ms": 1204,
+  "recorded_at": "2026-11-10T17:45:14+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0023,
+  "ungrounded": 0.9977,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 0,
+    "share_of_answer": 0.0023,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) keep using Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6795,
+    "supported": 0.0024,
+    "contradicted": 0.9918,
+    "not_stated": 0.0035,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient grants a license under such rights.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3205,
+    "supported": 0.002,
+    "contradicted": 0.9936,
+    "not_stated": 0.0025,
+    "not_a_claim": 0.0019,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 138,
+   "total_ms": 140
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 7539
+  }
+ }
+}

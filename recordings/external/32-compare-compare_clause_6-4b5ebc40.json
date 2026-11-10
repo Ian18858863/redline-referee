@@ -1,0 +1,441 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 6",
+ "request_hash": "4b5ebc40e5197f6531f521bc33b43f372fcaeb2cc8679be30f759883e0484d43",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Modification This Agreement can only be modified by a written amendment signed by the Party against whom enforcement of such modification is sought. Change order Any agreements not specified in this contract must be mutually authorized by a written change order. Term The initial term of this Agreement is one calendar week. After that, this Agreement automatically renews for successive one calendar week periods, unless any Party terminates this Agreement. Termination Any Party may terminate this Agreement by giving one calendar Week written notice to the other Parties of such termination. In the event that Work is postponed or terminated at the request of Consultee, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within one calendar week of Consultee's written notification to stop work. In the event of termination, Consultee shall also pay any expenses incurred by Consultant and Consultant shall own all rights to the Work. Consultee shall assume responsibility for all collection of legal fees necessitated by delay and/or default in payment. Limitation of liability Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement. In the case of per project pricing, or per work order pricing, Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement for the project at issue. Laws affecting electronic commerce From time to time governments enact laws and levy taxes and tariffs affecting Internet electronic commerce. Consultee agrees that Consultee is solely responsible for complying with such laws, taxes, and tariffs, and will hold harmless, protect, and defend consultant and its subcontractors from any claim, suit, penalty, tax, or tariff arising from Consultee's exercise of Internet electronic commerce. Debarment Parties warrant and represent that they have never been, are not currently, and, during the term of this Agreement, will not become Debarred."
+   },
+   {
+    "id": "v2",
+    "text": "Modification This Agreement can only be modified by a written amendment signed by the Party against whom enforcement of such modification is sought. Change order Any agreements not specified in this contract must be mutually authorized by a written change order. Term The initial term of this Agreement is four calendar weeks. After that, this Agreement automatically renews for successive one calendar week periods, unless any Party terminates this Agreement. Termination Any Party may terminate this Agreement by giving one calendar Week written notice to the other Parties of such termination. In the event that Work is postponed or terminated at the request of Consultee, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement. If additional payment is due, this shall be payable within one calendar week of Consultee's written notification to stop work. In the event of termination, Consultee shall also pay any expenses incurred by Consultant and Consultant shall own all rights to the Work. Consultee shall assume responsibility for all collection of legal fees necessitated by delay and/or default in payment. Limitation of liability Consultant's total aggregate liability for damages under this agreement shall be limited to two hundred percent (200%) of the amount of fees received for services by consultant under this agreement. In the case of per project pricing, or per work order pricing, Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement for the project at issue. Laws affecting electronic commerce From time to time governments enact laws and levy taxes and tariffs affecting Internet electronic commerce. Consultee agrees that Consultee is solely responsible for complying with such laws, taxes, and tariffs, and will hold harmless, protect, and defend consultant and its subcontractors from any claim, suit, penalty, tax, or tariff arising from Consultee's exercise of Internet electronic commerce. Debarment Parties warrant and represent that they have never been, are not currently, and, during the term of this Agreement, will not become Debarred."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 17,
+  "model_ms": 419.290724,
+  "cost_usd": 0.003386,
+  "attempts": 1,
+  "idempotency_key": "36dcd04c-63bd-4ef6-90c2-77f1fbc4242e",
+  "request_id": null,
+  "trace": "a586d8036e3f1f54-LAX",
+  "wall_ms": 847,
+  "recorded_at": "2026-11-10T17:40:42+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [
+     "v2"
+    ],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [
+     "v1"
+    ],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9985,
+    "probabilities": {
+     "same": 0.0012,
+     "overlapping": 0.002,
+     "conflicting": 0.9953,
+     "unrelated": 0.0015
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9949,
+       "restated": 0.0018,
+       "elaborated": 0.0018,
+       "different": 0.0015
+      },
+      "confidence": 0.9985,
+      "a": {
+       "document": "v1",
+       "quote": "Modification This Agreement can only be modified by a written amendment signed by the Party against whom enforcement of such modification is sought.",
+       "start": 0,
+       "end": 148,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Modification This Agreement can only be modified by a written amendment signed by the Party against whom enforcement of such modification is sought.",
+       "start": 0,
+       "end": 148,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9945,
+       "restated": 0.0022,
+       "elaborated": 0.0017,
+       "different": 0.0016
+      },
+      "confidence": 0.9984,
+      "a": {
+       "document": "v1",
+       "quote": "Change order Any agreements not specified in this contract must be mutually authorized by a written change order.",
+       "start": 149,
+       "end": 262,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Change order Any agreements not specified in this contract must be mutually authorized by a written change order.",
+       "start": 149,
+       "end": 262,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9914,
+       "restated": 0.0031,
+       "elaborated": 0.0028,
+       "different": 0.0027
+      },
+      "confidence": 0.9973,
+      "a": {
+       "document": "v1",
+       "quote": "After that, this Agreement automatically renews for successive one calendar week periods, unless any Party terminates this Agreement.",
+       "start": 325,
+       "end": 458,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "After that, this Agreement automatically renews for successive one calendar week periods, unless any Party terminates this Agreement.",
+       "start": 327,
+       "end": 460,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9935,
+       "restated": 0.0026,
+       "elaborated": 0.0019,
+       "different": 0.002
+      },
+      "confidence": 0.998,
+      "a": {
+       "document": "v1",
+       "quote": "Termination Any Party may terminate this Agreement by giving one calendar Week written notice to the other Parties of such termination.",
+       "start": 459,
+       "end": 594,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Termination Any Party may terminate this Agreement by giving one calendar Week written notice to the other Parties of such termination.",
+       "start": 461,
+       "end": 596,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9939,
+       "restated": 0.0025,
+       "elaborated": 0.0018,
+       "different": 0.0019
+      },
+      "confidence": 0.9981,
+      "a": {
+       "document": "v1",
+       "quote": "In the event that Work is postponed or terminated at the request of Consultee, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement.",
+       "start": 595,
+       "end": 824,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "In the event that Work is postponed or terminated at the request of Consultee, Consultant shall have the right to bill pro rata for work completed through the date of that request, while reserving all rights under this Agreement.",
+       "start": 597,
+       "end": 826,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9923,
+       "restated": 0.0029,
+       "elaborated": 0.0022,
+       "different": 0.0027
+      },
+      "confidence": 0.9973,
+      "a": {
+       "document": "v1",
+       "quote": "If additional payment is due, this shall be payable within one calendar week of Consultee's written notification to stop work.",
+       "start": 825,
+       "end": 951,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "If additional payment is due, this shall be payable within one calendar week of Consultee's written notification to stop work.",
+       "start": 827,
+       "end": 953,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9916,
+       "restated": 0.0031,
+       "elaborated": 0.0025,
+       "different": 0.0028
+      },
+      "confidence": 0.9972,
+      "a": {
+       "document": "v1",
+       "quote": "In the event of termination, Consultee shall also pay any expenses incurred by Consultant and Consultant shall own all rights to the Work.",
+       "start": 952,
+       "end": 1090,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "In the event of termination, Consultee shall also pay any expenses incurred by Consultant and Consultant shall own all rights to the Work.",
+       "start": 954,
+       "end": 1092,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9934,
+       "restated": 0.0028,
+       "elaborated": 0.002,
+       "different": 0.0018
+      },
+      "confidence": 0.9982,
+      "a": {
+       "document": "v1",
+       "quote": "Consultee shall assume responsibility for all collection of legal fees necessitated by delay and/or default in payment.",
+       "start": 1091,
+       "end": 1210,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Consultee shall assume responsibility for all collection of legal fees necessitated by delay and/or default in payment.",
+       "start": 1093,
+       "end": 1212,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9941,
+       "restated": 0.0024,
+       "elaborated": 0.0017,
+       "different": 0.0019
+      },
+      "confidence": 0.9981,
+      "a": {
+       "document": "v1",
+       "quote": "In the event of termination, Consultee shall also pay any expenses incurred by Consultant and Consultant shall own all rights to the Work.",
+       "start": 952,
+       "end": 1090,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "In the case of per project pricing, or per work order pricing, Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement for the project at issue.",
+       "start": 1436,
+       "end": 1722,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9933,
+       "restated": 0.0029,
+       "elaborated": 0.002,
+       "different": 0.0018
+      },
+      "confidence": 0.9982,
+      "a": {
+       "document": "v1",
+       "quote": "Laws affecting electronic commerce From time to time governments enact laws and levy taxes and tariffs affecting Internet electronic commerce.",
+       "start": 1721,
+       "end": 1863,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Laws affecting electronic commerce From time to time governments enact laws and levy taxes and tariffs affecting Internet electronic commerce.",
+       "start": 1723,
+       "end": 1865,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9923,
+       "restated": 0.0032,
+       "elaborated": 0.0021,
+       "different": 0.0024
+      },
+      "confidence": 0.9976,
+      "a": {
+       "document": "v1",
+       "quote": "Consultee agrees that Consultee is solely responsible for complying with such laws, taxes, and tariffs, and will hold harmless, protect, and defend consultant and its subcontractors from any claim, suit, penalty, tax, or tariff arising from Consultee's exercise of Internet electronic commerce.",
+       "start": 1864,
+       "end": 2158,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Consultee agrees that Consultee is solely responsible for complying with such laws, taxes, and tariffs, and will hold harmless, protect, and defend consultant and its subcontractors from any claim, suit, penalty, tax, or tariff arising from Consultee's exercise of Internet electronic commerce.",
+       "start": 1866,
+       "end": 2160,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9935,
+       "restated": 0.0024,
+       "elaborated": 0.002,
+       "different": 0.0021
+      },
+      "confidence": 0.9979,
+      "a": {
+       "document": "v1",
+       "quote": "Debarment Parties warrant and represent that they have never been, are not currently, and, during the term of this Agreement, will not become Debarred.",
+       "start": 2159,
+       "end": 2310,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Debarment Parties warrant and represent that they have never been, are not currently, and, during the term of this Agreement, will not become Debarred.",
+       "start": 2161,
+       "end": 2312,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": [
+     {
+      "kind": "value",
+      "kinds": {
+       "value": 0.9937,
+       "date_or_version": 0.0018,
+       "rule_or_condition": 0.0012,
+       "scope": 0.0009,
+       "name": 0.0012,
+       "no_conflict": 0.0011
+      },
+      "confidence": 0.9989,
+      "a": {
+       "document": "v1",
+       "quote": "Term The initial term of this Agreement is one calendar week.",
+       "start": 263,
+       "end": 324,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Term The initial term of this Agreement is four calendar weeks.",
+       "start": 263,
+       "end": 326,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "value",
+      "kinds": {
+       "value": 0.994,
+       "date_or_version": 0.0014,
+       "rule_or_condition": 0.0011,
+       "scope": 0.0013,
+       "name": 0.0012,
+       "no_conflict": 0.001
+      },
+      "confidence": 0.999,
+      "a": {
+       "document": "v1",
+       "quote": "Limitation of liability Consultant's total aggregate liability for damages under this agreement shall be limited to one hundred percent (100%) of the amount of fees received for services by consultant under this agreement.",
+       "start": 1211,
+       "end": 1433,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Limitation of liability Consultant's total aggregate liability for damages under this agreement shall be limited to two hundred percent (200%) of the amount of fees received for services by consultant under this agreement.",
+       "start": 1213,
+       "end": 1435,
+       "confidence": 1
+      }
+     }
+    ]
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [
+   0
+  ],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 32,
+   "passage_reads": 1,
+   "passages_ms": 124,
+   "passages": 14,
+   "counterparts_ms": 253,
+   "kinds_ms": 26
+  },
+  "timing": {
+   "read_ms": 435,
+   "total_ms": 440
+  }
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "5a3ce50286361be1cdeeaba4a29f8adc470a2bd78a2771cfd04aa954af3c24a9",
+ "request": {
+  "pdf": {
+   "sha256": "d0b380ddeadbce328ad3a8f993d0ca2cf1d66e689f6d834f1763db7e78a3f91a"
+  },
+  "answer": "Recipient will: (a) use Confidential Information only for the Purpose, (b) not disclose Confidential Information to third parties without Discloser’s prior approval, except pursuant to Section 5 (Permitted Disclosures), (c) protect Confidential Information using at least the same precautions Recipient uses for its own similar information and no less than a reasonable standard of care, (d) not remove proprietary markings from Confidential Information or reverse engineer technology provided as Confidential Information and (e) not export Confidential Information or any direct product of Confidential Information in violation of export laws.",
+  "claims": [
+   "Recipient will: (a) use Confidential Information only for the Purpose, (b) not disclose Confidential Information to third parties without Discloser’s prior approval, except pursuant to Section 5 (Permitted Disclosures), (c) protect Confidential Information using at least the same precautions Recipient uses for its own similar information and no less than a reasonable standard of care, (d) not remove proprietary markings from Confidential Information or reverse engineer technology provided as Confidential Information and (e) not export Confidential Information or any direct product of Confidential Information in violation of export laws."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 119.779964,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "e867f98d-f38b-4930-8d45-4500745d3072",
+  "request_id": null,
+  "trace": "a586d7ef8802498b-LAX",
+  "wall_ms": 849,
+  "recorded_at": "2026-11-10T17:40:39+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.551,
+  "ungrounded": 0.449,
+  "verdict": "ungrounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.551,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Recipient will: (a) use Confidential Information only for the Purpose, (b) not disclose Confidential Information to third parties without Discloser’s prior approval, except pursuant to Section 5 (Permitted Disclosures), (c) protect Confidential Information using at least the same precautions Recipient uses for its own similar information and no less than a reasonable standard of care, (d) not remove proprietary markings from Confidential Information or reverse engineer technology provided as Confidential Information and (e) not export Confidential Information or any direct product of Confidential Information in violation of export laws.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 1,
+    "supported": 0.551,
+    "contradicted": 0.3803,
+    "not_stated": 0.0571,
+    "not_a_claim": 0.0117,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [
+   0
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.551
+  },
+  "timing": {
+   "read_ms": 129,
+   "total_ms": 136
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 7537
+  }
+ }
+}

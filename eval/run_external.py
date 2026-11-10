@@ -16,8 +16,11 @@ def transition(c, edit):
     # Require both sides in the SAME review card, including surrounding quotes.
     # No clause-number or model label assumption is used by the scorer.
     old, new = map(nz, edit)
-    return bool(old and new) and any(old in nz(p["v1"].get("quote", "")) and
-                                    new in nz(p["v2"].get("quote", "")) for p in c.get("parts", []))
+    def hit(side, expected):
+        changed, quote = nz(side.get("changed", "")), nz(side.get("quote", ""))
+        return expected in quote or bool(changed and changed in expected)
+    return bool(old and new) and any(hit(p["v1"], old) and hit(p["v2"], new)
+                                    for p in c.get("parts", []))
 
 
 def score(truth, r):
@@ -28,7 +31,11 @@ def score(truth, r):
     faithful = [{"old": a, "new": b, "cleared": not any(transition(c, (a, b)) for c in held)
                  and any(transition(c, (a, b)) for c in changes)} for a, b in truth["faithful"]]
     claims = r.get("note", {}).get("claims", [])
-    return {"id": truth["id"], "status": r.get("status"), "expected_status": truth["expected_status"],
+    # Protocol-v1 erratum: a contradicted cover note is a product-level blocker,
+    # not merely "changes". Retain the frozen original label and first result.
+    expected = "blocked" if truth["false_cover"] else truth["expected_status"]
+    return {"id": truth["id"], "status": r.get("status"), "expected_status": expected,
+            "frozen_original_status": truth["expected_status"],
             "complete": not r.get("errors"), "errors": r.get("errors", []), "edits": edits, "faithful": faithful,
             "unexpected_blocking": max(0, len(held) - sum(e["held"] for e in edits)),
             "false_cover": truth["false_cover"],

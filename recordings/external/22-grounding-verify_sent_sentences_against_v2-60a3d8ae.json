@@ -1,0 +1,110 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "60a3d8aebb29a6145c640bfa45498625e8e7c6045560559830231df1dea2f54c",
+ "request": {
+  "pdf": {
+   "sha256": "7e5ef02788891cab3bfd1cdf4e979d743d8f312416e8bcf0c19287dd132a5d3e"
+  },
+  "answer": "When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) cease using Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing. Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient grants no license under such rights.",
+  "claims": [
+   "When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) cease using Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing.",
+   "Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient grants no license under such rights."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 141.117313,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "324a81db-c55d-40ac-9ea5-9c6b4d6455fb",
+  "request_id": null,
+  "trace": "a586d7cbbced7a17-LAX",
+  "wall_ms": 872,
+  "recorded_at": "2026-11-10T17:40:33+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.5771,
+  "ungrounded": 0.4229,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.5771,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "When this NDA expires or terminates or upon Discloser’s request, Recipient will: (a) cease using Confidential Information, (b) promptly after Discloser’s request, destroy all Confidential Information in Recipient’s possession or control or return it to Discloser and (c) if requested by Discloser, confirm its compliance with these obligations in writing.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6788,
+    "supported": 0.8282,
+    "contradicted": 0.0802,
+    "not_stated": 0.0816,
+    "not_a_claim": 0.01,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "7.",
+     "start": 3949,
+     "end": 3951,
+     "confidence": 0.984
+    }
+   },
+   {
+    "claim": "Discloser retains all of its intellectual property and other rights in its Confidential Information and its disclosure to Recipient grants no license under such rights.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3212,
+    "supported": 0.0464,
+    "contradicted": 0.7645,
+    "not_stated": 0.1669,
+    "not_a_claim": 0.0221,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.0464
+  },
+  "timing": {
+   "read_ms": 150,
+   "total_ms": 156
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 7537
+  }
+ }
+}

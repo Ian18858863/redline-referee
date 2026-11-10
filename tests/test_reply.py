@@ -157,3 +157,33 @@ def test_wrong_file_never_produces_a_reply():
     with pytest.raises(ReplyNotReady):
         draft_reply({'status': 'blocked', 'changes': [], 'compare': {'gate': {'stopped': True}}}, {}, Gateway('live', client=stub))
     assert stub.calls == []
+
+
+@pytest.mark.parametrize('value', [None, [], {'reply_c1': 'not a typed field'}])
+def test_malformed_fill_fields_fail_closed(value):
+    class Broken(Stub):
+        def fill(self, *a, **kw):
+            return Res({'fields': value})
+    out = draft_reply(review_fixture(), DECISIONS, Gateway('live', client=Broken()))
+    assert out['errors'] and not out['text']
+
+
+@pytest.mark.parametrize('probability', [True, float('nan'), float('inf'), -1, 2])
+def test_invalid_reply_probabilities_never_release_a_draft(probability):
+    class Broken(Stub):
+        def grounding(self, *a, **kw):
+            r = super().grounding(*a, **kw)
+            r['claims'][0]['supported'] = probability
+            return r
+    out = draft_reply(review_fixture(), DECISIONS, Gateway('live', client=Broken()))
+    assert out['errors'] and not out['text'] and not out['paragraphs']
+
+
+def test_reordered_claims_never_release_a_draft():
+    class Broken(Stub):
+        def grounding(self, *a, **kw):
+            r = super().grounding(*a, **kw)
+            r['claims'].reverse()
+            return r
+    out = draft_reply(review_fixture(), DECISIONS, Gateway('live', client=Broken()))
+    assert out['errors'] and not out['text']

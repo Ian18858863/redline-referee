@@ -1,0 +1,32 @@
+{
+  "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+  },
+  "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages name a different term, between our original term and what the Customer wrote, that the deal desk may agree to on its own authority and could offer instead. No if every alternative needs another approver, or the passages name no alternative."
+  },
+  "desk_may_restore": {
+    "type": "noul",
+    "instructions": "For this specific Customer request and these deal facts, does the applicable playbook explicitly permit the deal desk to counter by asking the Customer to restore the original term, without another approver? Yes only when that response is authorized. No if the applicable rule says the desk may not counter this request, requires another approver, or gives no such authority. Ignore passages for other deal sizes."
+  },
+  "favors": {
+    "type": "choice",
+    "criteria": {
+      "customer": "The change shifts money, risk or flexibility toward the Customer.",
+      "provider": "The change shifts money, risk or flexibility toward the Provider.",
+      "neutral": "The change does not clearly favour either party."
+    }
+  },
+  "materiality": {
+    "type": "score",
+    "criteria": [
+      "Trivial: no commercial or legal effect",
+      "Minor: small effect, routine to accept",
+      "Moderate: a real concession worth negotiating",
+      "Major: changes the economics or the risk of the deal",
+      "Critical: should not be signed without senior approval"
+    ]
+  }
+}

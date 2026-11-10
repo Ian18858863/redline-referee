@@ -291,11 +291,27 @@ function renderIntro() {
   const have = MOMENTS.filter((m) => S.index.some((c) => c.id === m.case));
   root.hidden = S.noIntro || store.get('rr-intro') === 'off' || !have.length;
   if (root.hidden) { root.replaceChildren(); return; }
+  const r = S.review;
+  const claims = arr(r?.note?.claims);
+  const paymentClaim = claims.findIndex((c) => c.verdict === 'contradicted' && /payment/i.test(c.text ?? ''));
+  const ci = paymentClaim >= 0 ? paymentClaim : claims.findIndex((c) => c.verdict === 'contradicted');
+  const claim = claims[ci];
+  const held = changesOf(r ?? {}).filter((c) => c.blocking);
+  const linked = arr(claim?.change_ids);
+  const proof = held.find((c) => linked.includes(c.id)) ?? held[0];
+  const evidence = claim && proof ? h('div', { class: 'intro-evidence' },
+    h('div', { class: 'intro-said' }, h('span', { class: 'intro-label' }, 'The cover note'), h('q', null, claim.text)),
+    h('span', { class: 'intro-vs', 'aria-hidden': 'true' }, '→'),
+    h('div', { class: 'intro-found' }, h('span', { class: 'intro-label' }, `The returned copy · ${clauseOf(proof)}`), h('strong', null, proof.summary)),
+    h('button', { type: 'button', class: 'btn btn--primary intro-action', onclick: () => { S.tab = 'changes'; select(proof.id); if (narrow()) reveal($('#detail')); } }, 'Inspect this change', ico('arrow'))) :
+    h('div', { class: 'intro-orientation' }, h('b', null, 'Know what you are being asked to sign.'), h('span', null, 'Compare both copies. Check the cover note. Decide each change.'));
   root.replaceChildren(
-    h('b', { class: 'intro-kicker' }, 'Start here'),
-    h('p', { class: 'intro-text' }, 'A customer returned a “clean copy” of your agreement. This is what really changed.'),
-    h('div', { class: 'intro-links' }, have.map((m) => h('button', { type: 'button', class: 'intro-btn', dataset: { moment: m.key }, onclick: () => goMoment(m.key) }, m.label, ico('arrow')))),
+    h('b', { class: 'intro-kicker' }, 'A second look before you sign'),
+    evidence,
+    h('details', { class: 'intro-explore' }, h('summary', null, 'Explore the recorded cases'),
+      h('div', { class: 'intro-links' }, have.map((m) => h('button', { type: 'button', class: 'intro-btn', dataset: { moment: m.key }, onclick: () => goMoment(m.key) }, m.label, ico('arrow'))))),
     h('button', { type: 'button', class: 'icon-btn intro-close', 'aria-label': 'Dismiss this strip', title: 'Dismiss', onclick: () => { store.set('rr-intro', 'off'); root.hidden = true; root.replaceChildren(); } }, ico('x')));
+
 }
 function goMoment(key) {
   const m = MOMENTS.find((x) => x.key === key);
@@ -663,6 +679,7 @@ function readersOf(c) {
   };
 }
 const disagrees = (c) => !!c.blocking && c.readers?.agree === false;
+const uncertainMeaning = (c) => !!c.blocking && c.readers?.compare === 'same' && c.readers?.verify !== 'same' && arr(c.parts).every((p) => p.kind === 'wording');
 function disagreeMark(c) {
   return disagrees(c) ? h('span', { class: 'badge is-clash', title: 'The rule layer, Verify and Compare do not read this change the same way. The stricter reading wins.' }, 'readers disagree') : null;
 }
@@ -1422,7 +1439,7 @@ function threeReadings(c) {
   if (d) then.push(chip('route', 'Decide', d.route ? `${(ROUTES[d.route] ?? words(d.route)).toLowerCase()}${pct(d.route_confidence) ? ` ${pct(d.route_confidence)}` : ''}` : 'no clear answer', d.route ? (ROUTE_TONE[d.route] ?? 't-grey') : 't-grey'));
   return keyed('readings', block('Three readings', null, rd.agree === true && asked(rd.verify) && asked(rd.compare) && !bw ? h('span', { class: 'right-note' }, 'all agree') : null,
     cells,
-    disagrees(c) ? h('p', { class: 'readers-clash' }, ico('alert'), 'The readers disagree. The stricter reading wins.') : null,
+    disagrees(c) ? h('p', { class: 'readers-clash' }, ico('alert'), uncertainMeaning(c) ? 'Compare reads the same meaning; Verify does not confirm it in both directions. Kept for human review. A substantive change is not established by agreement of the readers.' : 'The readers disagree. The stricter reading wins.') : null,
     lead || why ? h('p', { class: 'plain' }, lead ? h('b', { style: 'font-weight:600;color:var(--ink)' }, `${lead} `) : h('b', { style: 'font-weight:600;color:var(--ink)' }, 'Why it is listed. '), why) : null,
     then.length ? h('div', { class: 'readings' }, then) : null));
 }
@@ -1493,7 +1510,7 @@ function renderDetail({ keepScroll = false } = {}) {
         h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Next change', title: 'Next change (J)', disabled: i === ch.length - 1, onclick: () => move(1) }, ico('down'), h('kbd', null, 'J')))),
     h('h2', { class: 'detail-title' }, [clauseOf(c), c.title].filter(Boolean).join(' · ') || 'Change'),
     c.summary && c.summary !== KIND_LABEL[c.kind] ? h('p', { class: 'detail-summary' }, c.summary) : null,
-    h('div', { class: 'detail-badges' }, h('span', { class: `chip ${CLASS_TONE[c.cls] ?? 't-grey'}` }, KIND_LABEL[c.kind] ?? CLASSES[c.cls] ?? (c.cls ? words(c.cls) : 'Change')), disagreeMark(c), promotedMark(c)));
+    h('div', { class: 'detail-badges' }, h('span', { class: `chip ${CLASS_TONE[c.cls] ?? 't-grey'}` }, uncertainMeaning(c) ? 'Meaning needs review' : (KIND_LABEL[c.kind] ?? CLASSES[c.cls] ?? (c.cls ? words(c.cls) : 'Change'))), disagreeMark(c), promotedMark(c)));
 
   // What changed
   const parts = arr(c.parts);
@@ -2346,6 +2363,7 @@ async function openReview({ id = null, base, run = false, change = null, view = 
 
   document.title = `${r.case?.title ? `${r.case.title} · ` : ''}Redline Referee`;
   renderTop();
+  renderIntro();
   renderVerdict();
   renderErrors();
   renderLeft();

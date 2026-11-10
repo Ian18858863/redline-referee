@@ -1,0 +1,104 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "6ae3997d0a65c19c15d493272020accb78be5e80fa516149093ea455671a8772",
+ "request": {
+  "pdf": {
+   "sha256": "d9e659262239bdd7539bae8f1f69e3ee8ef1326357c10b1303c08f846c25b5b8"
+  },
+  "answer": "(b) not disclose Confidential Information to third parties without the Disclosing Party’s prior notification, except that the Receiving Party may disclose Confidential Information to its employees, agents, advisors, contractors and other representatives having a reasonable need to know for the Purpose, provided these representatives are bound by confidentiality obligations no less protective of the Disclosing Party than the applicable terms in this MNDA and the Receiving Party remains responsible for their compliance with this MNDA; and (c) protect Confidential Information using at least the same protections the Receiving Party uses for its own similar information but no less than a reasonable standard of care. Upon expiration or termination of this MNDA or upon the Disclosing Party’s earlier request, the Receiving Party will: (a) continue using Confidential Information;",
+  "claims": [
+   "(b) not disclose Confidential Information to third parties without the Disclosing Party’s prior notification, except that the Receiving Party may disclose Confidential Information to its employees, agents, advisors, contractors and other representatives having a reasonable need to know for the Purpose, provided these representatives are bound by confidentiality obligations no less protective of the Disclosing Party than the applicable terms in this MNDA and the Receiving Party remains responsible for their compliance with this MNDA; and (c) protect Confidential Information using at least the same protections the Receiving Party uses for its own similar information but no less than a reasonable standard of care.",
+   "Upon expiration or termination of this MNDA or upon the Disclosing Party’s earlier request, the Receiving Party will: (a) continue using Confidential Information;"
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 140.916096,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "0d899f4b-e47b-4ac8-82c4-4a8cb35d8d11",
+  "request_id": null,
+  "trace": "a586d77869a0398e-LAX",
+  "wall_ms": 631,
+  "recorded_at": "2026-11-10T17:40:20+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0089,
+  "ungrounded": 0.9911,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 0,
+    "share_of_answer": 0.0089,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "(b) not disclose Confidential Information to third parties without the Disclosing Party’s prior notification, except that the Receiving Party may disclose Confidential Information to its employees, agents, advisors, contractors and other representatives having a reasonable need to know for the Purpose, provided these representatives are bound by confidentiality obligations no less protective of the Disclosing Party than the applicable terms in this MNDA and the Receiving Party remains responsible for their compliance with this MNDA; and (c) protect Confidential Information using at least the same protections the Receiving Party uses for its own similar information but no less than a reasonable standard of care.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.8163,
+    "supported": 0.0103,
+    "contradicted": 0.9574,
+    "not_stated": 0.0242,
+    "not_a_claim": 0.008,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Upon expiration or termination of this MNDA or upon the Disclosing Party’s earlier request, the Receiving Party will: (a) continue using Confidential Information;",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1837,
+    "supported": 0.0026,
+    "contradicted": 0.9925,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.0021,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.0026
+  },
+  "timing": {
+   "read_ms": 151,
+   "total_ms": 157
+  },
+  "pdf": {
+   "pages": 2,
+   "selected": [
+    1,
+    2
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    4315
+   ],
+   "characters": 6935
+  }
+ }
+}

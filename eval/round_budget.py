@@ -17,10 +17,10 @@ SEND_LIMIT = 1350
 
 
 class RoundGateway(Gateway):
-    def __init__(self, live=False):
+    def __init__(self, live=False, recordings=None):
         rows = [json.loads(s) for s in LEDGER.read_text().splitlines()] if LEDGER.exists() else []
         self.prior = sum(r["charged"] + r["uncertain"] for r in rows)
-        super().__init__("auto" if live else "replay", ROOT / "recordings/external",
+        super().__init__("auto" if live else "replay", recordings or ROOT / "recordings/external",
                          record=live, credit_cap=max(0, SEND_LIMIT - self.prior), time_budget_s=3600)
         self.round_lock = threading.Lock()
 
