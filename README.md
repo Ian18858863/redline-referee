@@ -25,10 +25,10 @@ Entry for the Clocked Build Challenge 2026, built on November 9 and 10, 2026.
 ### For judges: three minutes
 
 1. Open the demo. The first case is a returned copy whose note says nothing changed. The status is **Do not sign**, and the "Cover note" tab shows which three statements Verify contradicted.
-2. Use the "Start here" strip: **Two readers, one disagreement** is the case where Verify read two real changes as "same meaning" and Compare read them as conflicts. **A note that talks to your AI** is stopped by Guard alone. **The wrong file came back** stops after one Compare call that cost one credit.
+2. Use the "Start here" strip: **A changed number** opens the payment edit; **A faithful rewording** opens wording that should be cleared. **Two readers, one disagreement** is the case where Verify read two real changes as "same meaning" and Compare read them as conflicts. **A note that talks to your AI** is stopped by Guard alone. **The wrong file came back** stops after one Compare call that cost one credit.
 3. Open "How it works" at the bottom of any case: what each endpoint decided in that review, what would have gone wrong without it, and every request with its credits.
 
-To run it on your own two PDFs, see [Run it](#run-it).
+To run it on your own two PDFs, see [Run it](#run-it). For the evidence trail, reproduction checks and remaining work against the published criteria, see [the reviewer guide](JUDGING.md).
 
 ## What each endpoint changes
 
@@ -41,7 +41,7 @@ To run it on your own two PDFs, see [Run it](#run-it).
 | **Verify**, reply | Each sentence Fill drafted, against the decisions taken | A sentence that is not supported is removed from what the customer sees | |
 | **Compare** `/clocked/compare`, clause against clause | Each differing clause as sent and as returned, two text documents | A conflict confirms a change and vetoes clearing it. Its passages are checked character by character and drawn on both pages | Without it: 4 real changes cleared, because Verify read them as the same meaning |
 | **Compare**, whole documents | The two PDFs, asked for the relation only | A gate: if they are not versions of one agreement the review stops there | 1 to 3 credits per review; fired on the wrong-file case at "related 1%" |
-| **Rerank** `/clocked/rerank` | The playbook passages for each open change, with the deal size as `context` | Only passages returned `use` at 0.9 or above are shown and passed on, at most two. A passage for another deal size comes back `skip / different_case`. No passage: the change goes to Legal | Deciding passage kept 23 of 24 times; none kept 6 of 6 times when the playbook has none |
+| **Rerank** `/clocked/rerank` | The playbook passages for each open change, with the deal size as `context` | Only passages returned `use` at 0.9 or above are shown and passed on, at most three. A passage for another deal size comes back `skip / different_case`. No passage: the change goes to Legal | Deciding passage kept 24 of 24 times; none kept 6 of 6 times when the playbook has none |
 | **Decide** `/clocked/decide` | One change, the passages Rerank kept, the deal facts Extract read. Two yes/no questions | Code turns two probabilities into accept, counter or escalate. Between 0.4 and 0.6 is not an answer: a person decides | 27 of 30 routes equal to the playbook; the 3 misses are on the strict side |
 | **Extract** `/clocked/extract` | Thirteen key terms from each PDF, `return_pdf: "box"` | The side-by-side terms table; the annual fee and term given to Rerank and Decide | |
 | **Fill** `/clocked/fill` | A brief of the decisions: generated sentences, a verbatim position per countered change, three typed answers | The reply to the customer and its closing line | Drafted for 6 demo cases; every sentence then went through Verify |
@@ -71,11 +71,13 @@ v1.pdf  v2.pdf  cover note
   status, set by code:  blocked > incomplete > changes > ready
 ```
 
-**Why a rule layer.** Nobody should depend on a model noticing that 30 became 90. Deterministic code finds every textual difference and quotes it verbatim, so recall of differences is 100% by construction. A number, a date, a symbol or a currency that differs is never cleared by a model. Spelling, formatting and a notice address are settled by rules and are not sent to the API.
+**Why a rule layer.** Nobody should depend on a model noticing that 30 became 90. Deterministic code enumerates differences in the extracted, aligned text and quotes them verbatim. PDF extraction and alignment can still miss content; deterministic comparison alone is not a guarantee of recall on arbitrary PDFs. A number, a date, a symbol or a currency that differs is never cleared by a model. Spelling, formatting and a notice address are settled by rules and are not sent to the API.
 
 **Why two readers.** What the rules cannot do is read meaning: "will defend" to "may defend" is one word; a rewritten sentence may say the same thing. On 39 such edits Verify alone would have cleared two real changes and Compare alone left one unflagged. Together: 24 of 24 changes of meaning held, 14 of 15 faithful rewordings cleared, and the one miss is a false alarm.
 
 ## Measured
+
+These are development examples, not a held-out contract benchmark. Every attempted review, expected statement and expected route stays in the evaluation denominator, including missing or failed results. `uv run python eval/run_eval.py --check` fails when evaluation coverage is incomplete; known model mistakes remain reported.
 
 All numbers are computed from recorded answers of the live API against exact ground truth; `uv run python eval/run_eval.py` recomputes them without a key. Full tables: [`eval/RESULTS.md`](eval/RESULTS.md).
 
@@ -132,7 +134,7 @@ Requirements: Python 3.10+ and [uv](https://docs.astral.sh/uv/).
 
 ```sh
 uv sync
-uv run pytest                          # 901 tests, no key, no network
+uv run pytest                          # application, failure-path and recorded-response tests; no API calls
 uv run python scripts/build_site.py    # rebuild docs/ from the recordings
 uv run uvicorn referee.server:app --port 8787
 ```
@@ -160,15 +162,16 @@ uv run python eval/run_hard.py --live            # the hard set
 | Path | Contents |
 |---|---|
 | `referee/textdoc.py`, `referee/rules.py` | The deterministic layer: PDF text, clauses, alignment, diff, classes, hidden text, locating quotes |
+| `referee/note.py` | Cover-note statements, instructions, courtesies and signature parsing |
 | `referee/engine.py` | The review: gate, the readings and how code decides between them, cover note, routing, status |
 | `referee/reply.py` | The reply to the customer: Fill drafts, Verify decides what stays |
 | `referee/gateway.py` | The one door to Clocked: record, replay by request hash, credit reservation, time budget, audit |
 | `referee/prompts.py` | Every instruction, question and threshold sent to Clocked |
 | `referee/server.py` | Uploads, limits, the reply endpoint |
 | `referee/contracts.py`, `data/` | The synthetic agreement, the catalogue of edits with exact ground truth, the playbook |
-| `recordings/` | 428 recorded exchanges with the live API behind the demo and the evaluation, with credits |
+| `recordings/` | Recorded exchanges with the live API behind the demo and the evaluation, with credits |
 | `web/`, `docs/` | The interface (no framework, no build step) and the built static demo |
-| `tests/`, `eval/` | 901 tests (257 functions) and the evaluation |
+| `tests/`, `eval/` | Application, failure-path and recorded-response tests, plus the evaluation |
 
 ## Limits
 

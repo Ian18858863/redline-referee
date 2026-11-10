@@ -414,7 +414,10 @@ def test_an_appendix_that_restarts_its_numbering_is_compared_as_itself(tmp_path)
     assert [(c["clause"], c["title"]) for c in held] == [("1", "Services"), ("Schedule A 1", "Fees Schedule")]
     assert held[0]["uid"] != held[1]["uid"] and all(c["uid"]["v1"] and c["uid"]["v2"] for c in held)
     clause_texts = [q["documents"][1]["text"] for name, q in spy.sent if name == "compare" and "text" in q["documents"][0]]
-    assert len(clause_texts) == 2 and "must not update" in clause_texts[0] and "$9,000" in clause_texts[1]
+    # Calls run concurrently: their arrival order is not the order of the clauses.
+    assert len(clause_texts) == 2
+    assert sum("must not update" in text for text in clause_texts) == 1
+    assert sum("$9,000" in text for text in clause_texts) == 1
     assert [c["uid"] for c in r["compare"]["clauses"]] == [[c["uid"]["v1"], c["uid"]["v2"]] for c in held]
     assert all(c["route"] and c["decide"] for c in held)                   # each routed on its own
 

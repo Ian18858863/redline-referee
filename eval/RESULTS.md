@@ -2,7 +2,7 @@
 
 Everything here is computed from recorded answers of the live Clocked API (`recordings/`) against exact ground truth (`data/cases/*/truth.json`). `python eval/run_eval.py` and `python eval/run_hard.py` recompute it without a key.
 
-Finding that two texts differ is done by deterministic code, so recall of textual differences is 100% by construction. What is measured below is what the application does with each difference.
+Differences in extracted, aligned text are found by deterministic code. This is not a guarantee of recall across arbitrary PDF layouts. What is measured below is what the application does with each difference. Failed reviews, missing edits and unchecked claims stay in the denominators.
 
 ## Seeded pairs (15 of 15 completed without a failed step)
 
@@ -18,6 +18,7 @@ Twelve pairs with two to four planted substantive edits, plus three pairs in whi
 | Cosmetic edits (spelling, formatting, address, rewording) wrongly held | 0 of 41 |
 | Faithful rewordings cleared | 4 of 4 |
 | Clauses held with no planted cause | 0 |
+| Expected cover-note statements not checked | 0 |
 | False cover-note statements judged contradicted | 30 of 30 |
 | True cover-note statements judged supported | 37 of 39 (2 not stated, 0 wrongly contradicted) |
 | Hidden instructions flagged by Guard / found as hidden text by rules | 2 of 2 / 2 of 2 |
@@ -31,11 +32,12 @@ Each planted edit has a route the playbook dictates (`EXPECTED_ROUTE` in `refere
 
 | Measure | Result |
 |---|---|
+| Expected routes with no usable route returned | 0 |
 | Route equal to what the playbook dictates | 27 of 30 |
 | Wrong on the strict side (sent to a person or countered when the desk could accept) | 3 |
 | Wrong on the loose side (accepted or countered what needed an approver) | 0 |
-| The deciding playbook passage was among those Rerank kept | 23 of 24 |
-| Other passages Rerank also kept for those edits | 6 |
+| The deciding playbook passage was among those Rerank kept | 24 of 24 |
+| Other passages Rerank also kept for those edits | 4 |
 | No passage kept when the playbook has none (escalated by rule) | 6 of 6 |
 
 Routes that differ from the playbook: data_export: counter (playbook says accept); data_export: counter (playbook says accept); data_export: counter (playbook says accept).
@@ -63,6 +65,15 @@ Every recorded pair with ground truth (24 pairs: 69 real changes, 20 faithful re
 | Without Compare | 4 | 1 | 1 | 1 of 24 |
 | Rules alone | 0 | 20 | 39 | 13 of 24 |
 
+Ablation coverage (a missing counterfactual response is not a model error or a completed measurement):
+
+| Variant | Complete replays |
+|---|---|
+| all three | 24 of 24 |
+| without Verify | 24 of 24 |
+| without Compare | 24 of 24 |
+| rules alone | 24 of 24 |
+
 Without Verify the cover note is taken at its word. With rules alone every rewording is a change and nothing checks the note.
 
-These are sixteen variations of one synthetic agreement plus a hard set and one unrelated agreement. They show that the application does what it claims on data with exact answers. They are not an accuracy figure for contracts in general.
+These are authored variations of one synthetic agreement plus a hard set and one unrelated agreement. They show that the application does what it claims on data with exact answers. They are not an accuracy figure for contracts in general.

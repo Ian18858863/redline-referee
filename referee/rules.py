@@ -45,6 +45,11 @@ MONEY = re.compile(rf"{_SIGN}?[{_CUR}]\s?{_NUM}|\b{_ISO}\s?{_NUM}|\d(?:[\d.,]*\d
 PERCENT = re.compile(rf"{_SIGN}?\d+(?:[.,]\d+)?\s?%")
 NUMBER = re.compile(rf"{_SIGN}?{_NUM}")
 ADDRESSISH = re.compile(r"\b(street|st\.|avenue|ave\.|road|rd\.|suite|floor|row|boulevard|blvd|drive|lane|p\.?o\.? box|\d{5}(?:-\d{4})?)\b", re.I)
+# A street name is not enough to exempt a mixed address/notice-effect rewrite.
+_NOTICE_EFFECT = re.compile(r"\b(?:shall|must|may|can|cannot|without|unless|not|no|only|waiv\w*|"
+                            r"consent|effective|deemed|receipt|received|delivery|delivered|"
+                            r"registered|certified|electronic|business\s+days?)\b", re.I)
+_EMAIL_WORD = re.compile(r"\be-?mail\b", re.I)
 CONTEXT_TOKENS = 4
 CONTEXT_TOKENS_CJK = 10              # one token is one character there
 SENTENCE_CAP = 1200                  # several sentences sent as one passage stop at a sentence end near this length
@@ -601,7 +606,9 @@ def _classify(ca: Clause, cb: Clause, q1: str, q2: str, c1: str, c2: str, englis
             real_words = f"“{w1}” and “{w2}” are both real words: a change of wording, not a spelling fix."
     v1, v2 = _values(q1), _values(q2)
     same_terms = all(v1[k] == v2[k] for k in ("money", "percent", "duration"))
-    if same_terms and re.search(r"notice", cb.title, re.I) and (ADDRESSISH.search(c1) or ADDRESSISH.search(c2)):
+    if (same_terms and re.search(r"notice", cb.title, re.I) and (ADDRESSISH.search(c1) or ADDRESSISH.search(c2))
+            and not _NOTICE_EFFECT.search(c1 + " " + c2)
+            and len(_EMAIL_WORD.findall(c1)) == len(_EMAIL_WORD.findall(c2))):
         return Hunk(cls="administrative", kind="address", summary="Notice address updated",
                     why="Contact details inside a notices clause.", **base)
     for kind in ("money", "percent", "duration", "number"):

@@ -129,3 +129,15 @@ def test_added_and_removed_clauses_are_reported_as_such(case, added, removed, re
     planted = {e["clause"] for e in truth["substantive"]}
     assert {h.clause for h in hunks if h.substantive} == planted
     assert not any(h.summary == "Heading changed" for h in hunks)
+
+
+@pytest.mark.parametrize('old,new', [
+    ('10 Main Street with consent', '20 High Road without consent'),
+    ('10 Main Street, effective on receipt', '20 High Road, deemed delivered'),
+    ('10 Main Street, registered delivery', '20 High Road, email only'),
+])
+def test_a_mixed_notice_rewrite_is_not_an_address_exemption(old, new):
+    from referee.rules import _classify
+    from referee.textdoc import Clause
+    a, b = Clause('14', 'Notices', old, 1), Clause('14', 'Notices', new, 1)
+    assert _classify(a, b, old, new, old, new).substantive

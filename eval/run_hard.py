@@ -5,13 +5,12 @@
 
 For every planted edit: what the rule layer said, what Verify read (the sentence against the
 other version's PDF, both ways), what Compare read (clause against clause), and what the
-application did (held as a change, or cleared). Writes eval/hard.json and eval/HARD.md.
+application did (held as a change, or cleared). Writes eval/hard.json and eval/hard-summary.json.
 """
 from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 from pathlib import Path
 
@@ -19,21 +18,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from referee.engine import review  # noqa: E402
 from referee.gateway import Gateway  # noqa: E402
+from eval.scoring import matches  # noqa: E402
 
 CASES = ROOT / "data" / "cases"
-nz = lambda s: re.sub(r"[^a-z0-9]+", "", (s or "").lower())
 
 
 def covering(change: dict, edit: dict) -> bool:
-    if change["clause"] != edit["clause"]:
-        return False
-    new, old = nz(edit["v2_quote"]), nz(edit["v1_quote"])
-    for p in change["parts"]:
-        a, b = nz(p["v2"]["quote"]) + nz(p["v2"].get("changed")), nz(p["v1"]["quote"]) + nz(p["v1"].get("changed"))
-        c2, c1 = nz(p["v2"].get("changed")), nz(p["v1"].get("changed"))
-        if (c2 and c2 in new) or (c1 and c1 in old) or (new and new in a) or (old and old in b):
-            return True
-    return False
+    return matches(change, edit)
 
 
 def run(case_id: str, live: bool) -> list[dict]:

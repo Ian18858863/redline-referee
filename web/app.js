@@ -279,8 +279,10 @@ function setLive(live) {
 
 // ---------------------------------------------------------------- start here
 const MOMENTS = [
-  { key: 'note', label: 'A false cover note', case: 'quiet-changes' },
+  { key: 'number', label: 'A changed number', case: 'quiet-changes' },
+  { key: 'rewording', label: 'A faithful rewording', case: 'quiet-changes' },
   { key: 'readers', label: 'Two readers, one disagreement', case: 'two-readers' },
+  { key: 'note', label: 'A false cover note', case: 'quiet-changes' },
   { key: 'guard', label: 'A note that talks to your AI', case: 'instruction-in-note' },
   { key: 'wrong', label: 'The wrong file came back', case: 'wrong-file' },
 ];
@@ -2312,9 +2314,17 @@ async function openReview({ id = null, base, run = false, change = null, view = 
   else if (change && ch.some((c) => c.id === change)) S.sel = change;
   else S.sel = guardInfo(r) ? 'guard' : (ch.find((c) => c.blocking) ?? ch[0])?.id ?? null;
 
-  // The three "start here" moments land on the evidence, not just on the case.
+  // The "start here" moments land on the evidence, not just on the case.
   let focus = null;
-  if (moment === 'note') {
+  if (moment === 'number') {
+    const c = ch.find((x) => x.blocking && String(x.clause_label ?? x.clause) === '4.2') ?? ch.find((x) => x.blocking);
+    if (c) S.sel = c.id;
+    focus = 'readings';
+  } else if (moment === 'rewording') {
+    const c = ch.find((x) => x.cls === 'reworded');
+    if (c) S.sel = c.id;
+    focus = 'readings';
+  } else if (moment === 'note') {
     const i = firstContradicted(r, true);
     S.tab = 'note';
     if (i >= 0) {
