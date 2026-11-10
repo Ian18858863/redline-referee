@@ -252,7 +252,9 @@ def build_ledger(changes: list[dict]) -> tuple[str, list[tuple[int, int, str]]]:
 
 # ------------------------------------------------------------------- review
 def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, out_dir: str | Path, *,
-           case: dict | None = None, playbook_path: str | Path | None = None, concurrency: int | None = None) -> dict:
+           case: dict | None = None, playbook_path: str | Path | None = None, concurrency: int | None = None,
+           route: bool = True, terms: bool = True) -> dict:
+    """route=False skips Rerank and Decide, terms=False skips Extract (used by the evaluation to save credits)."""
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     v1, v2 = read_pdf(v1_path, "v1"), read_pdf(v2_path, "v2")
@@ -278,6 +280,8 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
         "terms_v1": ("extract", {"pdf": b1, "fields": P.EXTRACT_FIELDS, "return_pdf": "box"}, "extract terms v1"),
         "terms_v2": ("extract", {"pdf": b2, "fields": P.EXTRACT_FIELDS, "return_pdf": "box"}, "extract terms v2"),
     }
+    if not terms:
+        jobs.pop("terms_v1"), jobs.pop("terms_v2")
     if letter.strip():
         jobs["guard_note"] = ("injection", {"text": letter, "source": "content", "instructions": P.GUARD_INSTRUCTIONS},
                               "guard cover note")
@@ -287,7 +291,7 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
 
     cmp = parse_compare(res["compare"], v1, v2) if res.get("compare") else None
     changes = build_changes(cross_label(hunks, cmp), v1, v2)
-    terms = _terms(res.get("terms_v1"), res.get("terms_v2"), v1, v2)
+    term_rows = _terms(res.get("terms_v1"), res.get("terms_v2"), v1, v2)
     guard = _guard(res.get("guard_note"), res.get("guard_v2"), v2, letter)
 
     # ---- Verify the cover note
@@ -304,8 +308,8 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
                         claims=_claims(vr, claims_text, letter, ledger, ledger_spans, v2, changes))
 
     # ---- Rerank the playbook, then Decide, per open change
-    fee = ((terms.get("annual_fee") or {}).get("v1") or {}).get("value")
-    open_changes = [c for c in changes if c["blocking"]]
+    fee = ((term_rows.get("annual_fee") or {}).get("v1") or {}).get("value")
+    open_changes = [c for c in changes if c["blocking"]] if route else []
 
     def route_one(c: dict):
         c["playbook"] = _rerank(c, playbook, fee, run)
@@ -335,7 +339,7 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
             "unplaced": [_cmp_view(f, "conflict") for f in cmp["findings"] if f["relation"] == "conflict"
                          and not any(f["v2"]["clause"] == c["clause"] or f["v1"]["clause"] == c["clause"] for c in changes)],
         },
-        "note": note, "guard": guard, "terms": list(terms.values()),
+        "note": note, "guard": guard, "terms": list(term_rows.values()),
         "hidden_text": [{"text": h.text, "page": h.page, "reason": h.reason} for h in v2.hidden],
         "ablation": _ablation(changes, note, status),
         "endpoints": _endpoint_summary(gw, changes, note, guard, cmp),
