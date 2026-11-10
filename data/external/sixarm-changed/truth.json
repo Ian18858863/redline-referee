@@ -1,0 +1,18 @@
+{
+  "id": "sixarm-changed",
+  "source": "sixarm",
+  "kind": "changed",
+  "substantive": [
+    [
+      "initial term of this Agreement is one calendar week",
+      "initial term of this Agreement is four calendar weeks"
+    ],
+    [
+      "one hundred percent (100%)",
+      "two hundred percent (200%)"
+    ]
+  ],
+  "faithful": [],
+  "expected_status": "changes",
+  "false_cover": true
+}

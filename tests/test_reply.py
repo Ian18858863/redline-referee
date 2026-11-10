@@ -1,9 +1,10 @@
 """The reply to the customer: Fill drafts it, Verify decides what may stay. The API is stubbed here."""
 import json
+import pytest
 from pathlib import Path
 
 from referee.gateway import Gateway
-from referee.reply import build_brief, customer_position, draft_reply
+from referee.reply import ReplyNotReady, build_brief, customer_position, draft_reply
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -51,7 +52,7 @@ def review_fixture() -> dict:
         "id": cid, "clause": clause, "title": title, "blocking": True,
         "parts": [{"v1": {"quote": f"sent wording of {title}"}, "v2": {"quote": f"returned wording of {title}"}}],
         "compare": {"v1_quote": f"The full sentence we sent about {title}."}, "playbook": {"passages": [{"id": p} for p in passages]}}
-    return {"changes": [change("c1", "3", "Renewal"), change("c2", "4.2", "Payment Terms", ["payment-large"]),
+    return {"status": "changes", "errors": [], "changes": [change("c1", "3", "Renewal"), change("c2", "4.2", "Payment Terms", ["payment-large"]),
                         change("c3", "9", "Limitation of Liability"), change("c4", "7", "Intellectual Property"),
                         {"id": "c9", "clause": "14", "title": "Notices", "blocking": False, "parts": [{"v1": {}, "v2": {}}]}]}
 
@@ -106,13 +107,13 @@ def test_a_verify_answer_that_skips_a_sentence_is_an_error():
 def test_typed_answers_choose_the_closing():
     out, _ = run()
     assert out["tone"] == "firm" and out["closing"].startswith("Please send a corrected copy")
-    calm = draft_reply(review_fixture(), {"c1": "accept"}, Gateway("live", client=Stub()))
+    calm = draft_reply(review_fixture(), {k: "accept" for k in DECISIONS}, Gateway("live", client=Stub()))
     assert calm["tone"] == "routine" and calm["closing"].startswith("We will confirm")
 
 
 def test_nothing_to_decide_needs_no_api_call():
     stub = Stub()
-    out = draft_reply({"changes": []}, {}, Gateway("live", client=stub))
+    out = draft_reply({"status": "ready", "changes": []}, {}, Gateway("live", client=stub))
     assert "ready to countersign" in out["text"] and stub.calls == []
 
 
@@ -120,3 +121,39 @@ def test_playbook_cleared_wording_exists_for_every_passage_the_desk_may_offer():
     book = json.loads((ROOT / "data" / "playbook.json").read_text())
     say = {p["id"] for t in book["topics"] for p in t["passages"] if p.get("say")}
     assert {"payment-large", "fees-increase", "term-renewal-notice", "service-credits", "data-export"} <= say
+
+
+@pytest.mark.parametrize('status,decisions', [('blocked', {}), ('incomplete', DECISIONS), ('changes', {'c1': 'accept'}),
+                                            ('changes', {**DECISIONS, 'missing': 'accept'})])
+def test_reply_cannot_skip_review_state_or_human_decisions(status, decisions):
+    r = review_fixture(); r['status'] = status
+    stub = Stub()
+    with pytest.raises(ReplyNotReady):
+        draft_reply(r, decisions, Gateway('live', client=stub))
+    assert stub.calls == []
+
+
+def test_blocking_findings_without_changes_never_mean_ready_to_sign():
+    stub = Stub()
+    out = draft_reply({'status': 'blocked', 'changes': []}, {}, Gateway('live', client=stub))
+    assert 'cannot sign' in out['text'].lower() and 'ready to countersign' not in out['text']
+    assert stub.calls == []
+
+
+def test_blocked_review_and_escalations_never_promise_countersignature():
+    r = review_fixture(); r['status'] = 'blocked'
+    out = draft_reply(r, DECISIONS, Gateway('live', client=Stub()))
+    assert 'cannot sign' in out['text'].lower()
+    assert 'will countersign' not in out['text']
+
+
+def test_all_removed_paragraphs_produce_no_customer_reply():
+    out, _ = run(reject={'We ' , 'This '})
+    assert not out['paragraphs'] and out['text'] == ''
+
+
+def test_wrong_file_never_produces_a_reply():
+    stub = Stub()
+    with pytest.raises(ReplyNotReady):
+        draft_reply({'status': 'blocked', 'changes': [], 'compare': {'gate': {'stopped': True}}}, {}, Gateway('live', client=stub))
+    assert stub.calls == []

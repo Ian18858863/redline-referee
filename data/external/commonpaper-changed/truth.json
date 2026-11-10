@@ -1,0 +1,18 @@
+{
+  "id": "commonpaper-changed",
+  "source": "commonpaper",
+  "kind": "changed",
+  "substantive": [
+    [
+      "prior written approval",
+      "prior notification"
+    ],
+    [
+      "cease using Confidential Information",
+      "continue using Confidential Information"
+    ]
+  ],
+  "faithful": [],
+  "expected_status": "changes",
+  "false_cover": true
+}

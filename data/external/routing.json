@@ -1,0 +1,72 @@
+{
+  "playbook": {
+    "about": "Evaluation-only fictional policy; no change to the application playbook. Explicit thresholds avoid ambiguity in the controlled retrieval experiment.",
+    "topics": [
+      {
+        "id": "payment",
+        "title": "Payment terms",
+        "passages": [
+          {
+            "id": "small",
+            "title": "Payment: annual fees below $100,000",
+            "text": "Applies only when annual fees are below $100,000. The deal desk may accept payment up to 45 days. For 46 to 60 days the desk must counter with 45 days and may do so without approval. Never apply this passage to deals of $100,000 or more."
+          },
+          {
+            "id": "large",
+            "title": "Payment: annual fees at least $100,000",
+            "text": "Applies only when annual fees are $100,000 or more. The desk may accept payment up to 30 days. For 31 to 45 days the desk must counter with 30 days and may do so without approval. Payment of 46 days or more requires Finance approval: the desk may neither accept nor counter. Never apply this passage to smaller deals."
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "title": "Security",
+        "passages": [
+          {
+            "id": "security",
+            "title": "Security incidents",
+            "text": "All requests for a security incident notification deadline below 72 hours require Legal approval."
+          }
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "payment-50000-45",
+      "fee": "$50,000",
+      "days": 45,
+      "expected": "accept"
+    },
+    {
+      "id": "payment-50000-60",
+      "fee": "$50,000",
+      "days": 60,
+      "expected": "counter"
+    },
+    {
+      "id": "payment-100000-45",
+      "fee": "$100,000",
+      "days": 45,
+      "expected": "counter"
+    },
+    {
+      "id": "payment-100000-60",
+      "fee": "$100,000",
+      "days": 60,
+      "expected": "escalate"
+    },
+    {
+      "id": "payment-250000-45",
+      "fee": "$250,000",
+      "days": 45,
+      "expected": "counter"
+    },
+    {
+      "id": "payment-250000-60",
+      "fee": "$250,000",
+      "days": 60,
+      "expected": "escalate"
+    }
+  ]
+}

@@ -16,6 +16,7 @@ the closing line.
 from __future__ import annotations
 
 import json
+import math
 import re
 from pathlib import Path
 
@@ -37,6 +38,26 @@ VERIFY_INSTRUCTIONS = (
 )
 ACTION_WORDS = {"accept": "We accept this change.", "counter": "We do not accept this change as written.",
                 "escalate": "This change is under review on our side."}
+
+
+class ReplyNotReady(ValueError):
+    """The review or the human decisions do not support a customer reply yet."""
+
+
+def validate_reply(review: dict, decisions: dict[str, str]) -> None:
+    """Enforce the review contract here as well as at the HTTP/UI boundary."""
+    if review.get("status") not in ("ready", "changes", "blocked") or review.get("errors"):
+        raise ReplyNotReady("Complete the review before drafting a reply.")
+    if (review.get("compare") or {}).get("gate", {}).get("stopped") or review.get("headline") == "Not the same agreement":
+        raise ReplyNotReady("Ask for the correct agreement before drafting a reply.")
+    changes = review.get("changes")
+    if not isinstance(changes, list) or not isinstance(decisions, dict):
+        raise ReplyNotReady("The review and reviewer decisions are required.")
+    ids = {c["id"] for c in changes if c.get("blocking")}
+    if set(decisions) != ids or any(d not in ACTION_WORDS for d in decisions.values()):
+        raise ReplyNotReady("Decide every open change before drafting a reply; send only those decisions.")
+    if review["status"] == "ready" and ids:
+        raise ReplyNotReady("The review status conflicts with its unresolved changes.")
 
 
 def _nz(t: str) -> str:
@@ -81,11 +102,14 @@ def build_brief(review: dict, decisions: dict[str, str]) -> tuple[str, list[dict
 
 
 def draft_reply(review: dict, decisions: dict[str, str], gw: Gateway) -> dict:
+    validate_reply(review, decisions)
     brief, items = build_brief(review, decisions)
     out = {"ran": False, "paragraphs": [], "removed": [], "text": "", "closing": None, "errors": [], "brief": brief,
            "decisions": {i["id"]: i["decision"] for i in items}}
     if not items:
-        out["text"] = "Thank you. The returned copy matches what we sent, and we are ready to countersign."
+        out["text"] = ("Thank you. Our review found no substantive changes to resolve, and we are ready to countersign."
+                       if review["status"] == "ready" else
+                       "Thank you. Our review found a blocking issue. We cannot sign the returned copy while that issue remains unresolved.")
         return out
     fields = {f"reply_{i['id']}": {"type": "generate", "format": "text", "max_tokens": 70,
                                    "description": f"One or two sentences to the customer about clause {i['clause']} ({i['title']}), "
@@ -135,21 +159,31 @@ def draft_reply(review: dict, decisions: dict[str, str], gw: Gateway) -> dict:
                                   "status": None, "kind": "invalid_response"})
             return out
         for d, c in zip(drafted, claims):
+            p = c.get("supported") if isinstance(c, dict) else None
+            if (not isinstance(c, dict) or c.get("claim") != d["text"] or isinstance(p, bool)
+                    or not isinstance(p, (int, float)) or not math.isfinite(p) or not 0 <= p <= 1):
+                out["errors"].append({"endpoint": "Verify", "step": "verify reply", "status": None,
+                                      "kind": "invalid_response", "message": "Verify did not return an aligned claim with a valid probability."})
+                out["paragraphs"] = []
+                return out
             d.update(verdict=c.get("verdict"), supported=c.get("supported"),
                      evidence=re.sub(r"\s+", " ", (c.get("evidence") or {}).get("quote") or "") or None)
             if c.get("verdict") == "supported" and (c.get("supported") or 0) >= VERIFY_FLOOR:
                 out["paragraphs"].append(d)
             else:
                 out["removed"].append({**d, "reason": "Verify did not find this sentence supported by the decisions."})
-    yes = lambda k: bool((got.get(k) or {}).get("value"))
+    yes = lambda k: (got.get(k) or {}).get("value") is True
     tone = (got.get("tone") or {}).get("value")
-    closing = ("Please send a corrected copy with the points above and we will countersign promptly."
-               if yes("corrected_copy") else "We will confirm as soon as our review is complete.")
+    closing = ("Please send a corrected copy addressing the points above for our review."
+               if any(i["decision"] == "counter" for i in items) else "We will confirm the next step after the remaining checks and approvals.")
     if yes("call_needed"):
         closing += " If it helps, we are glad to walk through the open points on a short call."
     out.update(ran=True, closing=closing, tone=tone,
                typed={"corrected_copy": got.get("corrected_copy"), "call_needed": got.get("call_needed"), "tone": got.get("tone")})
-    opening = ("Thank you for returning the agreement. We compared it with the version we sent. "
-               + ("A few points need to change before we can countersign:" if tone == "firm" else "Here is where we stand on each point:"))
+    if not out["paragraphs"]:
+        return out  # no verified content: a closing alone must never look like a checked reply
+    opening = ("Thank you for returning the agreement. "
+               + ("We cannot sign the returned copy while the blocking findings remain unresolved. " if review["status"] == "blocked" else "")
+               + "Here is where we stand on each point:")
     out["text"] = "\n\n".join([opening] + [f"Clause {p['clause']} ({p['title']}): {p['text']}" for p in out["paragraphs"]] + [closing])
     return out

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "commonpaper-changed",
+    "style": "paper"
+  },
+  {
+    "id": "commonpaper-benign",
+    "style": "paper"
+  },
+  {
+    "id": "bonterms-changed",
+    "style": "native"
+  },
+  {
+    "id": "bonterms-benign",
+    "style": "native"
+  },
+  {
+    "id": "sixarm-changed",
+    "style": "serif"
+  },
+  {
+    "id": "sixarm-benign",
+    "style": "serif"
+  }
+]

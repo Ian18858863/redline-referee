@@ -1,0 +1,18 @@
+{
+  "id": "bonterms-changed",
+  "source": "bonterms",
+  "kind": "changed",
+  "substantive": [
+    [
+      "cease using",
+      "keep using"
+    ],
+    [
+      "no license",
+      "a license"
+    ]
+  ],
+  "faithful": [],
+  "expected_status": "changes",
+  "false_cover": true
+}
