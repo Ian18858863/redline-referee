@@ -1,0 +1,66 @@
+{
+  "case_id": "eval-04",
+  "group": "eval",
+  "title": "Evaluation pair 4",
+  "description": "",
+  "injection": false,
+  "expected_status": "changes",
+  "style": "honest",
+  "substantive": [
+    {
+      "id": "initial_term",
+      "clause": "2",
+      "label": "Initial term",
+      "kind": "duration",
+      "v1_quote": "thirty-six (36) months",
+      "v2_quote": "twelve (12) months",
+      "v1_value": "36 months",
+      "v2_value": "12 months"
+    },
+    {
+      "id": "late_interest",
+      "clause": "4.3",
+      "label": "Late payment interest",
+      "kind": "percent",
+      "v1_quote": "at the rate of 1.5% per month",
+      "v2_quote": "at the rate of 0.5% per month",
+      "v1_value": "1.5% per month",
+      "v2_value": "0.5% per month"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "fmt_confidentiality",
+      "clause": "8",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "three (3) years",
+      "v2_quote": "3 years"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_receive"
+    },
+    {
+      "text": "We shortened the initial term to twelve months.",
+      "expected": "supported",
+      "about": "initial_term"
+    },
+    {
+      "text": "We lowered the late payment interest rate to 0.5% per month.",
+      "expected": "supported",
+      "about": "late_interest"
+    }
+  ]
+}

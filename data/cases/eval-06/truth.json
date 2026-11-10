@@ -1,0 +1,58 @@
+{
+  "case_id": "eval-06",
+  "group": "eval",
+  "title": "Evaluation pair 6",
+  "description": "",
+  "injection": false,
+  "expected_status": "ready",
+  "style": "misleading",
+  "substantive": [],
+  "cosmetic": [
+    {
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
+    },
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We updated our notice address in Section 14.",
+      "expected": "supported",
+      "about": "address"
+    },
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_receive"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "supported",
+      "about": "global"
+    },
+    {
+      "text": "The late payment clause is as you sent it.",
+      "expected": "supported",
+      "about": "late_interest"
+    }
+  ]
+}

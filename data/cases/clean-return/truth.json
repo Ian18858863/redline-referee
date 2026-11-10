@@ -1,0 +1,74 @@
+{
+  "case_id": "clean-return",
+  "group": "demo",
+  "title": "Clean return",
+  "description": "The customer fixed typos and updated its notice address. The cover note is accurate.",
+  "injection": false,
+  "expected_status": "ready",
+  "style": "misleading",
+  "substantive": [],
+  "cosmetic": [
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
+    },
+    {
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
+    },
+    {
+      "id": "fmt_cure",
+      "clause": "11",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "within thirty (30) days after written notice",
+      "v2_quote": "within 30 days after written notice"
+    },
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_written"
+    },
+    {
+      "text": "We updated our notice address in Section 14.",
+      "expected": "supported",
+      "about": "address"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "supported",
+      "about": "global"
+    },
+    {
+      "text": "Payment terms remain net thirty days.",
+      "expected": "supported",
+      "about": "pay_terms"
+    }
+  ]
+}

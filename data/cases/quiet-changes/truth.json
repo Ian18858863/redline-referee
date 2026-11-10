@@ -1,0 +1,117 @@
+{
+  "case_id": "quiet-changes",
+  "group": "demo",
+  "title": "Quiet changes",
+  "description": "The cover note says only typos and an address changed. Four terms moved.",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "pay_terms",
+      "clause": "4.2",
+      "label": "Payment terms",
+      "kind": "duration",
+      "v1_quote": "within thirty (30) days of the invoice date",
+      "v2_quote": "within ninety (90) days of the invoice date",
+      "v1_value": "30 days",
+      "v2_value": "90 days"
+    },
+    {
+      "id": "liability_cap",
+      "clause": "9",
+      "label": "Liability cap",
+      "kind": "duration",
+      "v1_quote": "in the twelve (12) months before the event",
+      "v2_quote": "in the sixty (60) months before the event",
+      "v1_value": "12 months of fees",
+      "v2_value": "60 months of fees"
+    },
+    {
+      "id": "renewal_notice",
+      "clause": "3",
+      "label": "Non-renewal notice period",
+      "kind": "duration",
+      "v1_quote": "at least sixty (60) days before",
+      "v2_quote": "at least ten (10) days before",
+      "v1_value": "60 days",
+      "v2_value": "10 days"
+    },
+    {
+      "id": "governing_law",
+      "clause": "15",
+      "label": "Governing law and venue",
+      "kind": "place",
+      "v1_quote": "governed by the laws of the State of Delaware, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.",
+      "v2_quote": "governed by the laws of the State of Oregon, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Portland, Oregon.",
+      "v1_value": "Delaware law, Wilmington courts",
+      "v2_value": "Oregon law, Portland courts"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
+    },
+    {
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
+    },
+    {
+      "id": "fmt_confidentiality",
+      "clause": "8",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "three (3) years",
+      "v2_quote": "3 years"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_written"
+    },
+    {
+      "text": "We updated our notice address in Section 14.",
+      "expected": "supported",
+      "about": "address"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "Payment terms remain net thirty days.",
+      "expected": "contradicted",
+      "about": "pay_terms"
+    },
+    {
+      "text": "The limitation of liability is unchanged.",
+      "expected": "contradicted",
+      "about": "liability_cap"
+    },
+    {
+      "text": "The annual subscription fee is unchanged.",
+      "expected": "supported",
+      "about": "fee_amount"
+    }
+  ]
+}

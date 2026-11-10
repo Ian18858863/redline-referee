@@ -1,0 +1,112 @@
+{
+  "case_id": "eval-11",
+  "group": "eval",
+  "title": "Evaluation pair 11",
+  "description": "",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "assignment",
+      "clause": "13",
+      "label": "Assignment",
+      "kind": "wording",
+      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
+      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
+      "v1_value": "Mutual consent required",
+      "v2_value": "Customer may assign freely"
+    },
+    {
+      "id": "price_cap",
+      "clause": "4.4",
+      "label": "Renewal price increase cap",
+      "kind": "percent",
+      "v1_quote": "by up to 5% over the fees",
+      "v2_quote": "by up to 1% over the fees",
+      "v1_value": "5%",
+      "v2_value": "1%"
+    },
+    {
+      "id": "sla_credit_cap",
+      "clause": "5",
+      "label": "Service credit cap",
+      "kind": "percent",
+      "v1_quote": "up to a maximum of 10% of the monthly fee",
+      "v2_quote": "up to a maximum of 50% of the monthly fee",
+      "v1_value": "10%",
+      "v2_value": "50%"
+    },
+    {
+      "id": "pay_terms",
+      "clause": "4.2",
+      "label": "Payment terms",
+      "kind": "duration",
+      "v1_quote": "within thirty (30) days of the invoice date",
+      "v2_quote": "within ninety (90) days of the invoice date",
+      "v1_value": "30 days",
+      "v2_value": "90 days"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "fmt_confidentiality",
+      "clause": "8",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "three (3) years",
+      "v2_quote": "3 years"
+    },
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    },
+    {
+      "id": "fmt_caps",
+      "clause": "1",
+      "label": "Capitalisation",
+      "kind": "format",
+      "v1_quote": "in accordance with this agreement",
+      "v2_quote": "in accordance with this Agreement"
+    },
+    {
+      "id": "typo_separate",
+      "clause": "13",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "seperate attempt",
+      "v2_quote": "separate attempt"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_written"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "The assignment clause is unchanged.",
+      "expected": "contradicted",
+      "about": "assignment"
+    },
+    {
+      "text": "The fee adjustment clause was not touched.",
+      "expected": "contradicted",
+      "about": "price_cap"
+    },
+    {
+      "text": "The data handling clause is unchanged.",
+      "expected": "supported",
+      "about": "data_export"
+    }
+  ]
+}

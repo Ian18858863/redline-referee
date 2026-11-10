@@ -1,0 +1,76 @@
+{
+  "case_id": "eval-07",
+  "group": "eval",
+  "title": "Evaluation pair 7",
+  "description": "",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "assignment",
+      "clause": "13",
+      "label": "Assignment",
+      "kind": "wording",
+      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
+      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
+      "v1_value": "Mutual consent required",
+      "v2_value": "Customer may assign freely"
+    },
+    {
+      "id": "sla_uptime",
+      "clause": "5",
+      "label": "Availability commitment",
+      "kind": "percent",
+      "v1_quote": "of at least 99.9%",
+      "v2_quote": "of at least 99.99%",
+      "v1_value": "99.9%",
+      "v2_value": "99.99%"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "typo_separate",
+      "clause": "13",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "seperate attempt",
+      "v2_quote": "separate attempt"
+    },
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_separate"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "The assignment clause is unchanged.",
+      "expected": "contradicted",
+      "about": "assignment"
+    },
+    {
+      "text": "The availability commitment is the same as in your draft.",
+      "expected": "contradicted",
+      "about": "sla_uptime"
+    },
+    {
+      "text": "The annual subscription fee is unchanged.",
+      "expected": "supported",
+      "about": "fee_amount"
+    }
+  ]
+}

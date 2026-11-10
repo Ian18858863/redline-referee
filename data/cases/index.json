@@ -1,0 +1,98 @@
+[
+  {
+    "id": "clean-return",
+    "group": "demo",
+    "title": "Clean return",
+    "description": "The customer fixed typos and updated its notice address. The cover note is accurate."
+  },
+  {
+    "id": "quiet-changes",
+    "group": "demo",
+    "title": "Quiet changes",
+    "description": "The cover note says only typos and an address changed. Four terms moved."
+  },
+  {
+    "id": "quiet-changes-injected",
+    "group": "demo",
+    "title": "Quiet changes with a hidden instruction",
+    "description": "One digit pair swapped in the fee, two rewritten clauses, and white text addressed to AI reviewers."
+  },
+  {
+    "id": "disclosed-changes",
+    "group": "demo",
+    "title": "Disclosed changes",
+    "description": "The customer changed two terms and said so. Nothing is hidden, but both still need a decision."
+  },
+  {
+    "id": "eval-01",
+    "group": "eval",
+    "title": "Evaluation pair 1",
+    "description": ""
+  },
+  {
+    "id": "eval-02",
+    "group": "eval",
+    "title": "Evaluation pair 2",
+    "description": ""
+  },
+  {
+    "id": "eval-03",
+    "group": "eval",
+    "title": "Evaluation pair 3",
+    "description": ""
+  },
+  {
+    "id": "eval-04",
+    "group": "eval",
+    "title": "Evaluation pair 4",
+    "description": ""
+  },
+  {
+    "id": "eval-05",
+    "group": "eval",
+    "title": "Evaluation pair 5",
+    "description": ""
+  },
+  {
+    "id": "eval-06",
+    "group": "eval",
+    "title": "Evaluation pair 6",
+    "description": ""
+  },
+  {
+    "id": "eval-07",
+    "group": "eval",
+    "title": "Evaluation pair 7",
+    "description": ""
+  },
+  {
+    "id": "eval-08",
+    "group": "eval",
+    "title": "Evaluation pair 8",
+    "description": ""
+  },
+  {
+    "id": "eval-09",
+    "group": "eval",
+    "title": "Evaluation pair 9",
+    "description": ""
+  },
+  {
+    "id": "eval-10",
+    "group": "eval",
+    "title": "Evaluation pair 10",
+    "description": ""
+  },
+  {
+    "id": "eval-11",
+    "group": "eval",
+    "title": "Evaluation pair 11",
+    "description": ""
+  },
+  {
+    "id": "eval-12",
+    "group": "eval",
+    "title": "Evaluation pair 12",
+    "description": ""
+  }
+]

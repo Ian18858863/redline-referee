@@ -1,0 +1,97 @@
+{
+  "case_id": "eval-08",
+  "group": "eval",
+  "title": "Evaluation pair 8",
+  "description": "",
+  "injection": false,
+  "expected_status": "changes",
+  "style": "honest",
+  "substantive": [
+    {
+      "id": "liability_cap",
+      "clause": "9",
+      "label": "Liability cap",
+      "kind": "duration",
+      "v1_quote": "in the twelve (12) months before the event",
+      "v2_quote": "in the sixty (60) months before the event",
+      "v1_value": "12 months of fees",
+      "v2_value": "60 months of fees"
+    },
+    {
+      "id": "late_interest",
+      "clause": "4.3",
+      "label": "Late payment interest",
+      "kind": "percent",
+      "v1_quote": "at the rate of 1.5% per month",
+      "v2_quote": "at the rate of 0.5% per month",
+      "v1_value": "1.5% per month",
+      "v2_value": "0.5% per month"
+    },
+    {
+      "id": "price_cap",
+      "clause": "4.4",
+      "label": "Renewal price increase cap",
+      "kind": "percent",
+      "v1_quote": "by up to 5% over the fees",
+      "v2_quote": "by up to 1% over the fees",
+      "v1_value": "5%",
+      "v2_value": "1%"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
+    },
+    {
+      "id": "fmt_confidentiality",
+      "clause": "8",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "three (3) years",
+      "v2_quote": "3 years"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
+    },
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_receive"
+    },
+    {
+      "text": "We raised the liability cap to the fees paid in the prior sixty months.",
+      "expected": "supported",
+      "about": "liability_cap"
+    },
+    {
+      "text": "We lowered the late payment interest rate to 0.5% per month.",
+      "expected": "supported",
+      "about": "late_interest"
+    },
+    {
+      "text": "We reduced the renewal price increase cap from 5% to 1%.",
+      "expected": "supported",
+      "about": "price_cap"
+    }
+  ]
+}

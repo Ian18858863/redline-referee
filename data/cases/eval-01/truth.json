@@ -1,0 +1,102 @@
+{
+  "case_id": "eval-01",
+  "group": "eval",
+  "title": "Evaluation pair 1",
+  "description": "",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "renewal_notice",
+      "clause": "3",
+      "label": "Non-renewal notice period",
+      "kind": "duration",
+      "v1_quote": "at least sixty (60) days before",
+      "v2_quote": "at least ten (10) days before",
+      "v1_value": "60 days",
+      "v2_value": "10 days"
+    },
+    {
+      "id": "ip_ownership",
+      "clause": "7",
+      "label": "Ownership of configurations",
+      "kind": "wording",
+      "v1_quote": "including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+      "v2_quote": "excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
+      "v1_value": "Provider owns configurations",
+      "v2_value": "Customer owns configurations"
+    },
+    {
+      "id": "audit_rights",
+      "clause": "12",
+      "label": "Audit frequency",
+      "kind": "wording",
+      "v1_quote": "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports.",
+      "v2_quote": "At any time, and on at least five (5) days' written notice, Customer may audit Provider's systems, facilities and records.",
+      "v1_value": "Once per year, 30 days' notice, reports only",
+      "v2_value": "Any time, 5 days' notice, systems and facilities"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
+    },
+    {
+      "id": "fmt_cure",
+      "clause": "11",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "within thirty (30) days after written notice",
+      "v2_quote": "within 30 days after written notice"
+    },
+    {
+      "id": "typo_separate",
+      "clause": "13",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "seperate attempt",
+      "v2_quote": "separate attempt"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_separate"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "The renewal mechanics are unchanged.",
+      "expected": "contradicted",
+      "about": "renewal_notice"
+    },
+    {
+      "text": "Intellectual property ownership is exactly as you proposed.",
+      "expected": "contradicted",
+      "about": "ip_ownership"
+    },
+    {
+      "text": "The confidentiality term is unchanged.",
+      "expected": "supported",
+      "about": "confidentiality"
+    }
+  ]
+}

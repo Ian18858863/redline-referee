@@ -1,0 +1,20 @@
+[project]
+name = "redline-referee"
+version = "0.1.0"
+description = "Catch what changed in the contract they sent back. Built on Clocked Compare, Verify and Rerank."
+requires-python = ">=3.10"
+dependencies = [
+  "clocked-sdk==0.7.0",
+  "pymupdf>=1.24",
+  "reportlab>=4.0",
+  "fastapi>=0.110",
+  "uvicorn>=0.29",
+  "python-multipart>=0.0.9",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

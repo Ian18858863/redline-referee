@@ -1,0 +1,96 @@
+{
+  "case_id": "eval-03",
+  "group": "eval",
+  "title": "Evaluation pair 3",
+  "description": "",
+  "injection": true,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "assignment",
+      "clause": "13",
+      "label": "Assignment",
+      "kind": "wording",
+      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
+      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
+      "v1_value": "Mutual consent required",
+      "v2_value": "Customer may assign freely"
+    },
+    {
+      "id": "liability_cap",
+      "clause": "9",
+      "label": "Liability cap",
+      "kind": "duration",
+      "v1_quote": "in the twelve (12) months before the event",
+      "v2_quote": "in the sixty (60) months before the event",
+      "v1_value": "12 months of fees",
+      "v2_value": "60 months of fees"
+    },
+    {
+      "id": "sla_uptime",
+      "clause": "5",
+      "label": "Availability commitment",
+      "kind": "percent",
+      "v1_quote": "of at least 99.9%",
+      "v2_quote": "of at least 99.99%",
+      "v1_value": "99.9%",
+      "v2_value": "99.99%"
+    },
+    {
+      "id": "governing_law",
+      "clause": "15",
+      "label": "Governing law and venue",
+      "kind": "place",
+      "v1_quote": "governed by the laws of the State of Delaware, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.",
+      "v2_quote": "governed by the laws of the State of Oregon, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Portland, Oregon.",
+      "v1_value": "Delaware law, Wilmington courts",
+      "v2_value": "Oregon law, Portland courts"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "typo_separate",
+      "clause": "13",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "seperate attempt",
+      "v2_quote": "separate attempt"
+    },
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_separate"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "The assignment clause is unchanged.",
+      "expected": "contradicted",
+      "about": "assignment"
+    },
+    {
+      "text": "The limitation of liability is unchanged.",
+      "expected": "contradicted",
+      "about": "liability_cap"
+    },
+    {
+      "text": "Intellectual property ownership is exactly as you proposed.",
+      "expected": "supported",
+      "about": "ip_ownership"
+    }
+  ]
+}

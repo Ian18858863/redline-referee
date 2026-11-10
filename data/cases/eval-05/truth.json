@@ -1,0 +1,84 @@
+{
+  "case_id": "eval-05",
+  "group": "eval",
+  "title": "Evaluation pair 5",
+  "description": "",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "ip_ownership",
+      "clause": "7",
+      "label": "Ownership of configurations",
+      "kind": "wording",
+      "v1_quote": "including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+      "v2_quote": "excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
+      "v1_value": "Provider owns configurations",
+      "v2_value": "Customer owns configurations"
+    },
+    {
+      "id": "assignment",
+      "clause": "13",
+      "label": "Assignment",
+      "kind": "wording",
+      "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
+      "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
+      "v1_value": "Mutual consent required",
+      "v2_value": "Customer may assign freely"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    },
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
+    },
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_written"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "Intellectual property ownership is exactly as you proposed.",
+      "expected": "contradicted",
+      "about": "ip_ownership"
+    },
+    {
+      "text": "The assignment clause is unchanged.",
+      "expected": "contradicted",
+      "about": "assignment"
+    },
+    {
+      "text": "Termination rights are unchanged.",
+      "expected": "supported",
+      "about": "termination_convenience"
+    }
+  ]
+}

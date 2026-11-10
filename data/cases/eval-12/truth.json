@@ -1,0 +1,53 @@
+{
+  "case_id": "eval-12",
+  "group": "eval",
+  "title": "Evaluation pair 12",
+  "description": "",
+  "injection": false,
+  "expected_status": "ready",
+  "style": "misleading",
+  "substantive": [],
+  "cosmetic": [
+    {
+      "id": "typo_separate",
+      "clause": "13",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "seperate attempt",
+      "v2_quote": "separate attempt"
+    },
+    {
+      "id": "fmt_cure",
+      "clause": "11",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "within thirty (30) days after written notice",
+      "v2_quote": "within 30 days after written notice"
+    },
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_separate"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "supported",
+      "about": "global"
+    },
+    {
+      "text": "The annual subscription fee is unchanged.",
+      "expected": "supported",
+      "about": "fee_amount"
+    }
+  ]
+}
