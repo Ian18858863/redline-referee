@@ -1072,7 +1072,9 @@ function routeBlock(c, r) {
   const kids = [];
   if (d) {
     const kv = h('dl', { class: 'kv' });
-    kv.append(h('dt', null, 'Decide says'), h('dd', null, ROUTES[d.route] ?? d.route ?? 'No answer', pct(d.route_confidence) ? h('small', null, ` · confidence ${pct(d.route_confidence)}`) : null));
+    if (typeof d.desk_may_accept === 'number') kv.append(h('dt', null, 'Desk may accept as written'), h('dd', null, pct(d.desk_may_accept) ?? ''));
+    if (typeof d.desk_may_counter === 'number') kv.append(h('dt', null, 'Playbook gives the desk a counter'), h('dd', null, pct(d.desk_may_counter) ?? ''));
+    kv.append(h('dt', null, 'Decide says'), h('dd', null, ROUTES[d.route] ?? d.route ?? 'No clear answer', d.route && pct(d.route_confidence) ? h('small', null, ` · confidence ${pct(d.route_confidence)}`) : null));
     if (d.favors) kv.append(h('dt', null, 'Favours'), h('dd', null, d.favors.charAt(0).toUpperCase() + d.favors.slice(1), pct(d.favors_confidence) ? h('small', null, ` · ${pct(d.favors_confidence)}`) : null));
     if (d.materiality_label || typeof d.materiality === 'number') kv.append(h('dt', null, 'Materiality'), h('dd', null, d.materiality_label ?? '', typeof d.materiality === 'number' ? h('small', null, `${d.materiality_label ? ' · ' : ''}${d.materiality.toFixed(1)} of 4`) : null));
     kids.push(kv);

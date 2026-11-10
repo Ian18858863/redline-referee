@@ -64,9 +64,13 @@ if (take === 'main') {
   await toSection('Verify across versions');
   await cap('Each difference is read three times: by rules, by Verify against the other version’s PDF, and by Compare, clause against clause.', 7600);
   await toSection('Playbook');
-  await cap('Rerank picks the playbook passage for a deal of this size and skips the one written for smaller deals. Decide suggests a route. Code can tighten it, never loosen it.', 8600);
+  await cap('Rerank picks the playbook passage for a deal of this size and skips the one written for smaller deals.', 6000);
+  await toSection('Route');
+  await cap('Decide answers two yes/no questions about the playbook. Code turns them into a route. Ninety days is refused, forty-five is allowed: counter.', 7600);
   await go('case=quiet-changes&change=c1'); await detailTop();
-  await cap('Sixty days’ notice became thirty. The playbook lets the deal desk accept that one.', 5000);
+  await cap('Sixty days’ notice became thirty. The playbook lets the deal desk accept that one.', 4800);
+  await go('case=quiet-changes&change=c3'); await detailTop(); await toSection('Route');
+  await cap('On the liability cap Decide was not sure. Code does not follow an unsure answer: a person decides.', 6000);
   await go('case=quiet-changes&change=c5'); await detailTop();
   await cap('One sentence was only reworded. Verify reads the same meaning in both directions and Compare does not object: cleared, nothing to negotiate.', 7200);
   await capOff(); await go('case=disclosed-changes&change=c2'); await detailTop();
@@ -86,8 +90,8 @@ if (take === 'main') {
   await click('.drawer-toggle'); await capOff();
   await go('case=disclosed-changes&change=c1'); await detailTop();
   await cap('The reviewer decides each change. Sign-off opens only when every one has a decision.', 2200);
-  await page.keyboard.press('a'); await wait(900); await page.keyboard.press('j'); await wait(700); await page.keyboard.press('e'); await wait(900);
-  await page.keyboard.press('j'); await wait(700); await page.keyboard.press('e'); await wait(1200);
+  await page.keyboard.press('a'); await wait(900); await page.keyboard.press('j'); await wait(700); await page.keyboard.press('c'); await wait(900);
+  await page.keyboard.press('j'); await wait(700); await page.keyboard.press('c'); await wait(1200);
   await click('#signoff-btn'); await wait(3200);
   await page.keyboard.press('Escape'); await capOff();
   await go('case=clean-return'); await detailTop();

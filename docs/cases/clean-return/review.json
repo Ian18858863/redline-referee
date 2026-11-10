@@ -1385,6 +1385,18 @@
     "replayed": true
    },
    {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 3",
+    "credits": 3,
+    "model_ms": 67.18928,
+    "attempts": 1,
+    "request_id": "a5846e98ffe5da66-BOS",
+    "idempotency_key": "a01f0a25-a8b0-443b-a1d8-c964d6ced3ae",
+    "recorded_at": "2026-11-10T10:39:13+00:00",
+    "replayed": true
+   },
+   {
     "endpoint": "Extract",
     "path": "/clocked/extract",
     "step": "extract terms v1",
@@ -1409,18 +1421,6 @@
     "replayed": true
    },
    {
-    "endpoint": "Compare",
-    "path": "/clocked/compare",
-    "step": "compare clause 3",
-    "credits": 3,
-    "model_ms": 67.18928,
-    "attempts": 1,
-    "request_id": "a5846e98ffe5da66-BOS",
-    "idempotency_key": "a01f0a25-a8b0-443b-a1d8-c964d6ced3ae",
-    "recorded_at": "2026-11-10T10:39:13+00:00",
-    "replayed": true
-   },
-   {
     "endpoint": "Extract",
     "path": "/clocked/extract",
     "step": "extract terms v2",
@@ -1430,18 +1430,6 @@
     "request_id": "a5846e978cd59009-BOS",
     "idempotency_key": "10805db4-1724-4230-99a1-25ae232baa08",
     "recorded_at": "2026-11-10T10:39:13+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Verify",
-    "path": "/clocked/grounding",
-    "step": "verify returned sentences against v1",
-    "credits": 6,
-    "model_ms": 126.247646,
-    "attempts": 1,
-    "request_id": "a5846ea02dfada66-BOS",
-    "idempotency_key": "5820ad2e-4416-4a67-ab84-48beffd3c038",
-    "recorded_at": "2026-11-10T10:39:14+00:00",
     "replayed": true
    },
    {
@@ -1465,6 +1453,18 @@
     "attempts": 1,
     "request_id": "a5846ea0eca98fa5-BOS",
     "idempotency_key": "b153a774-2ece-447c-bc1f-e2551fc5ecad",
+    "recorded_at": "2026-11-10T10:39:14+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify returned sentences against v1",
+    "credits": 6,
+    "model_ms": 126.247646,
+    "attempts": 1,
+    "request_id": "a5846ea02dfada66-BOS",
+    "idempotency_key": "5820ad2e-4416-4a67-ab84-48beffd3c038",
     "recorded_at": "2026-11-10T10:39:14+00:00",
     "replayed": true
    },

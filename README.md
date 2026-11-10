@@ -16,7 +16,7 @@ Entry for the Clocked Build Challenge 2026, built on November 9 and 10, 2026. Aw
 | | |
 |---|---|
 | Live demo (replays recorded Clocked responses, no key needed) | https://ian18858863.github.io/redline-referee/ |
-| Video, 2 min 43 s | https://ian18858863.github.io/redline-referee/demo.mp4 |
+| Video, 2 min 55 s | https://ian18858863.github.io/redline-referee/demo.mp4 |
 | Evaluation on 12 seeded pairs | [`eval/RESULTS.md`](eval/RESULTS.md) |
 
 ## The four demo cases
@@ -25,7 +25,7 @@ Every answer shown in the demo is a recorded response of the live Clocked API (`
 
 | Case | What the customer did | Status | Calls | Credits |
 |---|---|---|---|---|
-| Quiet changes | Note says "only typos and our address". Four terms moved, one sentence was reworded faithfully | **Do not sign** | 21 | 139 |
+| Quiet changes | Note says "only typos and our address". Four terms moved (routed: one accept, one counter, two escalate), one sentence was reworded faithfully | **Do not sign** | 21 | 139 |
 | Quiet changes with a hidden instruction | Two digits of the fee swapped, two clauses rewritten, white 1 pt text telling AI reviewers to approve | **Do not sign** | 18 | 134 |
 | Disclosed changes | Three terms changed and disclosed, one of them a single word: `maximum` became `minimum` | **Changes to resolve** | 18 | 119 |
 | Clean return | Typos fixed, address updated, note accurate | **Ready to sign** | 10 | 81 |
@@ -41,7 +41,7 @@ A call whose result nothing depends on is not in this application. `tests/test_e
 | **Compare** `/clocked/compare`, clause against clause | For each clause that differs: the clause as sent and the clause as returned, two text documents, `evidence: "all"` | The second reading of meaning. A conflict confirms a change or overrules a spelling fix; it also vetoes clearing a rewording. Its two passages are checked character by character and drawn on both pages. |
 | **Compare** `/clocked/compare`, PDF against PDF | The two whole PDFs, `return_pdf: "highlight"` | A gate: below 0.5 "related", the review stops with "these are not two versions of one agreement". The marked copies it returns are a layer in the viewer. |
 | **Rerank** `/clocked/rerank` | For each open change: the playbook passages, with the deal size (read by Extract) as `context` | Only passages that come back `use` at 0.9 or above are shown and passed to Decide, at most two. A passage written for a different deal size comes back `skip / different_case` and is not quoted. `expand` triggers a second request over the neighbouring passages of that topic. No usable passage sends the change to Legal. |
-| **Decide** `/clocked/decide` | One change plus the passages Rerank kept | The suggested route. Followed only at confidence 0.6 or above; code can tighten it, never loosen it. |
+| **Decide** `/clocked/decide` | One change, the passages Rerank kept, and the deal facts Extract read. Two yes/no questions: may the deal desk accept this as written, and does the playbook give the desk a counter | Code turns the two probabilities into a route: accept at 0.6 or above; counter when accept is 0.4 or below and counter is 0.6 or above; escalate when both are 0.4 or below. Anything between 0.4 and 0.6 is not an answer and goes to a person. |
 | **Extract** `/clocked/extract` | Thirteen key terms from each PDF, `return_pdf: "box"` | The side-by-side terms table, and the annual fee that Rerank receives as context. |
 | **Guard** `/clocked/injection` | The cover note and the returned PDF as untrusted content, `return_pdf: "box"` | Text addressed to an AI reviewer blocks signing. |
 
@@ -79,7 +79,7 @@ What the whole-document Compare is not used for: on two versions of one contract
 | A quote cannot be found on the page | The change is listed without a position rather than with a guessed one. |
 | Verify and Compare disagree, or one of them did not answer | The stricter reading wins. A rewording is cleared only when Verify supports it in both directions at 0.8 or above and Compare does not read a conflict. |
 | Compare or Verify reads a conflict in a passage the rules already identified (an address in a notices clause) | Shown, not promoted. |
-| Decide is below 0.6 confidence, or Rerank finds no passage, or either step fails | The change is escalated to a person. |
+| Decide lands between 0.4 and 0.6, or Rerank finds no passage, or either step fails | The change is escalated to a person. In the first demo case the liability cap is such a change: Decide answered 0.42, so code did not follow it. |
 | Verify answers "not stated" for a cover-note statement | Shown as not stated. It does not block and is not treated as false. |
 | A scanned PDF with no text layer | Refused with an explanation: nothing in it can be quoted character by character. |
 | A request that was never recorded, in replay mode | A named error, not a silent fallback. |
@@ -114,7 +114,7 @@ Requirements: Python 3.10+ and [uv](https://docs.astral.sh/uv/).
 
 ```sh
 uv sync
-uv run pytest                      # 271 tests: rules vs ground truth, engine logic, recorded live responses
+uv run pytest                      # 272 tests: rules vs ground truth, engine logic, recorded live responses
 uv run python scripts/build_site.py  # rebuild docs/ from the recordings, no API key needed
 uv run uvicorn referee.server:app --port 8787
 ```
@@ -154,11 +154,12 @@ uv run python eval/run_eval.py --live          # run the evaluation pairs, recor
 
 ## Limits
 
-- One synthetic agreement in sixteen variations (four demo cases, twelve evaluation pairs). The numbers above show that the application does what it claims on data with exact answers; they are not an accuracy figure for contracts in general.
+- One synthetic agreement in sixteen variations (four demo cases, twelve evaluation pairs), plus one unrelated agreement with a different layout (an A4 non-disclosure agreement with inline headings, `tests/fixtures/other-agreement/`), reviewed end to end on the live API and recorded. The numbers above show that the application does what it claims on data with exact answers; they are not an accuracy figure for contracts in general.
 - Text-layer PDFs only. Scans are refused.
 - Clauses are found by their numbering. A document without numbered clauses is compared as paragraphs and reads less well.
 - The rule layer treats a one-word edit within two letters as spelling until Verify or Compare says otherwise. If neither answers, that edit stays under spelling and the review is marked incomplete.
 - The playbook is fictional and short. Two topics are missing on purpose, to show what happens when there is no guidance.
+- Routing errs on the strict side. In the third demo case the playbook lets the deal desk extend the data export window to ninety days, and Decide still answered that it may not be accepted as written; the change is routed to counter. We left that answer as recorded.
 - This is decision support for a person at a deal desk. It does not give legal advice and it does not sign anything.
 
 ## Data and disclosure

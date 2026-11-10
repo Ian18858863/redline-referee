@@ -12,7 +12,7 @@
   {
    "level": "open",
    "source": "Rules + Verify + Compare",
-   "text": "3 substantive change(s) to resolve, 2 of them for another approver."
+   "text": "3 substantive change(s) to resolve."
   }
  ],
  "documents": {
@@ -308,19 +308,16 @@
    },
    "decide": {
     "route": "accept",
-    "route_confidence": 0.7487,
-    "route_probabilities": {
-     "accept": 0.8325,
-     "counter": 0.0369,
-     "escalate": 0.1306
-    },
+    "route_confidence": 0.9892,
+    "desk_may_accept": 0.9892,
+    "desk_may_counter": 0.9081,
     "favors": "customer",
-    "favors_confidence": 0.9748,
-    "materiality": 1.1121,
+    "favors_confidence": 0.9586,
+    "materiality": 0.9503,
     "materiality_label": "Minor"
    },
    "route": "accept",
-   "route_reason": "Within what the playbook lets the deal desk accept.",
+   "route_reason": "The playbook lets the deal desk accept this as written.",
    "claims": [
     3
    ],
@@ -463,20 +460,17 @@
     "read": 19
    },
    "decide": {
-    "route": "escalate",
-    "route_confidence": 0.9915,
-    "route_probabilities": {
-     "accept": 0.003,
-     "counter": 0.0027,
-     "escalate": 0.9944
-    },
+    "route": "counter",
+    "route_confidence": 0.6222,
+    "desk_may_accept": 0.0017,
+    "desk_may_counter": 0.6222,
     "favors": "customer",
-    "favors_confidence": 0.8534,
-    "materiality": 3.8983,
+    "favors_confidence": 0.9836,
+    "materiality": 3.9737,
     "materiality_label": "Critical"
    },
-   "route": "escalate",
-   "route_reason": "The playbook reserves this for another approver.",
+   "route": "counter",
+   "route_reason": "The playbook does not allow this as written, but gives the deal desk a term to send back.",
    "claims": [
     5
    ],
@@ -607,20 +601,17 @@
     "read": 19
    },
    "decide": {
-    "route": "escalate",
-    "route_confidence": 0.312,
-    "route_probabilities": {
-     "accept": 0.4138,
-     "counter": 0.0449,
-     "escalate": 0.5413
-    },
+    "route": "counter",
+    "route_confidence": 0.9018,
+    "desk_may_accept": 0.0982,
+    "desk_may_counter": 0.9451,
     "favors": "customer",
-    "favors_confidence": 0.7541,
-    "materiality": 1.53,
-    "materiality_label": "Moderate"
+    "favors_confidence": 0.7787,
+    "materiality": 3.4168,
+    "materiality_label": "Major"
    },
-   "route": "escalate",
-   "route_reason": "Decide was not confident about the route, so a person decides.",
+   "route": "counter",
+   "route_reason": "The playbook does not allow this as written, but gives the deal desk a term to send back.",
    "claims": [
     4
    ],
@@ -1681,7 +1672,7 @@
    "path": "/clocked/decide",
    "calls": 3,
    "credits": 6,
-   "model_ms": 87,
+   "model_ms": 106,
    "effect": "Routes each change using the passages Rerank kept; low confidence means a person decides."
   },
   {
@@ -1704,18 +1695,6 @@
  "errors": [],
  "audit": {
   "requests": [
-   {
-    "endpoint": "Compare",
-    "path": "/clocked/compare",
-    "step": "compare v1 v2",
-    "credits": 35,
-    "model_ms": 852.184143,
-    "attempts": 1,
-    "request_id": "a5846e70fc750cee-BOS",
-    "idempotency_key": "874620e7-b8db-44b6-86df-aa348be275ec",
-    "recorded_at": "2026-11-10T10:39:08+00:00",
-    "replayed": true
-   },
    {
     "endpoint": "Guard",
     "path": "/clocked/injection",
@@ -1743,12 +1722,36 @@
    {
     "endpoint": "Compare",
     "path": "/clocked/compare",
-    "step": "compare clause 4.4",
-    "credits": 4,
-    "model_ms": 93.498977,
+    "step": "compare v1 v2",
+    "credits": 35,
+    "model_ms": 852.184143,
     "attempts": 1,
-    "request_id": "a5846e772e155e1e-BOS",
-    "idempotency_key": "b613a419-ab83-4251-96fe-0533e3b9b7e1",
+    "request_id": "a5846e70fc750cee-BOS",
+    "idempotency_key": "874620e7-b8db-44b6-86df-aa348be275ec",
+    "recorded_at": "2026-11-10T10:39:08+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Extract",
+    "path": "/clocked/extract",
+    "step": "extract terms v2",
+    "credits": 10,
+    "model_ms": 228.006363,
+    "attempts": 1,
+    "request_id": "a5846e741a655e1e-BOS",
+    "idempotency_key": "a18a1640-2595-4873-8e52-5f345f2304a6",
+    "recorded_at": "2026-11-10T10:39:07+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 3",
+    "credits": 4,
+    "model_ms": 96.794111,
+    "attempts": 1,
+    "request_id": "a5846e7528fae007-BOS",
+    "idempotency_key": "a29f238d-c436-4277-add2-9130d7eda390",
     "recorded_at": "2026-11-10T10:39:08+00:00",
     "replayed": true
    },
@@ -1761,6 +1764,18 @@
     "attempts": 1,
     "request_id": "a5846e7c1fa4e007-BOS",
     "idempotency_key": "0f466ff9-91f2-41d1-affd-9143aac64598",
+    "recorded_at": "2026-11-10T10:39:08+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 4.4",
+    "credits": 4,
+    "model_ms": 93.498977,
+    "attempts": 1,
+    "request_id": "a5846e772e155e1e-BOS",
+    "idempotency_key": "b613a419-ab83-4251-96fe-0533e3b9b7e1",
     "recorded_at": "2026-11-10T10:39:08+00:00",
     "replayed": true
    },
@@ -1813,30 +1828,6 @@
     "replayed": true
    },
    {
-    "endpoint": "Extract",
-    "path": "/clocked/extract",
-    "step": "extract terms v2",
-    "credits": 10,
-    "model_ms": 228.006363,
-    "attempts": 1,
-    "request_id": "a5846e741a655e1e-BOS",
-    "idempotency_key": "a18a1640-2595-4873-8e52-5f345f2304a6",
-    "recorded_at": "2026-11-10T10:39:07+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Compare",
-    "path": "/clocked/compare",
-    "step": "compare clause 3",
-    "credits": 4,
-    "model_ms": 96.794111,
-    "attempts": 1,
-    "request_id": "a5846e7528fae007-BOS",
-    "idempotency_key": "a29f238d-c436-4277-add2-9130d7eda390",
-    "recorded_at": "2026-11-10T10:39:08+00:00",
-    "replayed": true
-   },
-   {
     "endpoint": "Verify",
     "path": "/clocked/grounding",
     "step": "verify cover note",
@@ -1846,54 +1837,6 @@
     "request_id": "a5846e88ba6ca5ce-BOS",
     "idempotency_key": "8e31d7e0-38dc-43dd-90ab-acee77dfe998",
     "recorded_at": "2026-11-10T10:39:10+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Rerank",
-    "path": "/clocked/rerank",
-    "step": "rerank 4.4",
-    "credits": 4,
-    "model_ms": 90.845695,
-    "attempts": 1,
-    "request_id": "a5846e8c4eca639f-BOS",
-    "idempotency_key": "64a06b20-b2d1-4a01-906a-8ffe560fe4bc",
-    "recorded_at": "2026-11-10T10:39:11+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Decide",
-    "path": "/clocked/decide",
-    "step": "decide 4.4",
-    "credits": 2,
-    "model_ms": 29.409569,
-    "attempts": 1,
-    "request_id": "a5846e8df8f2639f-BOS",
-    "idempotency_key": "b649b563-93c8-465f-b55f-cb215840af82",
-    "recorded_at": "2026-11-10T10:39:11+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Rerank",
-    "path": "/clocked/rerank",
-    "step": "rerank 6",
-    "credits": 4,
-    "model_ms": 91.085793,
-    "attempts": 1,
-    "request_id": "a5846e8c5eda639f-BOS",
-    "idempotency_key": "a894d593-4b51-43fa-993d-9c698a9cd874",
-    "recorded_at": "2026-11-10T10:39:11+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Decide",
-    "path": "/clocked/decide",
-    "step": "decide 6",
-    "credits": 2,
-    "model_ms": 29.21776,
-    "attempts": 1,
-    "request_id": "a5846e8efa30639f-BOS",
-    "idempotency_key": "563220a5-fec9-47c1-83fa-0d27522b7ef9",
-    "recorded_at": "2026-11-10T10:39:11+00:00",
     "replayed": true
    },
    {
@@ -1913,11 +1856,59 @@
     "path": "/clocked/decide",
     "step": "decide 5",
     "credits": 2,
-    "model_ms": 29.215744,
+    "model_ms": 48.952606,
     "attempts": 1,
-    "request_id": "a5846e8f1f81e9a7-BOS",
-    "idempotency_key": "c81f1326-2719-4607-b74d-a90bf9d95123",
+    "request_id": "a5847d3ac98e6e0d-BOS",
+    "idempotency_key": "115007a8-3ec2-4ab9-8f65-df6fbeae575f",
+    "recorded_at": "2026-11-10T10:49:12+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Rerank",
+    "path": "/clocked/rerank",
+    "step": "rerank 6",
+    "credits": 4,
+    "model_ms": 91.085793,
+    "attempts": 1,
+    "request_id": "a5846e8c5eda639f-BOS",
+    "idempotency_key": "a894d593-4b51-43fa-993d-9c698a9cd874",
     "recorded_at": "2026-11-10T10:39:11+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Rerank",
+    "path": "/clocked/rerank",
+    "step": "rerank 4.4",
+    "credits": 4,
+    "model_ms": 90.845695,
+    "attempts": 1,
+    "request_id": "a5846e8c4eca639f-BOS",
+    "idempotency_key": "64a06b20-b2d1-4a01-906a-8ffe560fe4bc",
+    "recorded_at": "2026-11-10T10:39:11+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Decide",
+    "path": "/clocked/decide",
+    "step": "decide 6",
+    "credits": 2,
+    "model_ms": 29.697632,
+    "attempts": 1,
+    "request_id": "a5847d3ad977896f-BOS",
+    "idempotency_key": "a6188a02-49c5-4d68-8cf8-9d7bc25b4d23",
+    "recorded_at": "2026-11-10T10:49:12+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Decide",
+    "path": "/clocked/decide",
+    "step": "decide 4.4",
+    "credits": 2,
+    "model_ms": 29.838623,
+    "attempts": 1,
+    "request_id": "a5847d3ace9f7d19-BOS",
+    "idempotency_key": "04892db4-41da-4248-99ed-0baf7149abca",
+    "recorded_at": "2026-11-10T10:49:12+00:00",
     "replayed": true
    }
   ],
