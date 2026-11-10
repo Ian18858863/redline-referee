@@ -1,0 +1,2232 @@
+{
+ "schema": 1,
+ "case": {
+  "id": "two-readers",
+  "title": "Two readers, one disagreement",
+  "description": "A duty became an option and a mutual limit became one-sided, in words a reader can take for tidying."
+ },
+ "mode": "replay",
+ "status": "blocked",
+ "headline": "Do not sign",
+ "reasons": [
+  {
+   "level": "block",
+   "source": "Verify",
+   "text": "1 statement in the cover note is contradicted by the documents."
+  },
+  {
+   "level": "open",
+   "source": "Rules + Compare",
+   "text": "2 substantive changes to resolve, all for another approver."
+  }
+ ],
+ "documents": {
+  "v1": {
+   "name": "The version we sent",
+   "pages_count": 3,
+   "source_pdf": "v1.pdf",
+   "marked_pdf": null,
+   "marked_by": null,
+   "extra_pdfs": [
+    {
+     "label": "Key terms boxed by Extract",
+     "file": "v1-terms-box.pdf"
+    }
+   ],
+   "pages": [
+    {
+     "image": "v1-p1.png",
+     "width": 940,
+     "height": 1335
+    },
+    {
+     "image": "v1-p2.png",
+     "width": 940,
+     "height": 1335
+    },
+    {
+     "image": "v1-p3.png",
+     "width": 940,
+     "height": 1335
+    }
+   ],
+   "layers": [
+    {
+     "id": "terms",
+     "label": "Key terms boxed by Extract",
+     "by": "Clocked Extract, return_pdf=box",
+     "pdf": "v1-terms-box.pdf",
+     "spans": 13,
+     "pages": [
+      {
+       "image": "v1-terms-p1.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v1-terms-p2.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v1-terms-p3.png",
+       "width": 940,
+       "height": 1335
+      }
+     ]
+    }
+   ],
+   "pages_without_text": [],
+   "ocr_pages": []
+  },
+  "v2": {
+   "name": "The copy they returned",
+   "pages_count": 3,
+   "source_pdf": "v2.pdf",
+   "marked_pdf": null,
+   "marked_by": null,
+   "extra_pdfs": [
+    {
+     "label": "Key terms boxed by Extract",
+     "file": "v2-terms-box.pdf"
+    }
+   ],
+   "pages": [
+    {
+     "image": "v2-p1.png",
+     "width": 940,
+     "height": 1335
+    },
+    {
+     "image": "v2-p2.png",
+     "width": 940,
+     "height": 1335
+    },
+    {
+     "image": "v2-p3.png",
+     "width": 940,
+     "height": 1335
+    }
+   ],
+   "layers": [
+    {
+     "id": "terms",
+     "label": "Key terms boxed by Extract",
+     "by": "Clocked Extract, return_pdf=box",
+     "pdf": "v2-terms-box.pdf",
+     "spans": 13,
+     "pages": [
+      {
+       "image": "v2-terms-p1.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v2-terms-p2.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v2-terms-p3.png",
+       "width": 940,
+       "height": 1335
+      }
+     ]
+    }
+   ],
+   "pages_without_text": [],
+   "ocr_pages": []
+  }
+ },
+ "changes": [
+  {
+   "clause": "9",
+   "clause_v1": "9",
+   "clause_v2": "9",
+   "clause_label": "9",
+   "uid": {
+    "v1": "c013",
+    "v2": "c013"
+   },
+   "title": "Limitation of Liability",
+   "cls": "substantive",
+   "blocking": true,
+   "kind": "wording",
+   "summary": "“Neither party will” → “Customer will not”",
+   "why": "The words differ and the difference is not just formatting or spelling. Compare reads a change, Verify reads the same meaning. The stricter reading wins, so it is held.",
+   "found_by": "both",
+   "found_by_label": "Rules + Compare",
+   "promoted": false,
+   "readers": {
+    "rules": "substantive",
+    "verify": "same",
+    "compare": "conflict",
+    "agree": false
+   },
+   "parts": [
+    {
+     "summary": "“Neither party will” → “Customer will not”",
+     "kind": "wording",
+     "v1": {
+      "quote": "to the claim. Neither party will be liable for indirect",
+      "changed": "Neither party will",
+      "page": 2,
+      "rects": [
+       [
+        0.27905,
+        0.38366,
+        0.71609,
+        0.40346
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "to the claim. Customer will not be liable for indirect",
+      "changed": "Customer will not",
+      "page": 2,
+      "rects": [
+       [
+        0.27905,
+        0.38366,
+        0.71848,
+        0.40346
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": {
+    "relation": "conflict",
+    "kind": "scope",
+    "confidence": 0.9976,
+    "clause_relation": "conflicting",
+    "clause_probability": 0.9874,
+    "v1_quote": "Neither party will be liable for indirect, incidental or consequential damages.",
+    "v2_quote": "Customer will not be liable for indirect, incidental or consequential damages.",
+    "aligned": true,
+    "v1": {
+     "quote": "Neither party will be liable for indirect, incidental or consequential damages.",
+     "page": 2,
+     "rects": [
+      [
+       0.38921,
+       0.38366,
+       0.95394,
+       0.40346
+      ],
+      [
+       0.04297,
+       0.40455,
+       0.12205,
+       0.42435
+      ]
+     ]
+    },
+    "v2": {
+     "quote": "Customer will not be liable for indirect, incidental or consequential damages.",
+     "page": 2,
+     "rects": [
+      [
+       0.38921,
+       0.38366,
+       0.95632,
+       0.40346
+      ],
+      [
+       0.04297,
+       0.40455,
+       0.12205,
+       0.42435
+      ]
+     ]
+    }
+   },
+   "verify": {
+    "relation": "same",
+    "returned_against_sent": {
+     "verdict": "supported",
+     "supported": 0.9273,
+     "contradicted": 0.0499,
+     "not_stated": 0.0111
+    },
+    "sent_against_returned": {
+     "verdict": "supported",
+     "supported": 0.9713,
+     "contradicted": 0.0188,
+     "not_stated": 0.0054
+    }
+   },
+   "playbook": {
+    "status": "guidance",
+    "passages": [
+     {
+      "id": "liability-consequential",
+      "title": "Liability: excluded damages",
+      "text": "The exclusion of indirect and consequential damages is not negotiable by the deal desk. Any edit to it goes to Legal.",
+      "action": "use",
+      "reason": null,
+      "relevance": 0.992,
+      "document_score": 0.9946
+     }
+    ],
+    "skipped": [],
+    "expanded": false,
+    "query": "The customer changed clause 9 (Limitation of Liability): “Neither party will” → “Customer will not”. We sent: \"to the claim. Neither party will be liable for indirect\". They returned: \"to the claim. Customer will not be liable for indirect\". How should the deal desk respond?",
+    "read": 19
+   },
+   "decide": {
+    "route": "escalate",
+    "route_confidence": 0.996,
+    "desk_may_accept": 0.0025,
+    "desk_may_counter": 0.004,
+    "favors": "customer",
+    "favors_confidence": 0.3149,
+    "materiality": 3.7628,
+    "materiality_label": "Critical"
+   },
+   "route": "escalate",
+   "route_reason": "The playbook reserves this for an approver outside the deal desk.",
+   "claims": [
+    4
+   ],
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c1",
+   "decided_by": {
+    "compare": "vetoed"
+   }
+  },
+  {
+   "clause": "10",
+   "clause_v1": "10",
+   "clause_v2": "10",
+   "clause_label": "10",
+   "uid": {
+    "v1": "c014",
+    "v2": "c014"
+   },
+   "title": "Indemnification",
+   "cls": "substantive",
+   "blocking": true,
+   "kind": "wording",
+   "summary": "“will” → “may”",
+   "why": "The words differ and the difference is not just formatting or spelling. Compare reads a change, Verify reads the same meaning. The stricter reading wins, so it is held.",
+   "found_by": "both",
+   "found_by_label": "Rules + Compare",
+   "promoted": false,
+   "readers": {
+    "rules": "substantive",
+    "verify": "same",
+    "compare": "conflict",
+    "agree": false
+   },
+   "parts": [
+    {
+     "summary": "“will” → “may”",
+     "kind": "wording",
+     "v1": {
+      "quote": "finally awarded. Customer will defend Provider against any",
+      "changed": "will",
+      "page": 2,
+      "rects": [
+       [
+        0.32767,
+        0.47961,
+        0.8315,
+        0.49941
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "finally awarded. Customer may defend Provider against any",
+      "changed": "may",
+      "page": 2,
+      "rects": [
+       [
+        0.32767,
+        0.47961,
+        0.835,
+        0.49941
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": {
+    "relation": "conflict",
+    "kind": "rule_or_condition",
+    "confidence": 0.9976,
+    "clause_relation": "conflicting",
+    "clause_probability": 0.9846,
+    "v1_quote": "Customer will defend Provider against any third-party claim arising from Customer Data.",
+    "v2_quote": "Customer may defend Provider against any third-party claim arising from Customer Data.",
+    "aligned": true,
+    "v1": {
+     "quote": "Customer will defend Provider against any third-party claim arising from Customer Data.",
+     "page": 2,
+     "rects": [
+      [
+       0.47001,
+       0.47961,
+       0.92699,
+       0.49941
+      ],
+      [
+       0.04297,
+       0.5005,
+       0.33649,
+       0.5203
+      ]
+     ]
+    },
+    "v2": {
+     "quote": "Customer may defend Provider against any third-party claim arising from Customer Data.",
+     "page": 2,
+     "rects": [
+      [
+       0.47001,
+       0.47961,
+       0.93049,
+       0.49941
+      ],
+      [
+       0.04297,
+       0.5005,
+       0.33649,
+       0.5203
+      ]
+     ]
+    }
+   },
+   "verify": {
+    "relation": "same",
+    "returned_against_sent": {
+     "verdict": "supported",
+     "supported": 0.9845,
+     "contradicted": 0.0067,
+     "not_stated": 0.0053
+    },
+    "sent_against_returned": {
+     "verdict": "supported",
+     "supported": 0.9932,
+     "contradicted": 0.0028,
+     "not_stated": 0.0022
+    }
+   },
+   "playbook": {
+    "status": "none",
+    "passages": [],
+    "skipped": [],
+    "expanded": false,
+    "query": "The customer changed clause 10 (Indemnification): “will” → “may”. We sent: \"finally awarded. Customer will defend Provider against any\". They returned: \"finally awarded. Customer may defend Provider against any\". How should the deal desk respond?",
+    "read": 19
+   },
+   "decide": {
+    "route": "escalate",
+    "route_confidence": 0.9975,
+    "desk_may_accept": 0.0025,
+    "desk_may_counter": 0.0016,
+    "favors": "customer",
+    "favors_confidence": 0.9556,
+    "materiality": 2.9804,
+    "materiality_label": "Major"
+   },
+   "route": "escalate",
+   "route_reason": "The playbook has no guidance for this change, so it goes to Legal.",
+   "claims": [],
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c2",
+   "decided_by": {
+    "compare": "vetoed"
+   }
+  },
+  {
+   "clause": "6",
+   "clause_v1": "6",
+   "clause_v2": "6",
+   "clause_label": "6",
+   "uid": {
+    "v1": "c010",
+    "v2": "c010"
+   },
+   "title": "Customer Data",
+   "cls": "reworded",
+   "blocking": false,
+   "kind": "wording",
+   "summary": "“Customer owns all data it” → “All data that Customer”; Wording changed",
+   "why": "The words changed, so the rule layer read a change. Verify reads each version's sentence as supported by the other version, and Compare reads the passage as the same. The readers disagree with the rules here; for a change of wording, and only then, their agreement clears it as a faithful rewording.",
+   "found_by": "rules",
+   "found_by_label": "Rules, cleared by Verify",
+   "promoted": false,
+   "readers": {
+    "rules": "substantive",
+    "verify": "same",
+    "compare": "same",
+    "agree": false
+   },
+   "parts": [
+    {
+     "summary": "“Customer owns all data it” → “All data that Customer”",
+     "kind": "wording",
+     "v1": {
+      "quote": "Customer owns all data it submits to the Service",
+      "changed": "Customer owns all data it",
+      "page": 2,
+      "rects": [
+       [
+        0.04297,
+        0.05401,
+        0.45078,
+        0.07381
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "All data that Customer submits to the Service",
+      "changed": "All data that Customer",
+      "page": 2,
+      "rects": [
+       [
+        0.04297,
+        0.05401,
+        0.4253,
+        0.07381
+       ]
+      ],
+      "located": true
+     }
+    },
+    {
+     "summary": "Wording changed",
+     "kind": "wording",
+     "v1": {
+      "quote": "\"Customer Data\"). Provider will process Customer",
+      "changed": "",
+      "page": 2,
+      "rects": [
+       [
+        0.46308,
+        0.05401,
+        0.89157,
+        0.07381
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "Customer Data\") belongs to Customer. Provider will process",
+      "changed": "belongs to Customer",
+      "page": 2,
+      "rects": [
+       [
+        0.44601,
+        0.05401,
+        0.95703,
+        0.07381
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": {
+    "relation": "same",
+    "kind": "restated",
+    "confidence": 0.9967,
+    "clause_relation": "same",
+    "clause_probability": 0.9905,
+    "v1_quote": "Customer owns all data it submits to the Service (\"Customer Data\").",
+    "v2_quote": "All data that Customer submits to the Service (\"Customer Data\") belongs to Customer.",
+    "aligned": true,
+    "v1": {
+     "quote": "Customer owns all data it submits to the Service (\"Customer Data\").",
+     "page": 2,
+     "rects": [
+      [
+       0.04297,
+       0.05401,
+       0.61971,
+       0.07381
+      ]
+     ]
+    },
+    "v2": {
+     "quote": "All data that Customer submits to the Service (\"Customer Data\") belongs to Customer.",
+     "page": 2,
+     "rects": [
+      [
+       0.04297,
+       0.05401,
+       0.7731,
+       0.07381
+      ]
+     ]
+    }
+   },
+   "verify": {
+    "relation": "same",
+    "returned_against_sent": {
+     "verdict": "supported",
+     "supported": 0.992,
+     "contradicted": 0.0035,
+     "not_stated": 0.0026
+    },
+    "sent_against_returned": {
+     "verdict": "supported",
+     "supported": 0.9921,
+     "contradicted": 0.0037,
+     "not_stated": 0.0022
+    }
+   },
+   "playbook": null,
+   "decide": null,
+   "route": null,
+   "route_reason": null,
+   "claims": [
+    1
+   ],
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c3",
+   "decided_by": {
+    "verify": "cleared"
+   }
+  },
+  {
+   "clause": "8",
+   "clause_v1": "8",
+   "clause_v2": "8",
+   "clause_label": "8",
+   "uid": {
+    "v1": "c012",
+    "v2": "c012"
+   },
+   "title": "Confidentiality",
+   "cls": "reworded",
+   "blocking": false,
+   "kind": "wording",
+   "summary": "“using reasonable care” → “with reasonable care,”; “only to perform” → “solely for the performance of”",
+   "why": "The words changed, so the rule layer read a change. Verify reads each version's sentence as supported by the other version, and Compare reads the passage as the same. The readers disagree with the rules here; for a change of wording, and only then, their agreement clears it as a faithful rewording.",
+   "found_by": "rules",
+   "found_by_label": "Rules, cleared by Verify",
+   "promoted": false,
+   "readers": {
+    "rules": "substantive",
+    "verify": "same",
+    "compare": "same",
+    "agree": false
+   },
+   "parts": [
+    {
+     "summary": "“using reasonable care” → “with reasonable care,”",
+     "kind": "wording",
+     "v1": {
+      "quote": "other party's confidential information using reasonable care and will use it",
+      "changed": "using reasonable care",
+      "page": 2,
+      "rects": [
+       [
+        0.27203,
+        0.24591,
+        0.89798,
+        0.26571
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "other party's confidential information with reasonable care, and will use it",
+      "changed": "with reasonable care,",
+      "page": 2,
+      "rects": [
+       [
+        0.27203,
+        0.24591,
+        0.89505,
+        0.26571
+       ]
+      ],
+      "located": true
+     }
+    },
+    {
+     "summary": "“only to perform” → “solely for the performance of”",
+     "kind": "wording",
+     "v1": {
+      "quote": "and will use it only to perform this Agreement. These",
+      "changed": "only to perform",
+      "page": 2,
+      "rects": [
+       [
+        0.77903,
+        0.24591,
+        0.94076,
+        0.26571
+       ],
+       [
+        0.04297,
+        0.2668,
+        0.32826,
+        0.28661
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "and will use it solely for the performance of this Agreement. These",
+      "changed": "solely for the performance of",
+      "page": 2,
+      "rects": [
+       [
+        0.77611,
+        0.24591,
+        0.95072,
+        0.26571
+       ],
+       [
+        0.04297,
+        0.2668,
+        0.42899,
+        0.28661
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": {
+    "relation": "same",
+    "kind": "restated",
+    "confidence": 0.996,
+    "clause_relation": "same",
+    "clause_probability": 0.9918,
+    "v1_quote": "Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement.",
+    "v2_quote": "Each party will protect the other party's confidential information with reasonable care, and will use it solely for the performance of this Agreement.",
+    "aligned": true,
+    "v1": {
+     "quote": "Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement.",
+     "page": 2,
+     "rects": [
+      [
+       0.04297,
+       0.24591,
+       0.94076,
+       0.26571
+      ],
+      [
+       0.04297,
+       0.2668,
+       0.27262,
+       0.28661
+      ]
+     ]
+    },
+    "v2": {
+     "quote": "Each party will protect the other party's confidential information with reasonable care, and will use it solely for the performance of this Agreement.",
+     "page": 2,
+     "rects": [
+      [
+       0.04297,
+       0.24591,
+       0.95072,
+       0.26571
+      ],
+      [
+       0.04297,
+       0.2668,
+       0.37334,
+       0.28661
+      ]
+     ]
+    }
+   },
+   "verify": {
+    "relation": "same",
+    "returned_against_sent": {
+     "verdict": "supported",
+     "supported": 0.9928,
+     "contradicted": 0.003,
+     "not_stated": 0.0023
+    },
+    "sent_against_returned": {
+     "verdict": "supported",
+     "supported": 0.993,
+     "contradicted": 0.0032,
+     "not_stated": 0.0021
+    }
+   },
+   "playbook": null,
+   "decide": null,
+   "route": null,
+   "route_reason": null,
+   "claims": [],
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c4",
+   "decided_by": {
+    "verify": "cleared"
+   }
+  },
+  {
+   "clause": "14",
+   "clause_v1": "14",
+   "clause_v2": "14",
+   "clause_label": "14",
+   "uid": {
+    "v1": "c018",
+    "v2": "c018"
+   },
+   "title": "Notices",
+   "cls": "administrative",
+   "blocking": false,
+   "kind": "address",
+   "summary": "Notice address updated",
+   "why": "Contact details inside a notices clause. Settled by the rules: formatting and administrative differences are not sent to the API.",
+   "found_by": "rules",
+   "found_by_label": "Rules",
+   "promoted": false,
+   "readers": {
+    "rules": "administrative",
+    "verify": "not_asked",
+    "compare": "not_asked",
+    "agree": true
+   },
+   "parts": [
+    {
+     "summary": "Notice address updated",
+     "kind": "address",
+     "v1": {
+      "quote": "Brightwater Logistics LLC, 410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "changed": "410 Quay Street, Suite 200,",
+      "page": 2,
+      "rects": [
+       [
+        0.565,
+        0.82162,
+        0.94641,
+        0.84143
+       ],
+       [
+        0.04297,
+        0.84252,
+        0.3371,
+        0.86232
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "Brightwater Logistics LLC, 88 Foundry Row, Floor 6, Portland, Oregon 97209",
+      "changed": "88 Foundry Row, Floor 6,",
+      "page": 2,
+      "rects": [
+       [
+        0.565,
+        0.82162,
+        0.95229,
+        0.84143
+       ],
+       [
+        0.04297,
+        0.84252,
+        0.31835,
+        0.86232
+       ]
+      ],
+      "located": true
+     }
+    },
+    {
+     "summary": "Notice address updated",
+     "kind": "address",
+     "v1": {
+      "quote": "200, Portland, Oregon 97204. E-mail notice is",
+      "changed": "97204",
+      "page": 2,
+      "rects": [
+       [
+        0.09161,
+        0.84252,
+        0.48123,
+        0.86232
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "6, Portland, Oregon 97209. E-mail notice is",
+      "changed": "97209",
+      "page": 2,
+      "rects": [
+       [
+        0.09395,
+        0.84252,
+        0.46248,
+        0.86232
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": null,
+   "verify": null,
+   "playbook": null,
+   "decide": null,
+   "route": "accept",
+   "route_reason": "Administrative: acknowledge and update the account record.",
+   "claims": [
+    3
+   ],
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c5",
+   "decided_by": {}
+  },
+  {
+   "clause": "3",
+   "clause_v1": "3",
+   "clause_v2": "3",
+   "clause_label": "3",
+   "uid": {
+    "v1": "c004",
+    "v2": "c004"
+   },
+   "title": "Renewal",
+   "cls": "spelling",
+   "blocking": false,
+   "kind": "typo",
+   "summary": "“writen” → “written”",
+   "why": "One word, same first letter, at most two letters apart: treated as a spelling fix. Verify and Compare read the same meaning in both versions.",
+   "found_by": "rules",
+   "found_by_label": "Rules",
+   "promoted": false,
+   "readers": {
+    "rules": "spelling",
+    "verify": "same",
+    "compare": "same",
+    "agree": true
+   },
+   "parts": [
+    {
+     "summary": "“writen” → “written”",
+     "kind": "typo",
+     "v1": {
+      "quote": "unless either party gives writen notice of non-renewal at",
+      "changed": "writen",
+      "page": 1,
+      "rects": [
+       [
+        0.89301,
+        0.36358,
+        0.94574,
+        0.38339
+       ],
+       [
+        0.04297,
+        0.38447,
+        0.45947,
+        0.40428
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "unless either party gives written notice of non-renewal at",
+      "changed": "written",
+      "page": 1,
+      "rects": [
+       [
+        0.89301,
+        0.36358,
+        0.94574,
+        0.38339
+       ],
+       [
+        0.04297,
+        0.38447,
+        0.46532,
+        0.40428
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": {
+    "relation": "same",
+    "kind": "restated",
+    "confidence": 0.9849,
+    "clause_relation": "same",
+    "clause_probability": 0.9913,
+    "v1_quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "v2_quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "aligned": true,
+    "v1": {
+     "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+     "page": 1,
+     "rects": [
+      [
+       0.04297,
+       0.36358,
+       0.94574,
+       0.38339
+      ],
+      [
+       0.04297,
+       0.38447,
+       0.92224,
+       0.40428
+      ],
+      [
+       0.04297,
+       0.40538,
+       0.08691,
+       0.42518
+      ]
+     ]
+    },
+    "v2": {
+     "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+     "page": 1,
+     "rects": [
+      [
+       0.04297,
+       0.36358,
+       0.94574,
+       0.38339
+      ],
+      [
+       0.04297,
+       0.38447,
+       0.9281,
+       0.40428
+      ],
+      [
+       0.04297,
+       0.40538,
+       0.08691,
+       0.42518
+      ]
+     ]
+    }
+   },
+   "verify": {
+    "relation": "same",
+    "returned_against_sent": {
+     "verdict": "supported",
+     "supported": 0.993,
+     "contradicted": 0.0031,
+     "not_stated": 0.0022
+    },
+    "sent_against_returned": {
+     "verdict": "supported",
+     "supported": 0.9915,
+     "contradicted": 0.0041,
+     "not_stated": 0.0024
+    }
+   },
+   "playbook": null,
+   "decide": null,
+   "route": null,
+   "route_reason": null,
+   "claims": [
+    2
+   ],
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c6",
+   "decided_by": {}
+  }
+ ],
+ "compare": {
+  "document": {
+   "verdict": "conflicts",
+   "relation": "conflicting",
+   "related": 0.9925,
+   "conflicts": 0,
+   "same_passages": 0,
+   "marked": {
+    "v1": {},
+    "v2": {}
+   }
+  },
+  "gate": {
+   "asked": true,
+   "answered": true,
+   "passed": true,
+   "stopped": false,
+   "floor": 0.5,
+   "note": "The whole-document Compare is a gate: it answers whether the two files are versions of one agreement. It is asked for the relation only, which costs one to three credits; each differing clause is read on its own."
+  },
+  "clauses": [
+   {
+    "clause": "3",
+    "uid": [
+     "c004",
+     "c004"
+    ],
+    "relation": "same",
+    "probability": 0.9913,
+    "conflicts": 0,
+    "same": 1
+   },
+   {
+    "clause": "6",
+    "uid": [
+     "c010",
+     "c010"
+    ],
+    "relation": "same",
+    "probability": 0.9905,
+    "conflicts": 0,
+    "same": 3
+   },
+   {
+    "clause": "8",
+    "uid": [
+     "c012",
+     "c012"
+    ],
+    "relation": "same",
+    "probability": 0.9918,
+    "conflicts": 0,
+    "same": 2
+   },
+   {
+    "clause": "9",
+    "uid": [
+     "c013",
+     "c013"
+    ],
+    "relation": "conflicting",
+    "probability": 0.9874,
+    "conflicts": 1,
+    "same": 1
+   },
+   {
+    "clause": "10",
+    "uid": [
+     "c014",
+     "c014"
+    ],
+    "relation": "conflicting",
+    "probability": 0.9846,
+    "conflicts": 1,
+    "same": 1
+   }
+  ],
+  "clauses_asked": 5,
+  "clauses_not_read": 0,
+  "unaligned": 0,
+  "kinds": [
+   "rule_or_condition",
+   "scope"
+  ]
+ },
+ "note": {
+  "text": "Hi Dana,\n\nAttached is the clean copy of the Master Services Agreement, ready for countersignature. We tidied the wording of a few sentences. We corrected a typographical error. We updated our notice address in Section 14. No obligations of either party were changed.\n\nCould you sign and return it by Friday so we can meet our go-live date?\n\nThanks,\nPriya Raman\nProcurement, Brightwater Logistics",
+  "claims": [
+   {
+    "text": "Attached is the clean copy of the Master Services Agreement, ready for countersignature.",
+    "start": 10,
+    "end": 98,
+    "verdict": "not_a_claim",
+    "p": {
+     "supported": 0.0284,
+     "contradicted": 0.0219,
+     "not_stated": 0.4085,
+     "not_a_claim": 0.5412
+    },
+    "evidence": null,
+    "change_ids": []
+   },
+   {
+    "text": "We tidied the wording of a few sentences.",
+    "start": 99,
+    "end": 140,
+    "verdict": "supported",
+    "p": {
+     "supported": 0.9698,
+     "contradicted": 0.0104,
+     "not_stated": 0.0119,
+     "not_a_claim": 0.0079
+    },
+    "evidence": {
+     "document": "changes",
+     "quote": "Clause 6 (Customer Data) was reworded without changing its meaning.",
+     "confidence": 1,
+     "page": null,
+     "rects": [],
+     "aligned": true
+    },
+    "change_ids": [
+     "c3"
+    ]
+   },
+   {
+    "text": "We corrected a typographical error.",
+    "start": 141,
+    "end": 176,
+    "verdict": "supported",
+    "p": {
+     "supported": 0.9763,
+     "contradicted": 0.0088,
+     "not_stated": 0.0097,
+     "not_a_claim": 0.0052
+    },
+    "evidence": {
+     "document": "changes",
+     "quote": "Spelling corrected in clause 3 (Renewal): “writen” → “written”.",
+     "confidence": 0.999,
+     "page": null,
+     "rects": [],
+     "aligned": true
+    },
+    "change_ids": [
+     "c6"
+    ]
+   },
+   {
+    "text": "We updated our notice address in Section 14.",
+    "start": 177,
+    "end": 221,
+    "verdict": "supported",
+    "p": {
+     "supported": 0.9831,
+     "contradicted": 0.0061,
+     "not_stated": 0.006,
+     "not_a_claim": 0.0049
+    },
+    "evidence": {
+     "document": "changes",
+     "quote": "Administrative change in clause 14 (Notices): the notice address was updated.",
+     "confidence": 0.983,
+     "page": null,
+     "rects": [],
+     "aligned": true
+    },
+    "change_ids": [
+     "c5"
+    ]
+   },
+   {
+    "text": "No obligations of either party were changed.",
+    "start": 222,
+    "end": 266,
+    "verdict": "contradicted",
+    "p": {
+     "supported": 0.0054,
+     "contradicted": 0.9898,
+     "not_stated": 0.0022,
+     "not_a_claim": 0.0026
+    },
+    "evidence": {
+     "document": "changes",
+     "quote": "Substantive change in clause 9 (Limitation of Liability): “Neither party will” → “Customer will not”.",
+     "confidence": 0.731,
+     "page": null,
+     "rects": [],
+     "aligned": true
+    },
+    "change_ids": [
+     "c1"
+    ]
+   }
+  ],
+  "grounded": 0.716,
+  "verdict": "contradicted",
+  "ran": true,
+  "statements": 5,
+  "checked": 5,
+  "instructions": [],
+  "skipped": [
+   {
+    "text": "Hi Dana,",
+    "why": "salutation"
+   },
+   {
+    "text": "Thanks,",
+    "why": "sign-off"
+   },
+   {
+    "text": "Priya Raman",
+    "why": "signature"
+   },
+   {
+    "text": "Procurement, Brightwater Logistics",
+    "why": "signature"
+   },
+   {
+    "text": "Could you sign and return it by Friday so we can meet our go-live date?",
+    "why": "question"
+   }
+  ]
+ },
+ "guard": [
+  {
+   "target": "Cover note",
+   "ran": true,
+   "injection": 0.002117611783309492,
+   "verdict": "benign",
+   "flagged": false,
+   "category": "benign",
+   "severity": "none",
+   "evidence": []
+  },
+  {
+   "target": "Returned copy",
+   "ran": true,
+   "injection": 0.005569780041355332,
+   "verdict": "benign",
+   "flagged": false,
+   "category": "benign",
+   "severity": "none",
+   "evidence": []
+  }
+ ],
+ "terms": [
+  {
+   "field": "annual_fee",
+   "label": "Annual fee",
+   "v1": {
+    "value": "$184,000",
+    "confidence": 0.9999999987473958,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.53099,
+      0.45953,
+      0.6101,
+      0.47934
+     ]
+    ]
+   },
+   "v2": {
+    "value": "$184,000",
+    "confidence": 0.999999999594589,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.53099,
+      0.45953,
+      0.6101,
+      0.47934
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "payment_terms",
+   "label": "Payment terms",
+   "v1": {
+    "value": "within thirty (30) days of the invoice date",
+    "confidence": 0.9999999990438013,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.42027,
+      0.53459,
+      0.7712,
+      0.55439
+     ]
+    ]
+   },
+   "v2": {
+    "value": "within thirty (30) days of the invoice date",
+    "confidence": 0.9999999992263258,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.42027,
+      0.53459,
+      0.7712,
+      0.55439
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "late_interest",
+   "label": "Late interest",
+   "v1": {
+    "value": "rate of 1.5% per month",
+    "confidence": 0.9995704052910843,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.37619,
+      0.60965,
+      0.57081,
+      0.62945
+     ]
+    ]
+   },
+   "v2": {
+    "value": "rate of 1.5% per month",
+    "confidence": 0.9997700667856377,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.37619,
+      0.60965,
+      0.57081,
+      0.62945
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "price_increase_cap",
+   "label": "Renewal increase cap",
+   "v1": {
+    "value": "by up to 5% over the fees",
+    "confidence": 0.9999999919814672,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.48872,
+      0.6847,
+      0.7043,
+      0.70451
+     ]
+    ]
+   },
+   "v2": {
+    "value": "by up to 5% over the fees",
+    "confidence": 0.9999999962814743,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.48872,
+      0.6847,
+      0.7043,
+      0.70451
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "initial_term",
+   "label": "Initial term",
+   "v1": {
+    "value": "thirty-six (36) months",
+    "confidence": 0.9999999990130419,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.73387,
+      0.28852,
+      0.91898,
+      0.30833
+     ]
+    ]
+   },
+   "v2": {
+    "value": "thirty-six (36) months",
+    "confidence": 0.9999999990331985,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.73387,
+      0.28852,
+      0.91898,
+      0.30833
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "renewal_notice",
+   "label": "Non-renewal notice",
+   "v1": {
+    "value": "at least sixty (60) days before the end of the then-current term",
+    "confidence": 0.9999999855983865,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.44424,
+      0.38447,
+      0.92224,
+      0.40428
+     ],
+     [
+      0.04297,
+      0.40538,
+      0.08163,
+      0.42518
+     ]
+    ]
+   },
+   "v2": {
+    "value": "at least sixty (60) days before the end of the then-current term",
+    "confidence": 0.9999999974173281,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.4501,
+      0.38447,
+      0.9281,
+      0.40428
+     ],
+     [
+      0.04297,
+      0.40538,
+      0.08163,
+      0.42518
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "uptime",
+   "label": "Availability",
+   "v1": {
+    "value": "at least 99.9%",
+    "confidence": 0.999992180393762,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.55916,
+      0.75976,
+      0.67808,
+      0.77957
+     ]
+    ]
+   },
+   "v2": {
+    "value": "at least 99.9%",
+    "confidence": 0.9999875539859894,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.55916,
+      0.75976,
+      0.67808,
+      0.77957
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "service_credit_limit",
+   "label": "Service credit limit",
+   "v1": {
+    "value": "up to a maximum of 10% of the monthly fee for that month",
+    "confidence": 0.9999999987507597,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.3148,
+      0.80155,
+      0.81633,
+      0.82136
+     ]
+    ]
+   },
+   "v2": {
+    "value": "up to a maximum of 10% of the monthly fee for that month",
+    "confidence": 0.9999999984592913,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.3148,
+      0.80155,
+      0.81633,
+      0.82136
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "liability_cap",
+   "label": "Liability cap",
+   "v1": {
+    "value": "fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim",
+    "confidence": 0.9999999979215188,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.30717,
+      0.36275,
+      0.9065,
+      0.38256
+     ],
+     [
+      0.04297,
+      0.38366,
+      0.37865,
+      0.40346
+     ]
+    ]
+   },
+   "v2": {
+    "value": "fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim",
+    "confidence": 0.9999999983893217,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.30717,
+      0.36275,
+      0.9065,
+      0.38256
+     ],
+     [
+      0.04297,
+      0.38366,
+      0.37865,
+      0.40346
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "data_export_window",
+   "label": "Data export window",
+   "v1": {
+    "value": "For thirty (30) days after termination or expiration",
+    "confidence": 0.9999999951808647,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.282,
+      0.0749,
+      0.70674,
+      0.09471
+     ]
+    ]
+   },
+   "v2": {
+    "value": "For thirty (30) days after termination or expiration",
+    "confidence": 0.9999999954923822,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.41292,
+      0.0749,
+      0.83617,
+      0.09471
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "confidentiality_period",
+   "label": "Confidentiality period",
+   "v1": {
+    "value": "continue for three (3) years after",
+    "confidence": 0.9999999983162973,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.43257,
+      0.2668,
+      0.7061,
+      0.28661
+     ]
+    ]
+   },
+   "v2": {
+    "value": "continue for three (3) years after",
+    "confidence": 0.9999999976470564,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.53329,
+      0.2668,
+      0.80681,
+      0.28661
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "governing_law",
+   "label": "Governing law",
+   "v1": {
+    "value": "governed by the laws of the State of Delaware",
+    "confidence": 0.9999999960112236,
+    "read": true,
+    "aligned": true,
+    "page": 3,
+    "rects": [
+     [
+      0.20409,
+      0.05401,
+      0.59421,
+      0.07381
+     ]
+    ]
+   },
+   "v2": {
+    "value": "governed by the laws of the State of Delaware",
+    "confidence": 0.9999999970815607,
+    "read": true,
+    "aligned": true,
+    "page": 3,
+    "rects": [
+     [
+      0.20409,
+      0.05401,
+      0.59421,
+      0.07381
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "venue",
+   "label": "Venue",
+   "v1": {
+    "value": "courts located in Wilmington, Delaware",
+    "confidence": 0.9999999500914227,
+    "read": true,
+    "aligned": true,
+    "page": 3,
+    "rects": [
+     [
+      0.69327,
+      0.0749,
+      0.94521,
+      0.09471
+     ],
+     [
+      0.04297,
+      0.0958,
+      0.12378,
+      0.1156
+     ]
+    ]
+   },
+   "v2": {
+    "value": "courts located in Wilmington, Delaware",
+    "confidence": 0.9999999509834783,
+    "read": true,
+    "aligned": true,
+    "page": 3,
+    "rects": [
+     [
+      0.69327,
+      0.0749,
+      0.94521,
+      0.09471
+     ],
+     [
+      0.04297,
+      0.0958,
+      0.12378,
+      0.1156
+     ]
+    ]
+   },
+   "changed": false
+  }
+ ],
+ "hidden_text": [],
+ "unread_pages": {
+  "v1": [],
+  "v2": []
+ },
+ "ocr_pages": {
+  "v1": [],
+  "v2": []
+ },
+ "ignored_readers": [],
+ "warnings": [],
+ "method": [
+  "Code sets the status; no model does.",
+  "Formatting and administrative differences are settled by the rules and are not sent to the API.",
+  "Where the readings disagree, the stricter one wins. A value that differs is never cleared.",
+  "A rewording is cleared only when Verify supports it in both directions and Compare does not object; a one-word swap between two real words also needs Compare to read the passage as the same."
+ ],
+ "ablation": [
+  {
+   "endpoint": "Verify",
+   "text": "2 faithful rewordings would be sent to negotiation. The cover note would be taken at its word: 1 false statement would not be caught, and this review would read “changes to resolve” instead of “do not sign”.",
+   "changes": [
+    "c3",
+    "c4"
+   ],
+   "claims": [
+    4
+   ]
+  },
+  {
+   "endpoint": "Compare",
+   "text": "2 changes that Verify read as the same meaning would have been cleared. 2 of 2 open changes would rest on one reading of the clause instead of two. Nothing would check that the two files are versions of one agreement.",
+   "changes": [
+    "c1",
+    "c2"
+   ]
+  },
+  {
+   "endpoint": "Rerank",
+   "text": "2 changes would reach the reviewer with no playbook answer attached; 1 change with no guidance would not be sent to Legal automatically.",
+   "changes": [
+    "c2"
+   ]
+  }
+ ],
+ "endpoints": [
+  {
+   "name": "Verify",
+   "path": "/clocked/grounding",
+   "calls": 3,
+   "credits": 26,
+   "credits_share": 0.2796,
+   "model_ms": 611,
+   "effect": "Reads meaning, in two places. Across versions: each sentence the rules class as a change or as a spelling fix is read against the other version's PDF, in both directions. A contradiction confirms a change or promotes a spelling fix; support in both directions clears a faithful rewording, unless Compare objects. On the cover note: each statement is checked against the returned copy and the list of changes, and a contradicted one blocks signing. Formatting and administrative differences are not sent.",
+   "decided": 3,
+   "decided_detail": {
+    "held_alone": [],
+    "cleared": [
+     "c3",
+     "c4"
+    ],
+    "note_statements_contradicted": [
+     4
+    ],
+    "only_blocker": true
+   }
+  },
+  {
+   "name": "Compare",
+   "path": "/clocked/compare",
+   "calls": 6,
+   "credits": 31,
+   "credits_share": 0.3333,
+   "model_ms": 689,
+   "effect": "Two jobs. As a gate, on the two whole PDFs: are they versions of one agreement? If not, the review stops. Clause by clause, for clauses whose meaning is in question: a conflict confirms a change, promotes a spelling fix and vetoes clearing a rewording; a one-word swap is cleared only if Compare reads the passage as the same. The marked copies it returns are an optional layer on the pages.",
+   "decided": 2,
+   "decided_detail": {
+    "held_alone": [],
+    "vetoed_clearing": [
+     "c1",
+     "c2"
+    ],
+    "consented_to_clearing": [],
+    "gate_stopped_the_review": false
+   }
+  },
+  {
+   "name": "Rerank",
+   "path": "/clocked/rerank",
+   "calls": 2,
+   "credits": 8,
+   "credits_share": 0.086,
+   "model_ms": 194,
+   "effect": "Picks the playbook passages for each open change and skips those written for other deal sizes; none found means Legal.",
+   "decided": 2,
+   "decided_detail": {
+    "with_guidance": [
+     "c1"
+    ],
+    "without_guidance": [
+     "c2"
+    ],
+    "expanded": []
+   }
+  },
+  {
+   "name": "Decide",
+   "path": "/clocked/decide",
+   "calls": 2,
+   "credits": 4,
+   "credits_share": 0.043,
+   "model_ms": 58,
+   "effect": "Answers two yes/no questions about each open change from the passages Rerank kept; code turns them into a route, and an unsure answer means a person decides.",
+   "decided": 1,
+   "decided_detail": {
+    "routes_followed": [
+     "c1"
+    ],
+    "routes_not_followed": [
+     "c2"
+    ]
+   }
+  },
+  {
+   "name": "Extract",
+   "path": "/clocked/extract",
+   "calls": 2,
+   "credits": 19,
+   "credits_share": 0.2043,
+   "model_ms": 452,
+   "effect": "Reads the key terms of both versions for the side-by-side table. The annual fee and the initial term of our version are given to Rerank and Decide as deal facts.",
+   "decided": 2,
+   "decided_detail": {
+    "deal_facts_given_to_routing": [
+     "annual_fee",
+     "initial_term"
+    ]
+   }
+  },
+  {
+   "name": "Guard",
+   "path": "/clocked/injection",
+   "calls": 2,
+   "credits": 5,
+   "credits_share": 0.0538,
+   "model_ms": 90,
+   "effect": "Flags text addressed to an AI reviewer, in the cover note and in the returned PDF; a hit blocks signing.",
+   "decided": 0,
+   "decided_detail": {
+    "flagged": [],
+    "only_blocker": false
+   }
+  }
+ ],
+ "errors": [],
+ "audit": {
+  "requests": [
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare v1 v2",
+    "credits": 3,
+    "model_ms": 57.139328,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f95ca896e0d-BOS",
+    "idempotency_key": "cdf07aae-a5f5-4269-a696-a19357814dc6",
+    "recorded_at": "2026-11-10T13:45:34+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Extract",
+    "path": "/clocked/extract",
+    "step": "extract terms v2",
+    "credits": 10,
+    "model_ms": 239.0159,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f98bb04a6fa-BOS",
+    "idempotency_key": "ee8e9586-0249-430d-957b-b7cadcec2f75",
+    "recorded_at": "2026-11-10T13:45:35+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Guard",
+    "path": "/clocked/injection",
+    "step": "guard returned copy",
+    "credits": 3,
+    "model_ms": 63.691936,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f98ccf24613-BOS",
+    "idempotency_key": "0d1bbdd0-4dc8-45b3-9fca-4503210e5c5b",
+    "recorded_at": "2026-11-10T13:45:35+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Extract",
+    "path": "/clocked/extract",
+    "step": "extract terms v1",
+    "credits": 9,
+    "model_ms": 213.350754,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f98aa6bf5c2-BOS",
+    "idempotency_key": "3c2439b9-8d8b-40c3-a8fd-b0fce1424c47",
+    "recorded_at": "2026-11-10T13:45:35+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 6",
+    "credits": 6,
+    "model_ms": 138.330658,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f9d1f084613-BOS",
+    "idempotency_key": "9990c175-06c5-47d1-9c83-b86051acc302",
+    "recorded_at": "2026-11-10T13:45:35+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 3",
+    "credits": 5,
+    "model_ms": 100.64864,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f9bd9c8f5c2-BOS",
+    "idempotency_key": "c93ae595-56d7-4306-a5da-14353f25038f",
+    "recorded_at": "2026-11-10T13:45:35+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 9",
+    "credits": 6,
+    "model_ms": 140.742752,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f9dddcef5c2-BOS",
+    "idempotency_key": "4a0d38d2-867b-4b53-ab90-fae4c5b3e5de",
+    "recorded_at": "2026-11-10T13:45:36+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 8",
+    "credits": 5,
+    "model_ms": 110.236162,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f9d3bcfa6fa-BOS",
+    "idempotency_key": "879e9f27-83f5-4960-b63f-37cdbf668d45",
+    "recorded_at": "2026-11-10T13:45:35+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify returned sentences against v1",
+    "credits": 8,
+    "model_ms": 193.362465,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f9fc89ea6fa-BOS",
+    "idempotency_key": "150bc04d-4f48-4e04-b5b5-0d6ca3328752",
+    "recorded_at": "2026-11-10T13:45:36+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 10",
+    "credits": 6,
+    "model_ms": 144.819296,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857f9f0c3a4613-BOS",
+    "idempotency_key": "7bdce39e-422b-4aa3-919f-79901b935d49",
+    "recorded_at": "2026-11-10T13:45:36+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Guard",
+    "path": "/clocked/injection",
+    "step": "guard cover note",
+    "credits": 2,
+    "model_ms": 27.132959,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fa35fffa6fa-BOS",
+    "idempotency_key": "ce9d35ee-904f-4503-a735-52cb5a88c2d0",
+    "recorded_at": "2026-11-10T13:45:36+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify sent sentences against v2",
+    "credits": 8,
+    "model_ms": 180.496223,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fa15cdef5c2-BOS",
+    "idempotency_key": "de05a27e-d23d-4d2e-a1b9-25a071908cf5",
+    "recorded_at": "2026-11-10T13:45:36+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify cover note",
+    "credits": 10,
+    "model_ms": 238.224194,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fa78e28896f-BOS",
+    "idempotency_key": "b4dc1a79-41e6-491d-8c6f-9fa8cc3a09c9",
+    "recorded_at": "2026-11-10T13:45:37+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Rerank",
+    "path": "/clocked/rerank",
+    "step": "rerank 9",
+    "credits": 4,
+    "model_ms": 97.269791,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857faa9a283335-BOS",
+    "idempotency_key": "53a5a4dc-88c2-4c89-95ed-6c5f95294b33",
+    "recorded_at": "2026-11-10T13:45:37+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Rerank",
+    "path": "/clocked/rerank",
+    "step": "rerank 10",
+    "credits": 4,
+    "model_ms": 97.52816,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857faa9fd70c1e-BOS",
+    "idempotency_key": "3415baff-b752-4d30-8823-3b2e088b183a",
+    "recorded_at": "2026-11-10T13:45:38+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Decide",
+    "path": "/clocked/decide",
+    "step": "decide 9",
+    "credits": 2,
+    "model_ms": 29.583712,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fac3d4b3335-BOS",
+    "idempotency_key": "5593b42c-1516-4796-a2c0-9937118527b6",
+    "recorded_at": "2026-11-10T13:45:38+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Decide",
+    "path": "/clocked/decide",
+    "step": "decide 10",
+    "credits": 2,
+    "model_ms": 29.547712,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fad5c490c1e-BOS",
+    "idempotency_key": "cd3216fe-9299-4d82-b441-8314e1743ced",
+    "recorded_at": "2026-11-10T13:45:38+00:00",
+    "replayed": true,
+    "cached": false
+   }
+  ],
+  "credits": 93,
+  "calls": 17,
+  "by_endpoint_share": {
+   "Compare": 0.3333,
+   "Decide": 0.043,
+   "Extract": 0.2043,
+   "Guard": 0.0538,
+   "Rerank": 0.086,
+   "Verify": 0.2796
+  }
+ },
+ "playbook_topics": [
+  {
+   "id": "payment",
+   "title": "Payment terms"
+  },
+  {
+   "id": "fees",
+   "title": "Fees and price changes"
+  },
+  {
+   "id": "term",
+   "title": "Term and renewal"
+  },
+  {
+   "id": "liability",
+   "title": "Liability"
+  },
+  {
+   "id": "service",
+   "title": "Service levels"
+  },
+  {
+   "id": "law",
+   "title": "Governing law"
+  },
+  {
+   "id": "data",
+   "title": "Data and confidentiality"
+  },
+  {
+   "id": "assignment",
+   "title": "Assignment"
+  },
+  {
+   "id": "notices",
+   "title": "Notices"
+  }
+ ]
+}

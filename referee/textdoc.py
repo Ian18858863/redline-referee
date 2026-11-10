@@ -1282,20 +1282,29 @@ def content_box(pdf_paths: list[str | Path], pad: float = 22.0) -> tuple[float, 
     return (x0 / w, y0 / h, x1 / w, y1 / h)
 
 
-def remap_rects(obj, crop: tuple[float, float, float, float]):
-    """Rewrite every 'rects' list (fractions of the full page) into fractions of the cropped page, in place."""
+def remap_rects(obj, crop: tuple[float, float, float, float], _seen: set | None = None):
+    """Rewrite every 'rects' list (fractions of the full page) into fractions of the cropped page, in place.
+
+    The same dict can be reachable twice (an edit listed in its own group and again inside the change that holds
+    its sentence), so every container is converted once only.
+    """
+    seen = _seen if _seen is not None else set()
+    if id(obj) in seen:
+        return
     cx0, cy0, cx1, cy1 = crop
     cw, ch = cx1 - cx0, cy1 - cy0
     if isinstance(obj, dict):
+        seen.add(id(obj))
         for k, v in obj.items():
             if k == "rects" and isinstance(v, list):
-                obj[k] = [[round((r[0] - cx0) / cw, 5), round((r[1] - cy0) / ch, 5),
-                           round((r[2] - cx0) / cw, 5), round((r[3] - cy0) / ch, 5)] for r in v]
+                obj[k] = [[round(min(1.0, max(0.0, (r[0] - cx0) / cw)), 5), round(min(1.0, max(0.0, (r[1] - cy0) / ch)), 5),
+                           round(min(1.0, max(0.0, (r[2] - cx0) / cw)), 5), round(min(1.0, max(0.0, (r[3] - cy0) / ch)), 5)] for r in v]
             else:
-                remap_rects(v, crop)
+                remap_rects(v, crop, seen)
     elif isinstance(obj, list):
+        seen.add(id(obj))
         for v in obj:
-            remap_rects(v, crop)
+            remap_rects(v, crop, seen)
 
 
 def render_pages(pdf_path: str | Path, out_dir: str | Path, prefix: str, dpi: int = 132,

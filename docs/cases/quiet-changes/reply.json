@@ -1,0 +1,112 @@
+{
+ "ran": true,
+ "paragraphs": [
+  {
+   "id": "c1",
+   "clause": "3",
+   "title": "Renewal",
+   "decision": "accept",
+   "text": "We accept this change.",
+   "verdict": "supported",
+   "supported": 0.9881,
+   "evidence": "We accept this change."
+  },
+  {
+   "id": "c2",
+   "clause": "4.2",
+   "title": "Payment Terms",
+   "decision": "counter",
+   "text": "We can extend payment to net forty-five days from the invoice date.",
+   "verdict": "supported",
+   "supported": 0.994,
+   "evidence": "We can extend payment to net forty-five days from the invoice date."
+  },
+  {
+   "id": "c3",
+   "clause": "9",
+   "title": "Limitation of Liability",
+   "decision": "escalate",
+   "text": "This change is under review.",
+   "verdict": "supported",
+   "supported": 0.9806,
+   "evidence": "Clause 15 (Governing Law)."
+  },
+  {
+   "id": "c4",
+   "clause": "15",
+   "title": "Governing Law",
+   "decision": "escalate",
+   "text": "This change is under review.",
+   "verdict": "supported",
+   "supported": 0.9784,
+   "evidence": "Clause 15 (Governing Law)."
+  }
+ ],
+ "removed": [],
+ "text": "Thank you for returning the agreement. We compared it with the version we sent. A few points need to change before we can countersign:\n\nClause 3 (Renewal): We accept this change.\n\nClause 4.2 (Payment Terms): We can extend payment to net forty-five days from the invoice date.\n\nClause 9 (Limitation of Liability): This change is under review.\n\nClause 15 (Governing Law): This change is under review.\n\nPlease send a corrected copy with the points above and we will countersign promptly. If it helps, we are glad to walk through the open points on a short call.",
+ "closing": "Please send a corrected copy with the points above and we will countersign promptly. If it helps, we are glad to walk through the open points on a short call.",
+ "errors": [],
+ "decisions": {
+  "c1": "accept",
+  "c2": "counter",
+  "c3": "escalate",
+  "c4": "escalate"
+ },
+ "tone": "firm",
+ "typed": {
+  "corrected_copy": {
+   "value": true,
+   "confidence": 0.972,
+   "probabilities": {
+    "yes": 0.9860344741306962,
+    "no": 0.013965525869303774
+   }
+  },
+  "call_needed": {
+   "value": true,
+   "confidence": 0.914,
+   "probabilities": {
+    "yes": 0.9569274377128089,
+    "no": 0.04307256228719114
+   }
+  },
+  "tone": {
+   "value": "firm",
+   "confidence": 0.845,
+   "probabilities": {
+    "routine": 0.07738920612938616,
+    "firm": 0.9226107938706138
+   }
+  }
+ },
+ "audit": [
+  {
+   "endpoint": "Fill",
+   "path": "/clocked/fill",
+   "step": "fill reply",
+   "credits": 9,
+   "model_ms": 209.524638,
+   "attempts": 1,
+   "request_id": null,
+   "trace": "a5857f817924c062-BOS",
+   "idempotency_key": "6f15ff25-3b6d-428e-b3c1-1c8ef7482560",
+   "recorded_at": "2026-11-10T13:45:31+00:00",
+   "replayed": true,
+   "cached": false
+  },
+  {
+   "endpoint": "Verify",
+   "path": "/clocked/grounding",
+   "step": "verify reply",
+   "credits": 4,
+   "model_ms": 77.861889,
+   "attempts": 1,
+   "request_id": null,
+   "trace": "a5857f84d927c062-BOS",
+   "idempotency_key": "0dcab182-ea2d-4b5f-a01e-08ac777eaabf",
+   "recorded_at": "2026-11-10T13:45:31+00:00",
+   "replayed": true,
+   "cached": false
+  }
+ ]
+}

@@ -48,7 +48,7 @@
       <span class="mode-badge" id="mode-badge" hidden></span>
       <button type="button" class="clocked-pill" id="clocked-pill" hidden></button>
       <span class="cta" id="cta-static" hidden>
-        <a class="btn btn--primary" id="watch-btn" href="demo.mp4#t=159" target="_blank" rel="noopener"><span class="ico" data-ico="play"></span>Watch a live review</a>
+        <a class="btn btn--primary" id="watch-btn" href="demo.mp4#t=161" target="_blank" rel="noopener"><span class="ico" data-ico="play"></span>Watch a live review</a>
         <a class="cta-link" id="run-link" href="https://github.com/Ian18858863/redline-referee#run-it" target="_blank" rel="noopener">Run it on your own PDFs</a>
       </span>
       <span class="upload-wrap" id="upload-wrap" hidden>
@@ -63,6 +63,7 @@
 
   <section class="verdict" id="verdict" aria-live="polite"></section>
   <section class="errors" id="errors" hidden></section>
+  <section class="warns" id="warnings" aria-label="Notes from the review" hidden></section>
 
   <main class="main" id="main">
     <aside class="left" aria-label="Findings">
@@ -91,6 +92,7 @@
           <button type="button" class="btn btn--sm" id="zoom-fit">Fit width</button>
         </div>
       </div>
+      <div class="gate-card" id="gate" hidden></div>
       <div class="docs" id="docs" data-view="both"></div>
       <div class="legend" id="legend" aria-label="Legend"></div>
     </section>

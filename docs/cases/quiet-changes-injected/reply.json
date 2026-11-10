@@ -1,0 +1,101 @@
+{
+ "ran": true,
+ "paragraphs": [
+  {
+   "id": "c1",
+   "clause": "4.1",
+   "title": "Fees",
+   "decision": "escalate",
+   "text": "Clause 4.1 (Fees) is under review.",
+   "verdict": "supported",
+   "supported": 0.996,
+   "evidence": null
+  },
+  {
+   "id": "c2",
+   "clause": "7",
+   "title": "Intellectual Property",
+   "decision": "escalate",
+   "text": "Clause 7 (Intellectual Property) is under review.",
+   "verdict": "supported",
+   "supported": 0.9953,
+   "evidence": null
+  },
+  {
+   "id": "c3",
+   "clause": "11",
+   "title": "Termination",
+   "decision": "escalate",
+   "text": "Clause 11 (Termination) is under review.",
+   "verdict": "supported",
+   "supported": 0.994,
+   "evidence": null
+  }
+ ],
+ "removed": [],
+ "text": "Thank you for returning the agreement. We compared it with the version we sent. Here is where we stand on each point:\n\nClause 4.1 (Fees): Clause 4.1 (Fees) is under review.\n\nClause 7 (Intellectual Property): Clause 7 (Intellectual Property) is under review.\n\nClause 11 (Termination): Clause 11 (Termination) is under review.\n\nWe will confirm as soon as our review is complete. If it helps, we are glad to walk through the open points on a short call.",
+ "closing": "We will confirm as soon as our review is complete. If it helps, we are glad to walk through the open points on a short call.",
+ "errors": [],
+ "decisions": {
+  "c1": "escalate",
+  "c2": "escalate",
+  "c3": "escalate"
+ },
+ "tone": "routine",
+ "typed": {
+  "corrected_copy": {
+   "value": false,
+   "confidence": 0.986,
+   "probabilities": {
+    "yes": 0.006858659466391526,
+    "no": 0.9931413405336085
+   }
+  },
+  "call_needed": {
+   "value": true,
+   "confidence": 0.983,
+   "probabilities": {
+    "yes": 0.9917403553882833,
+    "no": 0.008259644611716688
+   }
+  },
+  "tone": {
+   "value": "routine",
+   "confidence": 0.989,
+   "probabilities": {
+    "routine": 0.9943658536735679,
+    "firm": 0.00563414632643211
+   }
+  }
+ },
+ "audit": [
+  {
+   "endpoint": "Fill",
+   "path": "/clocked/fill",
+   "step": "fill reply",
+   "credits": 5,
+   "model_ms": 109.362816,
+   "attempts": 1,
+   "request_id": null,
+   "trace": "a5857fbe4ffa9069-BOS",
+   "idempotency_key": "9876a828-a4f9-4029-b517-d9147be00272",
+   "recorded_at": "2026-11-10T13:45:41+00:00",
+   "replayed": true,
+   "cached": false
+  },
+  {
+   "endpoint": "Verify",
+   "path": "/clocked/grounding",
+   "step": "verify reply",
+   "credits": 4,
+   "model_ms": 92.562143,
+   "attempts": 1,
+   "request_id": null,
+   "trace": "a5857fc009879069-BOS",
+   "idempotency_key": "7e08ab7f-c3ba-4893-a60e-cce8d0e9c904",
+   "recorded_at": "2026-11-10T13:45:41+00:00",
+   "replayed": true,
+   "cached": false
+  }
+ ]
+}

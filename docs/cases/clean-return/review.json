@@ -12,7 +12,7 @@
   {
    "level": "ok",
    "source": "All checks",
-   "text": "No substantive change, the cover note holds up, nothing addressed to an AI."
+   "text": "No substantive change, no statement of the cover note is contradicted (5 checked), nothing addressed to an AI, the two files read as versions of one agreement."
   }
  ],
  "documents": {
@@ -20,8 +20,8 @@
    "name": "The version we sent",
    "pages_count": 3,
    "source_pdf": "v1.pdf",
-   "marked_pdf": "v1-compare-highlight.pdf",
-   "marked_by": "Clocked Compare: every passage it paired with the other version",
+   "marked_pdf": null,
+   "marked_by": null,
    "extra_pdfs": [
     {
      "label": "Key terms boxed by Extract",
@@ -47,30 +47,6 @@
    ],
    "layers": [
     {
-     "id": "compare",
-     "label": "Passages paired by Compare",
-     "by": "Clocked Compare, return_pdf=highlight",
-     "pdf": "v1-compare-highlight.pdf",
-     "spans": 20,
-     "pages": [
-      {
-       "image": "v1-compare-p1.png",
-       "width": 940,
-       "height": 1335
-      },
-      {
-       "image": "v1-compare-p2.png",
-       "width": 940,
-       "height": 1335
-      },
-      {
-       "image": "v1-compare-p3.png",
-       "width": 940,
-       "height": 1335
-      }
-     ]
-    },
-    {
      "id": "terms",
      "label": "Key terms boxed by Extract",
      "by": "Clocked Extract, return_pdf=box",
@@ -95,15 +71,15 @@
      ]
     }
    ],
-   "marked_spans": 20,
-   "spans": 20
+   "pages_without_text": [],
+   "ocr_pages": []
   },
   "v2": {
    "name": "The copy they returned",
    "pages_count": 3,
    "source_pdf": "v2.pdf",
-   "marked_pdf": "v2-compare-highlight.pdf",
-   "marked_by": "Clocked Compare: every passage it paired with the other version",
+   "marked_pdf": null,
+   "marked_by": null,
    "extra_pdfs": [
     {
      "label": "Key terms boxed by Extract",
@@ -129,30 +105,6 @@
    ],
    "layers": [
     {
-     "id": "compare",
-     "label": "Passages paired by Compare",
-     "by": "Clocked Compare, return_pdf=highlight",
-     "pdf": "v2-compare-highlight.pdf",
-     "spans": 22,
-     "pages": [
-      {
-       "image": "v2-compare-p1.png",
-       "width": 940,
-       "height": 1335
-      },
-      {
-       "image": "v2-compare-p2.png",
-       "width": 940,
-       "height": 1335
-      },
-      {
-       "image": "v2-compare-p3.png",
-       "width": 940,
-       "height": 1335
-      }
-     ]
-    },
-    {
      "id": "terms",
      "label": "Key terms boxed by Extract",
      "by": "Clocked Extract, return_pdf=box",
@@ -177,22 +129,35 @@
      ]
     }
    ],
-   "marked_spans": 22,
-   "spans": 22
+   "pages_without_text": [],
+   "ocr_pages": []
   }
  },
  "changes": [
   {
    "clause": "14",
+   "clause_v1": "14",
+   "clause_v2": "14",
+   "clause_label": "14",
+   "uid": {
+    "v1": "c018",
+    "v2": "c018"
+   },
    "title": "Notices",
    "cls": "administrative",
    "blocking": false,
    "kind": "address",
    "summary": "Notice address updated",
-   "why": "Contact details inside a notices clause.",
+   "why": "Contact details inside a notices clause. Settled by the rules: formatting and administrative differences are not sent to the API.",
    "found_by": "rules",
    "found_by_label": "Rules",
    "promoted": false,
+   "readers": {
+    "rules": "administrative",
+    "verify": "not_asked",
+    "compare": "not_asked",
+    "agree": true
+   },
    "parts": [
     {
      "summary": "Notice address updated",
@@ -280,19 +245,35 @@
    "claims": [
     2
    ],
-   "id": "c1"
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c1",
+   "decided_by": {}
   },
   {
    "clause": "3",
+   "clause_v1": "3",
+   "clause_v2": "3",
+   "clause_label": "3",
+   "uid": {
+    "v1": "c004",
+    "v2": "c004"
+   },
    "title": "Renewal",
    "cls": "spelling",
    "blocking": false,
    "kind": "typo",
    "summary": "“writen” → “written”",
-   "why": "One word, same first letter, at most two letters apart: treated as a spelling fix. Compare can overrule this.",
+   "why": "One word, same first letter, at most two letters apart: treated as a spelling fix. Verify and Compare read the same meaning in both versions.",
    "found_by": "rules",
    "found_by_label": "Rules",
    "promoted": false,
+   "readers": {
+    "rules": "spelling",
+    "verify": "same",
+    "compare": "same",
+    "agree": true
+   },
    "parts": [
     {
      "summary": "“writen” → “written”",
@@ -417,19 +398,35 @@
    "route": null,
    "route_reason": null,
    "claims": [],
-   "id": "c2"
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c2",
+   "decided_by": {}
   },
   {
    "clause": "5",
+   "clause_v1": "5",
+   "clause_v2": "5",
+   "clause_label": "5",
+   "uid": {
+    "v1": "c009",
+    "v2": "c009"
+   },
    "title": "Service Levels",
    "cls": "spelling",
    "blocking": false,
    "kind": "typo",
    "summary": "“recieve” → “receive”",
-   "why": "One word, same first letter, at most two letters apart: treated as a spelling fix. Compare can overrule this.",
+   "why": "One word, same first letter, at most two letters apart: treated as a spelling fix. Verify and Compare read the same meaning in both versions.",
    "found_by": "rules",
    "found_by_label": "Rules",
    "promoted": false,
+   "readers": {
+    "rules": "spelling",
+    "verify": "same",
+    "compare": "same",
+    "agree": true
+   },
    "parts": [
     {
      "summary": "“recieve” → “receive”",
@@ -544,19 +541,35 @@
    "claims": [
     1
    ],
-   "id": "c3"
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c3",
+   "decided_by": {}
   },
   {
    "clause": "11",
+   "clause_v1": "11",
+   "clause_v2": "11",
+   "clause_label": "11",
+   "uid": {
+    "v1": "c015",
+    "v2": "c015"
+   },
    "title": "Termination",
    "cls": "formatting",
    "blocking": false,
    "kind": "format",
    "summary": "Formatting only",
-   "why": "Same words and numbers once formatting is ignored.",
+   "why": "Same words and numbers once formatting is ignored. Settled by the rules: formatting and administrative differences are not sent to the API.",
    "found_by": "rules",
    "found_by_label": "Rules",
    "promoted": false,
+   "readers": {
+    "rules": "formatting",
+    "verify": "not_asked",
+    "compare": "not_asked",
+    "agree": true
+   },
    "parts": [
     {
      "summary": "Formatting only",
@@ -610,7 +623,10 @@
    "route": null,
    "route_reason": null,
    "claims": [],
-   "id": "c4"
+   "same_sentence_as": null,
+   "not_read": false,
+   "id": "c4",
+   "decided_by": {}
   }
  ],
  "compare": {
@@ -618,34 +634,28 @@
    "verdict": "conflicts",
    "relation": "conflicting",
    "related": 0.9953,
-   "conflicts": 1,
-   "same_passages": 21,
+   "conflicts": 0,
+   "same_passages": 0,
    "marked": {
-    "v1": {
-     "mode": "highlight",
-     "spans": 20,
-     "marked": 20,
-     "pages": [
-      1,
-      2,
-      3
-     ]
-    },
-    "v2": {
-     "mode": "highlight",
-     "spans": 22,
-     "marked": 22,
-     "pages": [
-      1,
-      2,
-      3
-     ]
-    }
+    "v1": {},
+    "v2": {}
    }
+  },
+  "gate": {
+   "asked": true,
+   "answered": true,
+   "passed": true,
+   "stopped": false,
+   "floor": 0.5,
+   "note": "The whole-document Compare is a gate: it answers whether the two files are versions of one agreement. It is asked for the relation only, which costs one to three credits; each differing clause is read on its own."
   },
   "clauses": [
    {
     "clause": "3",
+    "uid": [
+     "c004",
+     "c004"
+    ],
     "relation": "same",
     "probability": 0.9913,
     "conflicts": 0,
@@ -653,6 +663,10 @@
    },
    {
     "clause": "5",
+    "uid": [
+     "c009",
+     "c009"
+    ],
     "relation": "same",
     "probability": 0.9755,
     "conflicts": 0,
@@ -660,6 +674,7 @@
    }
   ],
   "clauses_asked": 2,
+  "clauses_not_read": 0,
   "unaligned": 0,
   "kinds": []
  },
@@ -672,10 +687,10 @@
     "end": 98,
     "verdict": "not_stated",
     "p": {
-     "supported": 0.0552,
-     "contradicted": 0.0134,
-     "not_stated": 0.7319,
-     "not_a_claim": 0.1995
+     "supported": 0.085,
+     "contradicted": 0.0194,
+     "not_stated": 0.5958,
+     "not_a_claim": 0.2998
     },
     "evidence": null,
     "change_ids": []
@@ -686,15 +701,15 @@
     "end": 139,
     "verdict": "supported",
     "p": {
-     "supported": 0.9905,
-     "contradicted": 0.004,
-     "not_stated": 0.0029,
-     "not_a_claim": 0.0026
+     "supported": 0.9892,
+     "contradicted": 0.0046,
+     "not_stated": 0.0034,
+     "not_a_claim": 0.0029
     },
     "evidence": {
      "document": "changes",
      "quote": "Spelling corrected in clause 5 (Service Levels): “recieve” → “receive”.",
-     "confidence": 0.978,
+     "confidence": 1,
      "page": null,
      "rects": [],
      "aligned": true
@@ -709,10 +724,10 @@
     "end": 184,
     "verdict": "supported",
     "p": {
-     "supported": 0.9934,
-     "contradicted": 0.0026,
-     "not_stated": 0.0019,
-     "not_a_claim": 0.0021
+     "supported": 0.9895,
+     "contradicted": 0.0041,
+     "not_stated": 0.0032,
+     "not_a_claim": 0.0032
     },
     "evidence": {
      "document": "changes",
@@ -732,10 +747,10 @@
     "end": 227,
     "verdict": "supported",
     "p": {
-     "supported": 0.9904,
-     "contradicted": 0.0043,
-     "not_stated": 0.0026,
-     "not_a_claim": 0.0027
+     "supported": 0.9891,
+     "contradicted": 0.0048,
+     "not_stated": 0.003,
+     "not_a_claim": 0.0031
     },
     "evidence": null,
     "change_ids": []
@@ -746,15 +761,15 @@
     "end": 265,
     "verdict": "supported",
     "p": {
-     "supported": 0.818,
-     "contradicted": 0.0394,
-     "not_stated": 0.1203,
-     "not_a_claim": 0.0223
+     "supported": 0.8051,
+     "contradicted": 0.0252,
+     "not_stated": 0.1536,
+     "not_a_claim": 0.0161
     },
     "evidence": {
      "document": "v2",
      "quote": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
-     "confidence": 0.983,
+     "confidence": 0.999,
      "page": 1,
      "rects": [
       [
@@ -769,9 +784,34 @@
     "change_ids": []
    }
   ],
-  "grounded": 0.6377,
+  "grounded": 0.6451,
   "verdict": "partially_grounded",
-  "ran": true
+  "ran": true,
+  "statements": 5,
+  "checked": 5,
+  "instructions": [],
+  "skipped": [
+   {
+    "text": "Hi Dana,",
+    "why": "salutation"
+   },
+   {
+    "text": "Thanks,",
+    "why": "sign-off"
+   },
+   {
+    "text": "Priya Raman",
+    "why": "signature"
+   },
+   {
+    "text": "Procurement, Brightwater Logistics",
+    "why": "signature"
+   },
+   {
+    "text": "Could you sign and return it by Friday so we can meet our go-live date?",
+    "why": "question"
+   }
+  ]
  },
  "guard": [
   {
@@ -1289,16 +1329,32 @@
   }
  ],
  "hidden_text": [],
+ "unread_pages": {
+  "v1": [],
+  "v2": []
+ },
+ "ocr_pages": {
+  "v1": [],
+  "v2": []
+ },
+ "ignored_readers": [],
+ "warnings": [],
+ "method": [
+  "Code sets the status; no model does.",
+  "Formatting and administrative differences are settled by the rules and are not sent to the API.",
+  "Where the readings disagree, the stricter one wins. A value that differs is never cleared.",
+  "A rewording is cleared only when Verify supports it in both directions and Compare does not object; a one-word swap between two real words also needs Compare to read the passage as the same."
+ ],
  "ablation": [
   {
    "endpoint": "Verify",
-   "text": "The 5 statement(s) of the cover note would go unchecked; here they hold up.",
+   "text": "The 5 statements of the cover note would go unchecked; here none is contradicted.",
    "changes": [],
    "claims": []
   },
   {
    "endpoint": "Compare",
-   "text": "Nothing would check that the two files are versions of the same agreement, and there would be no paired copies of the PDFs.",
+   "text": "Nothing would check that the two files are versions of one agreement.",
    "changes": []
   },
   {
@@ -1312,54 +1368,108 @@
    "name": "Verify",
    "path": "/clocked/grounding",
    "calls": 3,
-   "credits": 19,
-   "model_ms": 446,
-   "effect": "Reads meaning twice. Each changed sentence against the other version: a spelling fix that changes meaning becomes a change, a faithful rewording is cleared. Each statement of the cover note: a contradicted one blocks signing."
+   "credits": 20,
+   "credits_share": 0.3922,
+   "model_ms": 460,
+   "effect": "Reads meaning, in two places. Across versions: each sentence the rules class as a change or as a spelling fix is read against the other version's PDF, in both directions. A contradiction confirms a change or promotes a spelling fix; support in both directions clears a faithful rewording, unless Compare objects. On the cover note: each statement is checked against the returned copy and the list of changes, and a contradicted one blocks signing. Formatting and administrative differences are not sent.",
+   "decided": 0,
+   "decided_detail": {
+    "held_alone": [],
+    "cleared": [],
+    "note_statements_contradicted": [],
+    "only_blocker": false
+   }
   },
   {
    "name": "Compare",
    "path": "/clocked/compare",
    "calls": 3,
-   "credits": 40,
-   "model_ms": 963,
-   "effect": "Reads each clause in question as sent against as returned: a conflict confirms a change or overrules a spelling fix, and vetoes clearing a rewording. On the two whole PDFs: checks they are versions of one agreement and returns the paired, marked copies."
+   "credits": 9,
+   "credits_share": 0.1765,
+   "model_ms": 193,
+   "effect": "Two jobs. As a gate, on the two whole PDFs: are they versions of one agreement? If not, the review stops. Clause by clause, for clauses whose meaning is in question: a conflict confirms a change, promotes a spelling fix and vetoes clearing a rewording; a one-word swap is cleared only if Compare reads the passage as the same. The marked copies it returns are an optional layer on the pages.",
+   "decided": 0,
+   "decided_detail": {
+    "held_alone": [],
+    "vetoed_clearing": [],
+    "consented_to_clearing": [],
+    "gate_stopped_the_review": false
+   }
   },
   {
    "name": "Rerank",
    "path": null,
    "calls": 0,
    "credits": 0,
+   "credits_share": 0.0,
    "model_ms": 0,
-   "effect": "Picks the playbook passages for each change and skips those for other deal sizes; none found means Legal."
+   "effect": "Picks the playbook passages for each open change and skips those written for other deal sizes; none found means Legal.",
+   "decided": 0,
+   "decided_detail": {
+    "with_guidance": [],
+    "without_guidance": [],
+    "expanded": []
+   }
   },
   {
    "name": "Decide",
    "path": null,
    "calls": 0,
    "credits": 0,
+   "credits_share": 0.0,
    "model_ms": 0,
-   "effect": "Routes each change using the passages Rerank kept; low confidence means a person decides."
+   "effect": "Answers two yes/no questions about each open change from the passages Rerank kept; code turns them into a route, and an unsure answer means a person decides.",
+   "decided": 0,
+   "decided_detail": {
+    "routes_followed": [],
+    "routes_not_followed": []
+   }
   },
   {
    "name": "Extract",
    "path": "/clocked/extract",
    "calls": 2,
    "credits": 18,
+   "credits_share": 0.3529,
    "model_ms": 409,
-   "effect": "Reads the key terms of both versions for the side-by-side table and the deal size given to Rerank."
+   "effect": "Reads the key terms of both versions for the side-by-side table. The annual fee and the initial term of our version are given to Rerank and Decide as deal facts.",
+   "decided": 0,
+   "decided_detail": {
+    "deal_facts_given_to_routing": []
+   }
   },
   {
    "name": "Guard",
    "path": "/clocked/injection",
    "calls": 2,
    "credits": 4,
+   "credits_share": 0.0784,
    "model_ms": 54,
-   "effect": "Flags text addressed to an AI reviewer; a hit blocks signing."
+   "effect": "Flags text addressed to an AI reviewer, in the cover note and in the returned PDF; a hit blocks signing.",
+   "decided": 0,
+   "decided_detail": {
+    "flagged": [],
+    "only_blocker": false
+   }
   }
  ],
  "errors": [],
  "audit": {
   "requests": [
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare v1 v2",
+    "credits": 1,
+    "model_ms": 16.257824,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857ffaeb2b7207-BOS",
+    "idempotency_key": "951b46af-276d-4cc7-b377-ab210bb7453a",
+    "recorded_at": "2026-11-10T13:45:50+00:00",
+    "replayed": true,
+    "cached": false
+   },
    {
     "endpoint": "Guard",
     "path": "/clocked/injection",
@@ -1368,57 +1478,11 @@
     "model_ms": 28.544544,
     "attempts": 1,
     "request_id": "a5846e95aa4d13e2-BOS",
+    "trace": "a5846e95aa4d13e2-BOS",
     "idempotency_key": "8f4a0e46-98fa-4cd5-9972-86c73e33e86a",
     "recorded_at": "2026-11-10T10:39:12+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Compare",
-    "path": "/clocked/compare",
-    "step": "compare v1 v2",
-    "credits": 32,
-    "model_ms": 786.805578,
-    "attempts": 1,
-    "request_id": "a5846e95bbe93459-BOS",
-    "idempotency_key": "ed7e6f43-adf1-4c61-9d80-0ac85f242290",
-    "recorded_at": "2026-11-10T10:39:13+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Compare",
-    "path": "/clocked/compare",
-    "step": "compare clause 3",
-    "credits": 3,
-    "model_ms": 67.18928,
-    "attempts": 1,
-    "request_id": "a5846e98ffe5da66-BOS",
-    "idempotency_key": "a01f0a25-a8b0-443b-a1d8-c964d6ced3ae",
-    "recorded_at": "2026-11-10T10:39:13+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Extract",
-    "path": "/clocked/extract",
-    "step": "extract terms v1",
-    "credits": 8,
-    "model_ms": 184.8815,
-    "attempts": 1,
-    "request_id": "a5846e95bd77da66-BOS",
-    "idempotency_key": "8294f0b1-3bcd-4186-8167-195f668170cf",
-    "recorded_at": "2026-11-10T10:39:12+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Compare",
-    "path": "/clocked/compare",
-    "step": "compare clause 5",
-    "credits": 5,
-    "model_ms": 110.945219,
-    "attempts": 1,
-    "request_id": "a5846e9c2f1c9009-BOS",
-    "idempotency_key": "ab97478e-c102-4a4e-a8c2-3e44744132bc",
-    "recorded_at": "2026-11-10T10:39:13+00:00",
-    "replayed": true
+    "replayed": true,
+    "cached": false
    },
    {
     "endpoint": "Extract",
@@ -1428,9 +1492,53 @@
     "model_ms": 225.4039,
     "attempts": 1,
     "request_id": "a5846e978cd59009-BOS",
+    "trace": "a5846e978cd59009-BOS",
     "idempotency_key": "10805db4-1724-4230-99a1-25ae232baa08",
     "recorded_at": "2026-11-10T10:39:13+00:00",
-    "replayed": true
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Extract",
+    "path": "/clocked/extract",
+    "step": "extract terms v1",
+    "credits": 8,
+    "model_ms": 184.8815,
+    "attempts": 1,
+    "request_id": "a5846e95bd77da66-BOS",
+    "trace": "a5846e95bd77da66-BOS",
+    "idempotency_key": "8294f0b1-3bcd-4186-8167-195f668170cf",
+    "recorded_at": "2026-11-10T10:39:12+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 5",
+    "credits": 5,
+    "model_ms": 110.945219,
+    "attempts": 1,
+    "request_id": "a5846e9c2f1c9009-BOS",
+    "trace": "a5846e9c2f1c9009-BOS",
+    "idempotency_key": "ab97478e-c102-4a4e-a8c2-3e44744132bc",
+    "recorded_at": "2026-11-10T10:39:13+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 3",
+    "credits": 3,
+    "model_ms": 67.18928,
+    "attempts": 1,
+    "request_id": "a5846e98ffe5da66-BOS",
+    "trace": "a5846e98ffe5da66-BOS",
+    "idempotency_key": "a01f0a25-a8b0-443b-a1d8-c964d6ced3ae",
+    "recorded_at": "2026-11-10T10:39:13+00:00",
+    "replayed": true,
+    "cached": false
    },
    {
     "endpoint": "Verify",
@@ -1440,21 +1548,11 @@
     "model_ms": 123.721058,
     "attempts": 1,
     "request_id": "a5846ea029279009-BOS",
+    "trace": "a5846ea029279009-BOS",
     "idempotency_key": "bdf10bf1-187e-4704-a1ee-47903d81ff68",
     "recorded_at": "2026-11-10T10:39:14+00:00",
-    "replayed": true
-   },
-   {
-    "endpoint": "Guard",
-    "path": "/clocked/injection",
-    "step": "guard cover note",
-    "credits": 2,
-    "model_ms": 26.24144,
-    "attempts": 1,
-    "request_id": "a5846ea0eca98fa5-BOS",
-    "idempotency_key": "b153a774-2ece-447c-bc1f-e2551fc5ecad",
-    "recorded_at": "2026-11-10T10:39:14+00:00",
-    "replayed": true
+    "replayed": true,
+    "cached": false
    },
    {
     "endpoint": "Verify",
@@ -1464,25 +1562,49 @@
     "model_ms": 126.247646,
     "attempts": 1,
     "request_id": "a5846ea02dfada66-BOS",
+    "trace": "a5846ea02dfada66-BOS",
     "idempotency_key": "5820ad2e-4416-4a67-ab84-48beffd3c038",
     "recorded_at": "2026-11-10T10:39:14+00:00",
-    "replayed": true
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Guard",
+    "path": "/clocked/injection",
+    "step": "guard cover note",
+    "credits": 2,
+    "model_ms": 26.24144,
+    "attempts": 1,
+    "request_id": "a5846ea0eca98fa5-BOS",
+    "trace": "a5846ea0eca98fa5-BOS",
+    "idempotency_key": "b153a774-2ece-447c-bc1f-e2551fc5ecad",
+    "recorded_at": "2026-11-10T10:39:14+00:00",
+    "replayed": true,
+    "cached": false
    },
    {
     "endpoint": "Verify",
     "path": "/clocked/grounding",
     "step": "verify cover note",
-    "credits": 8,
-    "model_ms": 197.784027,
+    "credits": 9,
+    "model_ms": 211.852097,
     "attempts": 1,
-    "request_id": "a5846ea63c2d4d05-BOS",
-    "idempotency_key": "5355a5e7-47d4-4002-af78-99920dc62a6d",
-    "recorded_at": "2026-11-10T10:39:15+00:00",
-    "replayed": true
+    "request_id": null,
+    "trace": "a5857ffe9dcb2d6c-BOS",
+    "idempotency_key": "cb084013-8250-4a24-adb3-404ee2a4fd53",
+    "recorded_at": "2026-11-10T13:45:51+00:00",
+    "replayed": true,
+    "cached": false
    }
   ],
-  "credits": 81,
-  "calls": 10
+  "credits": 51,
+  "calls": 10,
+  "by_endpoint_share": {
+   "Compare": 0.1765,
+   "Extract": 0.3529,
+   "Guard": 0.0784,
+   "Verify": 0.3922
+  }
  },
  "playbook_topics": [
   {

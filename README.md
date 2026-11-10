@@ -19,7 +19,7 @@ Entry for the Clocked Build Challenge 2026, built on November 9 and 10, 2026.
 | | |
 |---|---|
 | Live demo, no key needed (replays recorded answers of the live Clocked API) | https://ian18858863.github.io/redline-referee/ |
-| Narrated video, about three minutes | https://ian18858863.github.io/redline-referee/demo.mp4 |
+| Narrated video, 3 min 20 s | https://ian18858863.github.io/redline-referee/demo.mp4 |
 | Evaluation | [`eval/RESULTS.md`](eval/RESULTS.md) |
 
 ### For judges: three minutes
@@ -132,7 +132,7 @@ Requirements: Python 3.10+ and [uv](https://docs.astral.sh/uv/).
 
 ```sh
 uv sync
-uv run pytest                          # 900 tests, no key, no network
+uv run pytest                          # 901 tests, no key, no network
 uv run python scripts/build_site.py    # rebuild docs/ from the recordings
 uv run uvicorn referee.server:app --port 8787
 ```
@@ -168,7 +168,7 @@ uv run python eval/run_hard.py --live            # the hard set
 | `referee/contracts.py`, `data/` | The synthetic agreement, the catalogue of edits with exact ground truth, the playbook |
 | `recordings/` | 428 recorded exchanges with the live API behind the demo and the evaluation, with credits |
 | `web/`, `docs/` | The interface (no framework, no build step) and the built static demo |
-| `tests/`, `eval/` | 900 tests (256 functions) and the evaluation |
+| `tests/`, `eval/` | 901 tests (257 functions) and the evaluation |
 
 ## Limits
 

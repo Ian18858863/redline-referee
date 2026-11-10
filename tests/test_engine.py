@@ -1059,3 +1059,12 @@ def test_route_comes_from_two_yes_no_readings_and_the_middle_is_not_an_answer():
     assert route(0.05, 0.92)[0] == "counter"
     assert route(0.05, 0.08)[0] == "escalate"
     assert route(0.50, 0.90)[0] is None and route(0.10, 0.50)[0] is None and route(None, 0.9)[0] is None
+
+
+def test_a_position_shared_by_two_cards_is_converted_to_page_fractions_once():
+    """An edit inside a held sentence is listed twice; its rectangles must not be shifted twice."""
+    from referee.textdoc import remap_rects
+    shared = {"rects": [[0.5, 0.5, 0.6, 0.55]]}
+    tree = {"a": [shared], "b": {"again": shared}}
+    remap_rects(tree, (0.1, 0.1, 0.9, 0.9))
+    assert shared["rects"] == [[0.5, 0.5, 0.625, 0.5625]]

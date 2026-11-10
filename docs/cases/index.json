@@ -6,16 +6,40 @@
   "status": "blocked"
  },
  {
+  "id": "disclosed-changes",
+  "title": "Disclosed changes",
+  "description": "The customer changed three terms and said so. Nothing is hidden, but each still needs a decision.",
+  "status": "changes"
+ },
+ {
+  "id": "two-readers",
+  "title": "Two readers, one disagreement",
+  "description": "A duty became an option and a mutual limit became one-sided, in words a reader can take for tidying.",
+  "status": "blocked"
+ },
+ {
   "id": "quiet-changes-injected",
   "title": "Quiet changes with a hidden instruction",
   "description": "One digit pair swapped in the fee, two rewritten clauses, and white text addressed to AI reviewers.",
   "status": "blocked"
  },
  {
-  "id": "disclosed-changes",
-  "title": "Disclosed changes",
-  "description": "The customer changed three terms and said so. Nothing is hidden, but each still needs a decision.",
-  "status": "changes"
+  "id": "instruction-in-note",
+  "title": "An honest note that talks to your AI",
+  "description": "Two changes the deal desk may accept, both disclosed. The note also carries a visible instruction to AI reviewers.",
+  "status": "blocked"
+ },
+ {
+  "id": "added-clause",
+  "title": "A clause slipped in",
+  "description": "A most-favoured-customer clause was added after Section 13 and the rest renumbered. The note says nothing changed.",
+  "status": "blocked"
+ },
+ {
+  "id": "wrong-file",
+  "title": "The wrong file came back",
+  "description": "The attachment is a different agreement altogether. The review should stop before it starts.",
+  "status": "blocked"
  },
  {
   "id": "clean-return",

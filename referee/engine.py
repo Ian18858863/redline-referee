@@ -1354,8 +1354,6 @@ def review(v1_path: str | Path, v2_path: str | Path, letter: str, gw: Gateway, o
         warnings.append({"source": "Cover note", "text": "The cover note holds no statement to check."})
     for row in note.get("unreadable_evidence") or []:
         warnings.append({"source": "Verify", "text": row})
-    if gate is not None and not any(m.get("document") for m in gate["marked"].values()):
-        warnings.append({"source": "Compare", "text": "Compare returned no marked copies, so that layer is not shown."})
     crop = stage("Rules", "measure the pages", lambda: content_box([v1.path, v2.path]), None)
     docs = stage("Rules", "render the pages", lambda: _assets(out, v1, v2, res, gate, crop, warnings), {})
     if wrong_pair:
