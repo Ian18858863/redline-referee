@@ -1,0 +1,144 @@
+{
+ "endpoint": "/clocked/extract",
+ "label": "extract terms v2",
+ "request_hash": "5c3aa0e745350482421302cb637212b1c9678aa338a582c84c01401a83b46362",
+ "request": {
+  "pdf": {
+   "sha256": "08236ee2c5572d0473451964a0b8bad2e0c69834ace3d7dc40996021572e5e0d"
+  },
+  "fields": {
+   "annual_fee": "The annual subscription fee the Customer pays, as written, with its currency symbol",
+   "payment_terms": "The complete phrase that states when the Customer must pay undisputed invoices, from the word 'within' to the words 'invoice date'",
+   "late_interest": "The complete phrase that states the interest rate on overdue amounts, including the word 'rate' and the period",
+   "price_increase_cap": "The complete phrase that states by how much the Provider may increase fees for a renewal term, including the words 'by up to' and 'over the fees'",
+   "initial_term": "The length of the initial term, as written",
+   "renewal_notice": "The complete phrase that states how long before the end of the term notice of non-renewal must be given, including the words 'at least' and 'before'",
+   "uptime": "The complete phrase that states the monthly availability commitment, including the words 'at least'",
+   "service_credit_limit": "The complete phrase that limits service credits as a percentage of the monthly fee, including whether it is a maximum or a minimum",
+   "liability_cap": "The complete phrase that states which period of fees caps each party's total liability, from the words 'fees paid' to the words 'the claim'",
+   "data_export_window": "The complete phrase that states how long after termination or expiration Customer Data stays available, from the word 'For' to the word 'expiration'",
+   "confidentiality_period": "The complete phrase that states how long confidentiality obligations continue, from the word 'continue' to the word 'after'",
+   "governing_law": "The complete phrase that names the governing law, from the words 'governed by' to the name of the state",
+   "venue": "The complete phrase that names the courts with exclusive jurisdiction, from the word 'courts' to the name of the state"
+  },
+  "return_text": true,
+  "return_pdf": "box"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 87.343361,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "f6b83159-54cc-4123-bc52-a5dbffe51c36",
+  "request_id": "a58477d018238480-BOS",
+  "wall_ms": 518,
+  "recorded_at": "2026-11-10T10:45:30+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "annual_fee": {
+    "value": null,
+    "confidence": 1
+   },
+   "payment_terms": {
+    "value": null,
+    "confidence": 1
+   },
+   "late_interest": {
+    "value": null,
+    "confidence": 1
+   },
+   "price_increase_cap": {
+    "value": null,
+    "confidence": 1
+   },
+   "initial_term": {
+    "value": "two (2) years",
+    "start": 785,
+    "end": 798,
+    "confidence": 0.9998213252766668,
+    "p_verify": 0.9998213252766668
+   },
+   "renewal_notice": {
+    "value": null,
+    "confidence": 1
+   },
+   "uptime": {
+    "value": null,
+    "confidence": 1
+   },
+   "service_credit_limit": {
+    "value": null,
+    "confidence": 1
+   },
+   "liability_cap": {
+    "value": null,
+    "confidence": 1
+   },
+   "data_export_window": {
+    "value": null,
+    "confidence": 1
+   },
+   "confidentiality_period": {
+    "value": null,
+    "confidence": 1
+   },
+   "governing_law": {
+    "value": "governed by the laws of England and Wales",
+    "start": 1340,
+    "end": 1381,
+    "confidence": 0.9999999195500328,
+    "p_verify": 0.9999999195500328
+   },
+   "venue": {
+    "value": null,
+    "confidence": 1
+   }
+  },
+  "timing": {
+   "read_ms": 87,
+   "forwards": {
+    "fields": [
+     5,
+     0
+    ]
+   },
+   "stages": {
+    "fields": {
+     "reader": "recognition",
+     "doc": 0,
+     "branches": 3,
+     "generate": 68,
+     "locate": 0,
+     "verify": 15,
+     "assemble": 0
+    }
+   },
+   "total_ms": 87,
+   "server_ms": 314
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 1440,
+   "text": "MUTUAL NON-DISCLOSURE AGREEMENT\nThis Mutual Non-Disclosure Agreement is made on 4 May 2026 between Tidewater Robotics Ltd.\nand Northgate Foods plc (each a Party).\n1. Purpose. The Parties wish to discuss a possible supply of warehouse automation equipment and\nmay share confidential information for that purpose only.\n2. Confidential Information. Confidential Information means all non-public information disclosed by a\nParty, in any form, that is marked confidential or would reasonably be understood to be confidential.\n3. Obligations. The receiving Party shall keep Confidential Information secret, shall use it only for\nthe Purpose, and may disclose it to employees, advisers, affiliates and prospective investors.\n4. Term. This Agreement starts on the date above and continues for two (2) years. The obligations\nin clause 3 survive for one (1) year after it ends.\n5. Return of Information. On written request the receiving Party shall return or destroy all\nConfidential Information within 30 days and confirm in writing that it has done so.\n6. No Licence. Nothing in this Agreement grants either Party any licence or right in the other Party's\nintellectual property.\n7. Remedies. Each Party acknowledges that damages may not be an adequate remedy and that\nthe other Party may seek injunctive relief.\n8. Governing Law. This Agreement is governed by the laws of England and Wales and the courts of\nEngland have non-exclusive jurisdiction.",
+   "marked": {
+    "mode": "box",
+    "spans": 2,
+    "marked": 2,
+    "pages": [
+     1
+    ],
+    "document": "JVBERi0xLjQNCiWhs8XXDQoxIDAgb2JqDQo8PC9GMSAyIDAgUiA+Pg0KZW5kb2JqDQoyIDAgb2JqDQo8PC9CYXNlRm9udC9IZWx2ZXRpY2EvRW5jb2RpbmcvV2luQW5zaUVuY29kaW5nL05hbWUvRjEvU3VidHlwZS9UeXBlMS9UeXBlL0ZvbnQ+Pg0KZW5kb2JqDQozIDAgb2JqDQo8PC9Bbm5vdHNbPDwvQm9yZGVyWyAwIDAgMS41XS9DWyAuMDcwNTg4MjQgLjA3ODQzMTM3NSAuMDkwMTk2MDhdL0NBIDEvRiA0L1JlY3RbIDM3OS41Njk5MiA1ODQuMjU5NzcgNDM5Ljg1OTg2IDU5Ni43MTk4XS9TdWJ0eXBlL1NxdWFyZS9UeXBlL0Fubm90Pj48PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgMjQ0LjA1NDMgNDQwLjE5OTggNDQxLjIzNiA0NTIuNjY5OF0vU3VidHlwZS9TcXVhcmUvVHlwZS9Bbm5vdD4+XS9Db250ZW50cyA3IDAgUiAvTWVkaWFCb3hbIDAgMCA1OTUuMjc1NiA4NDEuODg5OF0vUGFyZW50IDYgMCBSIC9SZXNvdXJjZXM8PC9Gb250IDEgMCBSIC9Qcm9jU2V0Wy9QREYvVGV4dC9JbWFnZUIvSW1hZ2VDL0ltYWdlSV0+Pi9Sb3RhdGUgMC9UcmFuczw8Pj4vVHlwZS9QYWdlPj4NCmVuZG9iag0KNCAwIG9iag0KPDwvUGFnZU1vZGUvVXNlTm9uZS9QYWdlcyA2IDAgUiAvVHlwZS9DYXRhbG9nPj4NCmVuZG9iag0KNSAwIG9iag0KPDwvQXV0aG9yKFwoYW5vbnltb3VzXCkpL0NyZWF0aW9uRGF0ZShEOjIwMDAwMTAxMDAwMDAwKzAwJzAwJykvQ3JlYXRvcihcKHVuc3BlY2lmaWVkXCkpL0tleXdvcmRzKCkvTW9kRGF0ZShEOjIwMDAwMTAxMDAwMDAwKzAwJzAwJykvUHJvZHVjZXIoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpL1N1YmplY3QoXCh1bnNwZWNpZmllZFwpKS9UaXRsZShcKGFub255bW91c1wpKS9UcmFwcGVkL0ZhbHNlPj4NCmVuZG9iag0KNiAwIG9iag0KPDwvQ291bnQgMS9LaWRzWyAzIDAgUiBdL1R5cGUvUGFnZXM+Pg0KZW5kb2JqDQo3IDAgb2JqDQo8PC9GaWx0ZXJbL0FTQ0lJODVEZWNvZGUvRmxhdGVEZWNvZGVdL0xlbmd0aCAxMjE0Pj5zdHJlYW0NCkdhdD0qPyNTRmgmOk1tLlIoJjUublxwNF9ILUMsPjxKYCE3V01AMmdBYXA5KC1MNHJdR0UocDxoXGRBKFw0cWQ0JkJMMSNsXlUrWjlGTztiYDgsPzQhclNQKTVAN2xVJzFjMTlPLyJHKiReZGg+Xko8Y19qRShVVG5SWFBIPy1Yak4qWG9YYy9qSCZiR1pUbjxiSilLMTA/JlZMZkQiUC5lSDBXK0RwQ1JzcXNlQj9xckBabiVUZCQrazRAcDc5bVIwMixHWkVsaUlDTFFEXTRcbkQmVWAsbUAiZzVfZlp1N1UjRiJbbz9ZUWxnQTlNSD5pY0kjNmtiKTs4ZytlSlUiUVY8JGN0KWpeXzAiZUJIVTpmKVxMSDVTUidzQjEoVDljVVs+aSFAM2grXVR1XFlnXi91bUs8JyNZZSFLKnJZIVQvUz1tREVYWyNpXUFVNFZoS0hfPXVZYGVtZWhzSlIoP2sqWkYsSiNTbltPWS5eYCEuKXI8YTdkdFAja25gVW0pV0BwKVs3OmROWWJfVl84QUpUP1ddRl90Z0NAamZgOyJyRCtnWWNMVW1SZzI8Rm80XkQlYyg/NjZRRDByQlM8IkRAYmJLYSUsLFErJUdkNidJV09XSk8ncGJWakM+MUhfME5pLVckTms3I11dKTgva1JCZTEwMlQsXlsocEtPa08jJFk3PTFXVy1xIyxhW1BvSXM4bkZQWTc3S2JYNlssMVhUcFs0XS1ucmVxZzlFZWxtWW1pTjNcYjNmWUxRRCdWLmE4NC5jRmJDLUNjXiZHNEAzUDc9UDdBQy0rJCVDYWlwOlpWL0F1TzsnakxwNkJvU0tScWA5TTIzNF8+MkFmZDwjPVYqWk8zLT1zKk9eY0xqP0VsSzoqKD4iamdjNjJhXTxuYiE8U2cqNiFHcDghRzxcKCFdL1hsLlYuVkYwYD1ccm5WMTJBMCNTM0pGM01va2kjcCcqcnFAS2cmWmdzRSNhZ1A2PFhOYkEpbz1IWnJULzFqVDcnQEhtY0FTUltDPkU2XmQwLWgoK2QlWUl1UmREcCI0K14hb1IyL0tSTHBrajkpJ0JhIiMsc2wjLjZyIVowK2hRKWo/J2tBN3NqR2ciRXRcdEJAbnAzKEAwTzpqJj88RlApYDRna2pLcEU+clFZIl9oIlVLQjNTXVQqVC9qW2VZbDpVKWwiUTJnXE5NIi8qMENbMkskaiNxSFhKKiNTMyhpbyhGMUhqMys0ckZxVHFuX2E3cEoxPzw1QjBCWmNcXitPRlIlLVtnIiEkK3M1ImhURVQ7amRyaW5mbV8qRlQzP1RpTUAuZ0MvI1cwPHVDMjg2QCsodGdaMkk0KkRIOi05OWYpSkxnXE4zWUtiX1FQSGcqOlI/Tl5vWSwqTk1oc2ZWRClxXzFvUkBiYEJuLGJTUGRXVlAtaUhwTF8hYltrZiZZRmwzYTRnMERscWYzOypKVHEkQ05PQ0k4TV03UzNGcG1OI2VuYGEzbDw+VCZDIlJvOWZJPjZkKF1YLEhuPzhfUmtRZTNBcGpPVC5KMVdCMyRQXE9CKmJQJF9dRVYtJDosZzFLbkkscj8kaD4oPT9HV0BiLj4iVyspajQ4IjVJKTU7dX4+DQplbmRzdHJlYW0NCmVuZG9iag0KeHJlZg0KMCA4DQowMDAwMDAwMDAwIDY1NTM1IGYNCjAwMDAwMDAwMTcgMDAwMDAgbg0KMDAwMDAwMDA1MCAwMDAwMCBuDQowMDAwMDAwMTQ5IDAwMDAwIG4NCjAwMDAwMDA2MDkgMDAwMDAgbg0KMDAwMDAwMDY3NSAwMDAwMCBuDQowMDAwMDAwOTM2IDAwMDAwIG4NCjAwMDAwMDA5OTIgMDAwMDAgbg0KdHJhaWxlcg0KPDwvSW5mbyA1IDAgUiAvUm9vdCA0IDAgUiAvU2l6ZSA4L0lEWzw5M0Y3NzlFQ0QxRjI5MjRBNzVCMkNENTZFNDM4M0NGQT48NzM5REI5NzFFMTdDMjMxNEMxNjhEN0U1OEJCRDBGQTg+XT4+DQpzdGFydHhyZWYNCjIyOTUNCiUlRU9GDQo="
+   }
+  }
+ }
+}

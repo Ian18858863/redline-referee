@@ -1,0 +1,118 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "ed55404426167feb48915f5b186b56a26974946e53231ed1a369f1f191561ad0",
+ "request": {
+  "pdf": {
+   "sha256": "8a2902d26633e71dfae9f9fec88350662f70f6a8f48350ecc59f0c1485fb8bfe"
+  },
+  "answer": "The receiving Party shall keep Confidential Information secret, shall use it only for the Purpose, and may disclose it to employees, advisers, affiliates and prospective investors. The obligations in clause 3 survive for one (1) year after it ends. This Agreement is governed by the laws of England and Wales and the courts of England have non-exclusive jurisdiction.",
+  "claims": [
+   "The receiving Party shall keep Confidential Information secret, shall use it only for the Purpose, and may disclose it to employees, advisers, affiliates and prospective investors.",
+   "The obligations in clause 3 survive for one (1) year after it ends.",
+   "This Agreement is governed by the laws of England and Wales and the courts of England have non-exclusive jurisdiction."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 85.793535,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "c68d8788-899a-4339-8c8c-cf11de768f54",
+  "request_id": "a58477d57eed8480-BOS",
+  "wall_ms": 318,
+  "recorded_at": "2026-11-10T10:45:31+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0033,
+  "ungrounded": 0.9967,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 0,
+    "share_of_answer": 0.0033,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "The receiving Party shall keep Confidential Information secret, shall use it only for the Purpose, and may disclose it to employees, advisers, affiliates and prospective investors.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4932,
+    "supported": 0.0053,
+    "contradicted": 0.9755,
+    "not_stated": 0.0145,
+    "not_a_claim": 0.0047,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "The obligations in clause 3 survive for one (1) year after it ends.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1836,
+    "supported": 0.0014,
+    "contradicted": 0.9948,
+    "not_stated": 0.0021,
+    "not_a_claim": 0.0016,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "This Agreement is governed by the laws of England and Wales and the courts of England have non-exclusive jurisdiction.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3233,
+    "supported": 0.0015,
+    "contradicted": 0.9946,
+    "not_stated": 0.0022,
+    "not_a_claim": 0.0017,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.0014
+  },
+  "timing": {
+   "read_ms": 89,
+   "total_ms": 91
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 1475
+  }
+ }
+}

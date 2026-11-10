@@ -1,0 +1,137 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify cover note",
+ "request_hash": "f3b2661231c19bb1e759e3343451e915c5965968c9169476da415b5d1a825280",
+ "request": {
+  "documents": [
+   {
+    "id": "v2",
+    "text": "MUTUAL NON-DISCLOSURE AGREEMENT This Mutual Non-Disclosure Agreement is made on 4 May 2026 between Tidewater Robotics Ltd. and Northgate Foods plc (each a Party).\n1. Purpose\nThe Parties wish to discuss a possible supply of warehouse automation equipment and may share confidential information for that purpose only.\n2. Confidential Information\nConfidential Information means all non-public information disclosed by a Party, in any form, that is marked confidential or would reasonably be understood to be confidential.\n3. Obligations\nThe receiving Party shall keep Confidential Information secret, shall use it only for the Purpose, and may disclose it to employees, advisers, affiliates and prospective investors.\n4. Term\nThis Agreement starts on the date above and continues for two (2) years. The obligations in clause 3 survive for one (1) year after it ends.\n5. Return of Information\nOn written request the receiving Party shall return or destroy all Confidential Information within 30 days and confirm in writing that it has done so.\n6. No Licence\nNothing in this Agreement grants either Party any licence or right in the other Party's intellectual property.\n7. Remedies\nEach Party acknowledges that damages may not be an adequate remedy and that the other Party may seek injunctive relief.\n8. Governing Law\nThis Agreement is governed by the laws of England and Wales and the courts of England have non-exclusive jurisdiction."
+   },
+   {
+    "id": "changes",
+    "text": "The returned copy changes 3 commercial or legal term(s) of the agreement we sent: clause 3 (Obligations); clause 4 (Term); clause 8 (Governing Law).\nSubstantive change in clause 3 (Obligations): Wording changed. We sent: \"the Purpose, and shall disclose it only to employees and advisers who need to know it and are bound by equivalent duties.\". The returned copy says: \"the Purpose, and may disclose it to employees, advisers, affiliates and prospective investors.\".\nSubstantive change in clause 4 (Term): 3 years → 1 year. We sent: \"clause 3 survive for three (3) years after it ends.\". The returned copy says: \"clause 3 survive for one (1) year after it ends.\".\nSubstantive change in clause 8 (Governing Law): “exclusive” → “non-exclusive”. We sent: \"courts of England have exclusive jurisdiction.\". The returned copy says: \"courts of England have non-exclusive jurisdiction.\".\nFormatting only in clause 5 (Return of Information): \"all Confidential Information within thirty (30) days and confirm in\" became \"all Confidential Information within 30 days and confirm in\". Same words and numbers.\nClause 1 (Purpose) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 2 (Confidential Information) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 6 (No Licence) is unchanged: the returned copy reads exactly as the agreement we sent.\nClause 7 (Remedies) is unchanged: the returned copy reads exactly as the agreement we sent."
+   }
+  ],
+  "answer": "Signed copy attached. We only tidied the formatting of the return clause. Everything else is as you sent it.",
+  "claims": [
+   "Signed copy attached.",
+   "We only tidied the formatting of the return clause.",
+   "Everything else is as you sent it."
+  ],
+  "instructions": "The answer is a cover note the counterparty wrote about the copy of the agreement they returned. Document 'v2' is that returned copy. Document 'changes' lists every difference found between the copy we sent and v2. A statement that a term is unchanged, or that no commercial or legal terms changed, is contradicted when 'changes' lists a substantive change to that term. A statement that describes a change is supported only when 'changes' or v2 shows that same change. A statement that a term is unchanged is supported when 'changes' says that the clause holding that term is unchanged. Judge each claim on these two documents alone.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 3,
+  "model_ms": 74.922146,
+  "cost_usd": 0.000598,
+  "attempts": 1,
+  "idempotency_key": "79c2d3d2-a618-4f29-a7b4-bea3e6fe7f4c",
+  "request_id": "a58477d9e9c55ea9-BOS",
+  "wall_ms": 364,
+  "recorded_at": "2026-11-10T10:45:32+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.2727,
+  "ungrounded": 0.7273,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "changes",
+    "share": 0.9804,
+    "share_of_answer": 0.2674,
+    "claims": []
+   },
+   {
+    "id": "v2",
+    "share": 0.0196,
+    "share_of_answer": 0.0053,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Signed copy attached.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1981,
+    "supported": 0.0064,
+    "contradicted": 0.0045,
+    "not_stated": 0.9831,
+    "not_a_claim": 0.006,
+    "verdict": "not_stated",
+    "sources": {
+     "v2": 0.4407,
+     "changes": 0.5593
+    },
+    "source": null
+   },
+   {
+    "claim": "We only tidied the formatting of the return clause.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4811,
+    "supported": 0.5602,
+    "contradicted": 0.3903,
+    "not_stated": 0.0359,
+    "not_a_claim": 0.0135,
+    "verdict": "supported",
+    "sources": {
+     "v2": 0.016,
+     "changes": 0.984
+    },
+    "source": "changes",
+    "evidence": {
+     "document": "changes",
+     "quote": "Formatting only in clause 5 (Return of Information): \"all Confidential Information within thirty (30) days and confirm in\" became \"all Confidential Information within 30 days and confirm in\".",
+     "start": 881,
+     "end": 1072,
+     "confidence": 1
+    }
+   },
+   {
+    "claim": "Everything else is as you sent it.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3208,
+    "supported": 0.0059,
+    "contradicted": 0.9894,
+    "not_stated": 0.0021,
+    "not_a_claim": 0.0026,
+    "verdict": "contradicted",
+    "sources": {
+     "v2": 0.2451,
+     "changes": 0.7549
+    },
+    "source": null,
+    "evidence": {
+     "document": "changes",
+     "quote": "The returned copy changes 3 commercial or legal term(s) of the agreement we sent: clause 3 (Obligations); clause 4 (Term); clause 8 (Governing Law).",
+     "start": 0,
+     "end": 148,
+     "confidence": 1
+    }
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 2,
+   "supported": 0.0059
+  },
+  "timing": {
+   "read_ms": 78,
+   "total_ms": 80
+  }
+ }
+}

@@ -159,3 +159,26 @@ def test_changed_terms_agree_with_the_changes_found(case, tmp_path_factory):
               "liability_cap": {"liability_cap"}, "governing_law": {"governing_law", "venue"}}
     should = set().union(*(expect.get(p, set()) for p in planted)) if planted else set()
     assert moved == should, {"unexpected": sorted(moved - should), "missing": sorted(should - moved)}
+
+
+# ---- a different agreement: nothing may depend on the demo document ---------
+OTHER = ROOT / "tests" / "fixtures" / "other-agreement"
+
+
+@pytest.mark.skipif(not (REC / "other-agreement").is_dir(), reason="other-agreement not recorded")
+def test_a_different_agreement_in_a_different_layout(tmp_path):
+    gw = Gateway("replay", REC / "other-agreement")
+    r = review(OTHER / "v1.pdf", OTHER / "v2.pdf", (OTHER / "cover.txt").read_text(), gw, tmp_path)
+    assert r["errors"] == [] and r["status"] == "blocked"
+    held = {c["clause"]: c for c in r["changes"] if c["blocking"]}
+    assert set(held) == {"3", "4", "8"}
+    assert all(c["found_by_label"] == "Rules + Verify + Compare" for c in held.values())
+    assert [c["cls"] for c in r["changes"] if c["clause"] == "5"] == ["formatting"]
+    verdicts = {c["text"]: c["verdict"] for c in r["note"]["claims"]}
+    assert verdicts["Everything else is as you sent it."] == "contradicted"
+    assert verdicts["We only tidied the formatting of the return clause."] == "supported"
+    # an NDA has no fees or service levels: those terms come back empty, not invented
+    empty = {t["field"] for t in r["terms"] if not t["v2"]["value"]}
+    assert {"annual_fee", "payment_terms", "uptime", "liability_cap"} <= empty
+    # the playbook is about a different kind of deal: no guidance means a person decides
+    assert all(c["route"] == "escalate" for c in held.values())

@@ -1,0 +1,620 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare v1 v2",
+ "request_hash": "ca599a672347513a4f8de70d527ea781a126b900a79899f71ed3e9e41724dd70",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "pdf": {
+     "sha256": "8a2902d26633e71dfae9f9fec88350662f70f6a8f48350ecc59f0c1485fb8bfe"
+    }
+   },
+   {
+    "id": "v2",
+    "pdf": {
+     "sha256": "08236ee2c5572d0473451964a0b8bad2e0c69834ace3d7dc40996021572e5e0d"
+    }
+   }
+  ],
+  "instructions": "Document v1 is the agreement we sent. Document v2 is the copy the counterparty returned. They are two versions of the same agreement between the same parties. A passage of v2 conflicts with v1 when it changes an obligation, a right, an amount, a rate, a period, a party, a place, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are not conflicts.",
+  "evidence": "all",
+  "return_text": true,
+  "return_pdf": "highlight"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 17,
+  "model_ms": 416.796297,
+  "cost_usd": 0.003386,
+  "attempts": 1,
+  "idempotency_key": "d6d872d4-1c5c-45c9-a7c6-78be901e0449",
+  "request_id": "a58477ce0e4e231a-BOS",
+  "wall_ms": 1467,
+  "recorded_at": "2026-11-10T10:45:31+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [
+     "v2"
+    ],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [
+     "v1"
+    ],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9977,
+    "probabilities": {
+     "same": 0.0009,
+     "overlapping": 0.0019,
+     "conflicting": 0.9949,
+     "unrelated": 0.0023
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9931,
+       "restated": 0.0025,
+       "elaborated": 0.0022,
+       "different": 0.0021
+      },
+      "confidence": 0.9979,
+      "a": {
+       "document": "v1",
+       "quote": "MUTUAL NON-DISCLOSURE AGREEMENT",
+       "start": 0,
+       "end": 31,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "MUTUAL NON-DISCLOSURE AGREEMENT\nThis Mutual Non-Disclosure Agreement is made on 4 May 2026 between Tidewater Robotics Ltd.\nand Northgate Foods plc (each a Party).\n1.",
+       "start": 0,
+       "end": 165,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9851,
+       "restated": 0.0045,
+       "elaborated": 0.0052,
+       "different": 0.0052
+      },
+      "confidence": 0.9948,
+      "a": {
+       "document": "v1",
+       "quote": "1.",
+       "start": 163,
+       "end": 165,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Purpose.",
+       "start": 166,
+       "end": 174,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9898,
+       "restated": 0.0038,
+       "elaborated": 0.0032,
+       "different": 0.0033
+      },
+      "confidence": 0.9967,
+      "a": {
+       "document": "v1",
+       "quote": "The Parties wish to discuss a possible supply of warehouse automation equipment and",
+       "start": 175,
+       "end": 258,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "The Parties wish to discuss a possible supply of warehouse automation equipment and\nmay share confidential information for that purpose only.\n2.",
+       "start": 175,
+       "end": 319,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9797,
+       "restated": 0.0076,
+       "elaborated": 0.0063,
+       "different": 0.0064
+      },
+      "confidence": 0.9936,
+      "a": {
+       "document": "v1",
+       "quote": "Confidential Information means all non-public information disclosed by a",
+       "start": 346,
+       "end": 418,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Confidential Information.",
+       "start": 320,
+       "end": 345,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.984,
+       "restated": 0.0071,
+       "elaborated": 0.0043,
+       "different": 0.0046
+      },
+      "confidence": 0.9954,
+      "a": {
+       "document": "v1",
+       "quote": "Confidential Information means all non-public information disclosed by a",
+       "start": 346,
+       "end": 418,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Confidential Information means all non-public information disclosed by a\nParty, in any form, that is marked confidential or would reasonably be understood to be confidential.\n3.",
+       "start": 346,
+       "end": 523,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9892,
+       "restated": 0.0038,
+       "elaborated": 0.0033,
+       "different": 0.0036
+      },
+      "confidence": 0.9964,
+      "a": {
+       "document": "v1",
+       "quote": "This Mutual Non-Disclosure Agreement is made on 4 May 2026 between Tidewater Robotics Ltd.",
+       "start": 32,
+       "end": 122,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Term.",
+       "start": 721,
+       "end": 726,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9922,
+       "restated": 0.0029,
+       "elaborated": 0.0026,
+       "different": 0.0023
+      },
+      "confidence": 0.9977,
+      "a": {
+       "document": "v1",
+       "quote": "This Agreement starts on the date above and continues for two (2) years.",
+       "start": 754,
+       "end": 826,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "This Agreement starts on the date above and continues for two (2) years.",
+       "start": 727,
+       "end": 799,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9902,
+       "restated": 0.0036,
+       "elaborated": 0.003,
+       "different": 0.0032
+      },
+      "confidence": 0.9968,
+      "a": {
+       "document": "v1",
+       "quote": "5.",
+       "start": 898,
+       "end": 900,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Return of Information.",
+       "start": 871,
+       "end": 893,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0541,
+       "restated": 0.8935,
+       "elaborated": 0.0335,
+       "different": 0.019
+      },
+      "confidence": 0.981,
+      "a": {
+       "document": "v1",
+       "quote": "On written request the receiving Party shall return or destroy all",
+       "start": 924,
+       "end": 990,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "On written request the receiving Party shall return or destroy all\nConfidential Information within 30 days and confirm in writing that it has done so.\n6.",
+       "start": 894,
+       "end": 1047,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9924,
+       "restated": 0.003,
+       "elaborated": 0.0025,
+       "different": 0.0021
+      },
+      "confidence": 0.9979,
+      "a": {
+       "document": "v1",
+       "quote": "6.",
+       "start": 1084,
+       "end": 1086,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "No Licence.",
+       "start": 1048,
+       "end": 1059,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9913,
+       "restated": 0.0034,
+       "elaborated": 0.0027,
+       "different": 0.0026
+      },
+      "confidence": 0.9974,
+      "a": {
+       "document": "v1",
+       "quote": "Nothing in this Agreement grants either Party any licence or right in the other Party's",
+       "start": 1099,
+       "end": 1186,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Nothing in this Agreement grants either Party any licence or right in the other Party's\nintellectual property.\n7.",
+       "start": 1060,
+       "end": 1173,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9902,
+       "restated": 0.0043,
+       "elaborated": 0.0032,
+       "different": 0.0023
+      },
+      "confidence": 0.9977,
+      "a": {
+       "document": "v1",
+       "quote": "7.",
+       "start": 1210,
+       "end": 1212,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Remedies.",
+       "start": 1174,
+       "end": 1183,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9896,
+       "restated": 0.0047,
+       "elaborated": 0.0031,
+       "different": 0.0025
+      },
+      "confidence": 0.9975,
+      "a": {
+       "document": "v1",
+       "quote": "Each Party acknowledges that damages may not be an adequate remedy and that",
+       "start": 1223,
+       "end": 1298,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Each Party acknowledges that damages may not be an adequate remedy and that\nthe other Party may seek injunctive relief.\n8.",
+       "start": 1184,
+       "end": 1306,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": [
+     {
+      "kind": "scope",
+      "kinds": {
+       "value": 0.0161,
+       "date_or_version": 0.0112,
+       "rule_or_condition": 0.0718,
+       "scope": 0.8765,
+       "name": 0.0117,
+       "no_conflict": 0.0127
+      },
+      "confidence": 0.9873,
+      "a": {
+       "document": "v1",
+       "quote": "3.",
+       "start": 521,
+       "end": 523,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Obligations.",
+       "start": 524,
+       "end": 536,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "scope",
+      "kinds": {
+       "value": 0.0619,
+       "date_or_version": 0.0178,
+       "rule_or_condition": 0.3658,
+       "scope": 0.5031,
+       "name": 0.022,
+       "no_conflict": 0.0294
+      },
+      "confidence": 0.9706,
+      "a": {
+       "document": "v1",
+       "quote": "The obligations",
+       "start": 827,
+       "end": 842,
+       "confidence": 0.999
+      },
+      "b": {
+       "document": "v2",
+       "quote": "The receiving Party shall keep Confidential Information secret, shall use it only for\nthe Purpose, and may disclose it to employees, advisers, affiliates and prospective investors.\n4.",
+       "start": 537,
+       "end": 720,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "value",
+      "kinds": {
+       "value": 0.8755,
+       "date_or_version": 0.017,
+       "rule_or_condition": 0.0458,
+       "scope": 0.0153,
+       "name": 0.0119,
+       "no_conflict": 0.0344
+      },
+      "confidence": 0.9656,
+      "a": {
+       "document": "v1",
+       "quote": "4.",
+       "start": 745,
+       "end": 747,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Term.",
+       "start": 721,
+       "end": 726,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "value",
+      "kinds": {
+       "value": 0.9888,
+       "date_or_version": 0.0029,
+       "rule_or_condition": 0.0027,
+       "scope": 0.0022,
+       "name": 0.0017,
+       "no_conflict": 0.0016
+      },
+      "confidence": 0.993,
+      "a": {
+       "document": "v1",
+       "quote": "The obligations",
+       "start": 827,
+       "end": 842,
+       "confidence": 0.993
+      },
+      "b": {
+       "document": "v2",
+       "quote": "The obligations\nin clause 3 survive for one (1) year after it ends.\n5.",
+       "start": 800,
+       "end": 870,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "name",
+      "kinds": {
+       "value": 0.0113,
+       "date_or_version": 0.0141,
+       "rule_or_condition": 0.0448,
+       "scope": 0.0217,
+       "name": 0.8886,
+       "no_conflict": 0.0195
+      },
+      "confidence": 0.9805,
+      "a": {
+       "document": "v1",
+       "quote": "This Agreement is governed by the laws of England and Wales and the courts of",
+       "start": 1361,
+       "end": 1438,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Governing Law.",
+       "start": 1307,
+       "end": 1321,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "rule_or_condition",
+      "kinds": {
+       "value": 0.0147,
+       "date_or_version": 0.0091,
+       "rule_or_condition": 0.9033,
+       "scope": 0.0397,
+       "name": 0.0243,
+       "no_conflict": 0.0089
+      },
+      "confidence": 0.932,
+      "a": {
+       "document": "v1",
+       "quote": "This Agreement is governed by the laws of England and Wales and the courts of",
+       "start": 1361,
+       "end": 1438,
+       "confidence": 0.932
+      },
+      "b": {
+       "document": "v2",
+       "quote": "This Agreement is governed by the laws of England and Wales and the courts of\nEngland have non-exclusive jurisdiction.",
+       "start": 1322,
+       "end": 1440,
+       "confidence": 1
+      }
+     }
+    ]
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [
+   0
+  ],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 13,
+   "passage_reads": 1,
+   "passages_ms": 108,
+   "passages": 21,
+   "counterparts_ms": 269,
+   "kinds_ms": 133
+  },
+  "timing": {
+   "read_ms": 521,
+   "total_ms": 524
+  },
+  "pdf": [
+   {
+    "document": "v1",
+    "pages": 1,
+    "selected": [
+     1
+    ],
+    "mode": "text",
+    "page_offsets": [
+     0
+    ],
+    "characters": 1475,
+    "text": "MUTUAL NON-DISCLOSURE AGREEMENT\nThis Mutual Non-Disclosure Agreement is made on 4 May 2026 between Tidewater Robotics Ltd.\nand Northgate Foods plc (each a Party).\n1. Purpose. The Parties wish to discuss a possible supply of warehouse automation equipment and\nmay share confidential information for that purpose only.\n2. Confidential Information. Confidential Information means all non-public information disclosed by a\nParty, in any form, that is marked confidential or would reasonably be understood to be confidential.\n3. Obligations. The receiving Party shall keep Confidential Information secret, shall use it only for\nthe Purpose, and shall disclose it only to employees and advisers who need to know it and are\nbound by equivalent duties.\n4. Term. This Agreement starts on the date above and continues for two (2) years. The obligations\nin clause 3 survive for three (3) years after it ends.\n5. Return of Information. On written request the receiving Party shall return or destroy all\nConfidential Information within thirty (30) days and confirm in writing that it has done so.\n6. No Licence. Nothing in this Agreement grants either Party any licence or right in the other Party's\nintellectual property.\n7. Remedies. Each Party acknowledges that damages may not be an adequate remedy and that\nthe other Party may seek injunctive relief.\n8. Governing Law. This Agreement is governed by the laws of England and Wales and the courts of\nEngland have exclusive jurisdiction.",
+    "marked": {
+     "mode": "highlight",
+     "spans": 16,
+     "marked": 16,
+     "pages": [
+      1
+     ],
+     "document": "JVBERi0xLjQNCiWhs8XXDQoxIDAgb2JqDQo8PC9GMSAyIDAgUiA+Pg0KZW5kb2JqDQoyIDAgb2JqDQo8PC9CYXNlRm9udC9IZWx2ZXRpY2EvRW5jb2RpbmcvV2luQW5zaUVuY29kaW5nL05hbWUvRjEvU3VidHlwZS9UeXBlMS9UeXBlL0ZvbnQ+Pg0KZW5kb2JqDQozIDAgb2JqDQo8PC9Bbm5vdHNbPDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNzcuMjMgNzYyLjc1OTc3IDI3OS45MyA3NjIuNzU5NzcgNzcuMjMgNzUyLjIwOTggMjc5LjkzIDc1Mi4yMDk4XS9SZWN0WyA3Ny4yMyA3NTIuMjA5OCAyNzkuOTMgNzYyLjc1OTc3XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ny41MSA3MDQuNDE5OCA4Ni45NyA3MDQuNDE5OCA3Ny41MSA2OTQuMzg5OCA4Ni45NyA2OTQuMzg5OF0vUmVjdFsgNzcuNTEgNjk0LjM4OTggODYuOTcgNzA0LjQxOThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDEzMC41NiA3MDQuNjY5OCA1MTcuNDY5ODUgNzA0LjY2OTggMTMwLjU2IDY5Mi4yNTk3NyA1MTcuNDY5ODUgNjkyLjI1OTc3XS9SZWN0WyAxMzAuNTYgNjkyLjI1OTc3IDUxNy40Njk4NSA3MDQuNjY5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgMTk4LjgyMDYyIDY2OC43NTk3NyA1MTguNTE1NSA2NjguNzU5NzcgMTk4LjgyMDYyIDY1Ni4yNTk3NyA1MTguNTE1NSA2NTYuMjU5NzddL1JlY3RbIDE5OC44MjA2MiA2NTYuMjU5NzcgNTE4LjUxNTUgNjY4Ljc1OTc3XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ni42NCA3NDAuNTY5NzYgNTA4LjIzOTkgNzQwLjU2OTc2IDc2LjY0IDcyOC4xOTk3NyA1MDguMjM5OSA3MjguMTk5NzddL1JlY3RbIDc2LjY0IDcyOC4xOTk3NyA1MDguMjM5OSA3NDAuNTY5NzZdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDExNi42NDk5OTQgNTgyLjcxOTggNDQyLjEyOTg1IDU4Mi43MTk4IDExNi42NDk5OTQgNTcwLjE5OTc3IDQ0Mi4xMjk4NSA1NzAuMTk5NzddL1JlY3RbIDExNi42NDk5OTQgNTcwLjE5OTc3IDQ0Mi4xMjk4NSA1ODIuNzE5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNzYuODIgNTQ2LjI2OTggODYuOTcgNTQ2LjI2OTggNzYuODIgNTM2LjIwOTggODYuOTcgNTM2LjIwOThdL1JlY3RbIDc2LjgyIDUzNi4yMDk4IDg2Ljk3IDU0Ni4yNjk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyAxODcuNSA1NDYuNzU5NzcgNDY4Ljk4OTg0IDU0Ni43NTk3NyAxODcuNSA1MzQuMTk5NzcgNDY4Ljk4OTg0IDUzNC4xOTk3N10vUmVjdFsgMTg3LjUgNTM0LjE5OTc3IDQ2OC45ODk4NCA1NDYuNzU5NzddL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc2Ljg4IDUxMC40MTk4IDg2Ljk3IDUxMC40MTk4IDc2Ljg4IDUwMC4yMDk4IDg2Ljk3IDUwMC4yMDk4XS9SZWN0WyA3Ni44OCA1MDAuMjA5OCA4Ni45NyA1MTAuNDE5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgMTQzLjk2IDUxMC41Njk4IDUxNy45MDk5IDUxMC41Njk4IDE0My45NiA0OTguMTk5OCA1MTcuOTA5OSA0OTguMTk5OF0vUmVjdFsgMTQzLjk2IDQ5OC4xOTk4IDUxNy45MDk5IDUxMC41Njk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ni44NyA0NzQuMjY5OCA4Ni45NyA0NzQuMjY5OCA3Ni44NyA0NjQuMzg5OCA4Ni45NyA0NjQuMzg5OF0vUmVjdFsgNzYuODcgNDY0LjM4OTggODYuOTcgNDc0LjI2OThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDEzOS4wNSA0NzQuNTY5OCA1MDUuMDY5OSA0NzQuNTY5OCAxMzkuMDUgNDYyLjE5OTggNTA1LjA2OTkgNDYyLjE5OThdL1JlY3RbIDEzOS4wNSA0NjIuMTk5OCA1MDUuMDY5OSA0NzQuNTY5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNzYuODQgNjMyLjQxOTggODYuOTcgNjMyLjQxOTggNzYuODQgNjIyLjIwOTggODYuOTcgNjIyLjIwOThdL1JlY3RbIDc2Ljg0IDYyMi4yMDk4IDg2Ljk3IDYzMi40MTk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA0NDIuOTE5ODYgNTgyLjU2OTc2IDUxMy4yMjk4NiA1ODIuNTY5NzYgNDQyLjkxOTg2IDU3MC4xOTk3NyA1MTMuMjI5ODYgNTcwLjE5OTc3XS9SZWN0WyA0NDIuOTE5ODYgNTcwLjE5OTc3IDUxMy4yMjk4NiA1ODIuNTY5NzZdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc2Ljc1IDU4Mi40MTk4IDg2Ljk3IDU4Mi40MTk4IDc2Ljc1IDU3Mi4zODk4IDg2Ljk3IDU3Mi4zODk4XS9SZWN0WyA3Ni43NSA1NzIuMzg5OCA4Ni45NyA1ODIuNDE5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgMTYwLjUwMjE3IDQzOC42Njk4IDUxOC42MTU1IDQzOC42Njk4IDE2MC41MDIxNyA0MjYuMTk5OCA1MTguNjE1NSA0MjYuMTk5OF0vUmVjdFsgMTYwLjUwMjE3IDQyNi4xOTk4IDUxOC42MTU1IDQzOC42Njk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj5dL0NvbnRlbnRzIDcgMCBSIC9NZWRpYUJveFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4XS9QYXJlbnQgNiAwIFIgL1Jlc291cmNlczw8L0ZvbnQgMSAwIFIgL1Byb2NTZXRbL1BERi9UZXh0L0ltYWdlQi9JbWFnZUMvSW1hZ2VJXT4+L1JvdGF0ZSAwL1RyYW5zPDw+Pi9UeXBlL1BhZ2U+Pg0KZW5kb2JqDQo0IDAgb2JqDQo8PC9QYWdlTW9kZS9Vc2VOb25lL1BhZ2VzIDYgMCBSIC9UeXBlL0NhdGFsb2c+Pg0KZW5kb2JqDQo1IDAgb2JqDQo8PC9BdXRob3IoXChhbm9ueW1vdXNcKSkvQ3JlYXRpb25EYXRlKEQ6MjAwMDAxMDEwMDAwMDArMDAnMDAnKS9DcmVhdG9yKFwodW5zcGVjaWZpZWRcKSkvS2V5d29yZHMoKS9Nb2REYXRlKEQ6MjAwMDAxMDEwMDAwMDArMDAnMDAnKS9Qcm9kdWNlcihSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkvU3ViamVjdChcKHVuc3BlY2lmaWVkXCkpL1RpdGxlKFwoYW5vbnltb3VzXCkpL1RyYXBwZWQvRmFsc2U+Pg0KZW5kb2JqDQo2IDAgb2JqDQo8PC9Db3VudCAxL0tpZHNbIDMgMCBSIF0vVHlwZS9QYWdlcz4+DQplbmRvYmoNCjcgMCBvYmoNCjw8L0ZpbHRlclsvQVNDSUk4NURlY29kZS9GbGF0ZURlY29kZV0vTGVuZ3RoIDEyMzc+PnN0cmVhbQ0KR2F0VTI5aUwoMyZBQFpjcVIwZj9dV2krbSo4LWIoZTVRVT1BUERLRk1kZ2dGSkxsJ2wzP0o0dG0/V3IkRnMwaGlQdEsxT3AiK1FoXHMzdUxvTFwoXTskNmBhX11ONWA4Mko9Z09BOnVnajlxQDw3bUUnX05USitmL3VGdVdDaiVmYCVsdFFKIic2UCtEbjY8SE5xRXJ1NEc7XVpVWy5nVHJiO0htW2w6NFdeXSFyN1xHXkRzMmkiSDtHT3RZJ3IkRlhfciI4TVczVDQ/O2ZoXCYzaEcnSGE/SG5wP2IvOD9APitzb3BSYV1VKihZXGA6K15DOUJZc29DVzlQUF5fWEorQE83MVwnMjQsNSw6JWFkUEUsXihCKUswLV1QNW50RlY1cGs/PDgmQGUobTZYZzkmVV5pYUg+JUMkJWpNY1ciVGxDRyhdJnBJajpLOSRNaTNXXzlHQDNYXSNLJWkrS21KcjtzOW9SXjRLYFknJy5Wai5ZTVdOPiYiMnQyTkAuQFkrUUY8LyksQFFkMDxnNVRTTmFLZnI/QVM2ZUhRQUNFZ2MiQS5PQU8uakRxODdCQHVGWj5TXG46Q251ZlRHXChcN1dqMXRwR0Rna21hSDA9OipzW0VMRTI+WiI/c04jbEokQVtEa0I6U19AU0cqSy0+KGdtOEJ1byYhLmRsSmVGQTRMYjRdQ1ZrajdOby43TURgcioqXi1mZHBib3VvZE8xLCc8SmpkbW07KmMiL0NCM1F0KFUlJFdoLSsuNj5jbC5iZCNMWDAtRFJpUGNaQnRTSzJVPSM1QjYwNkxXaE4mZFtmakkpXEdgJ0dMQlhdYzE/QldlbVFPTUBLXDNxM1dRMmthMzgpcmlZWi1FNj9yRC9PJEVWXUIsOj4lSk5WU24uU0leajVGZWBmNyxcWFYiRWloSCQiQzVUVCtAX3JvTjojN0QpRT9NYD1eJ2dLNDMpcVokZEZRcC9KI2xmOXFJb0hJPDY3JjZsYGUsbChjNl9EXHNSUDVnS2dtT1w5IXBAVk9GMjk7V2E4QVFoRDtrR1BZbjNqT05Oa1lcaWEtZ1luaUczREo0S2JobyVLRWcvNCdubVMyT0txYz9hWWo5WCdsUGBMI2BYMzpITVtWZUlmb09NIWQ+SmJCNl5RRk5TZ2poY0RfQGdRVEZDN3FASGVTPyFWPV1fZ3MoI0I2dF1HKlRmOmxmO1ZScUFsaXQjIV5BJSg7WTVGXW40TDZbYS0vJTRTQVQ6TVcuWUNpJUlIUTFPST5BIl9mc0lRNk1DUjU8LlVvM0ljYU8kKHM3OStQMHNZKC5SQ3A8cj5KZXNGZVQrQi1IMnNpJEEwa0I1TVEvMTtBVEFBYFpqOGJOTycpQnEtZSpnJXBxTDpoIjtSM2NQNFYhXj4ibFhuNSprYS0tODJnL09fOGRLcykodSIidVQhZ0pYMVlHVDdcbmwhcTNUSHVEcnJeX3Rya2lZLT4kZlU9ImdsNWFWblgyPkx0cylIQURaZz00Xig9QV9HLTFJMl5lZiFvNjY/TjZxRkYjQzJfL08lK3EtJW0zTExQLW4qRU5yJ3MvJ1lvMmVbS1tbckZSNHAsO2hebFZJbGhNOCdEUkhBOz1MM3AhMWZpY1AsLDFgWkdyVmtyU0J+Pg0KZW5kc3RyZWFtDQplbmRvYmoNCnhyZWYNCjAgOA0KMDAwMDAwMDAwMCA2NTUzNSBmDQowMDAwMDAwMDE3IDAwMDAwIG4NCjAwMDAwMDAwNTAgMDAwMDAgbg0KMDAwMDAwMDE0OSAwMDAwMCBuDQowMDAwMDAzNTg0IDAwMDAwIG4NCjAwMDAwMDM2NTAgMDAwMDAgbg0KMDAwMDAwMzkxMSAwMDAwMCBuDQowMDAwMDAzOTY3IDAwMDAwIG4NCnRyYWlsZXINCjw8L0luZm8gNSAwIFIgL1Jvb3QgNCAwIFIgL1NpemUgOC9JRFs8OTNGNzc5RUNEMUYyOTI0QTc1QjJDRDU2RTQzODNDRkE+PDgyQTkyRTlFQjRBODM0Mjc5RkIzQjJFRDM2MTYzRkY5Pl0+Pg0Kc3RhcnR4cmVmDQo1MjkzDQolJUVPRg0K"
+    }
+   },
+   {
+    "document": "v2",
+    "pages": 1,
+    "selected": [
+     1
+    ],
+    "mode": "text",
+    "page_offsets": [
+     0
+    ],
+    "characters": 1440,
+    "text": "MUTUAL NON-DISCLOSURE AGREEMENT\nThis Mutual Non-Disclosure Agreement is made on 4 May 2026 between Tidewater Robotics Ltd.\nand Northgate Foods plc (each a Party).\n1. Purpose. The Parties wish to discuss a possible supply of warehouse automation equipment and\nmay share confidential information for that purpose only.\n2. Confidential Information. Confidential Information means all non-public information disclosed by a\nParty, in any form, that is marked confidential or would reasonably be understood to be confidential.\n3. Obligations. The receiving Party shall keep Confidential Information secret, shall use it only for\nthe Purpose, and may disclose it to employees, advisers, affiliates and prospective investors.\n4. Term. This Agreement starts on the date above and continues for two (2) years. The obligations\nin clause 3 survive for one (1) year after it ends.\n5. Return of Information. On written request the receiving Party shall return or destroy all\nConfidential Information within 30 days and confirm in writing that it has done so.\n6. No Licence. Nothing in this Agreement grants either Party any licence or right in the other Party's\nintellectual property.\n7. Remedies. Each Party acknowledges that damages may not be an adequate remedy and that\nthe other Party may seek injunctive relief.\n8. Governing Law. This Agreement is governed by the laws of England and Wales and the courts of\nEngland have non-exclusive jurisdiction.",
+    "marked": {
+     "mode": "highlight",
+     "spans": 18,
+     "marked": 18,
+     "pages": [
+      1
+     ],
+     "document": "JVBERi0xLjQNCiWhs8XXDQoxIDAgb2JqDQo8PC9GMSAyIDAgUiA+Pg0KZW5kb2JqDQoyIDAgb2JqDQo8PC9CYXNlRm9udC9IZWx2ZXRpY2EvRW5jb2RpbmcvV2luQW5zaUVuY29kaW5nL05hbWUvRjEvU3VidHlwZS9UeXBlMS9UeXBlL0ZvbnQ+Pg0KZW5kb2JqDQozIDAgb2JqDQo8PC9Bbm5vdHNbPDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNzcuMjMgNzYyLjc1OTc3IDI3OS45MyA3NjIuNzU5NzcgNzcuMjMgNzUyLjIwOTggMjc5LjkzIDc1Mi4yMDk4XS9SZWN0WyA3Ny4yMyA3NTIuMjA5OCAyNzkuOTMgNzYyLjc1OTc3XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ni42NCA3NDAuNTY5NzYgNTA4LjIzOTkgNzQwLjU2OTc2IDc2LjY0IDcyOC4xOTk3NyA1MDguMjM5OSA3MjguMTk5NzddL1JlY3RbIDc2LjY0IDcyOC4xOTk3NyA1MDguMjM5OSA3NDAuNTY5NzZdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc2Ljg2IDcyNi43MTk4IDI1Ni40OSA3MjYuNzE5OCA3Ni44NiA3MTQuMTk5NzcgMjU2LjQ5IDcxNC4xOTk3N10vUmVjdFsgNzYuODYgNzE0LjE5OTc3IDI1Ni40OSA3MjYuNzE5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNzcuNTEgNzA0LjQxOTggODYuOTcgNzA0LjQxOTggNzcuNTEgNjk0LjM4OTggODYuOTcgNjk0LjM4OThdL1JlY3RbIDc3LjUxIDY5NC4zODk4IDg2Ljk3IDcwNC40MTk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA4OC40Nzk5OTYgNzA0LjU2OTc2IDEyOS43NyA3MDQuNTY5NzYgODguNDc5OTk2IDY5Mi4zMjk4IDEyOS43NyA2OTIuMzI5OF0vUmVjdFsgODguNDc5OTk2IDY5Mi4zMjk4IDEyOS43NyA3MDQuNTY5NzZdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDEzMC41NiA3MDQuNjY5OCA1MTcuNDY5ODUgNzA0LjY2OTggMTMwLjU2IDY5Mi4yNTk3NyA1MTcuNDY5ODUgNjkyLjI1OTc3XS9SZWN0WyAxMzAuNTYgNjkyLjI1OTc3IDUxNy40Njk4NSA3MDQuNjY5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNzcuMTUgNjkwLjY2OTggMzI3LjYyOTk0IDY5MC42Njk4IDc3LjE1IDY3OC4yNTk3NyAzMjcuNjI5OTQgNjc4LjI1OTc3XS9SZWN0WyA3Ny4xNSA2NzguMjU5NzcgMzI3LjYyOTk0IDY5MC42Njk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ni43NiA2NjguNDE5OCA4Ni45NyA2NjguNDE5OCA3Ni43NiA2NTguMzg5OCA4Ni45NyA2NTguMzg5OF0vUmVjdFsgNzYuNzYgNjU4LjM4OTggODYuOTcgNjY4LjQxOThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDg3LjkyNjg3IDY2OC43NTk3NyAxOTcuODYzNzQgNjY4Ljc1OTc3IDg3LjkyNjg3IDY1OC4yMDk4IDE5Ny44NjM3NCA2NTguMjA5OF0vUmVjdFsgODcuOTI2ODcgNjU4LjIwOTggMTk3Ljg2Mzc0IDY2OC43NTk3N10vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgMTk4LjgyMDYyIDY2OC43NTk3NyA1MTguNTE1NSA2NjguNzU5NzcgMTk4LjgyMDYyIDY1Ni4yNTk3NyA1MTguNTE1NSA2NTYuMjU5NzddL1JlY3RbIDE5OC44MjA2MiA2NTYuMjU5NzcgNTE4LjUxNTUgNjY4Ljc1OTc3XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ny4zNiA2NTQuNjY5OCA1MTcuOTA1NSA2NTQuNjY5OCA3Ny4zNiA2NDIuMjU5NzcgNTE3LjkwNTUgNjQyLjI1OTc3XS9SZWN0WyA3Ny4zNiA2NDIuMjU5NzcgNTE3LjkwNTUgNjU0LjY2OThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc2Ljg0IDYzMi40MTk4IDg2Ljk3IDYzMi40MTk4IDc2Ljg0IDYyMi4yMDk4IDg2Ljk3IDYyMi4yMDk4XS9SZWN0WyA3Ni44NCA2MjIuMjA5OCA4Ni45NyA2MzIuNDE5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgODcuNzYgNTk2LjU2OTc2IDExNS44NiA1OTYuNTY5NzYgODcuNzYgNTg2LjI0OTc2IDExNS44NiA1ODYuMjQ5NzZdL1JlY3RbIDg3Ljc2IDU4Ni4yNDk3NiAxMTUuODYgNTk2LjU2OTc2XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyAxMTYuNjQ5OTk0IDU5Ni43MTk4IDQ0Mi4xMjk4NSA1OTYuNzE5OCAxMTYuNjQ5OTk0IDU4NC4xOTk3NyA0NDIuMTI5ODUgNTg0LjE5OTc3XS9SZWN0WyAxMTYuNjQ5OTk0IDU4NC4xOTk3NyA0NDIuMTI5ODUgNTk2LjcxOThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDg4LjUgNTYwLjY2OTggMTg2LjQ1OTk5IDU2MC42Njk4IDg4LjUgNTUwLjI0OTc2IDE4Ni40NTk5OSA1NTAuMjQ5NzZdL1JlY3RbIDg4LjUgNTUwLjI0OTc2IDE4Ni40NTk5OSA1NjAuNjY5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgMTg3LjUgNTYwLjc1OTc3IDQ2OC45ODk4NCA1NjAuNzU5NzcgMTg3LjUgNTQ4LjE5OTc3IDQ2OC45ODk4NCA1NDguMTk5NzddL1JlY3RbIDE4Ny41IDU0OC4xOTk3NyA0NjguOTg5ODQgNTYwLjc1OTc3XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ni45NCA1NDYuNzU5NzcgNDM0Ljg5OTkzIDU0Ni43NTk3NyA3Ni45NCA1MzQuMTk5NzcgNDM0Ljg5OTkzIDUzNC4xOTk3N10vUmVjdFsgNzYuOTQgNTM0LjE5OTc3IDQzNC44OTk5MyA1NDYuNzU5NzddL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc2Ljg4IDUyNC40MTk4IDg2Ljk3IDUyNC40MTk4IDc2Ljg4IDUxNC4yMDk4IDg2Ljk3IDUxNC4yMDk4XS9SZWN0WyA3Ni44OCA1MTQuMjA5OCA4Ni45NyA1MjQuNDE5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgODguMzggNTI0LjU2OTc2IDE0Mi41NSA1MjQuNTY5NzYgODguMzggNTE0LjI0OTc2IDE0Mi41NSA1MTQuMjQ5NzZdL1JlY3RbIDg4LjM4IDUxNC4yNDk3NiAxNDIuNTUgNTI0LjU2OTc2XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyAxNDMuOTYgNTI0LjU2OTc2IDUxNy45MDk5IDUyNC41Njk3NiAxNDMuOTYgNTEyLjE5OTc3IDUxNy45MDk5IDUxMi4xOTk3N10vUmVjdFsgMTQzLjk2IDUxMi4xOTk3NyA1MTcuOTA5OSA1MjQuNTY5NzZdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc3LjE3IDUxMC41Njk4IDE2OC4xMSA1MTAuNTY5OCA3Ny4xNyA0OTguMjU5OCAxNjguMTEgNDk4LjI1OThdL1JlY3RbIDc3LjE3IDQ5OC4yNTk4IDE2OC4xMSA1MTAuNTY5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNzYuODcgNDg4LjI2OTggODYuOTcgNDg4LjI2OTggNzYuODcgNDc4LjM4OTggODYuOTcgNDc4LjM4OThdL1JlY3RbIDc2Ljg3IDQ3OC4zODk4IDg2Ljk3IDQ4OC4yNjk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA4OC41IDQ4OC41Njk4IDEzNy41NDAwMSA0ODguNTY5OCA4OC41IDQ3OC4yNDk4IDEzNy41NDAwMSA0NzguMjQ5OF0vUmVjdFsgODguNSA0NzguMjQ5OCAxMzcuNTQwMDEgNDg4LjU2OThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDEzOS4wNSA0ODguNTY5OCA1MDUuMDY5OSA0ODguNTY5OCAxMzkuMDUgNDc2LjE5OTggNTA1LjA2OTkgNDc2LjE5OThdL1JlY3RbIDEzOS4wNSA0NzYuMTk5OCA1MDUuMDY5OSA0ODguNTY5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNzYuNjQgNDc0LjY2OTggMjYxLjQ3OTk4IDQ3NC42Njk4IDc2LjY0IDQ2Mi4yNTk4IDI2MS40Nzk5OCA0NjIuMjU5OF0vUmVjdFsgNzYuNjQgNDYyLjI1OTggMjYxLjQ3OTk4IDQ3NC42Njk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ni44OCA0NTIuNDE5OCA4Ni45NyA0NTIuNDE5OCA3Ni44OCA0NDIuMjA5OCA4Ni45NyA0NDIuMjA5OF0vUmVjdFsgNzYuODggNDQyLjIwOTggODYuOTcgNDUyLjQxOThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDg4LjAxIDYzMi43NTk3NyAxNDIuNTUgNjMyLjc1OTc3IDg4LjAxIDYyMC4xOTk3NyAxNDIuNTUgNjIwLjE5OTc3XS9SZWN0WyA4OC4wMSA2MjAuMTk5NzcgMTQyLjU1IDYzMi43NTk3N10vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgMTQzLjM0IDYzMi43NTk3NyA1MDYuODg5OSA2MzIuNzU5NzcgMTQzLjM0IDYyMC4xOTk3NyA1MDYuODg5OSA2MjAuMTk5NzddL1JlY3RbIDE0My4zNCA2MjAuMTk5NzcgNTA2Ljg4OTkgNjMyLjc1OTc3XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ni42NCA2MTguNjY5OCA0ODkuMzU5OSA2MTguNjY5OCA3Ni42NCA2MDYuMjU5NzcgNDg5LjM1OTkgNjA2LjI1OTc3XS9SZWN0WyA3Ni42NCA2MDYuMjU5NzcgNDg5LjM1OTkgNjE4LjY2OThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc2Ljc1IDU5Ni40MTk4IDg2Ljk3IDU5Ni40MTk4IDc2Ljc1IDU4Ni4zODk4IDg2Ljk3IDU4Ni4zODk4XS9SZWN0WyA3Ni43NSA1ODYuMzg5OCA4Ni45NyA1OTYuNDE5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgNDQyLjkxOTg2IDU5Ni41Njk3NiA1MTMuMjI5ODYgNTk2LjU2OTc2IDQ0Mi45MTk4NiA1ODQuMTk5NzcgNTEzLjIyOTg2IDU4NC4xOTk3N10vUmVjdFsgNDQyLjkxOTg2IDU4NC4xOTk3NyA1MTMuMjI5ODYgNTk2LjU2OTc2XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyA3Ny4xNyA1ODIuNzE5OCAyODkuODI5OTYgNTgyLjcxOTggNzcuMTcgNTcwLjI1OTc3IDI4OS44Mjk5NiA1NzAuMjU5NzddL1JlY3RbIDc3LjE3IDU3MC4yNTk3NyAyODkuODI5OTYgNTgyLjcxOThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc2LjgyIDU2MC4yNjk4IDg2Ljk3IDU2MC4yNjk4IDc2LjgyIDU1MC4yMDk4IDg2Ljk3IDU1MC4yMDk4XS9SZWN0WyA3Ni44MiA1NTAuMjA5OCA4Ni45NyA1NjAuMjY5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+PDwvQ1sgLjgzMTM3MjU2IC45NDkwMTk2IC40NTg4MjM1M10vQ0EgLjYyNzQ1MS9GIDQvUXVhZFBvaW50c1sgODguMDc3Mzg1IDQ1Mi43NTk4IDE1OS43MzQ3NyA0NTIuNzU5OCA4OC4wNzczODUgNDQwLjE5OTggMTU5LjczNDc3IDQ0MC4xOTk4XS9SZWN0WyA4OC4wNzczODUgNDQwLjE5OTggMTU5LjczNDc3IDQ1Mi43NTk4XS9TdWJ0eXBlL0hpZ2hsaWdodC9UeXBlL0Fubm90Pj48PC9DWyAuODMxMzcyNTYgLjk0OTAxOTYgLjQ1ODgyMzUzXS9DQSAuNjI3NDUxL0YgNC9RdWFkUG9pbnRzWyAxNjAuNTAyMTcgNDUyLjY2OTggNTE4LjYxNTUgNDUyLjY2OTggMTYwLjUwMjE3IDQ0MC4xOTk4IDUxOC42MTU1IDQ0MC4xOTk4XS9SZWN0WyAxNjAuNTAyMTcgNDQwLjE5OTggNTE4LjYxNTUgNDUyLjY2OThdL1N1YnR5cGUvSGlnaGxpZ2h0L1R5cGUvQW5ub3Q+Pjw8L0NbIC44MzEzNzI1NiAuOTQ5MDE5NiAuNDU4ODIzNTNdL0NBIC42Mjc0NTEvRiA0L1F1YWRQb2ludHNbIDc3LjM2IDQzOC41Njk4IDI1Ni40Nzk5OCA0MzguNTY5OCA3Ny4zNiA0MjYuMTk5OCAyNTYuNDc5OTggNDI2LjE5OThdL1JlY3RbIDc3LjM2IDQyNi4xOTk4IDI1Ni40Nzk5OCA0MzguNTY5OF0vU3VidHlwZS9IaWdobGlnaHQvVHlwZS9Bbm5vdD4+XS9Db250ZW50cyA3IDAgUiAvTWVkaWFCb3hbIDAgMCA1OTUuMjc1NiA4NDEuODg5OF0vUGFyZW50IDYgMCBSIC9SZXNvdXJjZXM8PC9Gb250IDEgMCBSIC9Qcm9jU2V0Wy9QREYvVGV4dC9JbWFnZUIvSW1hZ2VDL0ltYWdlSV0+Pi9Sb3RhdGUgMC9UcmFuczw8Pj4vVHlwZS9QYWdlPj4NCmVuZG9iag0KNCAwIG9iag0KPDwvUGFnZU1vZGUvVXNlTm9uZS9QYWdlcyA2IDAgUiAvVHlwZS9DYXRhbG9nPj4NCmVuZG9iag0KNSAwIG9iag0KPDwvQXV0aG9yKFwoYW5vbnltb3VzXCkpL0NyZWF0aW9uRGF0ZShEOjIwMDAwMTAxMDAwMDAwKzAwJzAwJykvQ3JlYXRvcihcKHVuc3BlY2lmaWVkXCkpL0tleXdvcmRzKCkvTW9kRGF0ZShEOjIwMDAwMTAxMDAwMDAwKzAwJzAwJykvUHJvZHVjZXIoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpL1N1YmplY3QoXCh1bnNwZWNpZmllZFwpKS9UaXRsZShcKGFub255bW91c1wpKS9UcmFwcGVkL0ZhbHNlPj4NCmVuZG9iag0KNiAwIG9iag0KPDwvQ291bnQgMS9LaWRzWyAzIDAgUiBdL1R5cGUvUGFnZXM+Pg0KZW5kb2JqDQo3IDAgb2JqDQo8PC9GaWx0ZXJbL0FTQ0lJODVEZWNvZGUvRmxhdGVEZWNvZGVdL0xlbmd0aCAxMjE0Pj5zdHJlYW0NCkdhdD0qPyNTRmgmOk1tLlIoJjUublxwNF9ILUMsPjxKYCE3V01AMmdBYXA5KC1MNHJdR0UocDxoXGRBKFw0cWQ0JkJMMSNsXlUrWjlGTztiYDgsPzQhclNQKTVAN2xVJzFjMTlPLyJHKiReZGg+Xko8Y19qRShVVG5SWFBIPy1Yak4qWG9YYy9qSCZiR1pUbjxiSilLMTA/JlZMZkQiUC5lSDBXK0RwQ1JzcXNlQj9xckBabiVUZCQrazRAcDc5bVIwMixHWkVsaUlDTFFEXTRcbkQmVWAsbUAiZzVfZlp1N1UjRiJbbz9ZUWxnQTlNSD5pY0kjNmtiKTs4ZytlSlUiUVY8JGN0KWpeXzAiZUJIVTpmKVxMSDVTUidzQjEoVDljVVs+aSFAM2grXVR1XFlnXi91bUs8JyNZZSFLKnJZIVQvUz1tREVYWyNpXUFVNFZoS0hfPXVZYGVtZWhzSlIoP2sqWkYsSiNTbltPWS5eYCEuKXI8YTdkdFAja25gVW0pV0BwKVs3OmROWWJfVl84QUpUP1ddRl90Z0NAamZgOyJyRCtnWWNMVW1SZzI8Rm80XkQlYyg/NjZRRDByQlM8IkRAYmJLYSUsLFErJUdkNidJV09XSk8ncGJWakM+MUhfME5pLVckTms3I11dKTgva1JCZTEwMlQsXlsocEtPa08jJFk3PTFXVy1xIyxhW1BvSXM4bkZQWTc3S2JYNlssMVhUcFs0XS1ucmVxZzlFZWxtWW1pTjNcYjNmWUxRRCdWLmE4NC5jRmJDLUNjXiZHNEAzUDc9UDdBQy0rJCVDYWlwOlpWL0F1TzsnakxwNkJvU0tScWA5TTIzNF8+MkFmZDwjPVYqWk8zLT1zKk9eY0xqP0VsSzoqKD4iamdjNjJhXTxuYiE8U2cqNiFHcDghRzxcKCFdL1hsLlYuVkYwYD1ccm5WMTJBMCNTM0pGM01va2kjcCcqcnFAS2cmWmdzRSNhZ1A2PFhOYkEpbz1IWnJULzFqVDcnQEhtY0FTUltDPkU2XmQwLWgoK2QlWUl1UmREcCI0K14hb1IyL0tSTHBrajkpJ0JhIiMsc2wjLjZyIVowK2hRKWo/J2tBN3NqR2ciRXRcdEJAbnAzKEAwTzpqJj88RlApYDRna2pLcEU+clFZIl9oIlVLQjNTXVQqVC9qW2VZbDpVKWwiUTJnXE5NIi8qMENbMkskaiNxSFhKKiNTMyhpbyhGMUhqMys0ckZxVHFuX2E3cEoxPzw1QjBCWmNcXitPRlIlLVtnIiEkK3M1ImhURVQ7amRyaW5mbV8qRlQzP1RpTUAuZ0MvI1cwPHVDMjg2QCsodGdaMkk0KkRIOi05OWYpSkxnXE4zWUtiX1FQSGcqOlI/Tl5vWSwqTk1oc2ZWRClxXzFvUkBiYEJuLGJTUGRXVlAtaUhwTF8hYltrZiZZRmwzYTRnMERscWYzOypKVHEkQ05PQ0k4TV03UzNGcG1OI2VuYGEzbDw+VCZDIlJvOWZJPjZkKF1YLEhuPzhfUmtRZTNBcGpPVC5KMVdCMyRQXE9CKmJQJF9dRVYtJDosZzFLbkkscj8kaD4oPT9HV0BiLj4iVyspajQ4IjVJKTU7dX4+DQplbmRzdHJlYW0NCmVuZG9iag0KeHJlZg0KMCA4DQowMDAwMDAwMDAwIDY1NTM1IGYNCjAwMDAwMDAwMTcgMDAwMDAgbg0KMDAwMDAwMDA1MCAwMDAwMCBuDQowMDAwMDAwMTQ5IDAwMDAwIG4NCjAwMDAwMDc2NDcgMDAwMDAgbg0KMDAwMDAwNzcxMyAwMDAwMCBuDQowMDAwMDA3OTc0IDAwMDAwIG4NCjAwMDAwMDgwMzAgMDAwMDAgbg0KdHJhaWxlcg0KPDwvSW5mbyA1IDAgUiAvUm9vdCA0IDAgUiAvU2l6ZSA4L0lEWzw5M0Y3NzlFQ0QxRjI5MjRBNzVCMkNENTZFNDM4M0NGQT48MEQ4NUMwRjY1NTE0ODA5RDc4QzE3QzkxRUZDRERCMzU+XT4+DQpzdGFydHhyZWYNCjkzMzMNCiUlRU9GDQo="
+    }
+   }
+  ]
+ }
+}
