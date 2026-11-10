@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from referee.engine import review  # noqa: E402
 from referee.gateway import Gateway  # noqa: E402
+from referee.reply import draft_reply  # noqa: E402
 
 CASES = ROOT / "data" / "cases"
 
@@ -29,13 +30,22 @@ def run(case_id: str, live: bool, out_root: Path, **kw) -> dict:
                  credit_cap=kw.pop("credit_cap", None))
     r = review(d / "v1.pdf", d / "v2.pdf", (d / "cover.txt").read_text(), gw, out_root / case_id,
                case={"id": case_id, "title": truth["title"], "description": truth["description"]}, **kw)
+    # The reply to the customer, for the decisions the application suggests. Drafted by Fill, checked by Verify.
+    decisions = {c["id"]: c["route"] for c in r["changes"] if c.get("blocking") and c.get("route")}
+    reply = draft_reply(r, decisions, gw) if (r["status"] != "incomplete" and r.get("headline") != "Not the same agreement") else None
+    if reply is not None:
+        reply.pop("brief", None)
+        reply["audit"] = [a for a in gw.audit if a["step"] in ("fill reply", "verify reply")]
+        (out_root / case_id / "reply.json").write_text(json.dumps(reply, indent=1, ensure_ascii=False) + "\n")
     if kw_prune and not r["errors"]:
         print(f"   pruned {gw.prune()} unused recording(s)")
     live_calls = sum(not a["replayed"] for a in gw.audit)
     print(f"{case_id:26} {r['status']:10} expected {truth['expected_status']:8} changes {len(r['changes']):2} "
           f"errors {len(r['errors'])} calls {len(gw.audit)} (live {live_calls}) credits {r['audit']['credits']}")
-    for e in r["errors"][:4]:
+    for e in r["errors"][:4] + ((reply or {}).get("errors") or [])[:2]:
         print("   !", e["endpoint"], e["step"], "-", e["message"][:160])
+    if reply is not None and reply.get("ran"):
+        print(f"   reply: {len(reply['paragraphs'])} sentence group(s) kept, {len(reply['removed'])} removed")
     return r
 
 

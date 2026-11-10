@@ -1,42 +1,165 @@
 {
-  "about": "Fictional deal-desk playbook for Larkspur Systems (the Provider). Each topic has passages the reviewer can quote back to the customer. Two topics that customers do change, IP ownership and audit rights, are deliberately missing: the playbook has no answer for them.",
+  "about": "Fictional deal-desk playbook for Larkspur Systems (the Provider). Each topic has passages the reviewer can quote back to the customer. Two topics that customers do change, IP ownership and audit rights, are deliberately missing: the playbook has no answer for them. A passage may carry `say`: wording the deal desk is cleared to send to a customer. Everything else in a passage is internal.",
   "topics": [
-    {"id": "payment", "title": "Payment terms", "passages": [
-      {"id": "payment-standard", "title": "Payment terms: standard position", "text": "Our standard is net thirty days from the invoice date. Do not volunteer anything longer."},
-      {"id": "payment-small", "title": "Payment terms: deals under $100,000 a year", "text": "For subscriptions under $100,000 in annual fees, the deal desk may agree to net forty-five days without further approval."},
-      {"id": "payment-large", "title": "Payment terms: deals of $100,000 a year or more", "text": "For subscriptions of $100,000 or more in annual fees, the deal desk may agree to net forty-five days. Net sixty days needs the approval of the VP Finance. Anything longer than sixty days is refused."}
-    ]},
-    {"id": "fees", "title": "Fees and price changes", "passages": [
-      {"id": "fees-amount", "title": "Fees: the fee in the agreement must match the signed order form", "text": "The annual fee in the agreement must equal the fee on the signed order form. Any other figure is treated as an error or an attempted discount and goes back to the account executive. The deal desk cannot approve a discount."},
-      {"id": "fees-increase", "title": "Fees: renewal price increases", "text": "Our standard renewal increase cap is 5%. The deal desk may lower the cap to 3% for an initial term of three years or longer. A cap below 3%, or a price freeze, needs the approval of the VP Finance."},
-      {"id": "fees-late", "title": "Fees: late payment interest", "text": "Late payment interest of 1.5% per month is standard. The deal desk may accept 1% per month. Below 1% needs the approval of the VP Finance."}
-    ]},
-    {"id": "term", "title": "Term and renewal", "passages": [
-      {"id": "term-initial", "title": "Term: length of the initial term", "text": "Pricing on the order form depends on the length of the initial term. A shorter initial term than the one quoted needs a new quote from the account executive. The deal desk cannot shorten the initial term."},
-      {"id": "term-renewal-notice", "title": "Term: notice of non-renewal", "text": "We ask for sixty days' notice of non-renewal. The deal desk may accept thirty days. Shorter than thirty days needs the approval of the VP Customer Success because it leaves no time to plan capacity."},
-      {"id": "term-convenience", "title": "Term: termination for convenience", "text": "We do not give customers a right to terminate for convenience. If the customer insists, escalate to Legal. Legal may offer termination for convenience after the first twelve months with no refund of prepaid fees."}
-    ]},
-    {"id": "liability", "title": "Liability", "passages": [
-      {"id": "liability-cap", "title": "Liability: the cap", "text": "Our liability cap is the fees paid in the twelve months before the claim. The deal desk may not change the cap. Legal may agree to twenty-four months of fees for deals of $150,000 or more in annual fees. Anything above twenty-four months is refused."},
-      {"id": "liability-consequential", "title": "Liability: excluded damages", "text": "The exclusion of indirect and consequential damages is not negotiable by the deal desk. Any edit to it goes to Legal."}
-    ]},
-    {"id": "service", "title": "Service levels", "passages": [
-      {"id": "service-uptime", "title": "Service levels: availability commitment", "text": "We commit to 99.9% monthly availability. A higher commitment such as 99.95% or 99.99% is only available on the Enterprise Plus plan and needs the approval of the VP Engineering."},
-      {"id": "service-credits", "title": "Service levels: service credits", "text": "Service credits are capped at 10% of the monthly fee and are the sole remedy. The deal desk may raise the cap to 15%. Credits must always have a maximum: a minimum credit, or no cap, is refused."}
-    ]},
-    {"id": "law", "title": "Governing law", "passages": [
-      {"id": "law-standard", "title": "Governing law: standard position", "text": "Delaware law and Wilmington courts are standard. The deal desk may accept New York law and courts without approval."},
-      {"id": "law-other", "title": "Governing law: any other state", "text": "Any governing law or venue other than Delaware or New York, including the customer's home state, needs the approval of Legal before signature."}
-    ]},
-    {"id": "data", "title": "Data and confidentiality", "passages": [
-      {"id": "data-export", "title": "Data: export window after termination", "text": "We keep customer data available for export for thirty days after termination. The deal desk may extend this to ninety days. Longer retention has a storage cost and needs the approval of the VP Engineering."},
-      {"id": "data-confidentiality", "title": "Confidentiality: how long it lasts", "text": "Confidentiality obligations last three years after termination. The deal desk may accept up to five years. Longer periods, or perpetual confidentiality, go to Legal."}
-    ]},
-    {"id": "assignment", "title": "Assignment", "passages": [
-      {"id": "assignment-standard", "title": "Assignment: consent", "text": "Assignment needs the other party's consent except in a merger or sale of the business. The deal desk may allow the customer to assign to an affiliate that is not a competitor. One-sided assignment rights go to Legal."}
-    ]},
-    {"id": "notices", "title": "Notices", "passages": [
-      {"id": "notices-address", "title": "Notices: address changes", "text": "A change to the customer's notice address is administrative. Accept it and update the account record."}
-    ]}
+    {
+      "id": "payment",
+      "title": "Payment terms",
+      "passages": [
+        {
+          "id": "payment-standard",
+          "title": "Payment terms: standard position",
+          "text": "Our standard is net thirty days from the invoice date. Do not volunteer anything longer.",
+          "say": "Our payment terms are net thirty days from the invoice date."
+        },
+        {
+          "id": "payment-small",
+          "title": "Payment terms: deals under $100,000 a year",
+          "text": "For subscriptions under $100,000 in annual fees, the deal desk may agree to net forty-five days without further approval.",
+          "say": "We can extend payment to net forty-five days from the invoice date."
+        },
+        {
+          "id": "payment-large",
+          "title": "Payment terms: deals of $100,000 a year or more",
+          "text": "For subscriptions of $100,000 or more in annual fees, the deal desk may agree to net forty-five days. Net sixty days needs the approval of the VP Finance. Anything longer than sixty days is refused.",
+          "say": "We can extend payment to net forty-five days from the invoice date."
+        }
+      ]
+    },
+    {
+      "id": "fees",
+      "title": "Fees and price changes",
+      "passages": [
+        {
+          "id": "fees-amount",
+          "title": "Fees: the fee in the agreement must match the signed order form",
+          "text": "The annual fee in the agreement must equal the fee on the signed order form. Any other figure is treated as an error or an attempted discount and goes back to the account executive. The deal desk cannot approve a discount."
+        },
+        {
+          "id": "fees-increase",
+          "title": "Fees: renewal price increases",
+          "text": "Our standard renewal increase cap is 5%. The deal desk may lower the cap to 3% for an initial term of three years or longer. A cap below 3%, or a price freeze, needs the approval of the VP Finance.",
+          "say": "We can lower the cap on renewal price increases to 3%."
+        },
+        {
+          "id": "fees-late",
+          "title": "Fees: late payment interest",
+          "text": "Late payment interest of 1.5% per month is standard. The deal desk may accept 1% per month. Below 1% needs the approval of the VP Finance.",
+          "say": "We can lower late payment interest to 1% per month."
+        }
+      ]
+    },
+    {
+      "id": "term",
+      "title": "Term and renewal",
+      "passages": [
+        {
+          "id": "term-initial",
+          "title": "Term: length of the initial term",
+          "text": "Pricing on the order form depends on the length of the initial term. A shorter initial term than the one quoted needs a new quote from the account executive. The deal desk cannot shorten the initial term."
+        },
+        {
+          "id": "term-renewal-notice",
+          "title": "Term: notice of non-renewal",
+          "text": "We ask for sixty days' notice of non-renewal. The deal desk may accept thirty days. Shorter than thirty days needs the approval of the VP Customer Success because it leaves no time to plan capacity.",
+          "say": "We can accept thirty days' notice of non-renewal."
+        },
+        {
+          "id": "term-convenience",
+          "title": "Term: termination for convenience",
+          "text": "We do not give customers a right to terminate for convenience. If the customer insists, escalate to Legal. Legal may offer termination for convenience after the first twelve months with no refund of prepaid fees."
+        }
+      ]
+    },
+    {
+      "id": "liability",
+      "title": "Liability",
+      "passages": [
+        {
+          "id": "liability-cap",
+          "title": "Liability: the cap",
+          "text": "Our liability cap is the fees paid in the twelve months before the claim. The deal desk may not change the cap. Legal may agree to twenty-four months of fees for deals of $150,000 or more in annual fees. Anything above twenty-four months is refused."
+        },
+        {
+          "id": "liability-consequential",
+          "title": "Liability: excluded damages",
+          "text": "The exclusion of indirect and consequential damages is not negotiable by the deal desk. Any edit to it goes to Legal."
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "title": "Service levels",
+      "passages": [
+        {
+          "id": "service-uptime",
+          "title": "Service levels: availability commitment",
+          "text": "We commit to 99.9% monthly availability. A higher commitment such as 99.95% or 99.99% is only available on the Enterprise Plus plan and needs the approval of the VP Engineering."
+        },
+        {
+          "id": "service-credits",
+          "title": "Service levels: service credits",
+          "text": "Service credits are capped at 10% of the monthly fee and are the sole remedy. The deal desk may raise the cap to 15%. Credits must always have a maximum: a minimum credit, or no cap, is refused.",
+          "say": "We can raise the service credit cap to 15% of the monthly fee. Service credits need a maximum."
+        }
+      ]
+    },
+    {
+      "id": "law",
+      "title": "Governing law",
+      "passages": [
+        {
+          "id": "law-standard",
+          "title": "Governing law: standard position",
+          "text": "Delaware law and Wilmington courts are standard. The deal desk may accept New York law and courts without approval.",
+          "say": "We can agree to Delaware law or New York law."
+        },
+        {
+          "id": "law-other",
+          "title": "Governing law: any other state",
+          "text": "Any governing law or venue other than Delaware or New York, including the customer's home state, needs the approval of Legal before signature."
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Data and confidentiality",
+      "passages": [
+        {
+          "id": "data-export",
+          "title": "Data: export window after termination",
+          "text": "We keep customer data available for export for thirty days after termination. The deal desk may extend this to ninety days. Longer retention has a storage cost and needs the approval of the VP Engineering.",
+          "say": "We can keep Customer Data available for export for ninety days after termination."
+        },
+        {
+          "id": "data-confidentiality",
+          "title": "Confidentiality: how long it lasts",
+          "text": "Confidentiality obligations last three years after termination. The deal desk may accept up to five years. Longer periods, or perpetual confidentiality, go to Legal.",
+          "say": "We can extend the confidentiality period to five years."
+        }
+      ]
+    },
+    {
+      "id": "assignment",
+      "title": "Assignment",
+      "passages": [
+        {
+          "id": "assignment-standard",
+          "title": "Assignment: consent",
+          "text": "Assignment needs the other party's consent except in a merger or sale of the business. The deal desk may allow the customer to assign to an affiliate that is not a competitor. One-sided assignment rights go to Legal.",
+          "say": "We can allow assignment to an affiliate that is not a competitor of ours."
+        }
+      ]
+    },
+    {
+      "id": "notices",
+      "title": "Notices",
+      "passages": [
+        {
+          "id": "notices-address",
+          "title": "Notices: address changes",
+          "text": "A change to the customer's notice address is administrative. Accept it and update the account record."
+        }
+      ]
+    }
   ]
 }
