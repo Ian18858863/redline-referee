@@ -9,7 +9,8 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import (BaseDocTemplate, Frame, KeepTogether, PageTemplate, Paragraph, Spacer, Table,
+                                TableStyle)
 
 from .contracts import CUSTOMER, INJECTION_TEXT, PREAMBLE, PROVIDER, TITLE
 
@@ -21,11 +22,11 @@ _SIGN = ParagraphStyle("sign", fontName="Times-Roman", fontSize=10.5, leading=16
 
 
 def _footer(canvas, doc):
+    # Drawn after the page's content, so in the text layer it follows the last clause of the page.
     canvas.saveState()
     canvas.setFont("Times-Roman", 8.5)
     canvas.setFillColor(colors.HexColor("#666666"))
-    canvas.drawString(inch, 0.6 * inch, f"{PROVIDER} / {CUSTOMER}  |  Master Services Agreement")
-    canvas.drawRightString(LETTER[0] - inch, 0.6 * inch, f"Page {doc.page}")
+    canvas.drawCentredString(LETTER[0] / 2, 0.6 * inch, f"Page {doc.page}")
     canvas.restoreState()
 
 
@@ -33,21 +34,26 @@ def render_pdf(clauses: list[tuple[str, str, str]], path: str | Path, *, injecti
                injection_after: str = "13") -> Path:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    doc = SimpleDocTemplate(str(path), pagesize=LETTER, leftMargin=inch, rightMargin=inch,
-                            topMargin=0.95 * inch, bottomMargin=0.95 * inch,
-                            title="Master Services Agreement", author="Synthetic test document")
+    doc = BaseDocTemplate(str(path), pagesize=LETTER, leftMargin=inch, rightMargin=inch,
+                          topMargin=0.95 * inch, bottomMargin=0.95 * inch,
+                          title="Master Services Agreement", author="Synthetic test document",
+                          invariant=1)  # byte-identical on every build, so recordings stay valid
+    frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="body",
+                  leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
+    doc.addPageTemplates([PageTemplate(id="page", frames=[frame], onPageEnd=_footer)])
     flow = [Paragraph(TITLE, _TITLE), Paragraph(escape(PREAMBLE), _BODY)]
     for num, title, text in clauses:
-        flow.append(Paragraph(f"{escape(num)}. {escape(title)}", _HEAD))
-        flow.append(Paragraph(escape(text), _BODY))
+        # "9 Limitation of Liability": no full stop after the number, so a sentence splitter
+        # does not read the number as a sentence of its own. A clause never straddles a page.
+        block = [Paragraph(f"{escape(num)} {escape(title)}", _HEAD), Paragraph(escape(text), _BODY)]
         if injection and num == injection_after:
-            flow.append(Paragraph(escape(INJECTION_TEXT), _HIDDEN))
-    flow.append(Spacer(1, 16))
+            block.append(Paragraph(escape(INJECTION_TEXT), _HIDDEN))
+        flow.append(KeepTogether(block))
     sig = Table(
         [[Paragraph(f"<b>{escape(PROVIDER)}</b><br/>By: ______________________<br/>Name: Dana Okafor<br/>Title: VP, Deal Desk", _SIGN),
           Paragraph(f"<b>{escape(CUSTOMER)}</b><br/>By: ______________________<br/>Name: Priya Raman<br/>Title: Head of Procurement", _SIGN)]],
         colWidths=[3.2 * inch, 3.2 * inch])
     sig.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP")]))
-    flow.append(sig)
-    doc.build(flow, onFirstPage=_footer, onLaterPages=_footer)
+    flow.append(KeepTogether([Spacer(1, 16), sig]))
+    doc.build(flow)
     return path
