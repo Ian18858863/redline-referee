@@ -6,16 +6,40 @@
     "description": "The cover note says only typos and an address changed. Four terms moved: one the deal desk can accept, one to counter, two for other approvers."
   },
   {
+    "id": "disclosed-changes",
+    "group": "demo",
+    "title": "Disclosed changes",
+    "description": "The customer changed three terms and said so. Nothing is hidden, but each still needs a decision."
+  },
+  {
+    "id": "two-readers",
+    "group": "demo",
+    "title": "Two readers, one disagreement",
+    "description": "A duty became an option and a mutual limit became one-sided, in words a reader can take for tidying."
+  },
+  {
     "id": "quiet-changes-injected",
     "group": "demo",
     "title": "Quiet changes with a hidden instruction",
     "description": "One digit pair swapped in the fee, two rewritten clauses, and white text addressed to AI reviewers."
   },
   {
-    "id": "disclosed-changes",
+    "id": "instruction-in-note",
     "group": "demo",
-    "title": "Disclosed changes",
-    "description": "The customer changed three terms and said so. Nothing is hidden, but each still needs a decision."
+    "title": "An honest note that talks to your AI",
+    "description": "Two changes the deal desk may accept, both disclosed. The note also carries a visible instruction to AI reviewers."
+  },
+  {
+    "id": "added-clause",
+    "group": "demo",
+    "title": "A clause slipped in",
+    "description": "A most-favoured-customer clause was added after Section 13 and the rest renumbered. The note says nothing changed."
+  },
+  {
+    "id": "wrong-file",
+    "group": "demo",
+    "title": "The wrong file came back",
+    "description": "The attachment is a different agreement altogether. The review should stop before it starts."
   },
   {
     "id": "clean-return",
@@ -94,5 +118,35 @@
     "group": "eval",
     "title": "Evaluation pair 12",
     "description": ""
+  },
+  {
+    "id": "struct-01",
+    "group": "struct",
+    "title": "Structure 1: clause added, later clauses renumbered",
+    "description": ""
+  },
+  {
+    "id": "struct-02",
+    "group": "struct",
+    "title": "Structure 2: clause removed, later clauses renumbered",
+    "description": ""
+  },
+  {
+    "id": "struct-03",
+    "group": "struct",
+    "title": "Structure 3: one clause added at the end, one removed",
+    "description": ""
+  },
+  {
+    "id": "hard-a",
+    "group": "hard",
+    "title": "Hard set A",
+    "description": "One hard edit per sentence: changes of meaning mixed with faithful rewordings."
+  },
+  {
+    "id": "hard-b",
+    "group": "hard",
+    "title": "Hard set B",
+    "description": "One hard edit per sentence: changes of meaning mixed with faithful rewordings."
   }
 ]

@@ -1,0 +1,100 @@
+{
+ "endpoint": "/clocked/fill",
+ "label": "fill reply",
+ "request_hash": "5b1d0041ad9db091f27a4a0cc216c36e5ec2a5913754f2253d9e80e318799aef",
+ "request": {
+  "text": "Clause 9 (Limitation of Liability). The returned copy reads: \"to the claim. Customer will not be liable for indirect\". This change is under review on our side.\nClause 10 (Indemnification). The returned copy reads: \"finally awarded. Customer may defend Provider against any\". This change is under review on our side.",
+  "instructions": "You are writing for the Provider's deal desk to the Customer's procurement contact, about a copy of an agreement the Customer returned with changes. Use only the brief. Be plain, courteous and specific. For an accepted change, say we accept it. For a countered change, state the position we can agree to, exactly as the brief gives it, and ask for the clause to be put back or changed to that. For a change that is with our approvers, say only that it is under review; do not promise an outcome. Never mention internal approvers, approval limits, playbooks or percentages of confidence.",
+  "fields": {
+   "reply_c1": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 9 (Limitation of Liability), saying what we decided: escalate."
+   },
+   "reply_c2": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 10 (Indemnification), saying what we decided: escalate."
+   },
+   "corrected_copy": {
+    "type": "yes_no",
+    "description": "Does at least one change need the customer to send a corrected copy (a change we countered)?"
+   },
+   "call_needed": {
+    "type": "yes_no",
+    "description": "Are two or more changes still under review on our side, so that a short call would help?"
+   },
+   "tone": {
+    "type": "choice",
+    "options": [
+     "routine",
+     "firm"
+    ],
+    "description": "routine if everything is accepted or under review; firm if we refuse any change as written"
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 89.000448,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "f5e838b2-a510-4a60-9b1d-02965121ca74",
+  "request_id": null,
+  "trace": "a5857fb06cb16e0d-BOS",
+  "wall_ms": 247,
+  "recorded_at": "2026-11-10T13:45:38+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "reply_c1": {
+    "value": "Clause 9 (Limitation of Liability) is under review",
+    "confidence": 0.5584219100183418,
+    "source": "generated"
+   },
+   "reply_c2": {
+    "value": "Clause 10 (Indemnification) is under review",
+    "confidence": 0.9032986880002026,
+    "source": "generated"
+   },
+   "corrected_copy": {
+    "value": false,
+    "confidence": 0.987,
+    "probabilities": {
+     "yes": 0.0067198380965058915,
+     "no": 0.9932801619034941
+    }
+   },
+   "call_needed": {
+    "value": true,
+    "confidence": 0.979,
+    "probabilities": {
+     "yes": 0.989641066488372,
+     "no": 0.010358933511627977
+    }
+   },
+   "tone": {
+    "value": "routine",
+    "confidence": 0.986,
+    "probabilities": {
+     "routine": 0.9931673745888747,
+     "firm": 0.0068326254111252815
+    }
+   }
+  },
+  "timing": {
+   "read_ms": 46,
+   "generate_ms": 73,
+   "total_ms": 96,
+   "source_states": 1,
+   "source_prefills": 1,
+   "shared_source_tokens": 240,
+   "shared_read_generate_forwards": 1,
+   "engine": "unified"
+  }
+ }
+}

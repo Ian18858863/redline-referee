@@ -41,5 +41,7 @@
       "expected": "supported",
       "about": "termination_convenience"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

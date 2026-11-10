@@ -1,0 +1,140 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 10",
+ "request_hash": "7eda9cc5ff63a6586f425037db5f61c11e4749639a1a5ae2fec918de6f420104",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Provider will defend Customer against any third-party claim that the Service infringes a patent, copyright or trademark, and will pay damages finally awarded. Customer will defend Provider against any third-party claim arising from Customer Data."
+   },
+   {
+    "id": "v2",
+    "text": "Provider will defend Customer against any third-party claim that the Service infringes a trademark, patent or copyright, and will pay damages finally awarded. Customer will defend Provider against any third-party claim arising from Customer Data."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 124.549823,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "c3404543-0146-44a7-ad0a-093434a122a6",
+  "request_id": "a584f0870ad383fb-BOS",
+  "wall_ms": 443,
+  "recorded_at": "2026-11-10T12:07:55+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9985,
+    "probabilities": {
+     "same": 0.9925,
+     "overlapping": 0.0038,
+     "conflicting": 0.0022,
+     "unrelated": 0.0015
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0579,
+       "restated": 0.924,
+       "elaborated": 0.0094,
+       "different": 0.0087
+      },
+      "confidence": 0.9913,
+      "a": {
+       "document": "v1",
+       "quote": "Provider will defend Customer against any third-party claim that the Service infringes a patent, copyright or trademark, and will pay damages finally awarded.",
+       "start": 0,
+       "end": 158,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Provider will defend Customer against any third-party claim that the Service infringes a trademark, patent or copyright, and will pay damages finally awarded.",
+       "start": 0,
+       "end": 158,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9915,
+       "restated": 0.0036,
+       "elaborated": 0.002,
+       "different": 0.0028
+      },
+      "confidence": 0.9972,
+      "a": {
+       "document": "v1",
+       "quote": "Customer will defend Provider against any third-party claim arising from Customer Data.",
+       "start": 159,
+       "end": 246,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Customer will defend Provider against any third-party claim arising from Customer Data.",
+       "start": 159,
+       "end": 246,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 77,
+   "passage_reads": 1,
+   "passages_ms": 44,
+   "passages": 2,
+   "counterparts_ms": 84
+  },
+  "timing": {
+   "read_ms": 204,
+   "total_ms": 206
+  }
+ }
+}

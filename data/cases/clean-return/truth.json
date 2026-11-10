@@ -70,5 +70,7 @@
       "expected": "supported",
       "about": "pay_terms"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

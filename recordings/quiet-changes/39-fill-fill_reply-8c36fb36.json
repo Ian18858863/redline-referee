@@ -1,0 +1,134 @@
+{
+ "endpoint": "/clocked/fill",
+ "label": "fill reply",
+ "request_hash": "8c36fb36abdffcd7ba296e9413028fbffdccbd4a672a43402b73f3e009b809bd",
+ "request": {
+  "text": "Clause 3 (Renewal). The returned copy reads: \"of non-renewal at least thirty (30) days before the\". We accept this change.\nClause 4.2 (Payment Terms). The returned copy reads: \"each undisputed invoice within ninety (90) days of the\". We do not accept this change as written. What we can agree to instead: We can extend payment to net forty-five days from the invoice date.\nClause 9 (Limitation of Liability). The returned copy reads: \"this Agreement in the sixty (60) months before the\". This change is under review on our side.\nClause 15 (Governing Law). The returned copy reads: \"of the State of Oregon, without regard to\". This change is under review on our side.",
+  "instructions": "You are writing for the Provider's deal desk to the Customer's procurement contact, about a copy of an agreement the Customer returned with changes. Use only the brief. Be plain, courteous and specific. For an accepted change, say we accept it. For a countered change, state the position we can agree to, exactly as the brief gives it, and ask for the clause to be put back or changed to that. For a change that is with our approvers, say only that it is under review; do not promise an outcome. Never mention internal approvers, approval limits, playbooks or percentages of confidence.",
+  "fields": {
+   "reply_c1": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 3 (Renewal), saying what we decided: accept."
+   },
+   "reply_c2": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 4.2 (Payment Terms), saying what we decided: counter."
+   },
+   "reply_c3": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 9 (Limitation of Liability), saying what we decided: escalate."
+   },
+   "reply_c4": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 15 (Governing Law), saying what we decided: escalate."
+   },
+   "position_c2": {
+    "type": "extract",
+    "infer": false,
+    "description": "The sentence stating what we can agree to instead for clause 4.2 (Payment Terms)"
+   },
+   "corrected_copy": {
+    "type": "yes_no",
+    "description": "Does at least one change need the customer to send a corrected copy (a change we countered)?"
+   },
+   "call_needed": {
+    "type": "yes_no",
+    "description": "Are two or more changes still under review on our side, so that a short call would help?"
+   },
+   "tone": {
+    "type": "choice",
+    "options": [
+     "routine",
+     "firm"
+    ],
+    "description": "routine if everything is accepted or under review; firm if we refuse any change as written"
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 9,
+  "model_ms": 209.524638,
+  "cost_usd": 0.001793,
+  "attempts": 1,
+  "idempotency_key": "6f15ff25-3b6d-428e-b3c1-1c8ef7482560",
+  "request_id": null,
+  "trace": "a5857f817924c062-BOS",
+  "wall_ms": 537,
+  "recorded_at": "2026-11-10T13:45:31+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "reply_c1": {
+    "value": "We accept this change",
+    "confidence": 0.15302971185808212,
+    "source": "generated"
+   },
+   "reply_c2": {
+    "value": "We can extend payment to net forty-five days from the invoice date. Please update the clause to reflect this position",
+    "confidence": 0.567001282149154,
+    "source": "generated"
+   },
+   "reply_c3": {
+    "value": "This change is under review",
+    "confidence": 0.2454428443937019,
+    "source": "generated"
+   },
+   "reply_c4": {
+    "value": "This change is under review",
+    "confidence": 0.5838819919331074,
+    "source": "generated"
+   },
+   "position_c2": {
+    "value": "We can extend payment to net forty-five days from the invoice date.",
+    "start": 305,
+    "end": 372,
+    "confidence": 0.9999999997568083,
+    "p_verify": 0.9999999997568083
+   },
+   "corrected_copy": {
+    "value": true,
+    "confidence": 0.972,
+    "probabilities": {
+     "yes": 0.9860344741306962,
+     "no": 0.013965525869303774
+    }
+   },
+   "call_needed": {
+    "value": true,
+    "confidence": 0.914,
+    "probabilities": {
+     "yes": 0.9569274377128089,
+     "no": 0.04307256228719114
+    }
+   },
+   "tone": {
+    "value": "firm",
+    "confidence": 0.845,
+    "probabilities": {
+     "routine": 0.07738920612938616,
+     "firm": 0.9226107938706138
+    }
+   }
+  },
+  "timing": {
+   "read_ms": 116,
+   "generate_ms": 194,
+   "total_ms": 219,
+   "source_states": 1,
+   "source_prefills": 0,
+   "shared_source_tokens": 400,
+   "shared_read_generate_forwards": 1,
+   "engine": "unified"
+  }
+ }
+}

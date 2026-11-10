@@ -62,5 +62,7 @@
       "expected": "supported",
       "about": "audit_rights"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

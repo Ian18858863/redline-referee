@@ -15,7 +15,9 @@
       "v1_quote": "including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
       "v2_quote": "excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
       "v1_value": "Provider owns configurations",
-      "v2_value": "Customer owns configurations"
+      "v2_value": "Customer owns configurations",
+      "route": "escalate",
+      "passage": null
     },
     {
       "id": "liability_cap",
@@ -25,7 +27,9 @@
       "v1_quote": "in the twelve (12) months before the event",
       "v2_quote": "in the sixty (60) months before the event",
       "v1_value": "12 months of fees",
-      "v2_value": "60 months of fees"
+      "v2_value": "60 months of fees",
+      "route": "escalate",
+      "passage": "liability-cap"
     }
   ],
   "cosmetic": [
@@ -93,5 +97,7 @@
       "expected": "supported",
       "about": "sla_uptime"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

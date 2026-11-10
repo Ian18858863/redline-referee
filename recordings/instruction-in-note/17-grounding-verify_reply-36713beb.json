@@ -1,0 +1,108 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify reply",
+ "request_hash": "36713beb601a113a3951fffb35eb7ddbdeb14da27def875e2dcd74dc870a0e95",
+ "request": {
+  "documents": [
+   {
+    "id": "brief",
+    "text": "Clause 4.4 (Fee Adjustments). The returned copy reads: \"term by up to 3% over the fees for\". We accept this change.\nClause 8 (Confidentiality). The returned copy reads: \"These obligations continue for five (5) years after termination\". We accept this change."
+   }
+  ],
+  "answer": "We accept the change to Clause 4.4 (Fee Adjustments). We accept the change to Clause 8 (Confidentiality).",
+  "claims": [
+   "We accept the change to Clause 4.4 (Fee Adjustments).",
+   "We accept the change to Clause 8 (Confidentiality)."
+  ],
+  "instructions": "The source is the brief the reply was written from. A claim is supported only if the brief states the same decision about the same clause: accepted, countered with that exact position, or under review. A claim that promises something the brief does not state, or names a different term, is contradicted or not stated.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 76.945183,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "ee12979e-c885-4acd-a735-e7dccf61dac7",
+  "request_id": null,
+  "trace": "a5857fdd2bbe1bf6-BOS",
+  "wall_ms": 252,
+  "recorded_at": "2026-11-10T13:45:45+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9944,
+  "ungrounded": 0.0056,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "brief",
+    "share": 1,
+    "share_of_answer": 0.9944,
+    "claims": [
+     0,
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "We accept the change to Clause 4.4 (Fee Adjustments).",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5096,
+    "supported": 0.9951,
+    "contradicted": 0.0018,
+    "not_stated": 0.0017,
+    "not_a_claim": 0.0013,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "Clause 4.4 (Fee Adjustments).",
+     "start": 0,
+     "end": 29,
+     "confidence": 1
+    }
+   },
+   {
+    "claim": "We accept the change to Clause 8 (Confidentiality).",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4904,
+    "supported": 0.9937,
+    "contradicted": 0.0025,
+    "not_stated": 0.002,
+    "not_a_claim": 0.0019,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief",
+    "evidence": {
+     "document": "brief",
+     "quote": "Clause 8 (Confidentiality).",
+     "start": 116,
+     "end": 143,
+     "confidence": 1
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.9937
+  },
+  "timing": {
+   "read_ms": 87,
+   "total_ms": 90
+  }
+ }
+}

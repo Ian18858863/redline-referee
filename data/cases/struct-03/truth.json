@@ -1,0 +1,81 @@
+{
+  "case_id": "struct-03",
+  "group": "struct",
+  "title": "Structure 3: one clause added at the end, one removed",
+  "description": "",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "liability_cap",
+      "clause": "9",
+      "label": "Liability cap",
+      "kind": "duration",
+      "v1_quote": "in the twelve (12) months before the event",
+      "v2_quote": "in the sixty (60) months before the event",
+      "v1_value": "12 months of fees",
+      "v2_value": "60 months of fees",
+      "route": "escalate",
+      "passage": "liability-cap"
+    },
+    {
+      "id": "added_mfc",
+      "clause": "16",
+      "label": "Clause added",
+      "kind": "added",
+      "v1_quote": "",
+      "v2_quote": "If Provider offers the Service to any other customer of similar size at lower fees during the term, Provider will promptly offer the same fees to Customer and refund the difference for the preceding twelve (12) months.",
+      "v1_value": "",
+      "v2_value": "Most Favoured Customer",
+      "route": "escalate",
+      "passage": null
+    },
+    {
+      "id": "removed_audit",
+      "clause": "12",
+      "label": "Clause removed",
+      "kind": "removed",
+      "v1_quote": "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports. Each audit will be conducted during business hours and at Customer's expense.",
+      "v2_quote": "",
+      "v1_value": "Audit",
+      "v2_value": "",
+      "route": "escalate",
+      "passage": null
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "fmt_caps",
+      "clause": "1",
+      "label": "Capitalisation",
+      "kind": "format",
+      "v1_quote": "in accordance with this agreement",
+      "v2_quote": "in accordance with this Agreement"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "The limitation of liability is unchanged.",
+      "expected": "contradicted",
+      "about": "liability_cap"
+    },
+    {
+      "text": "No clause was added or removed.",
+      "expected": "contradicted",
+      "about": "added_mfc"
+    },
+    {
+      "text": "The annual subscription fee is unchanged.",
+      "expected": "supported",
+      "about": "fee_amount"
+    }
+  ],
+  "note_instruction": false,
+  "wrong_file": false
+}

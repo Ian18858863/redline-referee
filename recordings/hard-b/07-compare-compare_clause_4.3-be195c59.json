@@ -1,0 +1,116 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 4.3",
+ "request_hash": "be195c59a3f58568bae93e1a14618b76a545ab717d062be7213bcaa9ec060976",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid."
+   },
+   {
+    "id": "v2",
+    "text": "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, starting on the due date and ending when payment is made."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 94.617537,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "70293d0f-5ac7-4ebe-8810-7135d5cf9c68",
+  "request_id": "a584f0a30dd84d06-BOS",
+  "wall_ms": 375,
+  "recorded_at": "2026-11-10T12:07:59+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9972,
+    "probabilities": {
+     "same": 0.9871,
+     "overlapping": 0.007,
+     "conflicting": 0.0031,
+     "unrelated": 0.0028
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0199,
+       "restated": 0.9631,
+       "elaborated": 0.009,
+       "different": 0.0081
+      },
+      "confidence": 0.9919,
+      "a": {
+       "document": "v1",
+       "quote": "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid.",
+       "start": 0,
+       "end": 139,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, starting on the due date and ending when payment is made.",
+       "start": 0,
+       "end": 167,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 35,
+   "passage_reads": 1,
+   "passages_ms": 52,
+   "passages": 1,
+   "counterparts_ms": 80
+  },
+  "timing": {
+   "read_ms": 166,
+   "total_ms": 168
+  }
+ }
+}

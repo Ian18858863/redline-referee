@@ -15,7 +15,9 @@
       "v1_quote": "at the rate of 1.5% per month",
       "v2_quote": "at the rate of 1% per month",
       "v1_value": "1.5% per month",
-      "v2_value": "1% per month"
+      "v2_value": "1% per month",
+      "route": "accept",
+      "passage": "fees-late"
     },
     {
       "id": "renewal_notice",
@@ -25,7 +27,9 @@
       "v1_quote": "at least sixty (60) days before",
       "v2_quote": "at least thirty (30) days before",
       "v1_value": "60 days",
-      "v2_value": "30 days"
+      "v2_value": "30 days",
+      "route": "accept",
+      "passage": "term-renewal-notice"
     }
   ],
   "cosmetic": [
@@ -93,5 +97,7 @@
       "expected": "supported",
       "about": "fee_amount"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

@@ -1,0 +1,131 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "6796b286c6f53559f02d859e036ee02a3a64287065a55cd4f31c6a2f4a12d08e",
+ "request": {
+  "pdf": {
+   "sha256": "162301e98f323326f3cfd693489055bfac070d0245b7deff644ca1149e8ed24f"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. Customer shall pay each undisputed invoice within thirty (30) days of the invoice date. Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+   "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 152.688385,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "a7c1577a-0554-4f2d-a595-2e6c773232f8",
+  "request_id": null,
+  "trace": "a5858322ca40b822-BOS",
+  "wall_ms": 477,
+  "recorded_at": "2026-11-10T13:48:00+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.4895,
+  "ungrounded": 0.5105,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.4895,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4921,
+    "supported": 0.9915,
+    "contradicted": 0.0034,
+    "not_stated": 0.003,
+    "not_a_claim": 0.002,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless",
+     "start": 831,
+     "end": 936,
+     "confidence": 0.956
+    }
+   },
+   {
+    "claim": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1955,
+    "supported": 0.0038,
+    "contradicted": 0.9873,
+    "not_stated": 0.0056,
+    "not_a_claim": 0.0032,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3124,
+    "supported": 0.0024,
+    "contradicted": 0.0021,
+    "not_stated": 0.9925,
+    "not_a_claim": 0.0029,
+    "verdict": "not_stated",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   1,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 2,
+   "supported": 0.0024
+  },
+  "timing": {
+   "read_ms": 220,
+   "total_ms": 230
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2334,
+    4750
+   ],
+   "characters": 5220
+  }
+ }
+}

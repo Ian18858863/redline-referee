@@ -1,0 +1,476 @@
+{
+ "endpoint": "/clocked/rerank",
+ "label": "rerank 14",
+ "request_hash": "aec31ece29e59d23d75477eb918ba157d722789e94f1f40dbebb4674b020b149",
+ "request": {
+  "query": "The customer added a clause that is not in the agreement we sent: clause 14 (Most Favoured Customer). It says: \"If Provider offers the Service to any other customer of similar size at lower fees during the term, Provider will promptly offer the same fees to Customer and refund the difference for the preceding twelve (12) months.\". How should the deal desk respond?",
+  "context": {
+   "our_role": "Provider (we sent the original agreement)",
+   "annual_fee_in_our_version": "$184,000"
+  },
+  "documents": [
+   {
+    "id": "payment-standard",
+    "title": "Payment terms: standard position",
+    "text": "Our standard is net thirty days from the invoice date. Do not volunteer anything longer.",
+    "metadata": {
+     "topic": "Payment terms"
+    }
+   },
+   {
+    "id": "payment-small",
+    "title": "Payment terms: deals under $100,000 a year",
+    "text": "For subscriptions under $100,000 in annual fees, the deal desk may agree to net forty-five days without further approval.",
+    "metadata": {
+     "topic": "Payment terms"
+    }
+   },
+   {
+    "id": "payment-large",
+    "title": "Payment terms: deals of $100,000 a year or more",
+    "text": "For subscriptions of $100,000 or more in annual fees, the deal desk may agree to net forty-five days. Net sixty days needs the approval of the VP Finance. Anything longer than sixty days is refused.",
+    "metadata": {
+     "topic": "Payment terms"
+    }
+   },
+   {
+    "id": "fees-amount",
+    "title": "Fees: the fee in the agreement must match the signed order form",
+    "text": "The annual fee in the agreement must equal the fee on the signed order form. Any other figure is treated as an error or an attempted discount and goes back to the account executive. The deal desk cannot approve a discount.",
+    "metadata": {
+     "topic": "Fees and price changes"
+    }
+   },
+   {
+    "id": "fees-increase",
+    "title": "Fees: renewal price increases",
+    "text": "Our standard renewal increase cap is 5%. The deal desk may lower the cap to 3% for an initial term of three years or longer. A cap below 3%, or a price freeze, needs the approval of the VP Finance.",
+    "metadata": {
+     "topic": "Fees and price changes"
+    }
+   },
+   {
+    "id": "fees-late",
+    "title": "Fees: late payment interest",
+    "text": "Late payment interest of 1.5% per month is standard. The deal desk may accept 1% per month. Below 1% needs the approval of the VP Finance.",
+    "metadata": {
+     "topic": "Fees and price changes"
+    }
+   },
+   {
+    "id": "term-initial",
+    "title": "Term: length of the initial term",
+    "text": "Pricing on the order form depends on the length of the initial term. A shorter initial term than the one quoted needs a new quote from the account executive. The deal desk cannot shorten the initial term.",
+    "metadata": {
+     "topic": "Term and renewal"
+    }
+   },
+   {
+    "id": "term-renewal-notice",
+    "title": "Term: notice of non-renewal",
+    "text": "We ask for sixty days' notice of non-renewal. The deal desk may accept thirty days. Shorter than thirty days needs the approval of the VP Customer Success because it leaves no time to plan capacity.",
+    "metadata": {
+     "topic": "Term and renewal"
+    }
+   },
+   {
+    "id": "term-convenience",
+    "title": "Term: termination for convenience",
+    "text": "We do not give customers a right to terminate for convenience. If the customer insists, escalate to Legal. Legal may offer termination for convenience after the first twelve months with no refund of prepaid fees.",
+    "metadata": {
+     "topic": "Term and renewal"
+    }
+   },
+   {
+    "id": "liability-cap",
+    "title": "Liability: the cap",
+    "text": "Our liability cap is the fees paid in the twelve months before the claim. The deal desk may not change the cap. Legal may agree to twenty-four months of fees for deals of $150,000 or more in annual fees. Anything above twenty-four months is refused.",
+    "metadata": {
+     "topic": "Liability"
+    }
+   },
+   {
+    "id": "liability-consequential",
+    "title": "Liability: excluded damages",
+    "text": "The exclusion of indirect and consequential damages is not negotiable by the deal desk. Any edit to it goes to Legal.",
+    "metadata": {
+     "topic": "Liability"
+    }
+   },
+   {
+    "id": "service-uptime",
+    "title": "Service levels: availability commitment",
+    "text": "We commit to 99.9% monthly availability. A higher commitment such as 99.95% or 99.99% is only available on the Enterprise Plus plan and needs the approval of the VP Engineering.",
+    "metadata": {
+     "topic": "Service levels"
+    }
+   },
+   {
+    "id": "service-credits",
+    "title": "Service levels: service credits",
+    "text": "Service credits are capped at 10% of the monthly fee and are the sole remedy. The deal desk may raise the cap to 15%. Credits must always have a maximum: a minimum credit, or no cap, is refused.",
+    "metadata": {
+     "topic": "Service levels"
+    }
+   },
+   {
+    "id": "law-standard",
+    "title": "Governing law: standard position",
+    "text": "Delaware law and Wilmington courts are standard. The deal desk may accept New York law and courts without approval.",
+    "metadata": {
+     "topic": "Governing law"
+    }
+   },
+   {
+    "id": "law-other",
+    "title": "Governing law: any other state",
+    "text": "Any governing law or venue other than Delaware or New York, including the customer's home state, needs the approval of Legal before signature.",
+    "metadata": {
+     "topic": "Governing law"
+    }
+   },
+   {
+    "id": "data-export",
+    "title": "Data: export window after termination",
+    "text": "We keep customer data available for export for thirty days after termination. The deal desk may extend this to ninety days. Longer retention has a storage cost and needs the approval of the VP Engineering.",
+    "metadata": {
+     "topic": "Data and confidentiality"
+    }
+   },
+   {
+    "id": "data-confidentiality",
+    "title": "Confidentiality: how long it lasts",
+    "text": "Confidentiality obligations last three years after termination. The deal desk may accept up to five years. Longer periods, or perpetual confidentiality, go to Legal.",
+    "metadata": {
+     "topic": "Data and confidentiality"
+    }
+   },
+   {
+    "id": "assignment-standard",
+    "title": "Assignment: consent",
+    "text": "Assignment needs the other party's consent except in a merger or sale of the business. The deal desk may allow the customer to assign to an affiliate that is not a competitor. One-sided assignment rights go to Legal.",
+    "metadata": {
+     "topic": "Assignment"
+    }
+   },
+   {
+    "id": "notices-address",
+    "title": "Notices: address changes",
+    "text": "A change to the customer's notice address is administrative. Accept it and update the account record.",
+    "metadata": {
+     "topic": "Notices"
+    }
+   }
+  ],
+  "instructions": "The passages are internal playbook rules for the Provider's deal desk. A passage answers the query only if it tells the deal desk how to respond to this specific change for a deal of this size."
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 95.087265,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "7c07dc99-cd3f-4cd5-ac20-3ba964c3f04f",
+  "request_id": null,
+  "trace": "a58583155c193427-BOS",
+  "wall_ms": 479,
+  "recorded_at": "2026-11-10T13:47:58+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "results": [
+   {
+    "index": 4,
+    "id": "fees-increase",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.002,
+    "document_score": 0.0071,
+    "levels": {
+     "answers": 0.002,
+     "elsewhere": 0.0051,
+     "different_case": 0.0116,
+     "unrelated": 0.9813
+    }
+   },
+   {
+    "index": 1,
+    "id": "payment-small",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0018,
+    "document_score": 0.0056,
+    "levels": {
+     "answers": 0.0018,
+     "elsewhere": 0.0038,
+     "different_case": 0.0122,
+     "unrelated": 0.9822
+    }
+   },
+   {
+    "index": 5,
+    "id": "fees-late",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0017,
+    "document_score": 0.0037,
+    "levels": {
+     "answers": 0.0017,
+     "elsewhere": 0.002,
+     "different_case": 0.0048,
+     "unrelated": 0.9915
+    }
+   },
+   {
+    "index": 8,
+    "id": "term-convenience",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0017,
+    "document_score": 0.0052,
+    "levels": {
+     "answers": 0.0017,
+     "elsewhere": 0.0035,
+     "different_case": 0.0072,
+     "unrelated": 0.9876
+    }
+   },
+   {
+    "index": 10,
+    "id": "liability-consequential",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0017,
+    "document_score": 0.0045,
+    "levels": {
+     "answers": 0.0017,
+     "elsewhere": 0.0028,
+     "different_case": 0.0048,
+     "unrelated": 0.9907
+    }
+   },
+   {
+    "index": 3,
+    "id": "fees-amount",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0016,
+    "document_score": 0.0123,
+    "levels": {
+     "answers": 0.0016,
+     "elsewhere": 0.0107,
+     "different_case": 0.0191,
+     "unrelated": 0.9686
+    }
+   },
+   {
+    "index": 15,
+    "id": "data-export",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0016,
+    "document_score": 0.0033,
+    "levels": {
+     "answers": 0.0016,
+     "elsewhere": 0.0017,
+     "different_case": 0.0044,
+     "unrelated": 0.9923
+    }
+   },
+   {
+    "index": 17,
+    "id": "assignment-standard",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0016,
+    "document_score": 0.0033,
+    "levels": {
+     "answers": 0.0016,
+     "elsewhere": 0.0017,
+     "different_case": 0.0057,
+     "unrelated": 0.991
+    }
+   },
+   {
+    "index": 18,
+    "id": "notices-address",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0016,
+    "document_score": 0.0039,
+    "levels": {
+     "answers": 0.0016,
+     "elsewhere": 0.0024,
+     "different_case": 0.0034,
+     "unrelated": 0.9927
+    }
+   },
+   {
+    "index": 2,
+    "id": "payment-large",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0015,
+    "document_score": 0.0042,
+    "levels": {
+     "answers": 0.0015,
+     "elsewhere": 0.0027,
+     "different_case": 0.0043,
+     "unrelated": 0.9915
+    }
+   },
+   {
+    "index": 13,
+    "id": "law-standard",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0015,
+    "document_score": 0.0036,
+    "levels": {
+     "answers": 0.0015,
+     "elsewhere": 0.0021,
+     "different_case": 0.0045,
+     "unrelated": 0.9919
+    }
+   },
+   {
+    "index": 0,
+    "id": "payment-standard",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0014,
+    "document_score": 0.0046,
+    "levels": {
+     "answers": 0.0014,
+     "elsewhere": 0.0032,
+     "different_case": 0.0063,
+     "unrelated": 0.9892
+    }
+   },
+   {
+    "index": 16,
+    "id": "data-confidentiality",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0014,
+    "document_score": 0.0029,
+    "levels": {
+     "answers": 0.0014,
+     "elsewhere": 0.0015,
+     "different_case": 0.0029,
+     "unrelated": 0.9941
+    }
+   },
+   {
+    "index": 6,
+    "id": "term-initial",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0013,
+    "document_score": 0.0049,
+    "levels": {
+     "answers": 0.0013,
+     "elsewhere": 0.0036,
+     "different_case": 0.0092,
+     "unrelated": 0.9859
+    }
+   },
+   {
+    "index": 7,
+    "id": "term-renewal-notice",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0013,
+    "document_score": 0.0029,
+    "levels": {
+     "answers": 0.0013,
+     "elsewhere": 0.0015,
+     "different_case": 0.0032,
+     "unrelated": 0.9939
+    }
+   },
+   {
+    "index": 9,
+    "id": "liability-cap",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0013,
+    "document_score": 0.0035,
+    "levels": {
+     "answers": 0.0013,
+     "elsewhere": 0.0023,
+     "different_case": 0.0054,
+     "unrelated": 0.9911
+    }
+   },
+   {
+    "index": 14,
+    "id": "law-other",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0013,
+    "document_score": 0.003,
+    "levels": {
+     "answers": 0.0013,
+     "elsewhere": 0.0017,
+     "different_case": 0.0026,
+     "unrelated": 0.9944
+    }
+   },
+   {
+    "index": 11,
+    "id": "service-uptime",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0012,
+    "document_score": 0.0025,
+    "levels": {
+     "answers": 0.0012,
+     "elsewhere": 0.0013,
+     "different_case": 0.0023,
+     "unrelated": 0.9953
+    }
+   },
+   {
+    "index": 12,
+    "id": "service-credits",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0011,
+    "document_score": 0.0025,
+    "levels": {
+     "answers": 0.0011,
+     "elsewhere": 0.0014,
+     "different_case": 0.0036,
+     "unrelated": 0.9939
+    }
+   }
+  ],
+  "usage": {
+   "input_tokens": 4190
+  },
+  "timing": {
+   "total_ms": 104,
+   "rerank_ms": 103,
+   "questions_ms": 0,
+   "model_ms": 78,
+   "engine": {
+    "rows": 4931,
+    "branches": 19,
+    "forwards": 1,
+    "bins": 1,
+    "bucket_rows": 6144,
+    "long": 0,
+    "total_ms": 78,
+    "build_ms": 0,
+    "doc_ms": 0,
+    "forward_ms": 77,
+    "state_ms": 0,
+    "logits_ms": 1,
+    "state_chars": 0,
+    "row_buckets": "big",
+    "shared_opening_tokens": 208
+   }
+  }
+ }
+}

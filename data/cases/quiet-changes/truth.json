@@ -15,7 +15,9 @@
       "v1_quote": "within thirty (30) days of the invoice date",
       "v2_quote": "within ninety (90) days of the invoice date",
       "v1_value": "30 days",
-      "v2_value": "90 days"
+      "v2_value": "90 days",
+      "route": "counter",
+      "passage": "payment-large"
     },
     {
       "id": "liability_cap",
@@ -25,7 +27,9 @@
       "v1_quote": "in the twelve (12) months before the event",
       "v2_quote": "in the sixty (60) months before the event",
       "v1_value": "12 months of fees",
-      "v2_value": "60 months of fees"
+      "v2_value": "60 months of fees",
+      "route": "escalate",
+      "passage": "liability-cap"
     },
     {
       "id": "renewal_notice",
@@ -35,7 +39,9 @@
       "v1_quote": "at least sixty (60) days before",
       "v2_quote": "at least thirty (30) days before",
       "v1_value": "60 days",
-      "v2_value": "30 days"
+      "v2_value": "30 days",
+      "route": "accept",
+      "passage": "term-renewal-notice"
     },
     {
       "id": "governing_law",
@@ -45,7 +51,9 @@
       "v1_quote": "governed by the laws of the State of Delaware, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.",
       "v2_quote": "governed by the laws of the State of Oregon, without regard to its conflict of laws rules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Portland, Oregon.",
       "v1_value": "Delaware law, Wilmington courts",
-      "v2_value": "Oregon law, Portland courts"
+      "v2_value": "Oregon law, Portland courts",
+      "route": "escalate",
+      "passage": "law-other"
     }
   ],
   "cosmetic": [
@@ -126,5 +134,7 @@
       "expected": "supported",
       "about": "fee_amount"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

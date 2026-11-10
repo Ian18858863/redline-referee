@@ -1,0 +1,14 @@
+{
+  "case_id": "wrong-file",
+  "group": "demo",
+  "title": "The wrong file came back",
+  "description": "The attachment is a different agreement altogether. The review should stop before it starts.",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [],
+  "cosmetic": [],
+  "letter_claims": [],
+  "note_instruction": false,
+  "wrong_file": true
+}

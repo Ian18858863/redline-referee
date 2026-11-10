@@ -1,0 +1,140 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 8",
+ "request_hash": "1221e85ef1e2d1061e7a1229dc249527243b4a7517a29e923990e117f5fa5ea5",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement. These obligations continue for three (3) years after termination or expiration of this Agreement."
+   },
+   {
+    "id": "v2",
+    "text": "Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement. These obligations last for three (3) years after this Agreement terminates or expires."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 105.418498,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "1b4ad350-56c5-452d-9a85-f9b1710ed7c7",
+  "request_id": "a584f0a67ce24cda-BOS",
+  "wall_ms": 497,
+  "recorded_at": "2026-11-10T12:08:00+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9981,
+    "probabilities": {
+     "same": 0.9917,
+     "overlapping": 0.0038,
+     "conflicting": 0.0027,
+     "unrelated": 0.0019
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9817,
+       "restated": 0.0095,
+       "elaborated": 0.0045,
+       "different": 0.0044
+      },
+      "confidence": 0.9956,
+      "a": {
+       "document": "v1",
+       "quote": "Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement.",
+       "start": 0,
+       "end": 136,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement.",
+       "start": 0,
+       "end": 136,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0041,
+       "restated": 0.9897,
+       "elaborated": 0.0029,
+       "different": 0.0033
+      },
+      "confidence": 0.9967,
+      "a": {
+       "document": "v1",
+       "quote": "These obligations continue for three (3) years after termination or expiration of this Agreement.",
+       "start": 137,
+       "end": 234,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "These obligations last for three (3) years after this Agreement terminates or expires.",
+       "start": 137,
+       "end": 223,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 82,
+   "passage_reads": 1,
+   "passages_ms": 41,
+   "passages": 2,
+   "counterparts_ms": 51
+  },
+  "timing": {
+   "read_ms": 174,
+   "total_ms": 176
+  }
+ }
+}

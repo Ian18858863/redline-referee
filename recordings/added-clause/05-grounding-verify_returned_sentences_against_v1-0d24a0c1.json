@@ -1,0 +1,107 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "0d24a0c1c3d005ccfb81be1f64e9ca3e1ba8698d53baa9b8de086636546ccc7a",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term. If Provider offers the Service to any other customer of similar size at lower fees during the term, Provider will promptly offer the same fees to Customer and refund the difference for the preceding twelve (12) months.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "If Provider offers the Service to any other customer of similar size at lower fees during the term, Provider will promptly offer the same fees to Customer and refund the difference for the preceding twelve (12) months."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 140.572002,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "84141fff-0350-40bc-9d42-9365aa795433",
+  "request_id": null,
+  "trace": "a5857fe59e3aa5bb-BOS",
+  "wall_ms": 404,
+  "recorded_at": "2026-11-10T13:45:47+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.5003,
+  "ungrounded": 0.4997,
+  "verdict": "partially_grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.5003,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5023,
+    "supported": 0.994,
+    "contradicted": 0.0022,
+    "not_stated": 0.0022,
+    "not_a_claim": 0.0016,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "If Provider offers the Service to any other customer of similar size at lower fees during the term, Provider will promptly offer the same fees to Customer and refund the difference for the preceding twelve (12) months.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4977,
+    "supported": 0.0022,
+    "contradicted": 0.0017,
+    "not_stated": 0.9935,
+    "not_a_claim": 0.0026,
+    "verdict": "not_stated",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.0022
+  },
+  "timing": {
+   "read_ms": 151,
+   "total_ms": 154
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}

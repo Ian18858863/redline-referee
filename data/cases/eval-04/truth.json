@@ -15,7 +15,9 @@
       "v1_quote": "up to a maximum of 10% of the monthly fee",
       "v2_quote": "up to a minimum of 10% of the monthly fee",
       "v1_value": "Credits capped at 10%",
-      "v2_value": "Credits of at least 10%"
+      "v2_value": "Credits of at least 10%",
+      "route": "counter",
+      "passage": "service-credits"
     },
     {
       "id": "late_interest",
@@ -25,7 +27,9 @@
       "v1_quote": "at the rate of 1.5% per month",
       "v2_quote": "at the rate of 1% per month",
       "v1_value": "1.5% per month",
-      "v2_value": "1% per month"
+      "v2_value": "1% per month",
+      "route": "accept",
+      "passage": "fees-late"
     }
   ],
   "cosmetic": [
@@ -57,5 +61,7 @@
       "expected": "supported",
       "about": "late_interest"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

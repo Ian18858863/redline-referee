@@ -1,0 +1,420 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "8a0a7ad5fcc2692aedaafc0122bd4129c25265b747d377080be756b830ec53a7",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "Provider will make the Larkspur Route Intelligence platform (the \"Service\") available to Customer, its affiliates and their authorized users in accordance with this agreement and each order form signed by both parties. The initial term of this Agreement begins on the Effective Date and runs for a period of thirty-six (36) months (the \"Initial Term\"). After the Initial Term, this Agreement renews automatically for one additional twelve (12) month term unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. Customer will pay Provider a subscription fee of $184,000 per year for the Service, invoiced annually in advance. Customer shall pay each invoice it has approved within thirty (30) days of the invoice date. Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, starting on the due date and ending when payment is made. Provider may, with Customer's consent, increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full minute of unavailability, up to a maximum of 10% of the monthly fee for that month. All data that Customer submits to the Service (\"Customer Data\") belongs to Customer. For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider may retain it in backups. These obligations last for three (3) years after this Agreement terminates or expires. Except for Provider's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim. Customer may defend Provider against any third-party claim arising from Customer Data. Either party may terminate this Agreement for material breach if the breach remains uncured thirty (30) days after written notice. No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports and source code. Neither party may assign this Agreement without the prior written consent of the other party, other than to a successor in a merger or in a sale of substantially all of its assets. The parties submit to the non-exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware. This Agreement, together with each order form, is the entire agreement between the parties and supplements all prior discussions.",
+  "claims": [
+   "Provider will make the Larkspur Route Intelligence platform (the \"Service\") available to Customer, its affiliates and their authorized users in accordance with this agreement and each order form signed by both parties.",
+   "The initial term of this Agreement begins on the Effective Date and runs for a period of thirty-six (36) months (the \"Initial Term\").",
+   "After the Initial Term, this Agreement renews automatically for one additional twelve (12) month term unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Customer will pay Provider a subscription fee of $184,000 per year for the Service, invoiced annually in advance.",
+   "Customer shall pay each invoice it has approved within thirty (30) days of the invoice date.",
+   "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, starting on the due date and ending when payment is made.",
+   "Provider may, with Customer's consent, increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full minute of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "All data that Customer submits to the Service (\"Customer Data\") belongs to Customer.",
+   "For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider may retain it in backups.",
+   "These obligations last for three (3) years after this Agreement terminates or expires.",
+   "Except for Provider's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+   "Customer may defend Provider against any third-party claim arising from Customer Data.",
+   "Either party may terminate this Agreement for material breach if the breach remains uncured thirty (30) days after written notice.",
+   "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports and source code.",
+   "Neither party may assign this Agreement without the prior written consent of the other party, other than to a successor in a merger or in a sale of substantially all of its assets.",
+   "The parties submit to the non-exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.",
+   "This Agreement, together with each order form, is the entire agreement between the parties and supplements all prior discussions."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 18,
+  "model_ms": 438.806946,
+  "cost_usd": 0.003586,
+  "attempts": 1,
+  "idempotency_key": "72f170d2-7b28-4fc1-8df0-4a4b4cd4bbff",
+  "request_id": "a584f0add9f98ff3-BOS",
+  "wall_ms": 903,
+  "recorded_at": "2026-11-10T12:08:01+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.3737,
+  "ungrounded": 0.6263,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.3737,
+    "claims": [
+     1,
+     3,
+     5,
+     8,
+     10,
+     12,
+     13,
+     15
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Provider will make the Larkspur Route Intelligence platform (the \"Service\") available to Customer, its affiliates and their authorized users in accordance with this agreement and each order form signed by both parties.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0794,
+    "supported": 0.0151,
+    "contradicted": 0.9238,
+    "not_stated": 0.0501,
+    "not_a_claim": 0.011,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "The initial term of this Agreement begins on the Effective Date and runs for a period of thirty-six (36) months (the \"Initial Term\").",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0484,
+    "supported": 0.9909,
+    "contradicted": 0.0042,
+    "not_stated": 0.0025,
+    "not_a_claim": 0.0023,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "The initial term of this Agreement begins on the Effective Date and continues for thirty-six (36) months (the",
+     "start": 694,
+     "end": 803,
+     "confidence": 0.987
+    }
+   },
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for one additional twelve (12) month term unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0808,
+    "supported": 0.0165,
+    "contradicted": 0.9131,
+    "not_stated": 0.0572,
+    "not_a_claim": 0.0133,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer will pay Provider a subscription fee of $184,000 per year for the Service, invoiced annually in advance.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0412,
+    "supported": 0.9843,
+    "contradicted": 0.0079,
+    "not_stated": 0.0043,
+    "not_a_claim": 0.0036,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "4.1 Fees",
+     "start": 1051,
+     "end": 1059,
+     "confidence": 0.963
+    }
+   },
+   {
+    "claim": "Customer shall pay each invoice it has approved within thirty (30) days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0335,
+    "supported": 0.058,
+    "contradicted": 0.8644,
+    "not_stated": 0.0568,
+    "not_a_claim": 0.0208,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, starting on the due date and ending when payment is made.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0608,
+    "supported": 0.9717,
+    "contradicted": 0.0156,
+    "not_stated": 0.0066,
+    "not_a_claim": 0.0061,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Provider may, with Customer's consent, increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0706,
+    "supported": 0.0104,
+    "contradicted": 0.9696,
+    "not_stated": 0.0132,
+    "not_a_claim": 0.0069,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full minute of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0838,
+    "supported": 0.0037,
+    "contradicted": 0.9866,
+    "not_stated": 0.0061,
+    "not_a_claim": 0.0036,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1893,
+     "end": 1923,
+     "confidence": 0.73
+    }
+   },
+   {
+    "claim": "All data that Customer submits to the Service (\"Customer Data\") belongs to Customer.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0306,
+    "supported": 0.9817,
+    "contradicted": 0.0101,
+    "not_stated": 0.0044,
+    "not_a_claim": 0.0037,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer owns all data it submits to the Service (\"Customer Data\").",
+     "start": 2211,
+     "end": 2278,
+     "confidence": 0.731
+    }
+   },
+   {
+    "claim": "For thirty (30) days after termination or expiration, Provider will make Customer Data available for export, after which Provider may retain it in backups.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0564,
+    "supported": 0.0129,
+    "contradicted": 0.954,
+    "not_stated": 0.0244,
+    "not_a_claim": 0.0087,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "These obligations last for three (3) years after this Agreement terminates or expires.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0313,
+    "supported": 0.9657,
+    "contradicted": 0.0176,
+    "not_stated": 0.01,
+    "not_a_claim": 0.0067,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "These obligations continue for three (3) years after termination or expiration of",
+     "start": 2925,
+     "end": 3006,
+     "confidence": 0.99
+    }
+   },
+   {
+    "claim": "Except for Provider's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0929,
+    "supported": 0.1796,
+    "contradicted": 0.7583,
+    "not_stated": 0.0455,
+    "not_a_claim": 0.0166,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer may defend Provider against any third-party claim arising from Customer Data.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0313,
+    "supported": 0.9852,
+    "contradicted": 0.0061,
+    "not_stated": 0.0048,
+    "not_a_claim": 0.0039,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Either party may terminate this Agreement for material breach if the breach remains uncured thirty (30) days after written notice.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0473,
+    "supported": 0.9773,
+    "contradicted": 0.0111,
+    "not_stated": 0.0064,
+    "not_a_claim": 0.0052,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports and source code.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0564,
+    "supported": 0.0193,
+    "contradicted": 0.8856,
+    "not_stated": 0.0829,
+    "not_a_claim": 0.0122,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Neither party may assign this Agreement without the prior written consent of the other party, other than to a successor in a merger or in a sale of substantially all of its assets.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0655,
+    "supported": 0.9819,
+    "contradicted": 0.0086,
+    "not_stated": 0.005,
+    "not_a_claim": 0.0044,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Neither party may assign this Agreement without the prior written consent of the other party, except to a",
+     "start": 4145,
+     "end": 4250,
+     "confidence": 0.852
+    }
+   },
+   {
+    "claim": "The parties submit to the non-exclusive jurisdiction of the state and federal courts located in Wilmington, Delaware.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0426,
+    "supported": 0.0037,
+    "contradicted": 0.9884,
+    "not_stated": 0.0044,
+    "not_a_claim": 0.0034,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "This Agreement, together with each order form, is the entire agreement between the parties and supplements all prior discussions.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.047,
+    "supported": 0.0044,
+    "contradicted": 0.9863,
+    "not_stated": 0.0057,
+    "not_a_claim": 0.0036,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   2,
+   4,
+   6,
+   7,
+   9,
+   11,
+   14,
+   16,
+   17
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 7,
+   "supported": 0.0037
+  },
+  "timing": {
+   "read_ms": 676,
+   "total_ms": 677
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}

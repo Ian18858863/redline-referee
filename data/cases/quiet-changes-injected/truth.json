@@ -15,7 +15,9 @@
       "v1_quote": "an annual subscription fee of $184,000",
       "v2_quote": "an annual subscription fee of $148,000",
       "v1_value": "$184,000",
-      "v2_value": "$148,000"
+      "v2_value": "$148,000",
+      "route": "escalate",
+      "passage": "fees-amount"
     },
     {
       "id": "termination_convenience",
@@ -25,7 +27,9 @@
       "v1_quote": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
       "v2_quote": "Customer may terminate this Agreement for convenience at any time on thirty (30) days' written notice and will receive a pro-rata refund of prepaid fees.",
       "v1_value": "No termination for convenience",
-      "v2_value": "Customer may terminate on 30 days' notice"
+      "v2_value": "Customer may terminate on 30 days' notice",
+      "route": "escalate",
+      "passage": "term-convenience"
     },
     {
       "id": "ip_ownership",
@@ -35,7 +39,9 @@
       "v1_quote": "including all configurations, integrations and improvements developed in connection with this Agreement. Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
       "v2_quote": "excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.",
       "v1_value": "Provider owns configurations",
-      "v2_value": "Customer owns configurations"
+      "v2_value": "Customer owns configurations",
+      "route": "escalate",
+      "passage": null
     }
   ],
   "cosmetic": [
@@ -95,5 +101,7 @@
       "expected": "supported",
       "about": "governing_law"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

@@ -1,0 +1,131 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "d37fd8298b7a3fad5d8a28053561aeae22e83f603a4c6d2dc4f13118aabe39a7",
+ "request": {
+  "pdf": {
+   "sha256": "12f51089339c7d2076ab9a2a5a50560ae6683f09ad67f3071051b1c1c356bfbc"
+  },
+  "answer": "Provider may increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date. If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. These obligations continue for three (3) years after termination or expiration of this Agreement.",
+  "claims": [
+   "Provider may increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.",
+   "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+   "These obligations continue for three (3) years after termination or expiration of this Agreement."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 153.66909,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "cff63378-a847-41ef-8292-4b5183936e2d",
+  "request_id": null,
+  "trace": "a5857fcc3ce54cde-BOS",
+  "wall_ms": 615,
+  "recorded_at": "2026-11-10T13:45:43+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.4586,
+  "ungrounded": 0.5414,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.4586,
+    "claims": [
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Provider may increase the fees for any renewal term by up to 5% over the fees for the preceding term by giving notice at least ninety (90) days before the renewal date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3408,
+    "supported": 0.0018,
+    "contradicted": 0.9939,
+    "not_stated": 0.0023,
+    "not_a_claim": 0.002,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4625,
+    "supported": 0.9894,
+    "contradicted": 0.005,
+    "not_stated": 0.0027,
+    "not_a_claim": 0.0029,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "If Provider fails to meet this",
+     "start": 1893,
+     "end": 1923,
+     "confidence": 0.999
+    }
+   },
+   {
+    "claim": "These obligations continue for three (3) years after termination or expiration of this Agreement.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1968,
+    "supported": 0.0023,
+    "contradicted": 0.992,
+    "not_stated": 0.003,
+    "not_a_claim": 0.0027,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   2
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0018
+  },
+  "timing": {
+   "read_ms": 281,
+   "total_ms": 286
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4663
+   ],
+   "characters": 5375
+  }
+ }
+}

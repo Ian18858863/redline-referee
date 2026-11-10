@@ -1,0 +1,236 @@
+{
+  "case_id": "hard-a",
+  "group": "hard",
+  "title": "Hard set A",
+  "description": "One hard edit per sentence: changes of meaning mixed with faithful rewordings.",
+  "injection": false,
+  "expected_status": "changes",
+  "style": "none",
+  "substantive": [
+    {
+      "id": "hard-a-02",
+      "clause": "1",
+      "label": "condition replaced by a notice duty",
+      "kind": "wording",
+      "v1_quote": "provided that no update will materially reduce",
+      "v2_quote": "provided that Provider gives notice of any update that will materially reduce",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-03",
+      "clause": "3",
+      "label": "right narrowed to one party",
+      "kind": "wording",
+      "v1_quote": "unless either party gives",
+      "v2_quote": "unless Customer gives",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-04",
+      "clause": "4.1",
+      "label": "advance to arrears",
+      "kind": "wording",
+      "v1_quote": "invoiced annually in advance",
+      "v2_quote": "invoiced annually in arrears",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-06",
+      "clause": "4.2",
+      "label": "days to business days",
+      "kind": "wording",
+      "v1_quote": "within thirty (30) days of the invoice date",
+      "v2_quote": "within thirty (30) business days of the invoice date",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-07",
+      "clause": "4.2",
+      "label": "before to after",
+      "kind": "wording",
+      "v1_quote": "any disputed amount before the due date",
+      "v2_quote": "any disputed amount after the due date",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-08",
+      "clause": "4.3",
+      "label": "unit of a rate",
+      "kind": "wording",
+      "v1_quote": "at the rate of 1.5% per month",
+      "v2_quote": "at the rate of 1.5% per year",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-11",
+      "clause": "5",
+      "label": "sole remedy opened",
+      "kind": "wording",
+      "v1_quote": "are Customer's sole remedy for unavailability",
+      "v2_quote": "are one of Customer's remedies for unavailability",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-12",
+      "clause": "6",
+      "label": "purpose widened",
+      "kind": "wording",
+      "v1_quote": "only to provide the Service.",
+      "v2_quote": "to provide the Service and to improve Provider's products.",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-13",
+      "clause": "7",
+      "label": "negation removed",
+      "kind": "wording",
+      "v1_quote": "Nothing in this Agreement transfers ownership of any intellectual property to Customer.",
+      "v2_quote": "This Agreement transfers ownership of the intellectual property described in an order form to Customer.",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-15",
+      "clause": "9",
+      "label": "mutual made one-sided",
+      "kind": "wording",
+      "v1_quote": "Neither party will be liable for indirect",
+      "v2_quote": "Customer will not be liable for indirect",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-17",
+      "clause": "11",
+      "label": "threshold lowered",
+      "kind": "wording",
+      "v1_quote": "for material breach if",
+      "v2_quote": "for any breach if",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-18",
+      "clause": "12",
+      "label": "who pays",
+      "kind": "wording",
+      "v1_quote": "and at Customer's expense",
+      "v2_quote": "and at Provider's expense",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-19",
+      "clause": "13",
+      "label": "consent to notice",
+      "kind": "wording",
+      "v1_quote": "without the prior written consent of the other party",
+      "v2_quote": "without prior notice to the other party",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "hard-a-01",
+      "clause": "1",
+      "label": "rewording",
+      "kind": "wording",
+      "v1_quote": "in accordance with this agreement and each order form signed by both parties",
+      "v2_quote": "under this agreement and each order form that both parties have signed"
+    },
+    {
+      "id": "hard-a-05",
+      "clause": "4.1",
+      "label": "rewording",
+      "kind": "wording",
+      "v1_quote": "Fees are stated in U.S. dollars and are exclusive of taxes.",
+      "v2_quote": "All fees are in US dollars and do not include taxes."
+    },
+    {
+      "id": "hard-a-09",
+      "clause": "4.4",
+      "label": "rewording",
+      "kind": "wording",
+      "v1_quote": "by giving notice at least ninety (90) days before the renewal date",
+      "v2_quote": "if it gives notice no later than ninety (90) days before the renewal date"
+    },
+    {
+      "id": "hard-a-10",
+      "clause": "5",
+      "label": "rewording",
+      "kind": "wording",
+      "v1_quote": "Provider will maintain monthly availability of the Service of at least 99.9%.",
+      "v2_quote": "Provider will keep the Service available at least 99.9% of each month."
+    },
+    {
+      "id": "hard-a-14",
+      "clause": "8",
+      "label": "rewording",
+      "kind": "wording",
+      "v1_quote": "using reasonable care and will use it only to perform this Agreement",
+      "v2_quote": "with reasonable care, and will use it solely for the performance of this Agreement"
+    },
+    {
+      "id": "hard-a-16",
+      "clause": "10",
+      "label": "list reordered",
+      "kind": "wording",
+      "v1_quote": "a patent, copyright or trademark",
+      "v2_quote": "a trademark, patent or copyright"
+    },
+    {
+      "id": "hard-a-20",
+      "clause": "16",
+      "label": "rewording",
+      "kind": "wording",
+      "v1_quote": "Any amendment must be in writing and signed by both parties.",
+      "v2_quote": "An amendment is valid only if it is written and both parties sign it."
+    },
+    {
+      "id": "hard-a-21",
+      "clause": "16",
+      "label": "rewording",
+      "kind": "wording",
+      "v1_quote": "the remaining provisions stay in effect",
+      "v2_quote": "the rest of this Agreement remains in force"
+    }
+  ],
+  "letter_claims": [],
+  "note_instruction": false,
+  "wrong_file": false
+}

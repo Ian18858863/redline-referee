@@ -1,24 +1,68 @@
 # Evaluation results
 
-12 of 12 seeded pairs completed without a failed step. Every pair is synthetic and its ground truth is exact (see `referee/contracts.py`). All Clocked answers behind these numbers are recorded under `recordings/eval-*/`.
+Everything here is computed from recorded answers of the live Clocked API (`recordings/`) against exact ground truth (`data/cases/*/truth.json`). `python eval/run_eval.py` and `python eval/run_hard.py` recompute it without a key.
+
+Finding that two texts differ is done by deterministic code, so recall of textual differences is 100% by construction. What is measured below is what the application does with each difference.
+
+## Seeded pairs (15 of 15 completed without a failed step)
+
+Twelve pairs with two to four planted substantive edits, plus three pairs in which whole clauses were added or removed and the rest renumbered.
 
 | Measure | Result |
 |---|---|
-| Planted substantive edits found | 23 of 23 |
-| ... classed as a change by the rule layer alone | 21 of 23 |
-| ... read as a conflict by Compare (clause against clause) | 23 of 23 |
-| ... read as contradicted by Verify (sentence against the other PDF) | 23 of 23 |
-| One-word meaning changes the rule layer takes for spelling fixes, held as changes | 2 of 2 (Compare 2, Verify 2) |
-| Faithful rewordings cleared (Verify both ways, no objection from Compare) | 4 of 4 |
-| Clauses wrongly held as substantive | 0 |
-| False cover-note statements judged contradicted by Verify | 24 of 24 |
-| True cover-note statements judged supported by Verify | 30 of 32 |
-| True statements judged not stated (shown as such, never blocking) | 2 |
-| True statements wrongly judged contradicted | 0 |
-| Hidden instructions flagged by Guard | 2 of 2 |
-| Hidden instructions found as hidden text by rules | 2 of 2 |
-| Guard false alarms on pairs without an injection | 0 of 10 |
-| Final status equal to ground truth | 12 of 12 |
-| Credits used | 945 |
+| Planted substantive edits held as changes | 30 of 30 |
+| ... read as contradicted by Verify (sentence against the other PDF) | 30 of 30 asked |
+| ... read as a conflict by Compare (clause against clause) | 26 of 26 asked |
+| Whole clauses added or removed, held | 4 of 4 |
+| One-word swaps between two real words (maximum, minimum), held | 2 of 2 |
+| Cosmetic edits (spelling, formatting, address, rewording) wrongly held | 0 of 41 |
+| Faithful rewordings cleared | 4 of 4 |
+| Clauses held with no planted cause | 0 |
+| False cover-note statements judged contradicted | 30 of 30 |
+| True cover-note statements judged supported | 37 of 39 (2 not stated, 0 wrongly contradicted) |
+| Hidden instructions flagged by Guard / found as hidden text by rules | 2 of 2 / 2 of 2 |
+| Guard false alarms on pairs without an injection | 0 of 13 |
+| Final status equal to ground truth | 15 of 15 |
+| Credits, all 15 full reviews | 1136 (about 76 per review) |
 
-Twelve pairs of one agreement are a demonstration with exact answers, not an accuracy benchmark for contracts in general.
+## Routing
+
+Each planted edit has a route the playbook dictates (`EXPECTED_ROUTE` in `referee/contracts.py`). Rerank picks the passages, Decide answers two yes/no questions, code composes the route.
+
+| Measure | Result |
+|---|---|
+| Route equal to what the playbook dictates | 27 of 30 |
+| Wrong on the strict side (sent to a person or countered when the desk could accept) | 3 |
+| Wrong on the loose side (accepted or countered what needed an approver) | 0 |
+| The deciding playbook passage was among those Rerank kept | 23 of 24 |
+| Other passages Rerank also kept for those edits | 6 |
+| No passage kept when the playbook has none (escalated by rule) | 6 of 6 |
+
+Routes that differ from the playbook: data_export: counter (playbook says accept); data_export: counter (playbook says accept); data_export: counter (playbook says accept).
+
+## The hard set: 39 one-sentence edits that a diff cannot settle
+
+24 change what a sentence obliges or allows (a duty made optional, a mutual limit made one-sided, days made business days, a negation removed). 15 say the same thing in other words. One edit per sentence, two pairs (`hard-a`, `hard-b`).
+
+| | 24 changes of meaning | 15 faithful rewordings |
+|---|---|---|
+| The application (clears only if Verify supports both ways and Compare does not object) | 24 held, 0 wrongly cleared | 14 cleared, 1 held |
+| Verify alone | read 22 as changed, **2 as the same** | read 14 as the same |
+| Compare alone | read 23 as conflicting, 0 as the same, 1 not flagged | read 14 as the same |
+
+The two readers disagreed on 3 edits (hard-a-15, hard-b-13, hard-b-15). Verify read two real changes as the same meaning (a mutual exclusion of damages made one-sided; "will defend" made "may defend"); Compare read both as conflicts, so they were held. Compare did not flag one widened scope that Verify read as changed. The one rewording both readers took for a change ("exclusive of taxes" to "do not include taxes") was held: an error on the strict side.
+
+## What each reader changes
+
+Every recorded pair with ground truth (24 pairs: 69 real changes, 20 faithful rewordings, 39 false cover-note statements) decided again from the same recordings, with a reader's answers ignored.
+
+| Decided by | Real changes cleared (missed) | Faithful rewordings held (false alarms) | False statements not caught | Final status wrong |
+|---|---|---|---|---|
+| All three | 0 | 1 | 0 | 0 of 24 |
+| Without Verify | 0 | 20 | 39 | 13 of 24 |
+| Without Compare | 4 | 1 | 1 | 1 of 24 |
+| Rules alone | 0 | 20 | 39 | 13 of 24 |
+
+Without Verify the cover note is taken at its word. With rules alone every rewording is a change and nothing checks the note.
+
+These are sixteen variations of one synthetic agreement plus a hard set and one unrelated agreement. They show that the application does what it claims on data with exact answers. They are not an accuracy figure for contracts in general.

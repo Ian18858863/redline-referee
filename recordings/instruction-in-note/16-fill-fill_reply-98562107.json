@@ -1,0 +1,100 @@
+{
+ "endpoint": "/clocked/fill",
+ "label": "fill reply",
+ "request_hash": "985621077a70f836e3d1a3f6f6270ec62f94203b63df9d5932c03e05f4f6d577",
+ "request": {
+  "text": "Clause 4.4 (Fee Adjustments). The returned copy reads: \"term by up to 3% over the fees for\". We accept this change.\nClause 8 (Confidentiality). The returned copy reads: \"These obligations continue for five (5) years after termination\". We accept this change.",
+  "instructions": "You are writing for the Provider's deal desk to the Customer's procurement contact, about a copy of an agreement the Customer returned with changes. Use only the brief. Be plain, courteous and specific. For an accepted change, say we accept it. For a countered change, state the position we can agree to, exactly as the brief gives it, and ask for the clause to be put back or changed to that. For a change that is with our approvers, say only that it is under review; do not promise an outcome. Never mention internal approvers, approval limits, playbooks or percentages of confidence.",
+  "fields": {
+   "reply_c1": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 4.4 (Fee Adjustments), saying what we decided: accept."
+   },
+   "reply_c2": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 8 (Confidentiality), saying what we decided: accept."
+   },
+   "corrected_copy": {
+    "type": "yes_no",
+    "description": "Does at least one change need the customer to send a corrected copy (a change we countered)?"
+   },
+   "call_needed": {
+    "type": "yes_no",
+    "description": "Are two or more changes still under review on our side, so that a short call would help?"
+   },
+   "tone": {
+    "type": "choice",
+    "options": [
+     "routine",
+     "firm"
+    ],
+    "description": "routine if everything is accepted or under review; firm if we refuse any change as written"
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 94.674593,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "0f7898d0-1dbf-4533-b7c6-f79c79eb57b4",
+  "request_id": null,
+  "trace": "a5857fdb0ec61bf6-BOS",
+  "wall_ms": 337,
+  "recorded_at": "2026-11-10T13:45:45+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "reply_c1": {
+    "value": "We accept the change to Clause 4.4 (Fee Adjustments)",
+    "confidence": 0.9929018567632967,
+    "source": "generated"
+   },
+   "reply_c2": {
+    "value": "We accept the change to Clause 8 (Confidentiality)",
+    "confidence": 0.9905677961767204,
+    "source": "generated"
+   },
+   "corrected_copy": {
+    "value": false,
+    "confidence": 0.99,
+    "probabilities": {
+     "yes": 0.004848530796314532,
+     "no": 0.9951514692036855
+    }
+   },
+   "call_needed": {
+    "value": false,
+    "confidence": 0.99,
+    "probabilities": {
+     "yes": 0.0048386232422091835,
+     "no": 0.9951613767577908
+    }
+   },
+   "tone": {
+    "value": "routine",
+    "confidence": 0.984,
+    "probabilities": {
+     "routine": 0.9917806764765854,
+     "firm": 0.00821932352341459
+    }
+   }
+  },
+  "timing": {
+   "read_ms": 46,
+   "generate_ms": 79,
+   "total_ms": 105,
+   "source_states": 1,
+   "source_prefills": 1,
+   "shared_source_tokens": 224,
+   "shared_read_generate_forwards": 1,
+   "engine": "unified"
+  }
+ }
+}

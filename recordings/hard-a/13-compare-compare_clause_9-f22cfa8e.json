@@ -1,0 +1,150 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 9",
+ "request_hash": "f22cfa8e55c9d49f6967c8e7d60ea825c8b338535218f8dd3f1a918de9ecbea4",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim. Neither party will be liable for indirect, incidental or consequential damages."
+   },
+   {
+    "id": "v2",
+    "text": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim. Customer will not be liable for indirect, incidental or consequential damages."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 130.729379,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "a0e4ce7b-6833-4e24-afc0-91d9dd3b65c0",
+  "request_id": "a584f086ee6b8ff9-BOS",
+  "wall_ms": 332,
+  "recorded_at": "2026-11-10T12:07:54+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [
+     "v2"
+    ],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [
+     "v1"
+    ],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9965,
+    "probabilities": {
+     "same": 0.0019,
+     "overlapping": 0.0073,
+     "conflicting": 0.9874,
+     "unrelated": 0.0035
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9803,
+       "restated": 0.007,
+       "elaborated": 0.0067,
+       "different": 0.006
+      },
+      "confidence": 0.994,
+      "a": {
+       "document": "v1",
+       "quote": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+       "start": 0,
+       "end": 254,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+       "start": 0,
+       "end": 254,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": [
+     {
+      "kind": "scope",
+      "kinds": {
+       "value": 0.0021,
+       "date_or_version": 0.0026,
+       "rule_or_condition": 0.004,
+       "scope": 0.9789,
+       "name": 0.01,
+       "no_conflict": 0.0024
+      },
+      "confidence": 0.9976,
+      "a": {
+       "document": "v1",
+       "quote": "Neither party will be liable for indirect, incidental or consequential damages.",
+       "start": 255,
+       "end": 334,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Customer will not be liable for indirect, incidental or consequential damages.",
+       "start": 255,
+       "end": 333,
+       "confidence": 1
+      }
+     }
+    ]
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [
+   0
+  ],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 18,
+   "passage_reads": 1,
+   "passages_ms": 41,
+   "passages": 2,
+   "counterparts_ms": 62,
+   "kinds_ms": 32
+  },
+  "timing": {
+   "read_ms": 153,
+   "total_ms": 156
+  }
+ }
+}

@@ -1,0 +1,171 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "4e107c17903c985a369e25bb2361e9ac94d86e7f10c386c15ad2078728c09e19",
+ "request": {
+  "pdf": {
+   "sha256": "fab0faa9c814a9d44a0b94baad53cd19c57819cecbefb7e6132e74d4797e1e1a"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. Customer owns all data it submits to the Service (\"Customer Data\"). Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement. Neither party will be liable for indirect, incidental or consequential damages. Customer will defend Provider against any third-party claim arising from Customer Data.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Customer owns all data it submits to the Service (\"Customer Data\").",
+   "Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement.",
+   "Neither party will be liable for indirect, incidental or consequential damages.",
+   "Customer will defend Provider against any third-party claim arising from Customer Data."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 8,
+  "model_ms": 180.496223,
+  "cost_usd": 0.001594,
+  "attempts": 1,
+  "idempotency_key": "de05a27e-d23d-4d2e-a1b9-25a071908cf5",
+  "request_id": null,
+  "trace": "a5857fa15cdef5c2-BOS",
+  "wall_ms": 509,
+  "recorded_at": "2026-11-10T13:45:36+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9894,
+  "ungrounded": 0.0106,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.9894,
+    "claims": [
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3724,
+    "supported": 0.9915,
+    "contradicted": 0.0041,
+    "not_stated": 0.0024,
+    "not_a_claim": 0.002,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Customer owns all data it submits to the Service (\"Customer Data\").",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1139,
+    "supported": 0.9921,
+    "contradicted": 0.0037,
+    "not_stated": 0.0022,
+    "not_a_claim": 0.002,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "All data that Customer submits to the Service (\"Customer Data\") belongs to Customer.",
+     "start": 2212,
+     "end": 2296,
+     "confidence": 0.94
+    }
+   },
+   {
+    "claim": "Each party will protect the other party's confidential information using reasonable care and will use it only to perform this Agreement.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2313,
+    "supported": 0.993,
+    "contradicted": 0.0032,
+    "not_stated": 0.0021,
+    "not_a_claim": 0.0017,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Each party will protect the other party's confidential information with reasonable care, and will use it solely",
+     "start": 2806,
+     "end": 2917,
+     "confidence": 0.995
+    }
+   },
+   {
+    "claim": "Neither party will be liable for indirect, incidental or consequential damages.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.1344,
+    "supported": 0.9713,
+    "contradicted": 0.0188,
+    "not_stated": 0.0054,
+    "not_a_claim": 0.0045,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Customer will defend Provider against any third-party claim arising from Customer Data.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.148,
+    "supported": 0.9932,
+    "contradicted": 0.0028,
+    "not_stated": 0.0022,
+    "not_a_claim": 0.0018,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 3,
+   "supported": 0.9713
+  },
+  "timing": {
+   "read_ms": 326,
+   "total_ms": 333
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2196,
+    4694
+   ],
+   "characters": 5406
+  }
+ }
+}

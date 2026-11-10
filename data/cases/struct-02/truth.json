@@ -1,0 +1,87 @@
+{
+  "case_id": "struct-02",
+  "group": "struct",
+  "title": "Structure 2: clause removed, later clauses renumbered",
+  "description": "",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "pay_terms",
+      "clause": "4.2",
+      "label": "Payment terms",
+      "kind": "duration",
+      "v1_quote": "within thirty (30) days of the invoice date",
+      "v2_quote": "within ninety (90) days of the invoice date",
+      "v1_value": "30 days",
+      "v2_value": "90 days",
+      "route": "counter",
+      "passage": "payment-large"
+    },
+    {
+      "id": "removed_late_payment",
+      "clause": "4.3",
+      "label": "Clause removed",
+      "kind": "removed",
+      "v1_quote": "Overdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower, from the due date until paid.",
+      "v2_quote": "",
+      "v1_value": "Late Payment",
+      "v2_value": "",
+      "route": "escalate",
+      "passage": "fees-late"
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    },
+    {
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_written"
+    },
+    {
+      "text": "We updated our notice address in Section 14.",
+      "expected": "supported",
+      "about": "address"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "Payment terms remain net thirty days.",
+      "expected": "contradicted",
+      "about": "pay_terms"
+    },
+    {
+      "text": "No clause was added or removed.",
+      "expected": "contradicted",
+      "about": "removed_late_payment"
+    },
+    {
+      "text": "Governing law and venue are still Delaware.",
+      "expected": "supported",
+      "about": "governing_law"
+    }
+  ],
+  "note_instruction": false,
+  "wrong_file": false
+}

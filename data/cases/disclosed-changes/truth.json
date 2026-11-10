@@ -15,7 +15,9 @@
       "v1_quote": "by up to 5% over the fees",
       "v2_quote": "by up to 3% over the fees",
       "v1_value": "5%",
-      "v2_value": "3%"
+      "v2_value": "3%",
+      "route": "accept",
+      "passage": "fees-increase"
     },
     {
       "id": "data_export",
@@ -25,7 +27,9 @@
       "v1_quote": "For thirty (30) days after termination",
       "v2_quote": "For ninety (90) days after termination",
       "v1_value": "30 days",
-      "v2_value": "90 days"
+      "v2_value": "90 days",
+      "route": "accept",
+      "passage": "data-export"
     },
     {
       "id": "min_max",
@@ -35,7 +39,9 @@
       "v1_quote": "up to a maximum of 10% of the monthly fee",
       "v2_quote": "up to a minimum of 10% of the monthly fee",
       "v1_value": "Credits capped at 10%",
-      "v2_value": "Credits of at least 10%"
+      "v2_value": "Credits of at least 10%",
+      "route": "counter",
+      "passage": "service-credits"
     }
   ],
   "cosmetic": [
@@ -82,5 +88,7 @@
       "expected": "supported",
       "about": "min_max"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

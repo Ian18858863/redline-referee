@@ -1,0 +1,489 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "f765f5ad383d1fd6f30a1edd2af69a2604af7065abc18c5251558664ba16be0f",
+ "request": {
+  "pdf": {
+   "sha256": "76b8f8caacca4b964b1ef9733935d819c2881b17350b8f5c32b12791b562c5aa"
+  },
+  "answer": "Provider will make the Larkspur Route Intelligence platform (the \"Service\") available to Customer and its authorized users under this agreement and each order form that both parties have signed. Provider may update the Service from time to time, provided that Provider gives notice of any update that will materially reduce the functionality of the Service during a paid term. After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless Customer gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term. Customer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in arrears. All fees are in US dollars and do not include taxes. Customer shall pay each undisputed invoice within thirty (30) business days of the invoice date. Customer must notify Provider of any disputed amount after the due date and pay the undisputed portion on time. Overdue amounts accrue interest at the rate of 1.5% per year, or the highest rate permitted by law if lower, from the due date until paid. Provider may increase the fees for any renewal term by up to 5% over the fees for the preceding term if it gives notice no later than ninety (90) days before the renewal date. Provider will keep the Service available at least 99.9% of each month. Service credits are one of Customer's remedies for unavailability. Provider will process Customer Data to provide the Service and to improve Provider's products. This Agreement transfers ownership of the intellectual property described in an order form to Customer. Each party will protect the other party's confidential information with reasonable care, and will use it solely for the performance of this Agreement. Customer will not be liable for indirect, incidental or consequential damages. Provider will defend Customer against any third-party claim that the Service infringes a trademark, patent or copyright, and will pay damages finally awarded. Either party may terminate this Agreement for any breach if the breach is not cured within thirty (30) days after written notice. Each audit will be conducted during business hours and at Provider's expense. Neither party may assign this Agreement without prior notice to the other party, except to a successor in a merger or sale of substantially all of its assets. An amendment is valid only if it is written and both parties sign it. If any provision is unenforceable, the rest of this Agreement remains in force.",
+  "claims": [
+   "Provider will make the Larkspur Route Intelligence platform (the \"Service\") available to Customer and its authorized users under this agreement and each order form that both parties have signed.",
+   "Provider may update the Service from time to time, provided that Provider gives notice of any update that will materially reduce the functionality of the Service during a paid term.",
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless Customer gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+   "Customer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in arrears. All fees are in US dollars and do not include taxes.",
+   "Customer shall pay each undisputed invoice within thirty (30) business days of the invoice date.",
+   "Customer must notify Provider of any disputed amount after the due date and pay the undisputed portion on time.",
+   "Overdue amounts accrue interest at the rate of 1.5% per year, or the highest rate permitted by law if lower, from the due date until paid.",
+   "Provider may increase the fees for any renewal term by up to 5% over the fees for the preceding term if it gives notice no later than ninety (90) days before the renewal date.",
+   "Provider will keep the Service available at least 99.9% of each month.",
+   "Service credits are one of Customer's remedies for unavailability.",
+   "Provider will process Customer Data to provide the Service and to improve Provider's products.",
+   "This Agreement transfers ownership of the intellectual property described in an order form to Customer.",
+   "Each party will protect the other party's confidential information with reasonable care, and will use it solely for the performance of this Agreement.",
+   "Customer will not be liable for indirect, incidental or consequential damages.",
+   "Provider will defend Customer against any third-party claim that the Service infringes a trademark, patent or copyright, and will pay damages finally awarded.",
+   "Either party may terminate this Agreement for any breach if the breach is not cured within thirty (30) days after written notice.",
+   "Each audit will be conducted during business hours and at Provider's expense.",
+   "Neither party may assign this Agreement without prior notice to the other party, except to a successor in a merger or sale of substantially all of its assets.",
+   "An amendment is valid only if it is written and both parties sign it.",
+   "If any provision is unenforceable, the rest of this Agreement remains in force."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 19,
+  "model_ms": 470.6698,
+  "cost_usd": 0.003785,
+  "attempts": 1,
+  "idempotency_key": "f7be4720-8f5b-4563-bd2e-563227927ff0",
+  "request_id": "a584f08b19358ff9-BOS",
+  "wall_ms": 875,
+  "recorded_at": "2026-11-10T12:07:56+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.3816,
+  "ungrounded": 0.6184,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.3816,
+    "claims": [
+     0,
+     7,
+     8,
+     12,
+     13,
+     14,
+     18,
+     19
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Provider will make the Larkspur Route Intelligence platform (the \"Service\") available to Customer and its authorized users under this agreement and each order form that both parties have signed.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0774,
+    "supported": 0.9745,
+    "contradicted": 0.0147,
+    "not_stated": 0.0058,
+    "not_a_claim": 0.005,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Provider",
+     "start": 536,
+     "end": 544,
+     "confidence": 0.915
+    }
+   },
+   {
+    "claim": "Provider may update the Service from time to time, provided that Provider gives notice of any update that will materially reduce the functionality of the Service during a paid term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0722,
+    "supported": 0.0061,
+    "contradicted": 0.9803,
+    "not_stated": 0.0086,
+    "not_a_claim": 0.005,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless Customer gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0858,
+    "supported": 0.0143,
+    "contradicted": 0.887,
+    "not_stated": 0.0886,
+    "not_a_claim": 0.0101,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in arrears. All fees are in US dollars and do not include taxes.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0658,
+    "supported": 0.0024,
+    "contradicted": 0.9915,
+    "not_stated": 0.0036,
+    "not_a_claim": 0.0024,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "4.1 Fees",
+     "start": 1051,
+     "end": 1059,
+     "confidence": 0.598
+    }
+   },
+   {
+    "claim": "Customer shall pay each undisputed invoice within thirty (30) business days of the invoice date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0383,
+    "supported": 0.0038,
+    "contradicted": 0.9867,
+    "not_stated": 0.0058,
+    "not_a_claim": 0.0038,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Customer must notify Provider of any disputed amount after the due date and pay the undisputed portion on time.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0443,
+    "supported": 0.0023,
+    "contradicted": 0.9903,
+    "not_stated": 0.0044,
+    "not_a_claim": 0.003,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "Customer must",
+     "start": 1339,
+     "end": 1352,
+     "confidence": 0.825
+    }
+   },
+   {
+    "claim": "Overdue amounts accrue interest at the rate of 1.5% per year, or the highest rate permitted by law if lower, from the due date until paid.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0551,
+    "supported": 0.0039,
+    "contradicted": 0.9871,
+    "not_stated": 0.005,
+    "not_a_claim": 0.004,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Provider may increase the fees for any renewal term by up to 5% over the fees for the preceding term if it gives notice no later than ninety (90) days before the renewal date.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0698,
+    "supported": 0.926,
+    "contradicted": 0.047,
+    "not_stated": 0.0154,
+    "not_a_claim": 0.0116,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "4 Fee Adjustments",
+     "start": 1611,
+     "end": 1628,
+     "confidence": 0.947
+    }
+   },
+   {
+    "claim": "Provider will keep the Service available at least 99.9% of each month.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0279,
+    "supported": 0.9717,
+    "contradicted": 0.0165,
+    "not_stated": 0.0068,
+    "not_a_claim": 0.005,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Provider will maintain monthly availability of the Service of at least 99.9%.",
+     "start": 1815,
+     "end": 1892,
+     "confidence": 0.992
+    }
+   },
+   {
+    "claim": "Service credits are one of Customer's remedies for unavailability.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0263,
+    "supported": 0.0065,
+    "contradicted": 0.9808,
+    "not_stated": 0.0079,
+    "not_a_claim": 0.0047,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Provider will process Customer Data to provide the Service and to improve Provider's products.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0375,
+    "supported": 0.0134,
+    "contradicted": 0.9369,
+    "not_stated": 0.0386,
+    "not_a_claim": 0.0111,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "Provider will process Customer Data",
+     "start": 2279,
+     "end": 2314,
+     "confidence": 0.999
+    }
+   },
+   {
+    "claim": "This Agreement transfers ownership of the intellectual property described in an order form to Customer.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0411,
+    "supported": 0.0026,
+    "contradicted": 0.9924,
+    "not_stated": 0.0028,
+    "not_a_claim": 0.0022,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "Nothing in this Agreement transfers ownership",
+     "start": 2682,
+     "end": 2727,
+     "confidence": 0.996
+    }
+   },
+   {
+    "claim": "Each party will protect the other party's confidential information with reasonable care, and will use it solely for the performance of this Agreement.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0599,
+    "supported": 0.982,
+    "contradicted": 0.0098,
+    "not_stated": 0.0045,
+    "not_a_claim": 0.0037,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Customer will not be liable for indirect, incidental or consequential damages.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0311,
+    "supported": 0.976,
+    "contradicted": 0.0125,
+    "not_stated": 0.0061,
+    "not_a_claim": 0.0054,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Neither party will be liable for indirect, incidental or consequential",
+     "start": 3304,
+     "end": 3374,
+     "confidence": 0.827
+    }
+   },
+   {
+    "claim": "Provider will defend Customer against any third-party claim that the Service infringes a trademark, patent or copyright, and will pay damages finally awarded.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.063,
+    "supported": 0.9842,
+    "contradicted": 0.0071,
+    "not_stated": 0.0046,
+    "not_a_claim": 0.0041,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Provider will defend Customer against any third-party claim that the Service infringes a patent, copyright or",
+     "start": 3403,
+     "end": 3512,
+     "confidence": 0.915
+    }
+   },
+   {
+    "claim": "Either party may terminate this Agreement for any breach if the breach is not cured within thirty (30) days after written notice.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0515,
+    "supported": 0.0119,
+    "contradicted": 0.9636,
+    "not_stated": 0.0161,
+    "not_a_claim": 0.0084,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Each audit will be conducted during business hours and at Provider's expense.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0307,
+    "supported": 0.0032,
+    "contradicted": 0.9904,
+    "not_stated": 0.0036,
+    "not_a_claim": 0.0028,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "Neither party may assign this Agreement without prior notice to the other party, except to a successor in a merger or sale of substantially all of its assets.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.063,
+    "supported": 0.0123,
+    "contradicted": 0.9644,
+    "not_stated": 0.0136,
+    "not_a_claim": 0.0097,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "An amendment is valid only if it is written and both parties sign it.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0275,
+    "supported": 0.9903,
+    "contradicted": 0.004,
+    "not_stated": 0.003,
+    "not_a_claim": 0.0027,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "Any amendment must be in writing and signed by both parties.",
+     "start": 5049,
+     "end": 5109,
+     "confidence": 1
+    }
+   },
+   {
+    "claim": "If any provision is unenforceable, the rest of this Agreement remains in force.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.0315,
+    "supported": 0.9922,
+    "contradicted": 0.003,
+    "not_stated": 0.0026,
+    "not_a_claim": 0.0022,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "If any provision is",
+     "start": 5110,
+     "end": 5129,
+     "confidence": 0.993
+    }
+   }
+  ],
+  "unsupported_claims": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   9,
+   10,
+   11,
+   15,
+   16,
+   17
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 5,
+   "supported": 0.0023
+  },
+  "timing": {
+   "read_ms": 481,
+   "total_ms": 486
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4667
+   ],
+   "characters": 5379
+  }
+ }
+}

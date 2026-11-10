@@ -15,7 +15,9 @@
       "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
       "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
       "v1_value": "Mutual consent required",
-      "v2_value": "Customer may assign freely"
+      "v2_value": "Customer may assign freely",
+      "route": "escalate",
+      "passage": "assignment-standard"
     },
     {
       "id": "data_export",
@@ -25,7 +27,9 @@
       "v1_quote": "For thirty (30) days after termination",
       "v2_quote": "For ninety (90) days after termination",
       "v1_value": "30 days",
-      "v2_value": "90 days"
+      "v2_value": "90 days",
+      "route": "accept",
+      "passage": "data-export"
     }
   ],
   "cosmetic": [
@@ -67,5 +71,7 @@
       "expected": "supported",
       "about": "data_export"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

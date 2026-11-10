@@ -1,0 +1,105 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 12",
+ "request_hash": "d212ff0a360b1af5fa81b245a7cb151dc35ea17ca76c3a239e69c9db71016acb",
+ "request": {
+  "state": {
+   "clause": "12 Audit",
+   "change": "The Customer changed this term: Clause rewritten",
+   "we_sent": "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports.",
+   "they_returned": "At any time, and on at least five (5) days' written notice, Customer may audit Provider's systems, facilities and records.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$184,000",
+    "initial_term": "thirty-six (36) months"
+   },
+   "playbook": "The playbook has no passage that covers this change."
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages name a different term, between our original term and what the Customer wrote, that the deal desk may agree to on its own authority and could offer instead. No if every alternative needs another approver, or the passages name no alternative."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 29.689184,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "4b97f755-370a-486f-b677-b7fbbb9f613e",
+  "request_id": null,
+  "trace": "a58582de888693b5-BOS",
+  "wall_ms": 271,
+  "recorded_at": "2026-11-10T13:47:49+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0024
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.0019
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9926,
+     "provider": 0.0043,
+     "neutral": 0.0031
+    },
+    "confidence": 0.9889
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.0511,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0071,
+     "1": 0.0088,
+     "2": 0.0203,
+     "3": 0.8535,
+     "4": 0.1103
+    },
+    "confidence": 0.8169
+   }
+  },
+  "usage": {
+   "input_tokens": 375,
+   "output_tokens": 12
+  }
+ }
+}

@@ -1,0 +1,184 @@
+{
+ "endpoint": "/clocked/extract",
+ "label": "extract terms v2",
+ "request_hash": "52b916dd2188397a27028c01cc9eb61153b2becbf1d9cdd37ca9fc53be32fcc5",
+ "request": {
+  "pdf": {
+   "sha256": "24f7c3580e866b399982e2e840b2ff3b113f3db5bc9d29e9935a316e90fba557"
+  },
+  "fields": {
+   "annual_fee": "The annual subscription fee the Customer pays, as written, with its currency symbol",
+   "payment_terms": "The complete phrase that states when the Customer must pay undisputed invoices, from the word 'within' to the words 'invoice date'",
+   "late_interest": "The complete phrase that states the interest rate on overdue amounts, including the word 'rate' and the period",
+   "price_increase_cap": "The complete phrase that states by how much the Provider may increase fees for a renewal term, including the words 'by up to' and 'over the fees'",
+   "initial_term": "The length of the initial term, as written",
+   "renewal_notice": "The complete phrase that states how long before the end of the term notice of non-renewal must be given, including the words 'at least' and 'before'",
+   "uptime": "The complete phrase that states the monthly availability commitment, including the words 'at least'",
+   "service_credit_limit": "The complete phrase that limits service credits as a percentage of the monthly fee, including whether it is a maximum or a minimum",
+   "liability_cap": "The complete phrase that states which period of fees caps each party's total liability, from the words 'fees paid' to the words 'the claim'",
+   "data_export_window": "The complete phrase that states how long after termination or expiration Customer Data stays available, from the word 'For' to the word 'expiration'",
+   "confidentiality_period": "The complete phrase that states how long confidentiality obligations continue, from the word 'continue' to the word 'after'",
+   "governing_law": "The complete phrase that names the governing law, from the words 'governed by' to the name of the state",
+   "venue": "The complete phrase that names the courts with exclusive jurisdiction, from the word 'courts' to the name of the state"
+  },
+  "return_text": true,
+  "return_pdf": "box"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 10,
+  "model_ms": 227.996902,
+  "cost_usd": 0.001992,
+  "attempts": 1,
+  "idempotency_key": "06ca8f9c-7381-412d-aeb4-eb2e5a8ad732",
+  "request_id": null,
+  "trace": "a5857fe1fee1a5bb-BOS",
+  "wall_ms": 634,
+  "recorded_at": "2026-11-10T13:45:47+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "annual_fee": {
+    "value": "$184,000",
+    "start": 1118,
+    "end": 1126,
+    "confidence": 0.9999999991746176,
+    "p_verify": 0.9999999991746176
+   },
+   "payment_terms": {
+    "value": "within thirty (30) days of the invoice date",
+    "start": 1295,
+    "end": 1338,
+    "confidence": 0.9999999993905881,
+    "p_verify": 0.9999999993905881
+   },
+   "late_interest": {
+    "value": "rate of 1.5% per month",
+    "start": 1509,
+    "end": 1531,
+    "confidence": 0.9999714899533696,
+    "p_verify": 0.9999714899533696
+   },
+   "price_increase_cap": {
+    "value": "by up to 5% over the fees",
+    "start": 1682,
+    "end": 1707,
+    "confidence": 0.9999999949769984,
+    "p_verify": 0.9999999949769984
+   },
+   "initial_term": {
+    "value": "thirty-six (36) months",
+    "start": 776,
+    "end": 798,
+    "confidence": 0.9999999993344764,
+    "p_verify": 0.9999999993344764
+   },
+   "renewal_notice": {
+    "value": "at least sixty (60) days before the end of the then-current\nterm",
+    "start": 986,
+    "end": 1050,
+    "confidence": 0.9999999954260517,
+    "p_verify": 0.9999999954260517
+   },
+   "uptime": {
+    "value": "at least 99.9%",
+    "start": 1878,
+    "end": 1892,
+    "confidence": 0.9999876666388952,
+    "p_verify": 0.9999876666388952
+   },
+   "service_credit_limit": {
+    "value": "up to a maximum of 10% of the monthly fee for that month",
+    "start": 2065,
+    "end": 2121,
+    "confidence": 0.9999999988467438,
+    "p_verify": 0.9999999988467438
+   },
+   "liability_cap": {
+    "value": "fees paid by Customer under this Agreement in the twelve (12) months\nbefore the event giving rise to the claim",
+    "start": 3193,
+    "end": 3303,
+    "confidence": 0.999999998546373,
+    "p_verify": 0.999999998546373
+   },
+   "data_export_window": {
+    "value": "For thirty (30) days after termination or expiration",
+    "start": 2345,
+    "end": 2397,
+    "confidence": 0.999999994662736,
+    "p_verify": 0.999999994662736
+   },
+   "confidentiality_period": {
+    "value": "continue for three (3) years after",
+    "start": 2944,
+    "end": 2978,
+    "confidence": 0.9999999980880376,
+    "p_verify": 0.9999999980880376
+   },
+   "governing_law": {
+    "value": "governed by the laws of the State of Delaware",
+    "start": 4936,
+    "end": 4981,
+    "confidence": 0.9999999974063811,
+    "p_verify": 0.9999999974063811
+   },
+   "venue": {
+    "value": "courts located in Wilmington,\nDelaware",
+    "start": 5103,
+    "end": 5141,
+    "confidence": 0.9999995592438996,
+    "p_verify": 0.9999995592438996
+   }
+  },
+  "timing": {
+   "read_ms": 227,
+   "forwards": {
+    "fields": [
+     8,
+     1
+    ]
+   },
+   "stages": {
+    "fields": {
+     "reader": "recognition",
+     "doc": 8,
+     "branches": 2,
+     "generate": 161,
+     "locate": 0,
+     "verify": 54,
+     "assemble": 0
+    }
+   },
+   "total_ms": 227,
+   "server_ms": 240
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2196,
+    4604
+   ],
+   "characters": 5613,
+   "text": "MASTER SERVICES AGREEMENT\nThis Master Services Agreement (the \"Agreement\") is entered into as of March 2, 2026 (the \"Effective\nDate\") between Larkspur Systems, Inc., a Delaware corporation (\"Provider\"), and Brightwater Logistics\nLLC, an Oregon limited liability company (\"Customer\"). Provider and Customer agree as follows.\n1 Services\nProvider will make the Larkspur Route Intelligence platform (the \"Service\") available to Customer and its\nauthorized users in accordance with this agreement and each order form signed by both parties. Provider\nmay update the Service from time to time, provided that no update will materially reduce the functionality\nof the Service during a paid term.\n2 Term\nThe initial term of this Agreement begins on the Effective Date and continues for thirty-six (36) months (the\n\"Initial Term\").\n3 Renewal\nAfter the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless\neither party gives written notice of non-renewal at least sixty (60) days before the end of the then-current\nterm.\n4.1 Fees\nCustomer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in\nadvance. Fees are stated in U.S. dollars and are exclusive of taxes.\n4.2 Payment Terms\nCustomer shall pay each undisputed invoice within thirty (30) days of the invoice date. Customer must\nnotify Provider of any disputed amount before the due date and pay the undisputed portion on time.\n4.3 Late Payment\nOverdue amounts accrue interest at the rate of 1.5% per month, or the highest rate permitted by law if lower,\nfrom the due date until paid.\n4.4 Fee Adjustments\nProvider may increase the fees for any renewal term by up to 5% over the fees for the preceding term by\ngiving notice at least ninety (90) days before the renewal date.\n5 Service Levels\nProvider will maintain monthly availability of the Service of at least 99.9%. If Provider fails to meet this\ncommitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for\neach full hour of unavailability, up to a maximum of 10% of the monthly fee for that month. Service credits\nare Customer's sole remedy for unavailability.\nPage 1\n\n\f\n6 Customer Data\nCustomer owns all data it submits to the Service (\"Customer Data\"). Provider will process Customer Data\nonly to provide the Service. For thirty (30) days after termination or expiration, Provider will make\nCustomer Data available for export, after which Provider will delete it.\n7 Intellectual Property\nProvider retains all right, title and interest in the Service, including all configurations, integrations and\nimprovements developed in connection with this Agreement. Nothing in this Agreement transfers ownership\nof any intellectual property to Customer.\n8 Confidentiality\nEach party will protect the other party's confidential information using reasonable care and will use it only\nto perform this Agreement. These obligations continue for three (3) years after termination or expiration of\nthis Agreement.\n9 Limitation of Liability\nExcept for a party's indemnification obligations, each party's total liability arising out of or related to this\nAgreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months\nbefore the event giving rise to the claim. Neither party will be liable for indirect, incidental or consequential\ndamages.\n10 Indemnification\nProvider will defend Customer against any third-party claim that the Service infringes a patent, copyright or\ntrademark, and will pay damages finally awarded. Customer will defend Provider against any third-party\nclaim arising from Customer Data.\n11 Termination\nEither party may terminate this Agreement for material breach if the breach is not cured within 30 days after\nwritten notice. Neither party may terminate this Agreement for convenience during the Initial Term or any\nrenewal term.\n12 Audit\nNo more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's\nthen-current security reports. Each audit will be conducted during business hours and at Customer's expense.\n13 Assignment\nNeither party may assign this Agreement without the prior written consent of the other party, except to a\nsuccessor in a merger or sale of substantially all of its assets. Any seperate attempt to assign is void.\n14 Most Favoured Customer\nIf Provider offers the Service to any other customer of similar size at lower fees during the term, Provider\nwill promptly offer the same fees to Customer and refund the difference for the preceding twelve (12)\nmonths.\nPage 2\n\n\f\n15 Notices\nNotices must be in writing and sent to the addresses below. Provider: Larkspur Systems, Inc., 1200 Cascade\nAvenue, Suite 900, Wilmington, Delaware 19801. Customer: Brightwater Logistics LLC, 88 Foundry Row,\nFloor 6, Portland, Oregon 97209. E-mail notice is effective when acknowledged.\n16 Governing Law\nThis Agreement is governed by the laws of the State of Delaware, without regard to its conflict of laws\nrules. The parties submit to the exclusive jurisdiction of the state and federal courts located in Wilmington,\nDelaware.\n17 General\nThis Agreement, together with each order form, is the entire agreement between the parties and supersedes\nall prior discussions. Any amendment must be in writing and signed by both parties. If any provision is\nunenforceable, the remaining provisions stay in effect.\nLarkspur Systems, Inc.\nBy: ______________________\nName: Dana Okafor\nTitle: VP, Deal Desk\nBrightwater Logistics LLC\nBy: ______________________\nName: Priya Raman\nTitle: Head of Procurement\nPage 3",
+   "marked": {
+    "mode": "box",
+    "spans": 13,
+    "marked": 13,
+    "pages": [
+     1,
+     2,
+     3
+    ],
+    "document": "JVBERi0xLjQNCiWhs8XXDQoxIDAgb2JqDQo8PC9GMSAyIDAgUiAvRjIgMyAwIFIgL0YzIDQgMCBSID4+DQplbmRvYmoNCjIgMCBvYmoNCjw8L0Jhc2VGb250L0hlbHZldGljYS9FbmNvZGluZy9XaW5BbnNpRW5jb2RpbmcvTmFtZS9GMS9TdWJ0eXBlL1R5cGUxL1R5cGUvRm9udD4+DQplbmRvYmoNCjMgMCBvYmoNCjw8L0Jhc2VGb250L1RpbWVzLUJvbGQvRW5jb2RpbmcvV2luQW5zaUVuY29kaW5nL05hbWUvRjIvU3VidHlwZS9UeXBlMS9UeXBlL0ZvbnQ+Pg0KZW5kb2JqDQo0IDAgb2JqDQo8PC9CYXNlRm9udC9UaW1lcy1Sb21hbi9FbmNvZGluZy9XaW5BbnNpRW5jb2RpbmcvTmFtZS9GMy9TdWJ0eXBlL1R5cGUxL1R5cGUvRm9udD4+DQplbmRvYmoNCjUgMCBvYmoNCjw8L0Fubm90c1s8PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgMzIwLjg0MzkzIDM5Ny41ODggMzYzLjYwOTUgNDA5Ljk1MTZdL1N1YnR5cGUvU3F1YXJlL1R5cGUvQW5ub3Q+Pjw8L0JvcmRlclsgMCAwIDEuNV0vQ1sgLjA3MDU4ODI0IC4wNzg0MzEzNzUgLjA5MDE5NjA4XS9DQSAxL0YgNC9SZWN0WyAyNjMuOTA2MzQgMzQyLjE1NjQgNDQ2LjE0MzEzIDM1NC44NzY0XS9TdWJ0eXBlL1NxdWFyZS9UeXBlL0Fubm90Pj48PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgMjQxLjE2MDQ1IDI4Ny41NjcyIDM0My42MTMyOCAzMDAuMjc2NF0vU3VidHlwZS9TcXVhcmUvVHlwZS9Bbm5vdD4+PDwvQm9yZGVyWyAwIDAgMS41XS9DWyAuMDcwNTg4MjQgLjA3ODQzMTM3NSAuMDkwMTk2MDhdL0NBIDEvRiA0L1JlY3RbIDI5OC43NTc5NyAyMzIuOTU2NCA0MTEuNjU4NzUgMjQ1LjY3NjRdL1N1YnR5cGUvU3F1YXJlL1R5cGUvQW5ub3Q+Pjw8L0JvcmRlclsgMCAwIDEuNV0vQ1sgLjA3MDU4ODI0IC4wNzg0MzEzNzUgLjA5MDE5NjA4XS9DQSAxL0YgNC9SZWN0WyA0MjQuMzg1MjUgNTIxLjE1NjQgNTIxLjU3Njk3IDUzMy44NzY0XS9TdWJ0eXBlL1NxdWFyZS9UeXBlL0Fubm90Pj48PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgMjc5LjM1MDQgNDUxLjM1NjQgNTI2LjcwMDQ0IDQ2NC4wNzY0Ml0vU3VidHlwZS9TcXVhcmUvVHlwZS9Bbm5vdD4+PDwvQm9yZGVyWyAwIDAgMS41XS9DWyAuMDcwNTg4MjQgLjA3ODQzMTM3NSAuMDkwMTk2MDhdL0NBIDEvRiA0L1JlY3RbIDcwLjY0MDQgNDM4LjQwMjggOTMuMjY0IDQ0Ny43NTMyXS9TdWJ0eXBlL1NxdWFyZS9UeXBlL0Fubm90Pj48PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgMzM1LjE4NjM0IDE4MC4zNjUyIDM5Ny4zNDg4IDE5MS4wNzY0XS9TdWJ0eXBlL1NxdWFyZS9UeXBlL0Fubm90Pj48PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgMjA5Ljc3NjgxIDE0Ny45NTY0IDQ2OS4zMjAwNyAxNjAuNjc2NF0vU3VidHlwZS9TcXVhcmUvVHlwZS9Bbm5vdD4+XS9Db250ZW50cyAxMSAwIFIgL01lZGlhQm94WyAwIDAgNjEyIDc5Ml0vUGFyZW50IDEwIDAgUiAvUmVzb3VyY2VzPDwvRm9udCAxIDAgUiAvUHJvY1NldFsvUERGL1RleHQvSW1hZ2VCL0ltYWdlQy9JbWFnZUldPj4vUm90YXRlIDAvVHJhbnM8PD4+L1R5cGUvUGFnZT4+DQplbmRvYmoNCjYgMCBvYmoNCjw8L0Fubm90c1s8PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgMjA1Ljk4NjAxIDQ2Ny4xNTY0IDUxNS4xODc2IDQ3OS44NzY0XS9TdWJ0eXBlL1NxdWFyZS9UeXBlL0Fubm90Pj48PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgNzAuNTMyNCA0NTEuOTU2NDIgMjQ1LjMzODc4IDQ2NC42NzY0Ml0vU3VidHlwZS9TcXVhcmUvVHlwZS9Bbm5vdD4+PDwvQm9yZGVyWyAwIDAgMS41XS9DWyAuMDcwNTg4MjQgLjA3ODQzMTM3NSAuMDkwMTk2MDhdL0NBIDEvRiA0L1JlY3RbIDE5My4wMTUyIDY3Ni41NTYzNCA0MTMuMTkyNCA2ODkuMjc2MzddL1N1YnR5cGUvU3F1YXJlL1R5cGUvQW5ub3Q+Pjw8L0JvcmRlclsgMCAwIDEuNV0vQ1sgLjA3MDU4ODI0IC4wNzg0MzEzNzUgLjA5MDE5NjA4XS9DQSAxL0YgNC9SZWN0WyAyNzAuMjQ1OTQgNTM2Ljk1NjM2IDQxMy4wNDExNCA1NDkuNjc2NF0vU3VidHlwZS9TcXVhcmUvVHlwZS9Bbm5vdD4+XS9Db250ZW50cyAxMiAwIFIgL01lZGlhQm94WyAwIDAgNjEyIDc5Ml0vUGFyZW50IDEwIDAgUiAvUmVzb3VyY2VzPDwvRm9udCAxIDAgUiAvUHJvY1NldFsvUERGL1RleHQvSW1hZ2VCL0ltYWdlQy9JbWFnZUldPj4vUm90YXRlIDAvVHJhbnM8PD4+L1R5cGUvUGFnZT4+DQplbmRvYmoNCjcgMCBvYmoNCjw8L0Fubm90c1s8PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgMTUzLjI5MjgyIDYyMS45NTYzNiAzNTUuNTIwMzYgNjM0LjY3NjRdL1N1YnR5cGUvU3F1YXJlL1R5cGUvQW5ub3Q+Pjw8L0JvcmRlclsgMCAwIDEuNV0vQ1sgLjA3MDU4ODI0IC4wNzg0MzEzNzUgLjA5MDE5NjA4XS9DQSAxL0YgNC9SZWN0WyA0MDMuNzIzMTQgNjA2Ljc1NjM1IDUzNC44NTQ0IDYxOS40NzY0XS9TdWJ0eXBlL1NxdWFyZS9UeXBlL0Fubm90Pj48PC9Cb3JkZXJbIDAgMCAxLjVdL0NbIC4wNzA1ODgyNCAuMDc4NDMxMzc1IC4wOTAxOTYwOF0vQ0EgMS9GIDQvUmVjdFsgNzAuNjcyOCA1OTMuNzU5NjQgMTE0LjY1ODggNjA0LjI3NjRdL1N1YnR5cGUvU3F1YXJlL1R5cGUvQW5ub3Q+Pl0vQ29udGVudHMgMTMgMCBSIC9NZWRpYUJveFsgMCAwIDYxMiA3OTJdL1BhcmVudCAxMCAwIFIgL1Jlc291cmNlczw8L0ZvbnQgMSAwIFIgL1Byb2NTZXRbL1BERi9UZXh0L0ltYWdlQi9JbWFnZUMvSW1hZ2VJXT4+L1JvdGF0ZSAwL1RyYW5zPDw+Pi9UeXBlL1BhZ2U+Pg0KZW5kb2JqDQo4IDAgb2JqDQo8PC9QYWdlTW9kZS9Vc2VOb25lL1BhZ2VzIDEwIDAgUiAvVHlwZS9DYXRhbG9nPj4NCmVuZG9iag0KOSAwIG9iag0KPDwvQXV0aG9yKFN5bnRoZXRpYyB0ZXN0IGRvY3VtZW50KS9DcmVhdGlvbkRhdGUoRDoyMDAwMDEwMTAwMDAwMCswMCcwMCcpL0NyZWF0b3IoXCh1bnNwZWNpZmllZFwpKS9LZXl3b3JkcygpL01vZERhdGUoRDoyMDAwMDEwMTAwMDAwMCswMCcwMCcpL1Byb2R1Y2VyKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKS9TdWJqZWN0KFwodW5zcGVjaWZpZWRcKSkvVGl0bGUoTWFzdGVyIFNlcnZpY2VzIEFncmVlbWVudCkvVHJhcHBlZC9GYWxzZT4+DQplbmRvYmoNCjEwIDAgb2JqDQo8PC9Db3VudCAzL0tpZHNbIDUgMCBSICA2IDAgUiAgNyAwIFIgXS9UeXBlL1BhZ2VzPj4NCmVuZG9iag0KMTEgMCBvYmoNCjw8L0ZpbHRlclsvQVNDSUk4NURlY29kZS9GbGF0ZURlY29kZV0vTGVuZ3RoIDE4MzI+PnN0cmVhbQ0KR2F0PStnTiklLCY6TzpTbSErdHVkdWRkclUySCNlVTMmTlgxb1tWTi41KTU9OGs7S0whQzRjTGZDcGhAT2RtY0JlNzc8LiFrWEFzQj9yMVQkTG5yLmNhNHNEW0EpUjk3TU5oS2FzZnI3S048PCg+WztgZkx0XC0jUXRCYj45WCxSPTZcIVgmMCFJKHFELi1LUDQjJy87RGVIbWVVKnBBM3EudFpbWCxPNDxoKXFkKXBba10mczYnK0tucHRdWFw2Z2xHL2NUKGhVdCRocnJDNUM3Ml4hcGtuRm4yaUJlZ1A1QSIzXG4tQl4pUCtvYiJfUDlCIiRZI1xiPGwoLCVSKUxAS1dZPlQqIUFuLlZmVjA7TSRiJiZHMXAobz5HXipJTzEwNTRyZDkiVHQ2ViguNjBQQVZmajsmbVUpRFZtNHFBYTdjT0csTWxzLEZpOWhDWnU9LEM6WSlAWmVhL05JUkZVQCpSVXVhSytTRTksN0FLJjdUKkVYPyJKW2ZRJW4sPCYjUyddOUglJEwxN2NmQ1VHYz4jJjpCL0NDODdrL1dVMV9faDdfcl5vXFJYdSRsI15AJVpxUSJYQXR0TCZhJTktY3BwIm1dIWVha14kMSYuNU1lblNMQkpqPDgnXDAwVyIoYEwqLjliI0U9QkA0KF9XPnVubmkhNTRzKi1FLUlacVRfJ0pxZWs1NGBqPClISUA1ImpuKm9hLzE0QysjLFEtXTo8LlVlVzYnJEs6UXVQWy9VaSEnLVpcMDJzK0ciY1FEbkJFOjBVOjw9J1RnSyRkbDcwNzNTTjxPbChVZSNHT2ZgIjFJL1YzdT03KmUrVitVK2Z1N0JsIjM+SURqNFlzLVVJX04oMEA6Ll1lKT1tck8uOCNnYk5XOFooUmBfM2tBOG9ncyhfPUk+VkcwU1NIbFwkS2dGa14pPV5iJGppaV5kSSpTTW8naT4sUCVkXykxRl9VKGttWUFbUEJdIiQ1bihKb1BNSTYsbFU8WmZhK0tUPExPbjUrSCRcSkdFalo4YyZOdVkvO0JAYGo3LDRtKGdJXU9aaGUrTWEmIVFLPCcoYD1OY11QJi1xUzdsKlolRCIrNEcoOGlya2JhampwSFtyS0goV3VmKlxuSiVjS0VJVmFDW1dUVXReJV1fKWVocyhlYkI8JHVhYUIkXDQ7NjQhaCtLPTFVKTxNVlNkYClbNW4xUU09aDVIRm8yQ1hfTCFzdVwuI2YuUSJaOHQ6KnVSJUJWYmRdQ2NwQ1w+SSFyWWJpWFMyRipEPGRtWWJuPXQ3JmUhT1FkMV5PZlA5WVlQXU1wcz5yY0xMbnU0LWZENDhvZVdoUFU9Jy5DUmJhKGRVRGk/OGspTWBgNUFWQyFSb2cvXDQxcUR0X2YlKFAwXTpDQTslYGtyMypiI0snQm9NdUcwaycucTFbZkVSVz8xWSkjSz1JRi8kK3Q/aFRQVjxNV0RQYjdZQiZsWXIkQGRaVUcqKlxUKGhlMDY0KiQwcjVkVUphSmRON1xdamNLTWgrKSxFQStbbzM4XHJFbiksQF4kcic4WDdfK29dW1g6YyxnKFQlJCs8S1dgSWk7LEZjVz9TPWhdS2VhO2o3IzxOLVtVN15AN1kzW3AuNV1tb3IsXDFQSy9jK1FARDUvT1xpKDkzPV0xUUY9MGUoOihMVlZiVTdPN3VvYDU1Xm8jKEN1a3RzRzooSjRwQTNBMzUtI1dcNHFlblg/VFxdLCIsdUNGQ0VgUSFFKXNqOnEvVmAnQSRnMVhkXF5XdDsqOWJrZSxRYWwwVV4ySiRhN1Y+cFgxYCIlNU82PVx1P1FgU2VFN2M6Xy0lNkUrRDNpJDc3RT5hMDttOk5NcnQ6L0kiNEFtP2NkVGFiJlVONEBWVjczRlVwMUIoV0dGMXNQcVwjRGJWW14+VFJdKiUtWjpialUwRC1YO3BZUEMzTFIpIU8/Y2EzZV1fVmg9cDlNOSw6SWRdJWQvW2tpaFZSaltnNlBBOSE4ZjAmbHVIaXAxRklHOC0qam8hSE04LWZgJS1nY1lbczYnXThcU1ZKX25uWSh1MDwzImNVcWNOaCRZcCQrQkpLOmwxNSxNIlQ8JURAPzVBMFQ4KW5oMm8pQ0VgSz8mM3FDa1k5ZF9mIylEbkJKYmg+MSFBWj05T051IVN1bGMuRVNqREVgdSdhU2FaJjJsP0VqQGlPdGlSPUEzRHRCVyVSWFAsSStAYV0jdFRsWVBsKVspZUlWcTFaRldTK24+PS9vTClIYU9iLDM/a0xZIT1QSGxhUWFwOmxUNUUoVTgtIjYzPFJ1Vz9NbyRSaEQuW0YxMSRKLkBVLG1XKCErITEicithPlMiXU09YD1ZbjVgJUgrdWBua1xDWFJLcSheRmtAckpcJiJOcW9lYXFgK3BmUzVIU004YmRMcykqKWJKRWpfZllFJXFxUjcxfj4NCmVuZHN0cmVhbQ0KZW5kb2JqDQoxMiAwIG9iag0KPDwvRmlsdGVyWy9BU0NJSTg1RGVjb2RlL0ZsYXRlRGVjb2RlXS9MZW5ndGggMTc5ND4+c3RyZWFtDQpHYXRVNGFgPy0qJkFAQltWTDRNalUoRGpFYUo3Ykk8Tl5ASTo1KTJGTC1VQl0oXmlKXytPLDpePzhqYy9aQ3F0Mmc1Jz1PSGYiKT9oNG1NcHBrbi1WUzFGOWU3ZkUwSTtVSkhcO0FJSC9cXztGMW1sISxeRFBIOjxhL09Abj0qUDs+XC9XUnJdPVluclczW2Y5RWBlZDEtayctY0NDczduZiVqNjtYZGglY1pLY1okb3RCKVdYWiFxdU8kRS5sbj9aQmppWG5EXTM/KVUkWl42XDUycyUjWDhuWFBhaShrNW8+ZF9oOUdLUThwbW4qSUhwMVJvNT9nY2JaNkA4PWM1I0BrZ0dyLGlxUy4kcWdDYC9GWDVNajdfPV8pLydIRG9HIylAdD9wZGMtImRyWDs8J25CM3UzMz90XVZfW00hNztlVSpsNksoKihJUD1nKi1JMmI3b2lMR1YlQUhccVcoai51KTYndSQ7LUgxdW0lPHR1aEVOZl06ZSUlLDdraSolQ19cTSlqbl9pJi1wMiZZYFAwYjxxYGJWbCkiWTQ9N29xTSdtRV5zSVZCT2NhaCZcUCNqKzMuQSZuTVc7LTBPZ1dQK2AyYmovYmpIWicwPE09ZW9ZMmVNT2RtL0RFJGBDbz8rLTZQcjU/RTJHTkBGXz5gbFNvUTxCPm1WTiNfaFFoaD46WTQqbzZXNkFjXkVfQGUnPSxoKjJsWFptX0gwSUZTU0lRV3NiOFdGZSRNSVpUIVpqRlhVIy4nXUdRLl4oMEJwSy9ANE5SakZnZDA6JllZV0sjPDw7SyFHUyJROjhpUjknWmM3VGFnY2BVPllTcG4ybkpYV1RlIy80OVArRSVfYD8/LVFeaScjOSZGbmxmQ2NBIllEZjx1KiFIPVBHa21gKyVoMSc4ajNRJCZwZjpROywiN0RSMV1BLig+VnQyN1diLmhAcnNBNmJnWzIvOXBDVzlcUjMxR1pDV1NnUyhmKjw5TlQ/W0h0JEc3dFlqN0hIMjwtUmIoWjNjXipUQjAjRjYlcGNZTCwoTzEkbFFSTlFpJF43JGgkKUMoNVU4VlQjUUUuRyFVS0pQNGRhZV0hQWBZck1QMyY8TSYpQmcqMm0xJykoUjZbW1BUSVdcYCw/aUo7QmM+bi07aU49P2Y3dTokZCg4IjJPMjFQLXAnMnJkMWw2OGktaktFZ0NjREhwQWJtLy9EP01lLGJAPDkxbj8jPlspako/MTRBSD1aIyonVWZHJkNXQGs/JjVDNlR1JCZBV15pUlxPZSRTYEhAKTctQWtkREVNOiNXdUg5dFU4ZWFGKUtSYD4wI3FVWXMmUk86TmcxNWZnMldtMz5paVlgNUFtVUY2XUliU01FQk4mcUUnUmIiVHIvI2UnOCcnI25UNGhWKmI3Lj8/XUZbSihmQEJvT1shU2NgLiJIViwyJmE8aiw8US1CblhdNyRoPipaMlopbmM8VkguUyZWRVpvQVAnTzkmc2VQKnVFb2JRJydlbUtrU11URk0vWTkiMywiQk1bWk1FRjZRYG8vbE9uPFcsM2lWazlBcyk4JyorJCJhaypeIysvQCxENktJQzMzRmVZZFQzJ2I9YTJaJiUzK0VOKUB0REVORCprTWZ0QTozYCEuNSQuWmQ3b2BMLyFWSG1qclwoXj8tXCQnbVliL0pXQkUxVV1CZiwxKmxMVTtqRzpLWG8nXzNnYnNUOFtKXTYsT0BqSCs5NyhlOHNEPzhDKVNDZU9bKjk8YGA+XzlLYz9jMGNzLUdaTD4/JmtVZ1ZYNjNNVU5XQl4hdDFrMTEiKmojTG01WDI9cipgPDBlX2JgKmlwaV5SPTQ3cFp1WyklbmJuZE01XUJRVyxbdUtuZC9qTnJfQWNuJnJrcjVmXSJyblkiLiIsbm06bzBGNlpuY2lVa1w4I0wkdFN0JVVLSyUiT3BeaEVDI1NmcVNYaFJ1VSovUkcoNDNLJl5qLW4iYCkpUGhHdFInYDtLM3BhMVVDRWNJZSUzODBGNTc+Ik9rKihyYjBAWDM2XSZUUVE8REs8Z18kVVpcYz4yWkw+WTc5cURYc2I4T1YrcXBLUT87X3E4SVswI1U0MjdlPCkhREBxaConPVtnTlFzIVduS29nYWokSV1uZy88MSNSKDdRajUlZkBTLVYlcidvWWIjRixwYjZHdFUjOk1KJ0VIZiYhUTVKTzglO2E5UixRXU1tR1RbKzU3QVx1bmU9UypNVlY0JEtuOkNwYy8kRCUqMmFjITMrW1Vpay5FLEM3MC11QTFRXlYkO106OmVvUDhwPiVvMjRcU1NzKkxPLU5BQ1pXRSQvNjlZcVxdNDllPUtwQ1BPNEg2K1VRaTwkPjZeUkFZOTVeLThYSlJOXW0wLUc2LUtFfj4NCmVuZHN0cmVhbQ0KZW5kb2JqDQoxMyAwIG9iag0KPDwvRmlsdGVyWy9BU0NJSTg1RGVjb2RlL0ZsYXRlRGVjb2RlXS9MZW5ndGggMTAyMT4+c3RyZWFtDQpHYXRtOWJBdT5zJkE3bGpxV1FicDE0NG01amRSPzMySD9iRk0tNj4uKC49MDJgJEY3RTVWcjk2KkMsWlJBUW9FLk1DTTFDSkY4aW5SOEppcFk7Q1hYNGBGXWNoLUdtcDZhXTZBTSdvN2FHW0kkP0YtYzY7Pz1eUTo4bVxIQ0lbWXFmVkVOc2xrbEU8KWxQVi09UmAmZFEuY1NaXlNZbFdUQmRbXSVeUzFMYWw/PGQ9S3MpX1lsLXU9ZTYnNHIqWTMzbHVGNmoxWiYoWS9cTzolYkY6OSMncjI2YGtyUzsoNV03KzMhWVE4XklyZHBuPmpkOC4la0YsQEZdJiwndXNcRExDWV1vRE1ZZVQmT2UsUkpAQVhbUFZTKjZ0YVo4Lj85bElaVFJEOTlLUzxBQ2lXNmRqaTNkRl5jJj5PTnR1b05IKWp1bC8mYU8pcWhDTS1sYSxLRlhvJiFEREBkQDZtdF5ga3M3MT1LPEtUWyVVPTRLZWNzUy8kWjAuaCkrRj06Vzc7Nl1NXyg6OEdsTDhlQS1XaVtKQCkhIk1KPU4yI2loP2Y3L2BlTmZNVSpxJzspV1QwQjs7ZFNZImhuSU5rUSJtVzErUyt0QDNoUykoNnVTRGRJYExqRXRqaG1AcyMpRCFoYEFDZlUoWUpUYVRhJjtmKF1kNDdbbC4xMCI/ayVnKEh0PmldOy88VClBRjk7JCVyZFdmJG0iIjwnblxYVmohPDY6Kkw9QiRlLmhrW10+OGckXkNOZmZMLVspU1pPPVInIS41ZmlNIUlgVmJWVS5gbHVeSyZOTl5vPzknOElPTzgjR1lgTyViYDJeXSdIXl4hYiRVbHVLcWI1OzJcWlFiXjotISV0Zicwcjl1NlE7PHAuckcuKFJpKW8/OjMscl5LPzZjLCxCNSRBP1ZDYS00Wm5uNFhRclpvNyteREY4RkRqN2czVHVoXWpVYD9lLTpOMFJYay5kVWxhdUhOMF1wTWdHLVxCXERsVFpfdCdudUdUPm10RGMhNWhwbVQuLGo1VFZBKVdIMlNEL19JQ0kzISxkaG1QST5caVE3RT5LTXF0KFlrSUNYRi8tSzBaMChzSS5oQi46UV1Rayo0XSwyRVQoM2BZMm9idHFDIkpFKlo0Jm46VypoP2NLb0ttYURlaSdgODw1Xl9aJGUmJyx0bkk+RzIwYDU2ciVsaz5FVTNhKHAvVnI5V0pjXEwlLkJXXkt1UmpnJz5OPGosOVZzLWhUV2FHbXU6ZDBvVXVZczFmOklObjo9OWcraz9lQmNTP1pNUCxkanNbXSlFJWxXNzNVLHIuXC05NGwsVkZ0TV5hL1lZSF5sYFc5PzwvIkU6dHNSMUgsQ34+DQplbmRzdHJlYW0NCmVuZG9iag0KeHJlZg0KMCAxNA0KMDAwMDAwMDAwMCA2NTUzNSBmDQowMDAwMDAwMDE3IDAwMDAwIG4NCjAwMDAwMDAwNzAgMDAwMDAgbg0KMDAwMDAwMDE2OSAwMDAwMCBuDQowMDAwMDAwMjY5IDAwMDAwIG4NCjAwMDAwMDAzNzAgMDAwMDAgbg0KMDAwMDAwMTc2OCAwMDAwMCBuDQowMDAwMDAyNDk0IDAwMDAwIG4NCjAwMDAwMDMwODMgMDAwMDAgbg0KMDAwMDAwMzE1MCAwMDAwMCBuDQowMDAwMDAzNDMzIDAwMDAwIG4NCjAwMDAwMDM1MDQgMDAwMDAgbg0KMDAwMDAwNTQyNiAwMDAwMCBuDQowMDAwMDA3MzEwIDAwMDAwIG4NCnRyYWlsZXINCjw8L0luZm8gOSAwIFIgL1Jvb3QgOCAwIFIgL1NpemUgMTQvSURbPEYzQjdDMjlGRjM1Mzk5QkYwNjc0N0FDQTNBMDM4RjFDPjxEMkI5NTRBOTcyNzc4NDk4MDE1M0MwM0YzNkY1QzlDNT5dPj4NCnN0YXJ0eHJlZg0KODQyMQ0KJSVFT0YNCg=="
+   }
+  }
+ }
+}

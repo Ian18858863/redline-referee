@@ -15,7 +15,9 @@
       "v1_quote": "thirty-six (36) months",
       "v2_quote": "twelve (12) months",
       "v1_value": "36 months",
-      "v2_value": "12 months"
+      "v2_value": "12 months",
+      "route": "escalate",
+      "passage": "term-initial"
     },
     {
       "id": "pay_terms",
@@ -25,7 +27,9 @@
       "v1_quote": "within thirty (30) days of the invoice date",
       "v2_quote": "within ninety (90) days of the invoice date",
       "v1_value": "30 days",
-      "v2_value": "90 days"
+      "v2_value": "90 days",
+      "route": "counter",
+      "passage": "payment-large"
     }
   ],
   "cosmetic": [
@@ -67,5 +71,7 @@
       "expected": "supported",
       "about": "price_cap"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

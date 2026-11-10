@@ -1,0 +1,140 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 4.1",
+ "request_hash": "65d9a98f1b00ad1ccf7947e29e26056484a3af6bcbc3d26d44c0a5da66d268af",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Customer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in advance. Fees are stated in U.S. dollars and are exclusive of taxes."
+   },
+   {
+    "id": "v2",
+    "text": "Customer will pay Provider a subscription fee of $184,000 per year for the Service, invoiced annually in advance. Fees are stated in U.S. dollars and are exclusive of taxes."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 107.454399,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "d0e4f1c9-dfc5-4e37-a903-3bb7315efb84",
+  "request_id": "a584f0a1993c4cda-BOS",
+  "wall_ms": 295,
+  "recorded_at": "2026-11-10T12:07:59+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9978,
+    "probabilities": {
+     "same": 0.9895,
+     "overlapping": 0.0053,
+     "conflicting": 0.003,
+     "unrelated": 0.0022
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0036,
+       "restated": 0.9906,
+       "elaborated": 0.0026,
+       "different": 0.0031
+      },
+      "confidence": 0.9969,
+      "a": {
+       "document": "v1",
+       "quote": "Customer will pay Provider an annual subscription fee of $184,000 for the Service, invoiced annually in advance.",
+       "start": 0,
+       "end": 112,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Customer will pay Provider a subscription fee of $184,000 per year for the Service, invoiced annually in advance.",
+       "start": 0,
+       "end": 113,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9939,
+       "restated": 0.0024,
+       "elaborated": 0.0016,
+       "different": 0.0021
+      },
+      "confidence": 0.748,
+      "a": {
+       "document": "v1",
+       "quote": "Fees are stated in U.S.",
+       "start": 113,
+       "end": 136,
+       "confidence": 0.748
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Fees are stated in U.S. dollars and are exclusive of taxes.",
+       "start": 114,
+       "end": 173,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 19,
+   "passage_reads": 1,
+   "passages_ms": 42,
+   "passages": 2,
+   "counterparts_ms": 52
+  },
+  "timing": {
+   "read_ms": 113,
+   "total_ms": 115
+  }
+ }
+}

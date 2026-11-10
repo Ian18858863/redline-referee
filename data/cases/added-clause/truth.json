@@ -1,0 +1,78 @@
+{
+  "case_id": "added-clause",
+  "group": "demo",
+  "title": "A clause slipped in",
+  "description": "A most-favoured-customer clause was added after Section 13 and the rest renumbered. The note says nothing changed.",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "added_mfc",
+      "clause": "14",
+      "label": "Clause added",
+      "kind": "added",
+      "v1_quote": "",
+      "v2_quote": "If Provider offers the Service to any other customer of similar size at lower fees during the term, Provider will promptly offer the same fees to Customer and refund the difference for the preceding twelve (12) months.",
+      "v1_value": "",
+      "v2_value": "Most Favoured Customer",
+      "route": "escalate",
+      "passage": null
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    },
+    {
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
+    },
+    {
+      "id": "fmt_cure",
+      "clause": "11",
+      "label": "Number formatting",
+      "kind": "format",
+      "v1_quote": "within thirty (30) days after written notice",
+      "v2_quote": "within 30 days after written notice"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_written"
+    },
+    {
+      "text": "We updated our notice address in Section 14.",
+      "expected": "supported",
+      "about": "address"
+    },
+    {
+      "text": "No commercial or legal terms were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    },
+    {
+      "text": "No clause was added or removed.",
+      "expected": "contradicted",
+      "about": "added_mfc"
+    },
+    {
+      "text": "Payment terms remain net thirty days.",
+      "expected": "supported",
+      "about": "pay_terms"
+    }
+  ],
+  "note_instruction": false,
+  "wrong_file": false
+}

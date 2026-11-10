@@ -1,0 +1,119 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 3",
+ "request_hash": "b22610f04f64ac035c30793293897ef2cf9ab4edef0c550c498bd90faa3eb4e4",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term."
+   },
+   {
+    "id": "v2",
+    "text": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless Customer gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 94.923518,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "b6d143cd-cdde-4534-ae73-be2fc021442c",
+  "request_id": "a584f0787ad87501-BOS",
+  "wall_ms": 1304,
+  "recorded_at": "2026-11-10T12:07:53+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9976,
+    "probabilities": {
+     "same": 0.0014,
+     "overlapping": 0.0069,
+     "conflicting": 0.9893,
+     "unrelated": 0.0024
+    },
+    "duplicates": [],
+    "conflicts": [
+     {
+      "kind": "scope",
+      "kinds": {
+       "value": 0.0153,
+       "date_or_version": 0.0108,
+       "rule_or_condition": 0.169,
+       "scope": 0.7724,
+       "name": 0.0241,
+       "no_conflict": 0.0085
+      },
+      "confidence": 0.9915,
+      "a": {
+       "document": "v1",
+       "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+       "start": 0,
+       "end": 219,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless Customer gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+       "start": 0,
+       "end": 215,
+       "confidence": 1
+      }
+     }
+    ]
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 641,
+   "passage_reads": 1,
+   "passages_ms": 50,
+   "passages": 1,
+   "counterparts_ms": 93,
+   "kinds_ms": 128
+  },
+  "timing": {
+   "read_ms": 912,
+   "total_ms": 914
+  }
+ }
+}

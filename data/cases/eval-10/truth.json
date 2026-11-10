@@ -15,7 +15,9 @@
       "v1_quote": "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports.",
       "v2_quote": "At any time, and on at least five (5) days' written notice, Customer may audit Provider's systems, facilities and records.",
       "v1_value": "Once per year, 30 days' notice, reports only",
-      "v2_value": "Any time, 5 days' notice, systems and facilities"
+      "v2_value": "Any time, 5 days' notice, systems and facilities",
+      "route": "escalate",
+      "passage": null
     },
     {
       "id": "liability_cap",
@@ -25,7 +27,9 @@
       "v1_quote": "in the twelve (12) months before the event",
       "v2_quote": "in the sixty (60) months before the event",
       "v1_value": "12 months of fees",
-      "v2_value": "60 months of fees"
+      "v2_value": "60 months of fees",
+      "route": "escalate",
+      "passage": "liability-cap"
     }
   ],
   "cosmetic": [
@@ -72,5 +76,7 @@
       "expected": "supported",
       "about": "sla_credit_cap"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

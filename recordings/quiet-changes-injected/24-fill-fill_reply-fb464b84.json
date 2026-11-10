@@ -1,0 +1,111 @@
+{
+ "endpoint": "/clocked/fill",
+ "label": "fill reply",
+ "request_hash": "fb464b843f8547ac6eedf9b2480047be86f1749f0acbac01c0e15f0df4a9a81f",
+ "request": {
+  "text": "Clause 4.1 (Fees). The returned copy reads: \"annual subscription fee of $148,000 for the Service,\". This change is under review on our side.\nClause 7 (Intellectual Property). The returned copy reads: \"Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.\". This change is under review on our side.\nClause 11 (Termination). The returned copy reads: \"Customer may terminate this Agreement for convenience at any time on thirty (30) days' written notice and will receive a pro-rata refund of prepaid fees.\". This change is under review on our side.",
+  "instructions": "You are writing for the Provider's deal desk to the Customer's procurement contact, about a copy of an agreement the Customer returned with changes. Use only the brief. Be plain, courteous and specific. For an accepted change, say we accept it. For a countered change, state the position we can agree to, exactly as the brief gives it, and ask for the clause to be put back or changed to that. For a change that is with our approvers, say only that it is under review; do not promise an outcome. Never mention internal approvers, approval limits, playbooks or percentages of confidence.",
+  "fields": {
+   "reply_c1": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 4.1 (Fees), saying what we decided: escalate."
+   },
+   "reply_c2": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 7 (Intellectual Property), saying what we decided: escalate."
+   },
+   "reply_c3": {
+    "type": "generate",
+    "format": "text",
+    "max_tokens": 70,
+    "description": "One or two sentences to the customer about clause 11 (Termination), saying what we decided: escalate."
+   },
+   "corrected_copy": {
+    "type": "yes_no",
+    "description": "Does at least one change need the customer to send a corrected copy (a change we countered)?"
+   },
+   "call_needed": {
+    "type": "yes_no",
+    "description": "Are two or more changes still under review on our side, so that a short call would help?"
+   },
+   "tone": {
+    "type": "choice",
+    "options": [
+     "routine",
+     "firm"
+    ],
+    "description": "routine if everything is accepted or under review; firm if we refuse any change as written"
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 109.362816,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "9876a828-a4f9-4029-b517-d9147be00272",
+  "request_id": null,
+  "trace": "a5857fbe4ffa9069-BOS",
+  "wall_ms": 268,
+  "recorded_at": "2026-11-10T13:45:41+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "fields": {
+   "reply_c1": {
+    "value": "Clause 4.1 (Fees) is under review",
+    "confidence": 0.713826437914764,
+    "source": "generated"
+   },
+   "reply_c2": {
+    "value": "Clause 7 (Intellectual Property) is under review",
+    "confidence": 0.9086082382092662,
+    "source": "generated"
+   },
+   "reply_c3": {
+    "value": "Clause 11 (Termination) is under review",
+    "confidence": 0.900591607789294,
+    "source": "generated"
+   },
+   "corrected_copy": {
+    "value": false,
+    "confidence": 0.986,
+    "probabilities": {
+     "yes": 0.006858659466391526,
+     "no": 0.9931413405336085
+    }
+   },
+   "call_needed": {
+    "value": true,
+    "confidence": 0.983,
+    "probabilities": {
+     "yes": 0.9917403553882833,
+     "no": 0.008259644611716688
+    }
+   },
+   "tone": {
+    "value": "routine",
+    "confidence": 0.989,
+    "probabilities": {
+     "routine": 0.9943658536735679,
+     "firm": 0.00563414632643211
+    }
+   }
+  },
+  "timing": {
+   "read_ms": 58,
+   "generate_ms": 87,
+   "total_ms": 118,
+   "source_states": 1,
+   "source_prefills": 1,
+   "shared_source_tokens": 320,
+   "shared_read_generate_forwards": 1,
+   "engine": "unified"
+  }
+ }
+}

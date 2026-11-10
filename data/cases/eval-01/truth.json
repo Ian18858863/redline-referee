@@ -15,7 +15,9 @@
       "v1_quote": "at least sixty (60) days before",
       "v2_quote": "at least thirty (30) days before",
       "v1_value": "60 days",
-      "v2_value": "30 days"
+      "v2_value": "30 days",
+      "route": "accept",
+      "passage": "term-renewal-notice"
     },
     {
       "id": "assignment",
@@ -25,7 +27,9 @@
       "v1_quote": "Neither party may assign this Agreement without the prior written consent of the other party, except",
       "v2_quote": "Customer may assign this Agreement to any affiliate or acquirer without consent. Provider may not assign this Agreement without the prior written consent of Customer, except",
       "v1_value": "Mutual consent required",
-      "v2_value": "Customer may assign freely"
+      "v2_value": "Customer may assign freely",
+      "route": "escalate",
+      "passage": "assignment-standard"
     },
     {
       "id": "confidentiality",
@@ -35,7 +39,9 @@
       "v1_quote": "continue for three (3) years after",
       "v2_quote": "continue for five (5) years after",
       "v1_value": "3 years",
-      "v2_value": "5 years"
+      "v2_value": "5 years",
+      "route": "accept",
+      "passage": "data-confidentiality"
     }
   ],
   "cosmetic": [
@@ -98,5 +104,7 @@
       "expected": "supported",
       "about": "sla_uptime"
     }
-  ]
+  ],
+  "note_instruction": false,
+  "wrong_file": false
 }

@@ -1,0 +1,111 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify reply",
+ "request_hash": "f3e1d91d1ea31e2e9d0ad7ec60c5f03c7463b032d8f9bc66b8b2f30ca8c06ef2",
+ "request": {
+  "documents": [
+   {
+    "id": "brief",
+    "text": "Clause 4.1 (Fees). The returned copy reads: \"annual subscription fee of $148,000 for the Service,\". This change is under review on our side.\nClause 7 (Intellectual Property). The returned copy reads: \"Provider retains all right, title and interest in the Service, excluding configurations, integrations and improvements developed in connection with this Agreement, which will be owned by Customer upon creation.\". This change is under review on our side.\nClause 11 (Termination). The returned copy reads: \"Customer may terminate this Agreement for convenience at any time on thirty (30) days' written notice and will receive a pro-rata refund of prepaid fees.\". This change is under review on our side."
+   }
+  ],
+  "answer": "Clause 4.1 (Fees) is under review. Clause 7 (Intellectual Property) is under review. Clause 11 (Termination) is under review.",
+  "claims": [
+   "Clause 4.1 (Fees) is under review.",
+   "Clause 7 (Intellectual Property) is under review.",
+   "Clause 11 (Termination) is under review."
+  ],
+  "instructions": "The source is the brief the reply was written from. A claim is supported only if the brief states the same decision about the same clause: accepted, countered with that exact position, or under review. A claim that promises something the brief does not state, or names a different term, is contradicted or not stated.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 92.562143,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "7e08ab7f-c3ba-4893-a60e-cce8d0e9c904",
+  "request_id": null,
+  "trace": "a5857fc009879069-BOS",
+  "wall_ms": 275,
+  "recorded_at": "2026-11-10T13:45:41+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9951,
+  "ungrounded": 0.0049,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "brief",
+    "share": 1,
+    "share_of_answer": 0.9951,
+    "claims": [
+     0,
+     1,
+     2
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Clause 4.1 (Fees) is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.2764,
+    "supported": 0.996,
+    "contradicted": 0.0016,
+    "not_stated": 0.0013,
+    "not_a_claim": 0.0011,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief"
+   },
+   {
+    "claim": "Clause 7 (Intellectual Property) is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3984,
+    "supported": 0.9953,
+    "contradicted": 0.0018,
+    "not_stated": 0.0016,
+    "not_a_claim": 0.0014,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief"
+   },
+   {
+    "claim": "Clause 11 (Termination) is under review.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3252,
+    "supported": 0.994,
+    "contradicted": 0.0018,
+    "not_stated": 0.0023,
+    "not_a_claim": 0.0019,
+    "verdict": "supported",
+    "sources": {
+     "brief": 1
+    },
+    "source": "brief"
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 2,
+   "supported": 0.994
+  },
+  "timing": {
+   "read_ms": 104,
+   "total_ms": 108
+  }
+ }
+}

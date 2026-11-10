@@ -1,0 +1,106 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "948327703484c20c411a66cbbe933085a88825745e6900a0ecd942966d65656f",
+ "request": {
+  "pdf": {
+   "sha256": "531d9d29ddcb2000b35602a71a6229632d505a497177d8c5a6dd0323aa18f56b"
+  },
+  "answer": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim. No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports. Each audit will be conducted during business hours and at Customer's expense.",
+  "claims": [
+   "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+   "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports. Each audit will be conducted during business hours and at Customer's expense."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 140.935104,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "9343cc07-5d53-47ab-9f1c-2af5b5437b41",
+  "request_id": null,
+  "trace": "a585833949c3b5f8-BOS",
+  "wall_ms": 481,
+  "recorded_at": "2026-11-10T13:48:03+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.0025,
+  "ungrounded": 0.9975,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 0,
+    "share_of_answer": 0.0025,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Except for a party's indemnification obligations, each party's total liability arising out of or related to this Agreement will not exceed the fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5393,
+    "supported": 0.0024,
+    "contradicted": 0.9918,
+    "not_stated": 0.0032,
+    "not_a_claim": 0.0026,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "No more than once per year, and on at least thirty (30) days' written notice, Customer may review Provider's then-current security reports. Each audit will be conducted during business hours and at Customer's expense.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4607,
+    "supported": 0.0027,
+    "contradicted": 0.0023,
+    "not_stated": 0.992,
+    "not_a_claim": 0.003,
+    "verdict": "not_stated",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0024
+  },
+  "timing": {
+   "read_ms": 155,
+   "total_ms": 167
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2195,
+    4681
+   ],
+   "characters": 5396
+  }
+ }
+}

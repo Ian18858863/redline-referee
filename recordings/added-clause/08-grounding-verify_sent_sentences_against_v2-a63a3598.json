@@ -1,0 +1,89 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "a63a3598025f7e591e6edbc27a3abf03774519ff91eb508198213a88ccc4d5f7",
+ "request": {
+  "pdf": {
+   "sha256": "24f7c3580e866b399982e2e840b2ff3b113f3db5bc9d29e9935a316e90fba557"
+  },
+  "answer": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+  "claims": [
+   "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 104.071171,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "a33ddee3-bcb0-4d27-8e01-366de7954a42",
+  "request_id": null,
+  "trace": "a5857fe6e96ed83f-BOS",
+  "wall_ms": 620,
+  "recorded_at": "2026-11-10T13:45:47+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9923,
+  "ungrounded": 0.0077,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.9923,
+    "claims": [
+     0
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 1,
+    "supported": 0.9923,
+    "contradicted": 0.0032,
+    "not_stated": 0.0024,
+    "not_a_claim": 0.0021,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.9923
+  },
+  "timing": {
+   "read_ms": 271,
+   "total_ms": 277
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2196,
+    4604
+   ],
+   "characters": 5613
+  }
+ }
+}

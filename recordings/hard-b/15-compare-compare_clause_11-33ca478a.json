@@ -1,0 +1,140 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 11",
+ "request_hash": "33ca478a624f320f86cb5a5d930f9ee11c2b4f5ac837781bb351705df380bffa",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Either party may terminate this Agreement for material breach if the breach is not cured within thirty (30) days after written notice. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term."
+   },
+   {
+    "id": "v2",
+    "text": "Either party may terminate this Agreement for material breach if the breach remains uncured thirty (30) days after written notice. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 106.566975,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "014501ce-f0da-46bf-9a48-ea80c2cf4e33",
+  "request_id": "a584f0a99f2f4cda-BOS",
+  "wall_ms": 434,
+  "recorded_at": "2026-11-10T12:08:00+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9984,
+    "probabilities": {
+     "same": 0.9922,
+     "overlapping": 0.0039,
+     "conflicting": 0.0024,
+     "unrelated": 0.0016
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.0084,
+       "restated": 0.9819,
+       "elaborated": 0.0053,
+       "different": 0.0045
+      },
+      "confidence": 0.9955,
+      "a": {
+       "document": "v1",
+       "quote": "Either party may terminate this Agreement for material breach if the breach is not cured within thirty (30) days after written notice.",
+       "start": 0,
+       "end": 134,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Either party may terminate this Agreement for material breach if the breach remains uncured thirty (30) days after written notice.",
+       "start": 0,
+       "end": 130,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9916,
+       "restated": 0.0038,
+       "elaborated": 0.0024,
+       "different": 0.0022
+      },
+      "confidence": 0.9978,
+      "a": {
+       "document": "v1",
+       "quote": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+       "start": 135,
+       "end": 238,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+       "start": 131,
+       "end": 234,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 109,
+   "passage_reads": 1,
+   "passages_ms": 56,
+   "passages": 2,
+   "counterparts_ms": 67
+  },
+  "timing": {
+   "read_ms": 232,
+   "total_ms": 234
+  }
+ }
+}

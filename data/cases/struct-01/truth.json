@@ -1,0 +1,72 @@
+{
+  "case_id": "struct-01",
+  "group": "struct",
+  "title": "Structure 1: clause added, later clauses renumbered",
+  "description": "",
+  "injection": false,
+  "expected_status": "changes",
+  "style": "honest",
+  "substantive": [
+    {
+      "id": "renewal_notice",
+      "clause": "3",
+      "label": "Non-renewal notice period",
+      "kind": "duration",
+      "v1_quote": "at least sixty (60) days before",
+      "v2_quote": "at least thirty (30) days before",
+      "v1_value": "60 days",
+      "v2_value": "30 days",
+      "route": "accept",
+      "passage": "term-renewal-notice"
+    },
+    {
+      "id": "added_mfc",
+      "clause": "14",
+      "label": "Clause added",
+      "kind": "added",
+      "v1_quote": "",
+      "v2_quote": "If Provider offers the Service to any other customer of similar size at lower fees during the term, Provider will promptly offer the same fees to Customer and refund the difference for the preceding twelve (12) months.",
+      "v1_value": "",
+      "v2_value": "Most Favoured Customer",
+      "route": "escalate",
+      "passage": null
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "typo_receive",
+      "clause": "5",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "will recieve a service credit",
+      "v2_quote": "will receive a service credit"
+    },
+    {
+      "id": "fmt_email",
+      "clause": "14",
+      "label": "Spelling variant",
+      "kind": "format",
+      "v1_quote": "E-mail notice",
+      "v2_quote": "Email notice"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We corrected a few typographical errors.",
+      "expected": "supported",
+      "about": "typo_receive"
+    },
+    {
+      "text": "We shortened the non-renewal notice period to thirty days.",
+      "expected": "supported",
+      "about": "renewal_notice"
+    },
+    {
+      "text": "We added a most-favoured-customer clause as Section 14.",
+      "expected": "supported",
+      "about": "added_mfc"
+    }
+  ],
+  "note_instruction": false,
+  "wrong_file": false
+}

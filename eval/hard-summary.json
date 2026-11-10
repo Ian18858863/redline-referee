@@ -1,0 +1,30 @@
+{
+ "changed_total": 24,
+ "same_total": 15,
+ "app_held_changed": 24,
+ "app_cleared_same": 14,
+ "app_wrongly_cleared": [],
+ "app_held_same": [
+  "hard-a-05"
+ ],
+ "verify_changed_on_changed": 22,
+ "verify_same_on_same": 14,
+ "verify_same_on_changed": [
+  "hard-a-15",
+  "hard-b-13"
+ ],
+ "compare_conflict_on_changed": 23,
+ "compare_same_on_same": 14,
+ "compare_same_on_changed": [],
+ "compare_conflict_on_same": [
+  "hard-a-05"
+ ],
+ "verify_changed_on_same": [
+  "hard-a-05"
+ ],
+ "disagree": [
+  "hard-a-15",
+  "hard-b-13",
+  "hard-b-15"
+ ]
+}

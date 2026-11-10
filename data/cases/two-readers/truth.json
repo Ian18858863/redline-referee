@@ -1,0 +1,93 @@
+{
+  "case_id": "two-readers",
+  "group": "demo",
+  "title": "Two readers, one disagreement",
+  "description": "A duty became an option and a mutual limit became one-sided, in words a reader can take for tidying.",
+  "injection": false,
+  "expected_status": "blocked",
+  "style": "misleading",
+  "substantive": [
+    {
+      "id": "hard-b-13",
+      "clause": "10",
+      "label": "duty to option",
+      "kind": "wording",
+      "v1_quote": "Customer will defend Provider",
+      "v2_quote": "Customer may defend Provider",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    },
+    {
+      "id": "hard-a-15",
+      "clause": "9",
+      "label": "mutual made one-sided",
+      "kind": "wording",
+      "v1_quote": "Neither party will be liable for indirect",
+      "v2_quote": "Customer will not be liable for indirect",
+      "v1_value": "",
+      "v2_value": "",
+      "route": null,
+      "passage": null
+    }
+  ],
+  "cosmetic": [
+    {
+      "id": "hard-b-09",
+      "clause": "6",
+      "label": "active to passive",
+      "kind": "wording",
+      "v1_quote": "Customer owns all data it submits to the Service (\"Customer Data\").",
+      "v2_quote": "All data that Customer submits to the Service (\"Customer Data\") belongs to Customer."
+    },
+    {
+      "id": "hard-a-14",
+      "clause": "8",
+      "label": "rewording",
+      "kind": "wording",
+      "v1_quote": "using reasonable care and will use it only to perform this Agreement",
+      "v2_quote": "with reasonable care, and will use it solely for the performance of this Agreement"
+    },
+    {
+      "id": "typo_written",
+      "clause": "3",
+      "label": "Typo fix",
+      "kind": "typo",
+      "v1_quote": "writen notice",
+      "v2_quote": "written notice"
+    },
+    {
+      "id": "address",
+      "clause": "14",
+      "label": "Notice address",
+      "kind": "address",
+      "v1_quote": "410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "v2_quote": "88 Foundry Row, Floor 6, Portland, Oregon 97209"
+    }
+  ],
+  "letter_claims": [
+    {
+      "text": "We tidied the wording of a few sentences.",
+      "expected": "supported",
+      "about": "hard-b-09"
+    },
+    {
+      "text": "We corrected a typographical error.",
+      "expected": "supported",
+      "about": "typo_written"
+    },
+    {
+      "text": "We updated our notice address in Section 14.",
+      "expected": "supported",
+      "about": "address"
+    },
+    {
+      "text": "No obligations of either party were changed.",
+      "expected": "contradicted",
+      "about": "global"
+    }
+  ],
+  "note_instruction": false,
+  "wrong_file": false
+}

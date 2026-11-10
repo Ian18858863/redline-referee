@@ -1,0 +1,150 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 11",
+ "request_hash": "2e8d90e25ea681d4bb62989aaa586240aed3453d8ed231490b2cce9ad161acb2",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Either party may terminate this Agreement for material breach if the breach is not cured within thirty (30) days after written notice. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term."
+   },
+   {
+    "id": "v2",
+    "text": "Either party may terminate this Agreement for any breach if the breach is not cured within thirty (30) days after written notice. Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 115.970462,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "9f46168e-54ae-49ed-b56d-1401b1d6e824",
+  "request_id": "a584f087ad9c7501-BOS",
+  "wall_ms": 545,
+  "recorded_at": "2026-11-10T12:07:55+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [
+     "v2"
+    ],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [
+     "v1"
+    ],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9978,
+    "probabilities": {
+     "same": 0.0014,
+     "overlapping": 0.0039,
+     "conflicting": 0.9925,
+     "unrelated": 0.0022
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9931,
+       "restated": 0.0027,
+       "elaborated": 0.0019,
+       "different": 0.0022
+      },
+      "confidence": 0.9978,
+      "a": {
+       "document": "v1",
+       "quote": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+       "start": 135,
+       "end": 238,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Neither party may terminate this Agreement for convenience during the Initial Term or any renewal term.",
+       "start": 130,
+       "end": 233,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": [
+     {
+      "kind": "scope",
+      "kinds": {
+       "value": 0.0061,
+       "date_or_version": 0.0073,
+       "rule_or_condition": 0.0335,
+       "scope": 0.9424,
+       "name": 0.0058,
+       "no_conflict": 0.0049
+      },
+      "confidence": 0.9951,
+      "a": {
+       "document": "v1",
+       "quote": "Either party may terminate this Agreement for material breach if the breach is not cured within thirty (30) days after written notice.",
+       "start": 0,
+       "end": 134,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Either party may terminate this Agreement for any breach if the breach is not cured within thirty (30) days after written notice.",
+       "start": 0,
+       "end": 129,
+       "confidence": 1
+      }
+     }
+    ]
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [
+   0
+  ],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 128,
+   "passage_reads": 1,
+   "passages_ms": 41,
+   "passages": 2,
+   "counterparts_ms": 63,
+   "kinds_ms": 104
+  },
+  "timing": {
+   "read_ms": 336,
+   "total_ms": 339
+  }
+ }
+}
