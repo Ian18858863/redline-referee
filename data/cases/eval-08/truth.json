@@ -23,9 +23,9 @@
       "label": "Data export window",
       "kind": "duration",
       "v1_quote": "For thirty (30) days after termination",
-      "v2_quote": "For one hundred eighty (180) days after termination",
+      "v2_quote": "For ninety (90) days after termination",
       "v1_value": "30 days",
-      "v2_value": "180 days"
+      "v2_value": "90 days"
     }
   ],
   "cosmetic": [
@@ -63,7 +63,7 @@
       "about": "assignment"
     },
     {
-      "text": "We extended the post-termination data export window to 180 days.",
+      "text": "We extended the post-termination data export window to ninety days.",
       "expected": "supported",
       "about": "data_export"
     }

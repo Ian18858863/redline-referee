@@ -13,9 +13,9 @@
       "label": "Non-renewal notice period",
       "kind": "duration",
       "v1_quote": "at least sixty (60) days before",
-      "v2_quote": "at least ten (10) days before",
+      "v2_quote": "at least thirty (30) days before",
       "v1_value": "60 days",
-      "v2_value": "10 days"
+      "v2_value": "30 days"
     },
     {
       "id": "assignment",
@@ -33,9 +33,9 @@
       "label": "Confidentiality period",
       "kind": "duration",
       "v1_quote": "continue for three (3) years after",
-      "v2_quote": "continue for ten (10) years after",
+      "v2_quote": "continue for five (5) years after",
       "v1_value": "3 years",
-      "v2_value": "10 years"
+      "v2_value": "5 years"
     }
   ],
   "cosmetic": [

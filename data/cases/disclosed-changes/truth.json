@@ -13,9 +13,9 @@
       "label": "Renewal price increase cap",
       "kind": "percent",
       "v1_quote": "by up to 5% over the fees",
-      "v2_quote": "by up to 1% over the fees",
+      "v2_quote": "by up to 3% over the fees",
       "v1_value": "5%",
-      "v2_value": "1%"
+      "v2_value": "3%"
     },
     {
       "id": "data_export",
@@ -23,9 +23,9 @@
       "label": "Data export window",
       "kind": "duration",
       "v1_quote": "For thirty (30) days after termination",
-      "v2_quote": "For one hundred eighty (180) days after termination",
+      "v2_quote": "For ninety (90) days after termination",
       "v1_value": "30 days",
-      "v2_value": "180 days"
+      "v2_value": "90 days"
     },
     {
       "id": "min_max",
@@ -68,12 +68,12 @@
       "about": "address"
     },
     {
-      "text": "We reduced the renewal price increase cap from 5% to 1%.",
+      "text": "We reduced the renewal price increase cap from 5% to 3%.",
       "expected": "supported",
       "about": "price_cap"
     },
     {
-      "text": "We extended the post-termination data export window to 180 days.",
+      "text": "We extended the post-termination data export window to ninety days.",
       "expected": "supported",
       "about": "data_export"
     },

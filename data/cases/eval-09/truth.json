@@ -13,9 +13,9 @@
       "label": "Data export window",
       "kind": "duration",
       "v1_quote": "For thirty (30) days after termination",
-      "v2_quote": "For one hundred eighty (180) days after termination",
+      "v2_quote": "For ninety (90) days after termination",
       "v1_value": "30 days",
-      "v2_value": "180 days"
+      "v2_value": "90 days"
     },
     {
       "id": "pay_terms",

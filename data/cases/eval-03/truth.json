@@ -13,9 +13,9 @@
       "label": "Service credit cap",
       "kind": "percent",
       "v1_quote": "up to a maximum of 10% of the monthly fee",
-      "v2_quote": "up to a maximum of 50% of the monthly fee",
+      "v2_quote": "up to a maximum of 15% of the monthly fee",
       "v1_value": "10%",
-      "v2_value": "50%"
+      "v2_value": "15%"
     },
     {
       "id": "renewal_notice",
@@ -23,9 +23,9 @@
       "label": "Non-renewal notice period",
       "kind": "duration",
       "v1_quote": "at least sixty (60) days before",
-      "v2_quote": "at least ten (10) days before",
+      "v2_quote": "at least thirty (30) days before",
       "v1_value": "60 days",
-      "v2_value": "10 days"
+      "v2_value": "30 days"
     },
     {
       "id": "data_export",
@@ -33,9 +33,9 @@
       "label": "Data export window",
       "kind": "duration",
       "v1_quote": "For thirty (30) days after termination",
-      "v2_quote": "For one hundred eighty (180) days after termination",
+      "v2_quote": "For ninety (90) days after termination",
       "v1_value": "30 days",
-      "v2_value": "180 days"
+      "v2_value": "90 days"
     },
     {
       "id": "ip_ownership",

@@ -23,9 +23,9 @@
       "label": "Late payment interest",
       "kind": "percent",
       "v1_quote": "at the rate of 1.5% per month",
-      "v2_quote": "at the rate of 0.5% per month",
+      "v2_quote": "at the rate of 1% per month",
       "v1_value": "1.5% per month",
-      "v2_value": "0.5% per month"
+      "v2_value": "1% per month"
     }
   ],
   "cosmetic": [
@@ -53,7 +53,7 @@
       "about": "min_max"
     },
     {
-      "text": "We lowered the late payment interest rate to 0.5% per month.",
+      "text": "We lowered the late payment interest rate to 1% per month.",
       "expected": "supported",
       "about": "late_interest"
     }
