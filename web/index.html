@@ -4,7 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Redline Referee</title>
-<meta name="description" content="Catch what changed in the contract they sent back.">
+<meta name="description" content="Catch what changed in the contract they sent back. Built on Clocked Verify, Compare and Rerank.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Redline Referee">
+<meta property="og:title" content="Redline Referee">
+<meta property="og:description" content="Catch what changed in the contract they sent back. Built on Clocked Verify, Compare and Rerank.">
+<meta property="og:url" content="https://ian18858863.github.io/redline-referee/">
+<meta property="og:image" content="https://ian18858863.github.io/redline-referee/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Redline Referee: two versions of an agreement side by side, the changed terms marked, and the verdict Do not sign.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Redline Referee">
+<meta name="twitter:description" content="Catch what changed in the contract they sent back. Built on Clocked Verify, Compare and Rerank.">
+<meta name="twitter:image" content="https://ian18858863.github.io/redline-referee/og.png">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2315171c'/%3E%3Cpath d='M9 11h14M9 16h14M9 21h8' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M7 16h18' stroke='%23e0492f' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="app.css">
 </head>
@@ -17,6 +31,11 @@
       <span class="brand-name">Redline Referee</span>
       <span class="brand-tag">Catch what changed in the contract they sent back.</span>
     </div>
+    <nav class="toplinks" aria-label="About this demo">
+      <a href="demo.mp4" target="_blank" rel="noopener">Video</a>
+      <a href="https://github.com/Ian18858863/redline-referee" target="_blank" rel="noopener">GitHub</a>
+      <button type="button" id="how-btn">How it works</button>
+    </nav>
     <div class="topbar-right">
       <div class="switcher" id="switcher">
         <button type="button" class="switcher-btn" id="switcher-btn" aria-haspopup="listbox" aria-expanded="false">
@@ -27,14 +46,20 @@
         <div class="switcher-menu" id="switcher-menu" role="listbox" aria-label="Review" hidden></div>
       </div>
       <span class="mode-badge" id="mode-badge" hidden></span>
-      <span class="upload-wrap" id="upload-wrap">
-        <button type="button" class="btn" id="upload-btn" aria-disabled="true" aria-describedby="upload-hint">
+      <button type="button" class="clocked-pill" id="clocked-pill" hidden></button>
+      <span class="cta" id="cta-static" hidden>
+        <a class="btn btn--primary" id="watch-btn" href="demo.mp4#t=159" target="_blank" rel="noopener"><span class="ico" data-ico="play"></span>Watch a live review</a>
+        <a class="cta-link" id="run-link" href="https://github.com/Ian18858863/redline-referee#run-it" target="_blank" rel="noopener">Run it on your own PDFs</a>
+      </span>
+      <span class="upload-wrap" id="upload-wrap" hidden>
+        <button type="button" class="btn" id="upload-btn">
           <span class="ico" data-ico="upload"></span>Review your own PDFs
         </button>
-        <span class="hint-pop" id="upload-hint" role="tooltip">Static replay of recorded Clocked responses. Run locally with an API key to review your own PDFs.</span>
       </span>
     </div>
   </header>
+
+  <section class="intro" id="intro" aria-label="Start here" hidden></section>
 
   <section class="verdict" id="verdict" aria-live="polite"></section>
   <section class="errors" id="errors" hidden></section>
@@ -108,14 +133,14 @@
 
 <dialog class="modal modal--wide" id="reply-dialog" aria-labelledby="reply-title">
   <header class="modal-head">
-    <h2 id="reply-title">Reply summary</h2>
+    <h2 id="reply-title">Summary</h2>
     <button type="button" class="icon-btn" data-close aria-label="Close"><span class="ico" data-ico="x"></span></button>
   </header>
   <div class="modal-body" id="reply-body"></div>
   <footer class="modal-foot">
-    <span class="busy" id="reply-copied" hidden>Copied to the clipboard</span>
-    <button type="button" class="btn" data-close>Close</button>
-    <button type="button" class="btn btn--primary" id="reply-copy"><span class="ico" data-ico="copy"></span>Copy</button>
+    <span class="busy" id="reply-copied" role="status" hidden></span>
+    <button type="button" class="btn" id="reply-undo" hidden>Undo</button>
+    <button type="button" class="btn btn--primary" data-close>Done</button>
   </footer>
 </dialog>
 

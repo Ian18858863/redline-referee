@@ -44,6 +44,8 @@ const ICONS = {
   x: SVG('<path d="M4 4l8 8M12 4l-8 8"/>'),
   minus: SVG('<path d="M3.5 8h9"/>'),
   plus: SVG('<path d="M3.5 8h9M8 3.5v9"/>'),
+  arrow: SVG('<path d="M3.5 8h9m0 0L9 4.5M12.5 8L9 11.5"/>'),
+  play: SVG('<path d="M5.2 3.4v9.2L12.6 8 5.2 3.4z" fill="currentColor" stroke-linejoin="round"/>'),
 };
 function ico(name) {
   const s = h('span', { class: 'ico' });
@@ -51,14 +53,37 @@ function ico(name) {
   return s;
 }
 
-// Whole percentages, except just under 100 where rounding would overstate (0.9986 reads 99.9%, not 100%).
-const pct = (x) => (typeof x !== 'number' || !Number.isFinite(x) ? null : x >= 0.995 && x < 0.9995 ? `${(x * 100).toFixed(1)}%` : `${Math.round(x * 100)}%`);
-const pct1 = (x) => (typeof x === 'number' && Number.isFinite(x) ? `${Math.round(x * 1000) / 10}%` : null);
+// One rule for every probability on the page: a whole percent, one decimal from 99.5% up,
+// and 100% only when the value is exactly 1 (0.9965 reads 99.7%, 0.99999 reads 99.9%).
+function pct(x) {
+  if (typeof x !== 'number' || !Number.isFinite(x)) return null;
+  if (x >= 1) return '100%';
+  if (x >= 0.995) return `${Math.min(99.9, Math.round(x * 1000) / 10).toFixed(1)}%`;
+  return `${Math.round(x * 100)}%`;
+}
 const words = (x) => String(x ?? '').replace(/_/g, ' ');
 const plural = (n, one, many) => `${n} ${n === 1 ? one : (many ?? one + 's')}`;
+// Sentences written by the engine may still say "3 statement(s)": show the right number form.
+const tidy = (t) => String(t ?? '')
+  .replace(/(\d+)((?:\s+[A-Za-z-]+){0,2}?)\s+([A-Za-z]+)\(s\)/g, (m, n, mid, noun) => `${n}${mid} ${noun}${Number(n) === 1 ? '' : 's'}`)
+  .replace(/\(s\)/g, 's');
+const joinAnd = (xs) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs.at(-1)}`);
+// "Clocked Compare, return_pdf=highlight" is an API detail. Say who marked the copy, in words.
+function byWords(by) {
+  const s = String(by ?? '').trim();
+  const m = /^(Clocked \w+)\s*,\s*return_pdf=(\w+)/.exec(s);
+  if (m) return `${m[2] === 'box' ? 'boxed' : 'marked'} by ${m[1]}`;
+  return s.replace(/,?\s*\b\w+=[\w.-]+/g, '').trim();
+}
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
 const arr = (x) => (Array.isArray(x) ? x : []);
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+const narrow = () => !!window.matchMedia?.('(max-width: 899px)').matches;   // phone and small tablet: one column
+const store = {
+  get(k) { try { return window.localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { window.localStorage.setItem(k, v); } catch { /* private mode: not remembered */ } },
+};
+const fmtClock = (d) => { try { return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); } catch { return ''; } };
 
 async function getJSON(url) {
   const res = await fetch(url, { cache: 'no-cache' });
@@ -81,8 +106,9 @@ const ROUTES = { accept: 'Accept', counter: 'Counter', escalate: 'Escalate' };
 const ROUTE_DONE = { accept: 'Accepted', counter: 'Countered', escalate: 'Escalated' };
 const ROUTE_TONE = { accept: 't-green', counter: 't-amber', escalate: 't-ink' };
 const ROUTE_KEY = { accept: 'A', counter: 'C', escalate: 'E' };
-const VERDICTS = { supported: 'Supported', contradicted: 'Contradicted', not_stated: 'Not stated', not_checked: 'Not checked' };
-const VERDICT_TONE = { supported: 't-green', contradicted: 't-red', not_stated: 't-grey', not_checked: 't-grey' };
+const VERDICTS = { supported: 'Supported', contradicted: 'Contradicted', not_stated: 'Not stated', not_a_claim: 'Not a factual claim', not_checked: 'Not checked' };
+const VERDICT_TONE = { supported: 't-green', contradicted: 't-red', not_stated: 't-grey', not_a_claim: 't-grey', not_checked: 't-grey' };
+const VERDICT_ORDER = ['contradicted', 'supported', 'not_stated', 'not_a_claim', 'not_checked'];
 const RELATIONS = { conflict: 'Conflict', same: 'Same', restated: 'Same', unpaired: 'Unpaired', silent: 'Not flagged', not_run: 'Not run' };
 const RELATION_TEXT = {
   conflict: 'The two versions conflict', same: 'Same statement', restated: 'Same statement',
@@ -93,6 +119,7 @@ const VERIFY_READS = {
   changed: ['Reads as a different meaning', 't-amber'], same: ['Reads as the same meaning', 't-green'], unclear: ['Unclear', 't-grey'],
 };
 const MODES = { replay: 'Replay of recorded Clocked responses', live: 'Live', 'rules-only': 'Rules only, Clocked not run' };
+const MODES_SHORT = { replay: 'Recorded replay', live: 'Live', 'rules-only': 'Rules only' };
 const GROUPS = [
   { key: 'resolve', title: 'To resolve', test: (c) => !!c.blocking },
   { key: 'reworded', title: 'Reworded, same meaning', test: (c) => c.cls === 'reworded' },
@@ -101,7 +128,6 @@ const GROUPS = [
   { key: 'other', title: 'Other differences', test: () => true },
 ];
 const ZOOMS = [1, 1.25, 1.5, 2, 2.5, 3];
-const HINT_STATIC = 'Static replay of recorded Clocked responses. Run locally with an API key to review your own PDFs.';
 
 // -------------------------------------------------------------------- state
 const S = {
@@ -114,12 +140,14 @@ const S = {
   tab: 'changes',
   open: {},             // group key -> open?
   decisions: new Map(), // base -> { changeId: action }
-  zoom: 1, view: 'both', layer: 'changes',
+  outcomes: new Map(),  // base -> { kind: 'signed' | 'sent', at: Date }
+  noIntro: false,       // the URL asked for no "start here" strip (intro=0)
+  zoom: 1, zoomAuto: true, view: 'both', wasBoth: false, layer: 'changes',
   drawerOpen: false, drawerTab: 'endpoints',
   panes: {},
   loadToken: 0,
 };
-const sync = { progUntil: 0 };
+const sync = { progUntil: 0, offset: 0, last: 'v1', timer: 0 };
 
 const changesOf = (r = S.review) => arr(r?.changes);
 const blockingOf = (r = S.review) => changesOf(r).filter((c) => c.blocking);
@@ -152,17 +180,19 @@ function guardInfo(r = S.review) {
   const hidden = arr(r?.hidden_text);
   return flagged.length || hidden.length ? { flagged, hidden } : null;
 }
-const hiddenReason = (reason) => (reason === 'white' ? 'white text' : reason === 'tiny' ? 'smaller than 4 pt' : String(reason ?? 'hidden'));
+const hiddenReason = (reason) => (reason === 'white' ? 'white text' : reason === 'tiny' ? 'under 4 pt' : words(reason ?? 'hidden'));
 
 // --------------------------------------------------------------------- hash
 function readHash() {
   const p = new URLSearchParams(location.hash.replace(/^#/, ''));
-  return { case: p.get('case'), run: p.get('run'), change: p.get('change'), view: p.get('view') };
+  return { case: p.get('case'), run: p.get('run'), change: p.get('change'), view: p.get('view'), tab: p.get('tab'), intro: p.get('intro') };
 }
 function writeHash() {
   const p = new URLSearchParams();
   if (S.run) p.set('run', S.base); else if (S.caseId) p.set('case', S.caseId);
   if (S.sel === 'guard') p.set('view', 'guard'); else if (S.sel) p.set('change', S.sel);
+  if (S.tab && S.tab !== 'changes') p.set('tab', S.tab);       // optional, so a link can open on the cover note
+  if (S.noIntro) p.set('intro', '0');
   const next = `#${p.toString()}`;
   if (next !== location.hash) history.replaceState(null, '', next);
 }
@@ -179,10 +209,23 @@ function renderTop() {
   $('#switcher-dot').dataset.status = r ? statusOf(r) : (current?.status ?? '');
   const badge = $('#mode-badge');
   if (r?.mode) {
+    const long = MODES[r.mode] ?? words(r.mode);
     badge.hidden = false;
     badge.dataset.mode = r.mode;
-    badge.textContent = MODES[r.mode] ?? r.mode;
+    badge.title = long;
+    badge.setAttribute('aria-label', long);
+    badge.replaceChildren(h('span', { class: 'long' }, long), h('span', { class: 'short', 'aria-hidden': 'true' }, MODES_SHORT[r.mode] ?? long));
   } else badge.hidden = true;
+
+  // Clocked on the first screen: how many endpoints ran and how many calls. Opens the endpoint drawer.
+  const pill = $('#clocked-pill');
+  const used = arr(r?.endpoints).filter((e) => Number(e.calls) > 0).length;
+  const calls = r?.audit?.calls ?? arr(r?.audit?.requests).length;
+  pill.hidden = !(r && used && calls);
+  if (!pill.hidden) {
+    pill.title = 'What each endpoint changed in this review';
+    pill.replaceChildren(h('span', null, h('b', null, used), ` Clocked ${used === 1 ? 'endpoint' : 'endpoints'}`), h('span', { class: 'pill-more' }, h('i', { class: 'sep' }, '·'), h('b', null, calls), ` ${calls === 1 ? 'call' : 'calls'}`));
+  }
 
   const menu = $('#switcher-menu');
   const item = (entry, selected, onpick) => h('button', { type: 'button', class: 'switcher-item', role: 'option', 'aria-selected': selected ? 'true' : 'false', onclick: onpick },
@@ -204,16 +247,38 @@ function closeSwitcher() {
   $('#switcher-menu').hidden = true;
   $('#switcher-btn').setAttribute('aria-expanded', 'false');
 }
+// live === true: the server can review uploads. live === false: a static replay, so offer the video
+// and the instructions instead of a dead button. null: not known yet, show neither.
 function setLive(live) {
-  S.live = !!live;
-  const btn = $('#upload-btn');
-  $('#upload-wrap').dataset.live = String(S.live);
-  if (S.live) { btn.removeAttribute('aria-disabled'); btn.removeAttribute('aria-describedby'); }
-  else { btn.setAttribute('aria-disabled', 'true'); btn.setAttribute('aria-describedby', 'upload-hint'); }
-  $('#upload-hint').textContent = HINT_STATIC;
+  S.live = live === true;
+  $('#upload-wrap').hidden = live !== true;
+  $('#cta-static').hidden = live !== false;
+}
+
+// ---------------------------------------------------------------- start here
+const MOMENTS = [
+  { key: 'note', label: 'A false cover note', case: 'quiet-changes' },
+  { key: 'word', label: 'One word that flips a clause', case: 'disclosed-changes' },
+  { key: 'guard', label: 'A hidden instruction to AI reviewers', case: 'quiet-changes-injected' },
+];
+function renderIntro() {
+  const root = $('#intro');
+  const have = MOMENTS.filter((m) => S.index.some((c) => c.id === m.case));
+  root.hidden = S.noIntro || store.get('rr-intro') === 'off' || !have.length;
+  if (root.hidden) { root.replaceChildren(); return; }
+  root.replaceChildren(
+    h('b', { class: 'intro-kicker' }, 'Start here'),
+    h('p', { class: 'intro-text' }, 'A customer returned a “clean copy” of your agreement. This is what really changed.'),
+    h('div', { class: 'intro-links' }, have.map((m) => h('button', { type: 'button', class: 'intro-btn', dataset: { moment: m.key }, onclick: () => goMoment(m.key) }, m.label, ico('arrow')))),
+    h('button', { type: 'button', class: 'icon-btn intro-close', 'aria-label': 'Dismiss this strip', title: 'Dismiss', onclick: () => { store.set('rr-intro', 'off'); root.hidden = true; root.replaceChildren(); } }, ico('x')));
+}
+function goMoment(key) {
+  const m = MOMENTS.find((x) => x.key === key);
+  return m ? openReview({ id: m.case, base: `cases/${m.case}/`, moment: key }) : null;
 }
 
 // ------------------------------------------------------------- verdict band
+const outcomeOf = () => S.outcomes.get(S.base) ?? null;
 function gate(r) {
   const st = statusOf(r);
   const blocking = blockingOf(r);
@@ -222,18 +287,80 @@ function gate(r) {
   const left = blocking.length - decided;
   const base = { st, blocking, decided, left };
   if (st === 'blocked') {
-    const sources = [...new Set(arr(r.reasons).filter((x) => x.level === 'block').map((x) => x.source))];
-    return { ...base, ok: false, why: `Sign-off is disabled: blocking ${sources.length === 1 ? 'finding' : 'findings'} from ${sources.join(', ') || 'the review'}. Decisions on the changes do not lift it.` };
+    return { ...base, ok: true, kind: 'sent', label: 'Send to approvers', why: 'Cannot be signed as returned. The approvers get the findings and your decisions.' };
   }
   if (st === 'incomplete') {
     const n = arr(r.errors).length;
-    return { ...base, ok: false, why: n ? `Sign-off is disabled: ${plural(n, 'step')} did not complete, so the review cannot be trusted as a whole.` : 'Sign-off is disabled: the review is incomplete.' };
+    return { ...base, ok: true, kind: 'sent', label: 'Send to approvers', why: `${n ? plural(n, 'step') : 'A step'} did not complete, so this cannot be signed off. The approvers get what was found.` };
   }
   if (st === 'changes' && left > 0) {
-    return { ...base, ok: false, why: `Sign-off opens when every change to resolve has a decision. ${plural(left, 'change')} left.` };
+    return { ...base, ok: false, kind: 'signed', label: 'Sign off', why: `Sign-off opens when every change to resolve has a decision. ${plural(left, 'change')} left.` };
   }
-  if (st === 'changes') return { ...base, ok: true, why: 'Every change to resolve has a decision.' };
-  return { ...base, ok: true, why: 'No blocking finding. Nothing to resolve.' };
+  if (st === 'changes') {
+    const up = blocking.filter((c) => d[c.id] === 'escalate').length;
+    return up
+      ? { ...base, ok: true, kind: 'sent', label: 'Send to approvers', why: `Every change has a decision. ${plural(up, 'change')} ${up === 1 ? 'goes' : 'go'} to another approver before anyone signs.` }
+      : { ...base, ok: true, kind: 'signed', label: 'Sign off', why: 'Every change to resolve has a decision.' };
+  }
+  return { ...base, ok: true, kind: 'signed', label: 'Sign off', why: 'No blocking finding. Nothing to resolve.' };
+}
+
+const SOURCE_NAMES = { Rules: 'the rule layer (plain code, no model)', Verify: 'Clocked Verify', Compare: 'Clocked Compare', Guard: 'Clocked Guard', Rerank: 'Clocked Rerank', Decide: 'Clocked Decide', Extract: 'Clocked Extract' };
+const SOURCE_TIPS = {
+  Verify: 'Clocked Verify checked each statement of the cover note against the documents.',
+  Guard: 'Clocked Guard looked for text addressed to an AI reviewer.',
+  Rules: 'The rule layer is plain code that compares the text of the two PDFs. No model is involved.',
+  Compare: 'Clocked Compare paired the passages of the two PDFs and read each pair.',
+  'All checks': 'The rule layer, Verify, Compare and Guard all ran and found nothing that blocks signing.',
+};
+function sourceTip(src) {
+  const s = String(src ?? '');
+  if (SOURCE_TIPS[s]) return SOURCE_TIPS[s];
+  const parts = s.split('+').map((x) => x.trim()).filter(Boolean);
+  if (parts.length > 1) return `Every change was read by ${joinAnd(parts.map((x) => SOURCE_NAMES[x] ?? x))}.`;
+  return SOURCE_NAMES[s] ? `From ${SOURCE_NAMES[s]}.` : null;
+}
+function reasonsLegend(r) {
+  const out = [];
+  if (r.note?.ran) out.push('Verify checked the cover note.');
+  if (guardInfo(r) && arr(r.guard).some((g) => g.ran)) out.push('Guard scanned both texts for instructions to an AI.');
+  const multi = arr(r.reasons).map((x) => String(x.source ?? '')).find((s) => s.includes('+'));
+  const readers = multi ? multi.split('+').map((x) => x.trim()).filter(Boolean) : (cmpDoc(r) && changesOf(r).some((c) => c.verify) ? ['Rules', 'Verify', 'Compare'] : []);
+  if (readers.length > 1 && changesOf(r).length) out.push(`${joinAnd(readers)} each read every change.`);
+  return out.join(' ');
+}
+function firstContradicted(r, linked = false) {
+  const claims = arr(r?.note?.claims);
+  const has = (c) => arr(c.change_ids).some((id) => changesOf(r).some((x) => x.id === id));
+  let i = linked ? claims.findIndex((c) => c.verdict === 'contradicted' && has(c)) : -1;
+  if (i < 0) i = claims.findIndex((c) => c.verdict === 'contradicted');
+  return i;
+}
+function reasonText(x, r) {
+  let t = tidy(x.text);
+  if (/guard/i.test(String(x.source ?? ''))) {
+    // The engine rounds this to "100%"; every other place shows the measured value. Keep them the same.
+    const g = arr(r.guard).find((y) => y.flagged && y.target && t.startsWith(y.target)) ?? arr(r.guard).find((y) => y.flagged);
+    if (g && pct(g.injection)) t = t.replace(/probability \d+(?:\.\d+)?%/, `probability ${pct(g.injection)}`);
+  }
+  return t;
+}
+// Where a reason leads: the evidence behind it.
+function reasonAction(x, r) {
+  const src = String(x.source ?? '');
+  if (x.level === 'open') {
+    const c = blockingOf(r)[0];
+    return c ? { title: 'Show the first change to resolve', run: () => { S.tab = 'changes'; select(c.id); } } : null;
+  }
+  if (x.level === 'block' && /guard|rules/i.test(src) && guardInfo(r)) return { title: 'Show the text and where it sits on the page', run: () => { S.tab = 'changes'; select('guard'); } };
+  if (/verify/i.test(src) && arr(r.note?.claims).length) return { title: 'Open the cover note at the first contradicted statement', run: () => openNote(firstContradicted(r)) };
+  if (x.level === 'ok') return { title: 'See what each check did', run: () => openDrawer('endpoints') };
+  return null;
+}
+function openNote(i) {
+  S.tab = 'note';
+  if (i != null && i >= 0) pickClaim(i, { reveal: false }); else renderLeft();
+  if (narrow()) reveal($('.left'));
 }
 
 function renderVerdict() {
@@ -249,7 +376,7 @@ function renderVerdict() {
     h('h1', { class: 'verdict-headline' }, headline),
     h('p', { class: 'verdict-case' }, h('b', null, r.case?.title ?? 'Review'), r.case?.description ? ` · ${r.case.description}` : ''));
 
-  const reasons = h('dl', { class: 'reasons' });
+  const reasons = h('div', { class: 'reasons' });
   let list = arr(r.reasons);
   const errs = arr(r.errors);
   if (errs.length && list.filter((x) => x.level === 'incomplete').length > 1) {
@@ -257,24 +384,35 @@ function renderVerdict() {
     const names = [...new Set(errs.map((e) => e.endpoint).filter(Boolean))];
     list = list.filter((x) => x.level !== 'incomplete').concat([{ level: 'incomplete', source: 'Incomplete', text: `${plural(errs.length, 'step')} did not complete${names.length ? ` (${names.join(', ')})` : ''}. Each one is listed below.` }]);
   }
+  if (!list.length) list = [{ level: 'none', source: 'Review', text: 'The review returned no reasons.' }];
   for (const x of list) {
     const tone = g.st !== r.status && x.level === 'ok' ? 't-grey' : (LEVEL_TONE[x.level] ?? 't-grey');
-    reasons.append(h('dt', null, h('span', { class: `tag ${tone}` }, x.source ?? 'Review')), h('dd', null, x.text ?? ''));
+    const act = reasonAction(x, r);
+    // The arrow stays with the last word, so it never wraps onto a line of its own.
+    const text = reasonText(x, r), cutAt = text.lastIndexOf(' ');
+    const body = act ? [text.slice(0, cutAt + 1), h('span', { class: 'nowrap' }, text.slice(cutAt + 1), ico('arrow'))] : text;
+    const kids = [h('span', { class: `tag ${tone}`, title: sourceTip(x.source) }, x.source ?? 'Review'), h('span', { class: 'reason-text' }, body)];
+    reasons.append(act ? h('button', { type: 'button', class: 'reason is-link', title: act.title, onclick: act.run }, kids) : h('div', { class: 'reason' }, kids));
   }
-  if (!arr(r.reasons).length) reasons.append(h('dt', null, h('span', { class: 'tag t-grey' }, 'Review')), h('dd', null, 'The review returned no reasons.'));
+  const legend = reasonsLegend(r);
 
   const total = g.blocking.length;
   const progress = h('div', { class: 'progress' },
     h('span', { class: 'progress-text num' }, total ? `${g.decided} of ${plural(total, 'change')} resolved` : 'No changes to resolve'),
     total ? h('span', { class: 'progress-bar', role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': total, 'aria-valuenow': g.decided }, h('i', { style: `width:${(g.decided / total) * 100}%` })) : null);
 
-  const actions = h('div', { class: 'signoff-actions' });
-  if (!g.ok && total && (g.st === 'blocked' || g.st === 'incomplete')) {
-    actions.append(h('button', { type: 'button', class: 'btn', disabled: g.decided === 0, title: g.decided ? 'Summary of the decisions recorded so far' : 'Record a decision on a change first', onclick: () => openReply('summary') }, 'Reply summary'));
-  }
-  actions.append(h('button', { type: 'button', class: 'btn btn--primary', id: 'signoff-btn', disabled: !g.ok, onclick: () => openReply('signoff') }, g.ok ? ico('check') : null, 'Sign off'));
+  // After sign-off or send the band keeps saying so, with the time, until it is undone.
+  const out = outcomeOf();
+  const btn = out
+    ? h('button', { type: 'button', class: 'btn', id: 'signoff-btn', onclick: () => openSummary() }, 'Open summary')
+    : h('button', { type: 'button', class: 'btn btn--primary', id: 'signoff-btn', disabled: !g.ok, onclick: () => openSummary() }, g.ok && g.kind === 'signed' ? ico('check') : null, g.label);
+  const line = out
+    ? h('p', { class: 'signoff-done' }, ico('check'), h('b', null, out.kind === 'sent' ? 'Sent to approvers' : 'Signed off'), ` at ${fmtClock(out.at)}`, h('button', { type: 'button', class: 'link-btn', onclick: undoOutcome }, 'Undo'))
+    : h('p', { class: 'signoff-why' }, g.why);
 
-  root.replaceChildren(main, reasons, h('div', { class: 'signoff' }, progress, actions, h('p', { class: 'signoff-why' }, g.why)));
+  root.replaceChildren(main,
+    h('div', { class: 'verdict-mid' }, reasons, legend ? h('p', { class: 'reasons-legend' }, legend) : null),
+    h('div', { class: 'signoff' }, progress, h('div', { class: 'signoff-actions' }, btn), line));
 }
 
 function renderErrors() {
@@ -292,6 +430,7 @@ function renderLeft() {
   const r = S.review;
   const body = $('#left-body');
   if (!r) { body.replaceChildren(); return; }
+  writeHash();
   const hadFocus = body.contains(document.activeElement);
   for (const t of $$('#left-tabs .tab')) t.setAttribute('aria-selected', String(t.dataset.tab === S.tab));
 
@@ -389,7 +528,7 @@ function changeRow(c) {
     h('span', { class: 'row-main' },
       h('span', { class: 'row-top' }, clauseOf(c) ? h('span', { class: 'row-clause' }, clauseOf(c)) : null, h('span', { class: 'row-title' }, c.title ?? 'Untitled clause'), route),
       h('span', { class: 'row-summary' }, c.summary ?? ''),
-      h('span', { class: 'row-meta' }, foundBadge(c), promotedMark(c), state)));
+      h('span', { class: 'row-meta' }, readerChips(c), promotedMark(c), state)));
 }
 function foundBadge(c) {
   const key = FOUND[c.found_by] ? c.found_by : 'rules';
@@ -399,6 +538,18 @@ function foundBadge(c) {
     : key === 'compare' ? 'The rule layer missed this. Compare read the two versions as conflicting.'
       : key === 'both' ? 'Found by the rule layer and confirmed by Compare.' : 'Found by the rule layer.';
   return h('span', { class: `badge is-${strong ? 'compare' : key}`, title: tip }, label);
+}
+// Who read this change, one small chip each. The Clocked endpoints stand out from the rule layer.
+function readerChips(c) {
+  const names = String(c.found_by_label ?? '').split('+').map((x) => x.trim()).filter(Boolean);
+  if (!names.length || !names.every((n) => /^[A-Za-z]+$/.test(n))) return foundBadge(c);
+  const tip = (n) => {
+    if (n === 'Verify' && c.verify?.relation && VERIFY_READS[c.verify.relation] && !borrowed(c)) return `Clocked Verify: ${VERIFY_READS[c.verify.relation][0].toLowerCase()}.`;
+    if (n === 'Compare' && c.compare?.relation && !borrowed(c)) return `Clocked Compare: ${(RELATION_TEXT[c.compare.relation] ?? words(c.compare.relation)).toLowerCase()}${pct(c.compare.confidence) ? `, ${pct(c.compare.confidence)}` : ''}.`;
+    if (n === 'Rules') return 'The rule layer, plain code with no model, found this difference in the text.';
+    return SOURCE_NAMES[n] ? `Read by ${SOURCE_NAMES[n]}.` : null;
+  };
+  return h('span', { class: 'readers' }, names.map((n) => h('span', { class: `reader${n === 'Rules' ? '' : ' is-clocked'}`, title: tip(n) }, n)));
 }
 function promotedMark(c) {
   return c.promoted === true ? h('span', { class: 'badge is-promoted', title: c.why ?? '' }, 'Promoted by Clocked') : null;
@@ -446,14 +597,15 @@ function renderNote(r) {
   for (const c of claims) counts[c.verdict] = (counts[c.verdict] ?? 0) + 1;
   const stats = h('div', { class: 'pane-stats' });
   if (note.ran) {
-    for (const v of ['contradicted', 'supported', 'not_stated', 'not_checked']) {
+    for (const v of VERDICT_ORDER) {
       if (counts[v]) stats.append(h('span', { class: `chip ${VERDICT_TONE[v]}` }, `${counts[v]} ${VERDICTS[v].toLowerCase()}`));
     }
     if (!claims.length) stats.append(h('span', { class: 'pane-line' }, 'Verify found no statements to check.'));
   }
   const lines = [];
   if (note.ran) {
-    lines.push(h('p', { class: 'pane-line' }, h('b', null, 'Verify'), ` checked ${plural(claims.length, 'statement')} against the returned copy and the list of changes.`, pct(note.grounded) ? ` Grounded score ${pct(note.grounded)}.` : ''));
+    lines.push(h('p', { class: 'pane-line' }, h('b', null, 'Verify'), ` checked ${plural(claims.length, 'statement')} against the returned copy and the list of changes.`,
+      pct(note.grounded) ? h('span', { title: 'Verify\'s overall score for how much of the note the documents support.' }, ` Overall support for the note: ${pct(note.grounded)}.`) : null));
   } else {
     lines.push(h('div', { class: 'not-run' }, 'Verify did not run. The statements in this note were not checked.'));
   }
@@ -462,7 +614,7 @@ function renderNote(r) {
     lines.push(!gNote.ran
       ? h('p', { class: 'pane-line' }, h('b', null, 'Guard'), ' did not run on the cover note.')
       : gNote.flagged
-        ? h('div', { class: 'callout t-red' }, ico('alert'), h('span', null, h('b', null, 'Guard: '), `text addressed to an AI reviewer${gNote.category ? ` (${gNote.category})` : ''}, probability ${pct(gNote.injection) ?? 'unknown'}.`))
+        ? h('div', { class: 'callout t-red' }, ico('alert'), h('span', null, h('b', null, 'Guard: '), `text addressed to an AI reviewer${gNote.category ? ` (${words(gNote.category)})` : ''}, probability ${pct(gNote.injection) ?? 'unknown'}.`))
         : h('p', { class: 'pane-line' }, h('b', null, 'Guard'), ` found nothing addressed to an AI in the note${pct(gNote.injection) ? ` (probability ${pct(gNote.injection)})` : ''}.`));
   }
   pane.append(h('div', { style: 'display:grid;row-gap:8px' }, stats.childNodes.length ? stats : null, lines));
@@ -473,7 +625,7 @@ function renderNote(r) {
     const c = claims[seg.i];
     letter.append(h('span', {
       class: `claim-span ${VERDICT_TONE[c.verdict] ?? 't-grey'} v-${c.verdict}${S.claim === seg.i ? ' is-active' : ''}`,
-      role: 'button', tabindex: '0', title: VERDICTS[c.verdict] ?? c.verdict, dataset: { claim: seg.i },
+      role: 'button', tabindex: '0', title: `Statement ${seg.i + 1}: ${VERDICTS[c.verdict] ?? words(c.verdict)}`, dataset: { claim: seg.i },
       onclick: () => pickClaim(seg.i), onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickClaim(seg.i); } },
     }, seg.text));
   }
@@ -491,31 +643,34 @@ function claimCard(c, i) {
   const p = pct(c.p?.[c.verdict]);
   const ids = arr(c.change_ids).filter((id) => changeById(id));
   const ev = c.evidence;
+  const weak = c.verdict === 'not_stated' || c.verdict === 'not_a_claim';
   let evNode = null;
   if (ev?.quote) {
     const src = ev.document === 'v2' ? `the returned copy${ev.page ? `, page ${ev.page}` : ''}` : ev.document === 'changes' ? 'the list of changes' : (ev.document ?? 'the documents');
-    evNode = h('div', { class: 'evidence' }, `Evidence from ${src}`, h('q', null, ev.quote),
+    // For a statement the documents do not speak to, the quote is only the nearest passage, not proof.
+    evNode = h('div', { class: 'evidence' }, weak ? `Nearest passage, from ${src}. It does not settle the statement.` : `Evidence from ${src}`, h('q', null, ev.quote),
       ev.aligned === false ? h('div', { class: 'warn-line', style: 'margin-top:5px' }, ico('alert'), 'The quote does not match the text at its offsets.') : null);
   } else if (c.verdict !== 'not_checked') {
-    evNode = h('div', { class: 'evidence' }, c.verdict === 'not_stated' ? 'Neither document says anything about this.' : 'No evidence quote was returned.');
+    evNode = h('div', { class: 'evidence' }, c.verdict === 'not_stated' ? 'Neither document says anything about this.' : c.verdict === 'not_a_claim' ? 'A greeting or a request, not something the documents can confirm or deny.' : 'No evidence quote was returned.');
   }
   return h('button', { type: 'button', class: `claim ${tone}${S.claim === i ? ' is-active' : ''}`, dataset: { claim: i }, onclick: () => pickClaim(i) },
     h('span', { class: 'claim-head' },
-      h('span', { class: `chip ${tone}` }, VERDICTS[c.verdict] ?? c.verdict ?? 'Not checked'),
+      h('span', { class: 'claim-n', title: `Statement ${i + 1}` }, i + 1),
+      h('span', { class: `chip ${tone}` }, VERDICTS[c.verdict] ?? (c.verdict ? words(c.verdict) : 'Not checked')),
       p ? h('span', { class: 'p' }, p) : null,
       ids.length ? h('span', { class: 'link' }, `Shows ${ids.map((id) => clauseOf(changeById(id)) || id).join(', ')}`) : null),
     h('span', { class: 'claim-text' }, c.text ?? ''),
     evNode);
 }
 
-function pickClaim(i) {
+function pickClaim(i, { reveal: show = true } = {}) {
   const c = arr(S.review?.note?.claims)[i];
   if (!c) return;
   S.claim = i;
   S.tab = 'note';
   const ids = arr(c.change_ids).filter((id) => changeById(id));
   if (ids.length) {
-    select(ids[0], { keepClaim: true });
+    select(ids[0], { keepClaim: true, jump: false });
   } else {
     clearSpot();
     renderLeft();
@@ -525,6 +680,7 @@ function pickClaim(i) {
   const body = $('#left-body');
   const card = $(`.claim[data-claim="${i}"]`, body);
   if (card) scrollIntoViewIfNeeded(card, body);
+  if (show && narrow() && card) card.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'center' });
 }
 
 // ---------------------------------------------------------------- key terms
@@ -565,6 +721,7 @@ function renderDocs() {
   S.panes = {};
   if (!r) return;
   if (S.layer !== 'changes' && !layersOf(r).some((l) => l.id === S.layer)) S.layer = 'changes';
+  if (narrow() && S.view === 'both') { S.view = 'v2'; S.wasBoth = true; syncViewButtons(); }   // one document at a time on a phone
   root.dataset.view = S.view;
   root.dataset.layer = S.layer;
   root.style.setProperty('--zoom', String(S.zoom));
@@ -579,17 +736,23 @@ function renderDocs() {
     const pages = pagesData.map((p, i) => {
       const layer = h('div', { class: 'page-layer' });
       const w = Number(p.width) > 0 ? Number(p.width) : 1020, ht = Number(p.height) > 0 ? Number(p.height) : 1320;
-      const el = h('div', { class: 'page', style: `aspect-ratio:${w} / ${ht}`, dataset: { page: i + 1 } },
-        p.image ? h('img', { src: S.base + p.image, alt: `${name}, page ${i + 1}`, width: w, height: ht, decoding: 'async', draggable: 'false' }) : null,
-        layer);
+      const img = p.image ? h('img', { alt: `${name}, page ${i + 1}`, width: w, height: ht, decoding: 'async', draggable: 'false', loading: i === 0 ? 'eager' : 'lazy', fetchpriority: i === 0 ? 'high' : null }) : null;
+      const el = h('div', { class: 'page', style: `aspect-ratio:${w} / ${ht}`, dataset: { page: i + 1 } }, img, layer);
+      // The box is reserved from the start; the overlays only appear once the page under them has arrived.
+      if (img) {
+        img.addEventListener('load', () => el.classList.add('is-loaded'), { once: true });
+        img.addEventListener('error', () => el.classList.add('is-loaded', 'is-missing'), { once: true });
+        img.src = S.base + p.image;
+        if (img.complete && img.naturalWidth) el.classList.add('is-loaded');
+      } else el.classList.add('is-loaded', 'is-missing');
       return { el, layer, wrap: h('div', { class: 'page-wrap' }, h('div', { class: 'page-label' }, `Page ${i + 1} of ${pagesData.length}`), el) };
     });
-    const scroll = h('div', { class: 'doc-scroll', dataset: { side } },
+    const scroll = h('div', { class: 'doc-scroll', tabindex: '0', role: 'region', 'aria-label': name, dataset: { side } },
       pages.length
         ? h('div', { class: 'doc-pages' }, pages.map((p) => p.wrap))
         : h('div', { class: 'doc-empty' }, 'No page images for this document.', d.source_pdf ? [' ', h('a', { href: S.base + d.source_pdf, target: '_blank', rel: 'noopener' }, 'Open the PDF')] : null));
     scroll.addEventListener('scroll', onDocScroll, { passive: true });
-    S.panes[side] = { scroll, pages, lt: 0, ll: 0, ratio: 0, width: 0 };
+    S.panes[side] = { scroll, pages, ratio: 0, width: 0, expect: null };
     root.append(h('div', { class: 'doc', dataset: { side } }, docHead(side, d, name, r, lay), scroll));
   }
   buildOverlays(r);   // kept in layer views too (hidden by CSS) so a selected change can still be scrolled to
@@ -600,11 +763,11 @@ function docHead(side, d, name, r, lay) {
   const link = (file, label, title) => h('a', { href: S.base + file, download: file, title: title || null }, ico('download'), label);
   if (S.layer !== 'changes') {
     if (lay) {
-      const caption = [lay.label ?? lay.id, lay.by, lay.spans != null ? plural(lay.spans, 'span') : null].filter(Boolean).join(' · ');
+      const caption = [lay.label ?? words(lay.id), byWords(lay.by), lay.spans != null ? plural(lay.spans, 'mark') : null].filter(Boolean).join(' · ');
       meta.append(h('span', { class: 'doc-caption' }, caption));
-      if (lay.pdf) meta.append(link(lay.pdf, 'Download PDF', lay.by));
+      if (lay.pdf) meta.append(link(lay.pdf, 'Download PDF', byWords(lay.by)));
     } else {
-      meta.append(h('span', { class: 'doc-caption' }, 'This layer was not returned for this document. Showing its clean pages.'));
+      meta.append(h('span', { class: 'doc-caption' }, 'Clocked marked only the other document in this layer. These are this one\'s clean pages.'));
     }
   } else {
     if (d.source_pdf) meta.append(link(d.source_pdf, 'Original'));
@@ -612,22 +775,22 @@ function docHead(side, d, name, r, lay) {
       // Older reviews carry no layers: offer whatever marked copies exist as plain downloads.
       const seen = new Set([d.source_pdf]);
       const add = (file, label, title) => { if (file && !seen.has(file)) { seen.add(file); meta.append(link(file, label, title)); } };
-      add(d.marked_pdf, 'Marked by Compare', d.marked_by);
+      add(d.marked_pdf, 'Marked by Compare', byWords(d.marked_by));
       for (const x of arr(d.extra_pdfs)) add(x?.file, x?.label ?? x?.file);
-      for (const x of arr(d.downloads)) add(x?.file, x?.label ?? x?.file, x?.by);
+      for (const x of arr(d.downloads)) add(x?.file, x?.label ?? x?.file, byWords(x?.by));
     }
     if (side === 'v2') {
       const g = arr(r.guard).find((x) => x.target === 'Returned copy');
       if (g) {
         meta.append(!g.ran ? h('span', { class: 'tag t-grey' }, 'Guard not run')
-          : g.flagged ? h('button', { type: 'button', class: 'tag t-red', style: 'cursor:pointer', onclick: () => select('guard') }, `Guard: flagged ${pct(g.injection) ?? ''}`.trim())
-            : h('span', { class: 'tag t-grey', title: `Nothing addressed to an AI reviewer. Injection probability ${pct(g.injection) ?? 'unknown'}.` }, 'Guard: clean'));
+          : g.flagged ? h('button', { type: 'button', class: 'tag t-red', style: 'cursor:pointer', title: 'Clocked Guard flagged text addressed to an AI reviewer', onclick: () => select('guard') }, `Guard: flagged ${pct(g.injection) ?? ''}`.trim())
+            : h('span', { class: 'tag t-grey', title: `Clocked Guard found nothing addressed to an AI reviewer. Injection probability ${pct(g.injection) ?? 'unknown'}.` }, 'Guard: clean'));
       }
     }
   }
   const n = arr(d.pages).length;
   return h('div', { class: 'doc-head' },
-    h('div', { class: 'doc-name' }, name, h('small', null, n ? `${side} · ${plural(n, 'page')}` : side)),
+    h('div', { class: 'doc-name' }, name, n ? h('small', null, plural(n, 'page')) : null),
     meta);
 }
 
@@ -636,13 +799,13 @@ function renderLayerSwitch() {
   const layers = layersOf();
   root.hidden = !layers.length;
   if (!layers.length) { root.replaceChildren(); return; }
-  const all = [{ id: 'changes', label: 'Changes', by: 'Clean pages with every change located on them' }, ...layers];
+  const all = [{ id: 'changes', label: 'Changes', by: 'Clean pages with every change located on them' }, ...layers.map((l) => ({ ...l, by: byWords(l.by) }))];
   const cur = all.find((l) => l.id === S.layer) ?? all[0];
   const menu = h('div', { class: 'switcher-menu', role: 'listbox', 'aria-label': 'Document layer', hidden: true },
     all.map((l) => h('button', { type: 'button', class: 'switcher-item no-dot', role: 'option', 'aria-selected': String(l.id === cur.id), onclick: () => setLayer(l.id) },
-      h('b', null, l.label), l.by ? h('small', null, l.by) : null)));
+      h('b', null, l.label), l.by ? h('small', null, l.by.charAt(0).toUpperCase() + l.by.slice(1)) : null)));
   menu.addEventListener('keydown', menuKeys);
-  const btn = h('button', { type: 'button', class: 'switcher-btn', 'aria-haspopup': 'listbox', 'aria-expanded': 'false', title: 'What the pages show', onclick: () => toggleMenu(root) },
+  const btn = h('button', { type: 'button', class: 'switcher-btn', 'aria-haspopup': 'listbox', 'aria-expanded': 'false', title: `What the pages show: ${cur.label}`, onclick: () => toggleMenu(root) },
     h('span', { class: 'layer-prefix' }, 'Layer'), h('span', { class: 'switcher-label' }, cur.label), ico('chevron'));
   root.replaceChildren(btn, menu);
 }
@@ -655,7 +818,7 @@ function setLayer(id) {
     const p = S.panes[side];
     if (!p) continue;
     p.scroll.scrollTop = ry * p.scroll.scrollHeight; p.scroll.scrollLeft = left;
-    p.lt = p.scroll.scrollTop; p.ll = p.scroll.scrollLeft; p.ratio = ry;
+    p.ratio = ry;
   }
   renderLayerSwitch();
   renderLegend();
@@ -681,13 +844,17 @@ function menuKeys(e) {
   else if (e.key === 'Escape') { const root = e.currentTarget.closest('.switcher'); closeMenu(root); $('.switcher-btn', root)?.focus(); }
 }
 
-function rectStyle(rect) {
+function rectBox(rect) {
   const v = arr(rect).map(Number);
   if (v.length !== 4 || !v.every(Number.isFinite)) return null;
   const x0 = clamp01(Math.min(v[0], v[2])), x1 = clamp01(Math.max(v[0], v[2]));
   const y0 = clamp01(Math.min(v[1], v[3])), y1 = clamp01(Math.max(v[1], v[3]));
-  if (x1 <= x0 || y1 < y0) return null;
-  return { x0, y0, css: `left:${(x0 * 100).toFixed(3)}%;top:${(y0 * 100).toFixed(3)}%;width:${((x1 - x0) * 100).toFixed(3)}%;height:${((y1 - y0) * 100).toFixed(3)}%` };
+  return x1 > x0 && y1 >= y0 ? { x0, y0, x1, y1 } : null;
+}
+function rectStyle(rect) {
+  const b = rectBox(rect);
+  if (!b) return null;
+  return { x0: b.x0, y0: b.y0, css: `left:${(b.x0 * 100).toFixed(3)}%;top:${(b.y0 * 100).toFixed(3)}%;width:${((b.x1 - b.x0) * 100).toFixed(3)}%;height:${((b.y1 - b.y0) * 100).toFixed(3)}%` };
 }
 
 function addMarks(side, page, rects, cls, cid, label, pinText, first) {
@@ -747,22 +914,44 @@ function buildOverlays(r) {
   }
 }
 
+// The two documents scroll as one. `sync.offset` is how far the returned copy sits below the sent
+// version when the selected change is level in both; following is by position, not by movement,
+// so the panes cannot drift apart.
+const otherSide = (side) => (side === 'v1' ? 'v2' : 'v1');
 function onDocScroll(e) {
   const side = e.currentTarget.dataset.side;
   const me = S.panes[side];
-  const other = S.panes[side === 'v1' ? 'v2' : 'v1'];
   if (!me) return;
   const sc = me.scroll;
-  const dy = sc.scrollTop - me.lt, dx = sc.scrollLeft - me.ll;
-  me.lt = sc.scrollTop; me.ll = sc.scrollLeft;
   me.ratio = sc.scrollHeight ? sc.scrollTop / sc.scrollHeight : 0;
+  if (me.expect && Math.abs(sc.scrollTop - me.expect[0]) < 1.5 && Math.abs(sc.scrollLeft - me.expect[1]) < 1.5) { me.expect = null; return; }   // the echo of follow()
+  me.expect = null;
+  sync.last = side;
   const now = performance.now();
-  if (now < sync.progUntil) { sync.progUntil = Math.max(sync.progUntil, now + 140); return; }   // our own scroll-to-change
-  if (!other || S.view !== 'both' || (!dy && !dx)) return;
+  if (now < sync.progUntil) { sync.progUntil = Math.max(sync.progUntil, now + 140); return; }   // our own scroll-to-change is running
+  follow(side);
+}
+function follow(side) {
+  const me = S.panes[side], other = S.panes[otherSide(side)];
+  if (!me || !other || S.view !== 'both' || !me.scroll.offsetParent || !other.scroll.offsetParent) return;
   const o = other.scroll;
-  o.scrollTop += dy; o.scrollLeft += dx;
-  other.lt = o.scrollTop; other.ll = o.scrollLeft;   // the echo event then sees no delta
+  const top = me.scroll.scrollTop + (side === 'v1' ? sync.offset : -sync.offset);
+  const left = me.scroll.scrollLeft;
+  if (Math.abs(o.scrollTop - top) < 0.75 && Math.abs(o.scrollLeft - left) < 0.75) return;
+  const before = [o.scrollTop, o.scrollLeft];
+  o.scrollTop = top; o.scrollLeft = left;
+  if (o.scrollTop !== before[0] || o.scrollLeft !== before[1]) other.expect = [o.scrollTop, o.scrollLeft];
   other.ratio = o.scrollHeight ? o.scrollTop / o.scrollHeight : 0;
+}
+// If the reader scrolls while a scroll-to-change is still running, bring the panes level again when it ends.
+function settleSoon() {
+  clearTimeout(sync.timer);
+  const tick = () => {
+    const wait = sync.progUntil - performance.now();
+    if (wait > 0) { sync.timer = setTimeout(tick, wait + 40); return; }
+    follow(sync.last);
+  };
+  sync.timer = setTimeout(tick, 80);
 }
 
 // When the panes change size the pages rescale: keep each pane at the same place in its document.
@@ -775,11 +964,13 @@ function onDocsResize() {
       if (!sc.offsetParent) continue;
       if (p.width && p.width !== sc.clientWidth && p.ratio != null) {
         sync.progUntil = performance.now() + 200;
+        sync.offset *= sc.clientWidth / p.width;
         sc.scrollTop = p.ratio * sc.scrollHeight;
-        p.lt = sc.scrollTop; p.ll = sc.scrollLeft;
       }
       p.width = sc.clientWidth;
     }
+    applyAutoZoom();
+    settleSoon();
   });
 }
 
@@ -788,18 +979,30 @@ function targetPos(side, el, anchor = null) {
   if (!pane || !el || !pane.scroll.offsetParent) return null;
   const sc = pane.scroll;
   const a = el.getBoundingClientRect(), b = sc.getBoundingClientRect();
+  const maxTop = Math.max(0, sc.scrollHeight - sc.clientHeight), maxLeft = Math.max(0, sc.scrollWidth - sc.clientWidth);
+  // Sideways (only when zoomed in): keep the page flush left where the target fits, so lines read from their start;
+  // otherwise move just far enough to show it.
+  const x0 = a.left - b.left + sc.scrollLeft, x1 = x0 + a.width;
+  const left = x1 <= sc.clientWidth - 10 ? 0 : Math.max(0, Math.min(x0 - 14, x1 - sc.clientWidth + 14));
   return {
-    top: Math.max(0, a.top - b.top + sc.scrollTop - (anchor ?? sc.clientHeight * 0.3)),
-    left: S.zoom > 1 ? Math.max(0, a.left - b.left + sc.scrollLeft - (sc.clientWidth - a.width) / 2) : 0,
+    top: Math.min(maxTop, Math.max(0, a.top - b.top + sc.scrollTop - (anchor ?? sc.clientHeight * 0.3))),
+    left: Math.min(maxLeft, left),
   };
 }
 function scrollPane(side, pos, instant) {
   const pane = S.panes[side];
-  if (!pane || !pos || !pane.scroll.offsetParent) return;
+  if (!pane || !pos || !pane.scroll.offsetParent || narrow()) return;
   sync.progUntil = performance.now() + 450;
   pane.scroll.scrollTo({ top: pos.top, left: pos.left, behavior: instant || reducedMotion() ? 'auto' : 'smooth' });
 }
-function scrollPaneTo(side, el, instant) { scrollPane(side, targetPos(side, el), instant); }
+// Scroll both panes to their own targets and remember the distance between them.
+function alignTo(pos, { instant = false, skip = null } = {}) {
+  for (const side of ['v1', 'v2']) if (!pos[side] && pos[otherSide(side)]) pos[side] = { ...pos[otherSide(side)] };   // nothing to show: stay level with the other
+  if (pos.v1 && pos.v2 && S.view === 'both') sync.offset = pos.v2.top - pos.v1.top;
+  for (const side of ['v1', 'v2']) if (side !== skip) scrollPane(side, pos[side], instant);
+  settleSoon();
+}
+function scrollPaneTo(side, el, instant) { alignTo({ [side]: targetPos(side, el) }, { instant }); }
 
 function selectionTarget(side) {
   const pane = S.panes[side];
@@ -828,13 +1031,8 @@ function markSelection({ scroll = true, instant = false, from = null } = {}) {
   const srcEl = from ? selectionTarget(from) : null;
   if (src && srcEl) anchor = srcEl.getBoundingClientRect().top - src.getBoundingClientRect().top;
   const pos = { v1: targetPos('v1', selectionTarget('v1'), anchor), v2: targetPos('v2', selectionTarget('v2'), anchor) };
-  for (const side of ['v1', 'v2']) {
-    if (side === from) continue;
-    const other = side === 'v1' ? 'v2' : 'v1';
-    // A side with nothing to show follows the other one, so the two stay level.
-    const mirror = other === from && src ? { top: src.scrollTop, left: src.scrollLeft } : pos[other];
-    scrollPane(side, pos[side] ?? mirror, instant);
-  }
+  if (src && src.offsetParent) pos[from] = { top: src.scrollTop, left: src.scrollLeft };
+  alignTo(pos, { instant, skip: src ? from : null });
 }
 function pulse(el) {
   el.classList.remove('is-pulse');
@@ -846,6 +1044,7 @@ function clearSpot() { for (const el of $$('.m-spot', $('#docs'))) el.remove(); 
 function showSpot(spots) {
   clearSpot();
   const pos = {};
+  let first = null;
   for (const side of ['v1', 'v2']) {
     const s = spots[side];
     const pg = s ? S.panes[side]?.pages[s.page - 1] : null;
@@ -860,22 +1059,56 @@ function showSpot(spots) {
       firstEl ??= m;
     }
     pos[side] = targetPos(side, firstEl ?? pg.el);
+    first ??= [side, firstEl ?? pg.el];
   }
-  // A side with nothing to show follows the other one, so the two stay level.
-  for (const side of ['v1', 'v2']) scrollPane(side, pos[side] ?? pos[side === 'v1' ? 'v2' : 'v1'], false);
+  if (narrow()) {     // one document at a time: switch to the side that has it and bring it into view
+    if (!first) return;
+    const [side, el] = S.view !== 'both' && spots[S.view] ? [S.view, $('.m-spot', S.panes[S.view].scroll) ?? first[1]] : first;
+    if (S.view !== side) setView(side);
+    requestAnimationFrame(() => el.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'center' }));
+    return;
+  }
+  alignTo(pos);
+}
+// From a crop in the detail panel back to the place in the documents.
+function showInDocs(side) {
+  if (S.layer !== 'changes') setLayer('changes');
+  if (narrow()) {
+    if (S.view !== side) setView(side);
+    requestAnimationFrame(() => { markSelection({ scroll: false }); selectionTarget(side)?.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'center' }); });
+    return;
+  }
+  markSelection({ scroll: true });
 }
 
-function setZoom(z) {
-  const next = Math.min(ZOOMS.at(-1), Math.max(1, z));
+// On a laptop two pages side by side leave body text near 7px. Unless the reader has picked a zoom,
+// use the smallest one at which a page is about 400px wide (text near 9px); the panes then scroll sideways together.
+function fitZoom() {
+  if (narrow() || S.view !== 'both') return 1;
+  const pane = S.panes.v1 ?? S.panes.v2;
+  const w = pane && pane.scroll.offsetParent ? pane.scroll.clientWidth - 16 : 0;
+  if (w <= 0) return S.zoom;
+  return Math.min(1.5, Math.max(1, Math.ceil((400 / w) * 20 - 0.01) / 20));
+}
+function applyAutoZoom() {
+  if (!S.zoomAuto || !S.review) return;
+  const z = fitZoom();
+  if (Math.abs(z - S.zoom) > 0.001) setZoom(z, { auto: true });
+}
+function setZoom(z, { auto = false } = {}) {
+  const next = Math.min(ZOOMS.at(-1), Math.max(1, Math.round(z * 100) / 100));
+  if (!auto) S.zoomAuto = false;
+  const prev = S.zoom || 1;
   const ratios = Object.values(S.panes).map((p) => [p, p.scroll.scrollHeight ? p.scroll.scrollTop / p.scroll.scrollHeight : 0, p.scroll.scrollWidth ? (p.scroll.scrollLeft + p.scroll.clientWidth / 2) / p.scroll.scrollWidth : 0.5]);
   S.zoom = next;
   $('#docs').style.setProperty('--zoom', String(next));
   sync.progUntil = performance.now() + 300;
+  sync.offset *= next / prev;
   for (const [p, ry, rx] of ratios) {
     p.scroll.scrollTop = ry * p.scroll.scrollHeight;
-    p.scroll.scrollLeft = next > 1 ? rx * p.scroll.scrollWidth - p.scroll.clientWidth / 2 : 0;
-    p.lt = p.scroll.scrollTop; p.ll = p.scroll.scrollLeft;
+    p.scroll.scrollLeft = !auto && next > 1 ? rx * p.scroll.scrollWidth - p.scroll.clientWidth / 2 : 0;
   }
+  settleSoon();
   renderZoom();
 }
 function renderZoom() {
@@ -884,20 +1117,33 @@ function renderZoom() {
   $('#zoom-in').disabled = S.zoom >= ZOOMS.at(-1);
   $('#zoom-fit').disabled = S.zoom === 1;
 }
+function syncViewButtons() {
+  for (const b of $$('#view-seg button')) b.setAttribute('aria-pressed', String(b.dataset.view === S.view));
+}
 function setView(v) {
-  S.view = v;
-  $('#docs').dataset.view = v;
-  for (const b of $$('#view-seg button')) b.setAttribute('aria-pressed', String(b.dataset.view === v));
-  requestAnimationFrame(() => markSelection({ scroll: true, instant: true }));
+  S.view = narrow() && v === 'both' ? 'v2' : v;
+  S.wasBoth = false;
+  $('#docs').dataset.view = S.view;
+  syncViewButtons();
+  requestAnimationFrame(() => {
+    applyAutoZoom();
+    if (S.sel) markSelection({ scroll: true, instant: true });
+    else { sync.offset = 0; follow(sync.last); }
+  });
 }
 
+const LAYER_NOTES = {
+  compare: 'Yellow-green: every passage Clocked Compare paired with the other version, headings and footers included. It shows how much was read, not what changed.',
+  terms: 'Boxes: the key terms Clocked Extract read from each version, the ones listed under Key terms.',
+  guard: 'Box: the text Clocked Guard flagged as addressed to an AI reviewer. Guard reads the returned copy only.',
+};
 function renderLegend() {
   const r = S.review;
   const root = $('#legend');
   root.replaceChildren();
   if (!r) return;
   if (S.layer !== 'changes') {
-    root.append(h('span', null, 'Clocked\'s own marked copy. The change overlays are hidden in this layer.'),
+    root.append(h('span', { class: 'legend-note' }, LAYER_NOTES[S.layer] ?? 'Marks drawn by Clocked on its own copy of the PDF.', ' The change overlays are hidden here.'),
       h('button', { type: 'button', class: 'link-btn', onclick: () => setLayer('changes') }, 'Back to Changes'));
     return;
   }
@@ -941,12 +1187,90 @@ function comparePassages(cmp) {
   const alike = q1 && q2 && Math.max(q1.length, q2.length) <= 2.2 * Math.min(q1.length, q2.length);
   const [a, b] = alike ? wordDiff(q1, q2) : [q1, q2];
   const row = (side, label, body) => h('div', { class: 'pair-side', dataset: { side } }, h('div', { class: 'pair-label' }, label), h('div', { class: 'quote quote--clamp' }, body));
-  return h('div', { class: 'pair' }, q1 ? row('v1', 'Passage in v1', a) : null, q2 ? row('v2', 'Passage in v2', b) : null);
+  return h('div', { class: 'pair' }, q1 ? row('v1', 'Passage we sent', a) : null, q2 ? row('v2', 'Passage they returned', b) : null);
 }
 const alignWarning = () => h('div', { class: 'callout t-amber' }, ico('alert'), h('span', null, h('b', null, 'Quote not aligned. '), 'A quoted passage does not match the document text at the offsets Clocked returned. Read the passage in the document before relying on it.'));
 
 function block(title, via, right, ...kids) {
   return h('section', { class: 'block' }, h('div', { class: 'block-head' }, h('h3', null, title), via ? h('span', { class: 'via' }, via) : null, right ?? null), kids);
+}
+function keyed(key, el) { if (el) el.dataset.block = key; return el; }
+function focusBlock(key, instant = false) {
+  const sc = $('#detail .detail-scroll');
+  const b = sc ? $(`[data-block="${key}"]`, sc) : null;
+  if (!b) return;
+  const behavior = instant || reducedMotion() ? 'auto' : 'smooth';
+  if (narrow()) b.scrollIntoView({ behavior, block: 'start' });
+  else sc.scrollTo({ top: Math.max(0, b.offsetTop - 4), behavior });
+}
+
+// A blocking change in the same clause as this one.
+const clauseSibling = (c) => changesOf().find((x) => x.blocking && x.id !== c.id && x.clause && x.clause === c.clause) ?? null;
+const linkTo = (x) => h('button', { type: 'button', class: 'link-btn', onclick: () => select(x.id) }, `${clauseOf(x)} ${x.title ?? ''}`.trim() || `change ${numOf(x)}`);
+// Verify and Compare read whole sentences. A spelling, formatting or address edit can sit in a sentence that
+// also holds a real change; its readings then describe that other change, not this edit.
+function borrowed(c) {
+  if (!c || c.blocking || !['spelling', 'formatting', 'administrative'].includes(c.cls)) return null;
+  if (c.verify?.relation !== 'changed' && c.compare?.relation !== 'conflict') return null;
+  return { sib: clauseSibling(c) };
+}
+
+// One line at the top of the detail: what each Clocked endpoint said about this change. Each chip jumps to its block.
+function readingsStrip(c) {
+  const chips = [];
+  const chip = (key, name, text, tone) => h('button', { type: 'button', class: `rchip ${tone}`, title: `Clocked ${name}: show this reading`, onclick: () => focusBlock(key) }, h('b', null, name), text);
+  const v = c.verify, cmp = c.compare, pb = c.playbook, d = c.decide;
+  if (borrowed(c)) {
+    chips.push(chip('verify', 'Verify · Compare', 'read the whole sentence', 't-grey'));
+  } else {
+    if (v?.relation && VERIFY_READS[v.relation]) {
+      const p = v.relation === 'changed' ? v.returned_against_sent?.contradicted : v.relation === 'same' ? v.returned_against_sent?.supported : null;
+      chips.push(chip('verify', 'Verify', `${{ changed: 'different', same: 'same', unclear: 'unclear' }[v.relation]}${pct(p) ? ` ${pct(p)}` : ''}`, VERIFY_READS[v.relation][1]));
+    }
+    if (cmp?.relation && cmp.relation !== 'not_run') chips.push(chip('compare', 'Compare', `${(RELATIONS[cmp.relation] ?? words(cmp.relation)).toLowerCase()}${pct(cmp.confidence) ? ` ${pct(cmp.confidence)}` : ''}`, RELATION_TONE[cmp.relation] ?? 't-grey'));
+  }
+  if (pb) chips.push(chip('playbook', 'Rerank', pb.status === 'guidance' && arr(pb.passages).length ? plural(arr(pb.passages).length, 'passage') : pb.status === 'error' ? 'failed' : 'no guidance', pb.status === 'guidance' ? 't-accent' : 't-ink'));
+  if (d) chips.push(chip('route', 'Decide', d.route ? `${(ROUTES[d.route] ?? words(d.route)).toLowerCase()}${pct(d.route_confidence) ? ` ${pct(d.route_confidence)}` : ''}` : 'no clear answer', d.route ? (ROUTE_TONE[d.route] ?? 't-grey') : 't-grey'));
+  return chips.length ? h('div', { class: 'readings', role: 'group', 'aria-label': 'What Clocked read' }, chips) : null;
+}
+
+// A piece of the page image around the given rects, at a size where its text reads like body text (about 14px).
+// Drawn with a CSS background, so it needs no new asset.
+function cropNode(side, page, rects, cls, label) {
+  const p = arr(S.review?.documents?.[side]?.pages)[page - 1];
+  const boxes = arr(rects).map(rectBox).filter(Boolean);
+  if (!p?.image || !boxes.length) return null;
+  const pw = Number(p.width) > 0 ? Number(p.width) : 1020, ph = Number(p.height) > 0 ? Number(p.height) : 1320;
+  const Pw = Math.round(Math.min(760, Math.max(520, pw * 0.66)));     // the whole page at this width has body text near 14px
+  const Ph = (Pw * ph) / pw;
+  const bx0 = Math.min(...boxes.map((b) => b.x0)), bx1 = Math.max(...boxes.map((b) => b.x1));
+  const by0 = Math.min(...boxes.map((b) => b.y0)), by1 = Math.max(...boxes.map((b) => b.y1));
+  const y0 = Math.max(0, by0 - 0.03), y1 = Math.min(1, by1 + 0.03);   // about a line and a half above and below
+  const W = Math.max(240, ($('#detail')?.clientWidth || 360) - 34);
+  const regionW = Math.max(W, Math.ceil((bx1 - bx0) * Pw) + 56);
+  const left = Math.max(0, Math.min(((bx0 + bx1) / 2) * Pw - regionW / 2, Math.max(0, Pw - regionW)));
+  const img = h('div', { class: 'crop-img', style: `width:${regionW}px;height:${Math.round((y1 - y0) * Ph)}px;background-size:${Pw}px ${Ph.toFixed(1)}px;background-position:${(-left).toFixed(1)}px ${(-y0 * Ph).toFixed(1)}px` },
+    boxes.map((b) => h('i', { class: `crop-mark c-${cls}`, style: `left:${(b.x0 * Pw - left).toFixed(1)}px;top:${((b.y0 - y0) * Ph).toFixed(1)}px;width:${((b.x1 - b.x0) * Pw).toFixed(1)}px;height:${Math.max(3, (b.y1 - b.y0) * Ph).toFixed(1)}px` })));
+  img.style.backgroundImage = `url("${encodeURI(S.base + p.image)}")`;
+  const view = h('div', { class: 'crop-view', role: 'button', tabindex: '0', title: 'Show this place in the documents',
+    onclick: () => showInDocs(side), onkeydown: (e) => { if (e.key === 'Enter') showInDocs(side); } }, img);
+  const first = boxes[0].x0 * Pw - left;
+  if (first > W - 60) requestAnimationFrame(() => { view.scrollLeft = first - 28; });   // a wide passage: start where the change starts
+  return h('figure', { class: 'crop', dataset: { side } }, h('figcaption', null, h('b', null, label), ` · page ${page}`), view);
+}
+function cropsBlock(c) {
+  const figs = [];
+  const height = (rs) => { const bs = rs.map(rectBox).filter(Boolean); return bs.length ? Math.max(...bs.map((b) => b.y1)) - Math.min(...bs.map((b) => b.y0)) : 0; };
+  for (const [side, label] of [['v1', 'We sent'], ['v2', 'They returned']]) {
+    const located = arr(c.parts).map((p) => p?.[side]).filter((s) => s?.page && arr(s.rects).length);
+    if (!located.length) continue;
+    const page = located[0].page;
+    let rects = located.filter((s) => s.page === page).flatMap((s) => s.rects);
+    if (height(rects) > 0.16) rects = located[0].rects;     // edits far apart on the page: show the first
+    const fig = cropNode(side, page, rects, clsOf(c), label);
+    if (fig) figs.push(fig);
+  }
+  return figs.length ? keyed('page', block('On the page', null, h('span', { class: 'right-note' }, 'Click to find it in the documents'), h('div', { class: 'crops' }, figs))) : null;
 }
 
 function renderDetail({ keepScroll = false } = {}) {
@@ -971,7 +1295,8 @@ function renderDetail({ keepScroll = false } = {}) {
         h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Next change', title: 'Next change (J)', disabled: i === ch.length - 1, onclick: () => move(1) }, ico('down'), h('kbd', null, 'J')))),
     h('h2', { class: 'detail-title' }, [clauseOf(c), c.title].filter(Boolean).join(' · ') || 'Change'),
     c.summary ? h('p', { class: 'detail-summary' }, c.summary) : null,
-    h('div', { class: 'detail-badges' }, h('span', { class: `chip ${CLASS_TONE[c.cls] ?? 't-grey'}` }, CLASSES[c.cls] ?? c.cls ?? 'Change'), foundBadge(c), promotedMark(c)));
+    h('div', { class: 'detail-badges' }, h('span', { class: `chip ${CLASS_TONE[c.cls] ?? 't-grey'}` }, CLASSES[c.cls] ?? (c.cls ? words(c.cls) : 'Change')), promotedMark(c), readingsStrip(c) ? null : readerChips(c)),
+    readingsStrip(c));
 
   // What changed
   const parts = arr(c.parts);
@@ -992,10 +1317,24 @@ function renderDetail({ keepScroll = false } = {}) {
     !parts.length ? h('div', { class: 'not-run' }, 'No quoted text for this change.') : null,
     c.why ? h('p', { class: 'plain' }, h('b', { style: 'font-weight:600;color:var(--ink)' }, 'Why it is listed. '), c.why) : null);
 
+  const bw = borrowed(c);
   root.replaceChildren(
-    h('div', { class: 'detail-scroll' }, head, what, verifyBlock(c), compareBlock(c, r), playbookBlock(c, r), routeBlock(c, r), claimsBlock(c, r)),
+    h('div', { class: 'detail-scroll', tabindex: '0', role: 'region', 'aria-label': 'Detail of the selected change' }, head, what, cropsBlock(c),
+      bw ? wholeSentenceBlock(c, bw) : [verifyBlock(c), compareBlock(c, r)],
+      playbookBlock(c, r), routeBlock(c, r), claimsBlock(c, r)),
     actionsBar(c));
   if (prev) $('.detail-scroll', root).scrollTop = prev;
+}
+
+function wholeSentenceBlock(c, bw) {
+  const v = c.verify, cmp = c.compare;
+  const kv = h('dl', { class: 'kv' });
+  const one = (x) => (x && typeof x === 'object' ? `${(VERDICTS[x.verdict] ?? words(x.verdict ?? 'no verdict')).toLowerCase()}${pct(x[x.verdict]) ? ` ${pct(x[x.verdict])}` : ''}` : 'not checked');
+  if (v && typeof v === 'object') kv.append(h('dt', null, 'Verify'), h('dd', null, h('small', null, `Returned against sent: ${one(v.returned_against_sent)}. Sent against returned: ${one(v.sent_against_returned)}.`)));
+  if (cmp && typeof cmp === 'object' && cmp.relation) kv.append(h('dt', null, 'Compare'), h('dd', null, h('small', null, [RELATION_TEXT[cmp.relation] ?? words(cmp.relation), cmp.kind ? words(cmp.kind) : null, pct(cmp.confidence)].filter(Boolean).join(' · '))));
+  return keyed('verify', block('Reading of the whole sentence', 'Clocked Verify · Compare', null,
+    bw.sib ? h('p', { class: 'note-neutral' }, 'This sentence also holds another edit (see ', linkTo(bw.sib), '). The readings below are of the whole sentence, so they reflect that edit.') : null,
+    kv));
 }
 
 function verifyBlock(c) {
@@ -1009,18 +1348,18 @@ function verifyBlock(c) {
         h('span', { class: `chip ${VERDICT_TONE[x.verdict] ?? 't-grey'}` }, VERDICTS[x.verdict] ?? (x.verdict ? words(x.verdict) : 'No verdict')),
         h('span', { class: 'vrow-p num' }, ['supported', 'contradicted', 'not_stated'].filter((k) => pct(x[k])).map((k) => `${VERDICTS[k].toLowerCase()} ${pct(x[k])}`).join(' · ')))
       : h('div', { class: 'vrow-body' }, h('span', { class: 'vrow-p' }, 'Not checked')));
-  return block('Verify across versions', 'Clocked Verify', null,
+  return keyed('verify', block('Verify across versions', 'Clocked Verify', null,
     h('div', { class: `callout ${tone}` }, h('span', null, h('b', null, text))),
     h('div', { class: 'vrows' },
       row('Returned sentence checked against the sent version', v.returned_against_sent),
-      row('Sent sentence checked against the returned version', v.sent_against_returned)));
+      row('Sent sentence checked against the returned version', v.sent_against_returned))));
 }
 
 function compareBlock(c, r) {
   const cmp = c.compare;
   if (!cmp || typeof cmp !== 'object') {
-    return block('Compare', 'Clocked Compare', null, h('div', { class: 'not-run' },
-      r.compare ? 'Compare raised no finding on this passage. The rule layer\'s reading stands.' : 'Not run. This change comes from the rule layer alone.'));
+    return keyed('compare', block('Compare', 'Clocked Compare', null, h('div', { class: 'not-run' },
+      r.compare ? 'Compare raised no finding on this passage. The rule layer\'s reading stands.' : 'Not run. This change comes from the rule layer alone.')));
   }
   const rel = cmp.relation ?? 'silent';
   const chip = h('span', { class: `chip ${RELATION_TONE[rel] ?? 't-grey'}` }, RELATIONS[rel] ?? words(rel));
@@ -1030,15 +1369,19 @@ function compareBlock(c, r) {
   if (pct(cmp.confidence)) kv.append(h('dt', null, 'Confidence'), h('dd', { class: 'num' }, pct(cmp.confidence)));
   const cp = cmp.clause_probabilities;
   const probs = cp && typeof cp === 'object' && !Array.isArray(cp)
-    ? Object.entries(cp).filter(([, x]) => pct(x)).map(([k, x]) => `${words(k)} ${pct(x)}`).join(' · ') : '';
+    ? Object.entries(cp).filter(([, x]) => pct(x)).map(([k, x]) => `${words(k)} ${pct(x)}`).join(' · ') : (pct(cmp.clause_probability) ?? '');
   if (cmp.clause_relation || probs) {
-    kv.append(h('dt', null, 'Whole clause'), h('dd', null, cmp.clause_relation ? words(cmp.clause_relation) : '', probs ? h('small', { class: 'num' }, `${cmp.clause_relation ? ' · ' : ''}${probs}`) : null));
+    // A faithful rewording can sit in a clause that conflicts for another reason. Say so instead of showing both verdicts bare.
+    const sib = !c.blocking && /conflict/i.test(String(cmp.clause_relation ?? '')) && (rel === 'same' || rel === 'restated') ? clauseSibling(c) : null;
+    kv.append(h('dt', null, 'Whole clause'), sib
+      ? h('dd', null, h('small', null, 'Reads as conflicting because it also holds another edit, ', linkTo(sib), '.'))
+      : h('dd', null, cmp.clause_relation ? words(cmp.clause_relation) : '', probs ? h('small', { class: 'num' }, `${cmp.clause_relation ? ' · ' : ''}${probs}`) : null));
   }
-  return block('Compare', 'Clocked Compare', chip,
+  return keyed('compare', block('Compare', 'Clocked Compare', chip,
     kv,
     comparePassages(cmp),
     cmp.aligned === false ? alignWarning() : null,
-    cmp.note ? h('p', { class: 'plain' }, cmp.note) : null);
+    cmp.note ? h('p', { class: 'plain' }, cmp.note) : null));
 }
 
 function passageCard(p, skipped) {
@@ -1051,8 +1394,8 @@ function playbookBlock(c, r) {
   const pb = c.playbook;
   const title = 'Playbook';
   if (!pb) {
-    return block(title, 'Clocked Rerank', null, h('div', { class: 'not-run' },
-      c.blocking ? 'Not run. No playbook guidance is attached to this change.' : 'Not looked up. Only changes to resolve are checked against the playbook.'));
+    return keyed('playbook', block(title, 'Clocked Rerank', null, h('div', { class: 'not-run' },
+      c.blocking ? 'Not run. No playbook guidance is attached to this change.' : 'Not looked up. Only changes to resolve are checked against the playbook.')));
   }
   const used = arr(pb.passages), skipped = arr(pb.skipped);
   const right = pb.read != null ? h('span', { class: 'right-note' }, `${plural(pb.read, 'passage')} read`) : null;
@@ -1064,7 +1407,7 @@ function playbookBlock(c, r) {
   if (skipped.length) {
     kids.push(h('details', { class: 'fold' }, h('summary', null, `${skipped.length} skipped: written for a different case`), h('div', null, skipped.map((p) => passageCard(p, true)))));
   }
-  return block(title, 'Clocked Rerank', right, kids);
+  return keyed('playbook', block(title, 'Clocked Rerank', right, kids));
 }
 
 function routeBlock(c, r) {
@@ -1088,7 +1431,7 @@ function routeBlock(c, r) {
         c.route_reason ? h('p', null, c.route_reason) : null,
         tightened ? h('p', null, `Code tightened the model's answer (${ROUTES[d.route] ?? d.route}). It can tighten a route, never loosen it.`) : null)));
   }
-  return block('Route', 'Clocked Decide', null, kids);
+  return keyed('route', block('Route', 'Clocked Decide', null, kids));
 }
 
 function claimsBlock(c, r) {
@@ -1097,7 +1440,7 @@ function claimsBlock(c, r) {
   if (!linked.length) return null;
   return block('Cover note statements about this change', 'Clocked Verify', null,
     h('div', { class: 'linked' }, linked.map(([i, x]) => h('button', { type: 'button', title: 'Open in the cover note', onclick: () => { S.claim = i; S.tab = 'note'; renderLeft(); const card = $(`.claim[data-claim="${i}"]`); if (card) scrollIntoViewIfNeeded(card, $('#left-body')); } },
-      h('span', { class: `chip ${VERDICT_TONE[x.verdict] ?? 't-grey'}` }, VERDICTS[x.verdict] ?? x.verdict), h('span', null, x.text ?? '')))));
+      h('span', { class: `chip ${VERDICT_TONE[x.verdict] ?? 't-grey'}` }, VERDICTS[x.verdict] ?? words(x.verdict)), h('span', null, x.text ?? '')))));
 }
 
 function actionsBar(c) {
@@ -1122,25 +1465,35 @@ function guardDetail(r) {
     h('h2', { class: 'detail-title' }, gi.flagged.length ? 'Text addressed to an AI reviewer' : 'Hidden text in the returned copy'),
     h('p', { class: 'detail-summary' }, 'Signing is blocked while this is in the documents. Nothing in it was followed.'));
   const blocks = [];
-  for (const g of arr(r.guard)) {
-    if (!g.ran) { blocks.push(block(g.target ?? 'Text', 'Clocked Guard', null, h('div', { class: 'not-run' }, 'Guard did not run on this text.'))); continue; }
+  // Where it sits on the page: the passage is too small to read there, so the crop shows only its place.
+  const evid = gi.flagged.filter((g) => g.target === 'Returned copy').flatMap((g) => arr(g.evidence)).filter((e) => e.page && arr(e.rects).length);
+  if (evid.length) {
+    const page = evid[0].page;
+    const fig = cropNode('v2', page, evid.filter((e) => e.page === page).flatMap((e) => e.rects), 'guard', 'They returned');
+    if (fig) blocks.push(keyed('page', block('On the page', null, h('span', { class: 'right-note' }, 'Click to find it in the documents'), h('div', { class: 'crops' }, fig),
+      h('p', { class: 'plain', style: 'font-size:12.5px' }, 'The outlined strip is the hidden passage. It is too small to read on the page; its text is quoted below.'))));
+  }
+  const guardBlock = (g) => {
+    if (!g.ran) return block(g.target ?? 'Text', 'Clocked Guard', null, h('div', { class: 'not-run' }, 'Guard did not run on this text.'));
     const kv = h('dl', { class: 'kv' });
     kv.append(h('dt', null, 'Injection'), h('dd', { class: 'num' }, pct(g.injection) ?? 'Unknown'));
-    if (g.category) kv.append(h('dt', null, 'Category'), h('dd', null, g.category));
-    if (g.severity) kv.append(h('dt', null, 'Severity'), h('dd', null, g.severity));
-    blocks.push(block(g.target ?? 'Text', 'Clocked Guard', h('span', { class: `chip ${g.flagged ? 't-red' : 't-green'}` }, g.flagged ? 'Flagged' : 'Clean'), kv,
+    if (g.category) kv.append(h('dt', null, 'Category'), h('dd', null, words(g.category)));
+    if (g.severity) kv.append(h('dt', null, 'Severity'), h('dd', null, words(g.severity)));
+    return block(g.target ?? 'Text', 'Clocked Guard', h('span', { class: `chip ${g.flagged ? 't-red' : 't-green'}` }, g.flagged ? 'Flagged' : 'Clean'), kv,
       arr(g.evidence).map((e) => h('div', { class: 'pair' }, h('div', { class: 'pair-side', dataset: { side: 'v2' } },
         h('div', { class: 'pair-label' }, 'Evidence', e.page ? h('button', { type: 'button', onclick: () => (arr(e.rects).length ? showSpot({ v2: { page: e.page, rects: e.rects } }) : null) }, `Page ${e.page}`) : null, pct(e.confidence) ? h('small', null, pct(e.confidence)) : null),
-        h('div', { class: 'quote' }, e.quote ?? ''))))));
-  }
+        h('div', { class: 'quote' }, e.quote ?? '')))));
+  };
+  for (const g of arr(r.guard).filter((x) => x.flagged)) blocks.push(guardBlock(g));
   if (gi.hidden.length) {
     blocks.push(block('Hidden text', 'Rule layer', h('span', { class: 'chip t-red' }, plural(gi.hidden.length, 'passage')),
       gi.hidden.map((x) => h('div', { class: 'pair' }, h('div', { class: 'pair-side', dataset: { side: 'v2' } },
         h('div', { class: 'pair-label' }, x.page ? `Page ${x.page}` : 'Returned copy', h('small', null, hiddenReason(x.reason))),
         h('div', { class: 'quote' }, x.text ?? ''))))));
   }
-  return [h('div', { class: 'detail-scroll' }, head, blocks),
-    h('div', { class: 'detail-actions' }, h('div', { class: 'actions-plain' }, h('b', null, 'Cannot be resolved here'), h('span', null, 'A reviewer decision does not clear this finding. It needs a corrected copy.'))) ];
+  for (const g of arr(r.guard).filter((x) => !x.flagged)) blocks.push(guardBlock(g));
+  return [h('div', { class: 'detail-scroll', tabindex: '0', role: 'region', 'aria-label': 'Detail of the finding' }, head, blocks),
+    h('div', { class: 'detail-actions' }, h('div', { class: 'actions-plain' }, h('b', null, 'Cannot be resolved here'), h('span', null, 'A reviewer decision does not clear this finding. It needs a corrected copy.')))];
 }
 
 // ------------------------------------------------------------------- drawer
@@ -1151,12 +1504,12 @@ function endpointResult(name, r) {
     if (!c) return null;
     const bits = [];
     const read = blocking.filter((x) => x.compare?.relation && x.compare.relation !== 'not_run');
-    if (read.length) bits.push(`${read.filter((x) => x.compare.relation === 'conflict').length} of ${plural(read.length, 'change')} to resolve confirmed as a conflict`);
+    if (read.length) bits.push(`Change by change: ${read.filter((x) => x.compare.relation === 'conflict').length} of ${plural(read.length, 'change')} to resolve read as a conflict`);
     const promoted = ch.filter((x) => x.found_by === 'compare' && !x.found_by_label).length;   // older reviews only: there Compare did the promoting
     if (promoted) bits.push(`${plural(promoted, 'change')} the rules missed`);
     const marked = r.compare?.marked ?? c.marked;
     const m1 = marked?.v1?.marked, m2 = marked?.v2?.marked;
-    if (m1 != null || m2 != null) bits.push(`${m1 ?? 0} + ${m2 ?? 0} spans marked`);
+    if (m1 != null || m2 != null) bits.push(`${m1 ?? 0} + ${m2 ?? 0} passages marked on the two PDFs`);
     if (c.unaligned) bits.push(`${plural(c.unaligned, 'quote')} not aligned`);
     const unplaced = arr(r.compare?.unplaced ?? c.unplaced).length;
     if (unplaced) bits.push(`${unplaced} not matched to a clause`);
@@ -1169,7 +1522,7 @@ function endpointResult(name, r) {
     if (n?.ran) {
       const by = {};
       for (const c of arr(n.claims)) by[c.verdict] = (by[c.verdict] ?? 0) + 1;
-      const bits = ['contradicted', 'supported', 'not_stated', 'not_checked'].filter((v) => by[v]).map((v) => `${by[v]} ${VERDICTS[v].toLowerCase()}`);
+      const bits = VERDICT_ORDER.filter((v) => by[v]).map((v) => `${by[v]} ${VERDICTS[v].toLowerCase()}`);
       out.push(`${plural(arr(n.claims).length, 'statement')}${bits.length ? `: ${bits.join(', ')}` : ''}`);
     }
     if (across) out.push(`${plural(across, 'change')} read across versions`);
@@ -1189,11 +1542,11 @@ function endpointResult(name, r) {
     return bits.join(' · ');
   }
   if (name === 'Decide') {
-    const routed = blocking.filter((c) => c.decide?.route);
-    if (!routed.length) return null;
+    const asked = blocking.filter((c) => c.decide);
+    if (!asked.length) return null;
     const by = {};
-    for (const c of routed) by[c.decide.route] = (by[c.decide.route] ?? 0) + 1;
-    return Object.keys(by).map((k) => `${by[k]} ${(ROUTES[k] ?? k).toLowerCase()}`).join(' · ');
+    for (const c of asked) { const k = c.decide.route ?? ''; by[k] = (by[k] ?? 0) + 1; }
+    return Object.keys(by).map((k) => `${by[k]} ${k ? (ROUTES[k] ?? words(k)).toLowerCase() : 'no clear answer'}`).join(' · ');
   }
   if (name === 'Extract') {
     const t = arr(r.terms);
@@ -1210,23 +1563,29 @@ function endpointResult(name, r) {
 }
 
 const fmtMs = (ms) => (typeof ms !== 'number' ? '' : ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${Math.round(ms)} ms`);
+// The whole-document pass counts passages, not changes: say so, or it reads as a different number of changes.
 function compareSummary(r) {
   const c = cmpDoc(r);
   if (!c || typeof c !== 'object') return null;
   const bits = [];
-  if (c.relation) bits.push(words(c.relation));
-  if (pct1(c.related)) bits.push(`related ${pct1(c.related)}`);
-  if (c.conflicts != null) bits.push(plural(c.conflicts, 'conflict'));
-  if (c.same_passages != null) bits.push(plural(c.same_passages, 'same passage'));
-  if (c.unpaired != null) bits.push(`${c.unpaired} unpaired`);
-  if (arr(c.kinds).length) bits.push(`kinds: ${arr(c.kinds).map(words).join(', ')}`);
-  return bits.length ? h('p', { class: 'drawer-note' }, h('b', null, 'Compare on the two PDFs'), bits.join(' · ')) : null;
+  if (c.conflicts != null || c.same_passages != null) bits.push(`${plural(c.conflicts ?? 0, 'passage')} read as conflicting, ${c.same_passages ?? 0} as the same`);
+  if (c.unpaired) bits.push(`${c.unpaired} with no counterpart`);
+  if (pct(c.related)) bits.push(`the two files read as versions of one agreement (${pct(c.related)})`);
+  if (arr(c.kinds).length) bits.push(`kinds of difference: ${arr(c.kinds).map(words).join(', ')}`);
+  return bits.length ? h('p', { class: 'drawer-note' }, h('b', null, 'Compare, whole-document pass'), bits.join(' · ')) : null;
 }
 function fmtTime(iso) {
   const d = new Date(iso);
   if (!iso || Number.isNaN(d.getTime())) return iso ?? '';
   return `${d.toISOString().slice(0, 10)} ${d.toISOString().slice(11, 19)} UTC`;
 }
+function openDrawer(tab) {
+  S.drawerOpen = true;
+  if (tab) S.drawerTab = tab;
+  renderDrawer();
+  if (narrow()) reveal($('#drawer'));
+}
+function closeDrawer() { S.drawerOpen = false; renderDrawer(); }
 
 function renderDrawer() {
   const r = S.review;
@@ -1241,12 +1600,13 @@ function renderDrawer() {
 
   const tab = (key, label) => h('button', { type: 'button', class: 'tab', role: 'tab', 'aria-selected': String(S.drawerTab === key), onclick: () => { S.drawerTab = key; renderDrawer(); } }, label);
   const bar = h('div', { class: 'drawer-bar' },
-    h('button', { type: 'button', class: 'drawer-toggle', 'aria-expanded': String(S.drawerOpen), onclick: () => { S.drawerOpen = !S.drawerOpen; renderDrawer(); } }, ico('chevron'), 'What each endpoint changed'),
+    h('button', { type: 'button', class: 'drawer-toggle', 'aria-expanded': String(S.drawerOpen), onclick: () => (S.drawerOpen ? closeDrawer() : openDrawer()) }, ico('chevron'), 'What each endpoint changed'),
     h('div', { class: 'drawer-tabs', role: 'tablist' }, tab('endpoints', 'Endpoints'), tab('audit', h('span', null, 'Audit ', h('span', { class: 'count' }, reqs.length || '')))),
     h('div', { class: 'drawer-sum' },
       calls ? h('span', null, h('b', null, calls), ` Clocked ${calls === 1 ? 'call' : 'calls'}`) : h('span', null, 'Clocked was not called'),
       calls ? h('span', null, h('b', null, credits), ` ${credits === 1 ? 'credit' : 'credits'}`) : null,
-      reqs.length ? h('span', null, replayed === reqs.length ? 'all replayed from recordings' : replayed === 0 ? 'all live' : `${replayed} replayed, ${reqs.length - replayed} live`) : null));
+      reqs.length ? h('span', null, replayed === reqs.length ? 'all replayed from recordings' : replayed === 0 ? 'all live' : `${replayed} replayed, ${reqs.length - replayed} live`) : null),
+    S.drawerOpen ? h('button', { type: 'button', class: 'icon-btn drawer-close', 'aria-label': 'Close', title: 'Close (Esc)', onclick: closeDrawer }, ico('x')) : null);
 
   let body;
   if (S.drawerTab === 'audit') {
@@ -1272,156 +1632,208 @@ function renderDrawer() {
     const orphans = arr(r.ablation).filter((a) => !eps.some((e) => e.name === a.endpoint));
     const ablLinks = (a) => {
       const links = [];
-      for (const id of arr(a?.changes)) { const c = changeById(id); if (c) links.push(h('button', { type: 'button', onclick: () => select(id) }, `${clauseOf(c)} ${c.title ?? ''}`.trim())); }
-      for (const i of arr(a?.claims)) { const c = arr(r.note?.claims)[i]; if (c) links.push(h('button', { type: 'button', title: c.text, onclick: () => pickClaim(i) }, `Statement ${i + 1}`)); }
+      // Two changes can share a clause and a title: the number is what tells them apart.
+      for (const id of arr(a?.changes)) { const c = changeById(id); if (c) links.push(h('button', { type: 'button', onclick: () => { closeDrawer(); S.tab = 'changes'; select(id); } }, `Change ${numOf(c)} · ${clauseOf(c)} ${c.title ?? ''}`.trim())); }
+      for (const i of arr(a?.claims)) { const c = arr(r.note?.claims)[i]; if (c) links.push(h('button', { type: 'button', title: c.text, onclick: () => { closeDrawer(); openNote(i); } }, `Statement ${i + 1}`)); }
       return links.length ? h('div', { class: 'ep-links' }, links) : null;
     };
     const table = !eps.length && !orphans.length
       ? h('div', { class: 'empty' }, h('b', null, 'No endpoint summary'), 'This review has no endpoint summary.')
-      : h('table', { class: 'grid' },
+      : h('table', { class: 'grid grid--eps' },
         h('thead', null, h('tr', null, h('th', { style: 'width:150px' }, 'Endpoint'), h('th', { class: 'r' }, 'Calls'), h('th', { class: 'r' }, 'Credits'), h('th', { class: 'r' }, 'Model time'), h('th', { style: 'width:38%' }, 'In this review'), h('th', null, 'Without it'))),
         h('tbody', null, eps.map((e) => {
           const res = endpointResult(e.name, r);
           const a = abl.get(e.name);
           return h('tr', { class: e.calls ? '' : 'is-off' },
             h('td', null, h('span', { class: 'ep-name' }, e.name ?? ''), e.path ? h('span', { class: 'ep-path' }, e.path) : null),
-            h('td', { class: 'r' }, e.calls ?? 0), h('td', { class: 'r' }, e.credits ?? 0), h('td', { class: 'r' }, e.calls ? fmtMs(e.model_ms) : ''),
-            h('td', null, h('span', { class: 'ep-result' }, res ?? (e.calls ? 'Called, no result recorded' : 'Not run')), e.effect ? h('span', { class: 'ep-effect' }, e.effect) : null),
-            h('td', null, a ? h('div', { class: 'ep-without' }, a.text ?? '', ablLinks(a)) : h('span', { class: 'muted' }, 'Supporting step')));
-        }), orphans.map((a) => h('tr', null, h('td', null, h('span', { class: 'ep-name' }, a.endpoint ?? '')), h('td'), h('td'), h('td'), h('td'), h('td', null, h('div', { class: 'ep-without' }, a.text ?? '', ablLinks(a)))))),
-        h('tfoot', null, h('tr', null, h('td', null, 'Total'), h('td', { class: 'r' }, calls), h('td', { class: 'r' }, credits), h('td', { class: 'r' }, fmtMs(eps.reduce((s, e) => s + (Number(e.model_ms) || 0), 0))), h('td', { colspan: 2 }))));
+            h('td', { class: 'r', 'data-label': 'Calls' }, e.calls ?? 0), h('td', { class: 'r', 'data-label': 'Credits' }, e.credits ?? 0), h('td', { class: 'r', 'data-label': 'Model time' }, e.calls ? fmtMs(e.model_ms) : ''),
+            h('td', { class: 'wide', 'data-label': 'In this review' }, h('span', { class: 'ep-result' }, res ?? (e.calls ? 'Called, no result recorded' : 'Not run')), e.effect ? h('span', { class: 'ep-effect' }, tidy(e.effect)) : null),
+            h('td', { class: 'wide', 'data-label': 'Without it' }, a ? h('div', { class: 'ep-without' }, tidy(a.text), ablLinks(a)) : h('span', { class: 'muted' }, 'Supporting step')));
+        }), orphans.map((a) => h('tr', null, h('td', null, h('span', { class: 'ep-name' }, a.endpoint ?? '')), h('td', { class: 'r' }), h('td', { class: 'r' }), h('td', { class: 'r' }), h('td', { class: 'r' }), h('td', { class: 'wide', 'data-label': 'Without it' }, h('div', { class: 'ep-without' }, tidy(a.text), ablLinks(a)))))),
+        h('tfoot', null, h('tr', null, h('td', null, 'Total'), h('td', { class: 'r', 'data-label': 'Calls' }, calls), h('td', { class: 'r', 'data-label': 'Credits' }, credits), h('td', { class: 'r', 'data-label': 'Model time' }, fmtMs(eps.reduce((s, e) => s + (Number(e.model_ms) || 0), 0))), h('td', { class: 'r', colspan: 2 }))));
     body = [compareSummary(r), table];
   }
-  root.replaceChildren(bar, h('div', { class: 'drawer-body' }, body));
+  // The open drawer is a panel over the workspace, not a strip that squeezes it.
+  root.replaceChildren(h('div', { class: 'drawer-panel' }, bar, h('div', { class: 'drawer-body', tabindex: S.drawerOpen ? '0' : null }, body)));
 }
 
 // ---------------------------------------------------------------- selection
-function select(id, { keepClaim = false, from = null, scroll = true } = {}) {
+function reveal(el) { el?.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'start' }); }
+function select(id, { keepClaim = false, from = null, scroll = true, jump = true } = {}) {
   S.sel = id;
   if (!keepClaim) S.claim = null;
   const c = changeById(id);
   if (c) S.open[groupOf(c).key] = true;
   clearSpot();
-  writeHash();
   renderLeft();
   renderDetail();
   markSelection({ scroll, from });
+  if (jump && narrow()) reveal($('#detail'));     // one column: the detail and its page crops sit below the list
 }
 function move(step) {
   const ch = changesOf();
   if (!ch.length) return;
   const i = ch.findIndex((c) => c.id === S.sel);
   const next = i < 0 ? (step > 0 ? 0 : ch.length - 1) : Math.min(ch.length - 1, Math.max(0, i + step));
-  if (ch[next].id !== S.sel) { if (S.tab !== 'changes') S.tab = 'changes'; select(ch[next].id); }
+  if (ch[next].id !== S.sel) select(ch[next].id, { jump: false });
 }
 function decide(cid, action) {
   const c = changeById(cid);
   if (!c?.blocking) return;
   const d = decisions();
   if (d[cid] === action) delete d[cid]; else d[cid] = action;
+  S.outcomes.delete(S.base);      // a decision changed: whatever was signed off or sent no longer stands
   renderVerdict();
   renderLeft();
   renderDetail({ keepScroll: true });
 }
 
-// ------------------------------------------------------------ reply summary
-let replyText = '';
-function openReply(mode) {
+// ------------------------------------------------------------------ summary
+// Sign-off and send both end here: one part that can go to the customer, one that stays inside.
+function openSummary() {
   const r = S.review;
   if (!r) return;
-  const g = gate(r);
-  if (mode === 'signoff' && !g.ok) return;
-  const d = decisions();
-  const blocking = g.blocking;
-  const decided = blocking.filter((c) => d[c.id]);
-  const undecided = blocking.filter((c) => !d[c.id]);
-  const ready = mode === 'signoff' && (g.st === 'ready' || decided.every((c) => d[c.id] === 'accept'));
-  const title = r.case?.title ?? 'Review';
-  const body = $('#reply-body');
-  const lines = [];
-  const nodes = [];
-  const label = (c) => `${c.clause ? `Clause ${c.clause}, ` : ''}${c.title ?? 'change'}`;
-
-  $('#reply-title').textContent = ready ? 'Sign-off' : 'Reply summary';
-  if (ready) {
-    nodes.push(h('div', { class: 'reply-banner t-green' }, ico('check'), 'Marked ready to sign'));
-    lines.push(`${title}: marked ready to sign`);
-  } else if (mode === 'signoff') {
-    const tally = ['counter', 'escalate', 'accept'].map((k) => [k, decided.filter((c) => d[c.id] === k).length]).filter(([, n]) => n)
-      .map(([k, n]) => (k === 'accept' ? `${n} accepted` : `${n} to ${k}`)).join(', ');
-    nodes.push(h('div', { class: 'reply-banner t-amber' }, ico('open'), `Review signed off: ${tally}`));
-    lines.push(`${title}: reply to the counterparty before signing`);
-  } else {
-    nodes.push(h('div', { class: 'reply-banner t-red' }, ico('stop'), `${HEADLINES[g.st]}: decisions recorded so far`));
-    lines.push(`${title}: ${HEADLINES[g.st].toLowerCase()}`);
-    const blockers = arr(r.reasons).filter((x) => x.level === 'block' || x.level === 'incomplete');
-    if (blockers.length) {
-      nodes.push(h('div', null, h('p', { class: 'reply-sub', style: 'margin-bottom:4px' }, 'Why this copy cannot be signed'), h('ul', { class: 'reply-plain' }, blockers.map((x) => h('li', null, `${x.source}: ${x.text}`)))));
-      lines.push('', 'Why this copy cannot be signed:', ...blockers.map((x) => `- ${x.source}: ${x.text}`));
-    }
-    const bad = arr(r.note?.claims).filter((x) => x.verdict === 'contradicted');
-    if (bad.length) {
-      nodes.push(h('div', null, h('p', { class: 'reply-sub', style: 'margin-bottom:4px' }, 'Statements in the cover note that the documents contradict'), h('ul', { class: 'reply-plain' }, bad.map((x) => h('li', null, x.text)))));
-      lines.push('', 'Statements in the cover note that the documents contradict:', ...bad.map((x) => `- "${x.text}"`));
-    }
+  if (!outcomeOf()) {
+    const g = gate(r);
+    if (!g.ok) return;
+    S.outcomes.set(S.base, { kind: g.kind, at: new Date() });
+    renderVerdict();
   }
+  renderSummary();
+  const dlg = $('#reply-dialog');
+  if (!dlg.open) dlg.showModal();
+}
+function undoOutcome() {
+  S.outcomes.delete(S.base);
+  renderVerdict();
+  const dlg = $('#reply-dialog');
+  if (dlg.open) dlg.close();
+}
+function readingsLine(c) {
+  const bits = [];
+  const v = c.verify, cmp = c.compare, d = c.decide;
+  if (v?.relation && VERIFY_READS[v.relation]) {
+    const p = v.relation === 'changed' ? v.returned_against_sent?.contradicted : v.relation === 'same' ? v.returned_against_sent?.supported : null;
+    bits.push(`Verify: ${VERIFY_READS[v.relation][0].toLowerCase()}${pct(p) ? ` (${pct(p)})` : ''}`);
+  }
+  if (cmp?.relation && cmp.relation !== 'not_run') bits.push(`Compare: ${(RELATION_TEXT[cmp.relation] ?? words(cmp.relation)).toLowerCase()}${pct(cmp.confidence) ? ` (${pct(cmp.confidence)})` : ''}`);
+  if (d) bits.push(`Decide: ${d.route ? (ROUTES[d.route] ?? words(d.route)).toLowerCase() : 'no clear answer'}${d.route && pct(d.route_confidence) ? ` (${pct(d.route_confidence)})` : ''}`);
+  return bits.join('; ');
+}
+function renderSummary() {
+  const r = S.review;
+  const g = gate(r), out = outcomeOf(), d = decisions();
+  const title = r.case?.title ?? 'Review';
+  const label = (c) => `${c.clause ? `Clause ${c.clause}, ` : ''}${c.title ?? 'change'}`;
+  const blocking = g.blocking;
+  const by = (a) => blocking.filter((c) => d[c.id] === a);
+  const accepted = by('accept'), countered = by('counter'), escalated = by('escalate');
+  const undecided = blocking.filter((c) => !d[c.id]);
+  const pending = [...escalated, ...undecided];
+  const rest = changesOf(r).filter((c) => !c.blocking);
+  const sent = (c) => String(c.compare?.v1?.quote ?? arr(c.parts)[0]?.v1?.quote ?? '').replace(/\s+/g, ' ').trim();
+  const when = out ? fmtClock(out.at) : '';
 
-  if (decided.length) {
-    lines.push('', ready ? 'Accepted changes:' : 'Decisions:');
+  // ---- header
+  const kind = out?.kind ?? g.kind;
+  $('#reply-title').textContent = kind === 'sent' ? 'Sent to approvers' : 'Review signed off';
+  const tally = [[accepted.length, 'accepted'], [countered.length, 'to counter'], [escalated.length, 'to another approver'], [undecided.length, 'undecided']].filter(([n]) => n).map(([n, t]) => `${n} ${t}`).join(', ');
+  const banner = kind === 'sent'
+    ? h('div', { class: `reply-banner ${g.st === 'changes' ? 't-amber' : 't-red'}` }, ico(g.st === 'changes' ? 'open' : 'stop'), h('span', null, `${HEADLINES[g.st]}. Sent to approvers${when ? ` at ${when}` : ''}`, tally ? h('small', null, tally) : null))
+    : h('div', { class: `reply-banner ${countered.length ? 't-amber' : 't-green'}` }, ico(countered.length ? 'open' : 'check'),
+      h('span', null, `Review signed off${when ? ` at ${when}` : ''}`, h('small', null, countered.length ? `${tally}. The reply below goes to the customer before anyone signs.` : 'The agreement can be signed.')));
+
+  // ---- for the customer: what we accept and what we do not, in words that can leave the building
+  const cl = [], cn = [];
+  const opening = g.st === 'ready'
+    ? 'We compared the returned copy with the version we sent and found no change of substance. It is ready for signature.'
+    : g.st === 'changes' && !countered.length && !pending.length
+      ? 'We compared the returned copy with the version we sent. We accept the changes listed below, and the agreement can be signed.'
+      : 'We compared the returned copy with the version we sent. We cannot sign it as returned.';
+  cl.push(opening); cn.push(h('p', { class: 'plain' }, opening));
+  const group = (head, items, line) => {
+    if (!items.length) return;
+    cl.push('', head, ...items.map((c) => `- ${line(c)}`));
+    cn.push(h('div', null, h('p', { class: 'reply-sub' }, head), h('ul', { class: 'reply-plain' }, items.map((c) => h('li', null, line(c))))));
+  };
+  group('Accepted as returned:', accepted, (c) => `${label(c)}: ${c.summary ?? ''}.`);
+  group('Not accepted:', countered, (c) => `${label(c)}: we do not accept the change (${c.summary ?? 'see the clause'}).${sent(c) ? ` Our position is the wording we sent: “${sent(c)}”` : ' Our position is the wording of the version we sent.'}`);
+  group('Still under review on our side:', pending, (c) => `${label(c)}: ${c.summary ?? ''}.`);
+
+  // ---- internal notes: playbook, approvers, Clocked readings
+  const il = [], inn = [];
+  il.push(`${title}: ${HEADLINES[g.st].toLowerCase()}${out ? `. ${out.kind === 'sent' ? 'Sent to approvers' : 'Signed off'} at ${when}` : ''}`);
+  const blockers = arr(r.reasons).filter((x) => x.level === 'block' || x.level === 'incomplete');
+  if (blockers.length) {
+    il.push('', 'Why this copy cannot be signed:', ...blockers.map((x) => `- ${x.source}: ${reasonText(x, r)}`));
+    inn.push(h('div', null, h('p', { class: 'reply-sub' }, 'Why this copy cannot be signed'), h('ul', { class: 'reply-plain' }, blockers.map((x) => h('li', null, `${x.source}: ${reasonText(x, r)}`)))));
+  }
+  const bad = arr(r.note?.claims).filter((x) => x.verdict === 'contradicted');
+  if (bad.length) {
+    il.push('', 'Statements in the cover note that the documents contradict:', ...bad.map((x) => `- "${x.text}"`));
+    inn.push(h('div', null, h('p', { class: 'reply-sub' }, 'Statements in the cover note that the documents contradict'), h('ul', { class: 'reply-plain' }, bad.map((x) => h('li', null, x.text)))));
+  }
+  const hidden = arr(r.hidden_text);
+  if (hidden.length) {
+    il.push('', 'Hidden text in the returned copy:', ...hidden.map((x) => `- Page ${x.page ?? '?'} (${hiddenReason(x.reason)}): "${x.text}"`));
+    inn.push(h('div', null, h('p', { class: 'reply-sub' }, 'Hidden text in the returned copy'), h('ul', { class: 'reply-plain' }, hidden.map((x) => h('li', null, `Page ${x.page ?? '?'} (${hiddenReason(x.reason)}): “${x.text}”`)))));
+  }
+  if (blocking.length) {
+    il.push('', 'Changes to resolve:');
     const list = h('div', { class: 'reply-list' });
-    decided.forEach((c, i) => {
+    blocking.forEach((c, i) => {
       const a = d[c.id];
-      const passages = a === 'counter' ? arr(c.playbook?.passages) : [];
+      const sug = ROUTES[c.route] ? `${ROUTES[c.route]} suggested${c.route_reason ? `. ${c.route_reason}` : ''}` : '';
+      const reads = readingsLine(c);
+      const passages = arr(c.playbook?.passages);
       const item = h('div', { class: 'reply-item' },
-        h('div', { class: 'reply-item-head' }, h('b', null, label(c)), h('span', { class: `chip ${ROUTE_TONE[a]}` }, ROUTES[a])),
-        c.summary ? h('p', { class: 'reply-item-sum' }, c.summary) : null);
-      lines.push(`${i + 1}. ${label(c)}: ${c.summary ?? ''}`, `   Decision: ${ROUTES[a]}`);
-      if (a === 'counter') {
-        if (passages.length) for (const p of passages) {
-          item.append(h('blockquote', null, h('b', null, `Playbook · ${p.title ?? p.id ?? ''}`), p.text ?? ''));
-          lines.push(`   Playbook, ${p.title ?? p.id ?? 'passage'}: ${p.text ?? ''}`);
-        } else {
-          item.append(h('p', { class: 'reply-sub' }, 'No playbook passage is attached to this change.'));
-          lines.push('   No playbook passage is attached to this change.');
-        }
-      } else if (a === 'escalate' && c.route === 'escalate' && c.route_reason) {
-        item.append(h('p', { class: 'reply-sub' }, c.route_reason));
-        lines.push(`   ${c.route_reason}`);
-      }
+        h('div', { class: 'reply-item-head' }, h('b', null, label(c)), h('span', { class: `chip ${a ? ROUTE_TONE[a] : 't-grey'}` }, a ? ROUTE_DONE[a] : 'Undecided')),
+        c.summary ? h('p', { class: 'reply-item-sum' }, c.summary) : null,
+        sug ? h('p', { class: 'reply-sub' }, sug) : null,
+        reads ? h('p', { class: 'reply-sub' }, `Clocked readings. ${reads}.`) : null,
+        passages.map((p) => h('blockquote', null, h('b', null, `Playbook · ${p.title ?? p.id ?? ''}`), p.text ?? '')),
+        c.playbook && !passages.length ? h('p', { class: 'reply-sub' }, 'The playbook has no passage for this change.') : null);
+      il.push(`${i + 1}. ${label(c)}: ${c.summary ?? ''}`, `   Decision: ${a ? ROUTES[a] : 'undecided'}${sug ? ` (${sug})` : ''}`);
+      if (reads) il.push(`   Clocked readings. ${reads}.`);
+      for (const p of passages) il.push(`   Playbook, ${p.title ?? p.id ?? 'passage'}: ${p.text ?? ''}`);
+      if (c.playbook && !passages.length) il.push('   The playbook has no passage for this change.');
       list.append(item);
     });
-    nodes.push(list);
+    inn.push(list);
   }
-  if (undecided.length) {
-    nodes.push(h('p', { class: 'reply-sub' }, `Still undecided: ${undecided.map(label).join('; ')}.`));
-    lines.push('', `Still undecided: ${undecided.map(label).join('; ')}.`);
+  if (rest.length) {
+    const head = `${plural(rest.length, 'other difference')} needed no decision:`;
+    const line = (c) => `${label(c)}: ${c.summary ?? ''} (${(CLASSES[c.cls] ?? words(c.cls ?? '')).toLowerCase()})`;
+    il.push('', head, ...rest.map((c) => `- ${line(c)}`));
+    inn.push(h('div', null, h('p', { class: 'reply-sub' }, head), h('ul', { class: 'reply-plain' }, rest.map((c) => h('li', null, line(c))))));
+  } else if (!blocking.length) {
+    il.push('', 'The two versions do not differ.');
+    inn.push(h('p', { class: 'plain' }, 'The two versions do not differ.'));
   }
-  if (ready && !blocking.length) {
-    const rest = changesOf(r);
-    const text = rest.length ? `No substantive change was found. ${plural(rest.length, 'difference')} needed no decision:` : 'The two versions do not differ.';
-    nodes.push(h('p', { class: 'plain' }, text));
-    lines.push('', text);
-    if (rest.length) {
-      nodes.push(h('ul', { class: 'reply-plain' }, rest.map((c) => h('li', null, `${label(c)}: ${c.summary ?? ''} (${(CLASSES[c.cls] ?? c.cls ?? '').toLowerCase()})`))));
-      lines.push(...rest.map((c) => `- ${label(c)}: ${c.summary ?? ''} (${(CLASSES[c.cls] ?? c.cls ?? '').toLowerCase()})`));
-    }
-  }
-  replyText = lines.join('\n');
-  body.replaceChildren(...nodes);
+
+  const part = (cls, head, sub, nodes, lines) => {
+    const btn = h('button', { type: 'button', class: 'btn btn--sm' }, ico('copy'), 'Copy');
+    btn.addEventListener('click', () => copyText(lines.join('\n'), btn, head));
+    return h('section', { class: `sum-part ${cls}` }, h('header', { class: 'sum-head' }, h('div', null, h('h3', null, head), h('p', null, sub)), btn), h('div', { class: 'sum-body' }, nodes));
+  };
+  $('#reply-body').replaceChildren(banner,
+    part('is-customer', 'For the customer', 'What we accept and what we do not. Safe to send.', cn, cl),
+    part('is-internal', 'Internal notes', 'Playbook, approvers and Clocked readings. Not for the customer.', inn, il));
   $('#reply-copied').hidden = true;
-  $('#reply-dialog').showModal();
+  $('#reply-undo').hidden = !out;
 }
-async function copyReply() {
+async function copyText(text, btn, what) {
   let ok = false;
-  try { await navigator.clipboard.writeText(replyText); ok = true; } catch {
-    const ta = h('textarea', { style: 'position:fixed;opacity:0' }); ta.value = replyText;
+  try { await navigator.clipboard.writeText(text); ok = true; } catch {
+    const ta = h('textarea', { style: 'position:fixed;opacity:0' }); ta.value = text;
     $('#reply-dialog').append(ta); ta.select();
     try { ok = document.execCommand('copy'); } catch { ok = false; }
     ta.remove();
   }
   const note = $('#reply-copied');
-  note.textContent = ok ? 'Copied to the clipboard' : 'Copy failed. Select the text and copy it by hand.';
+  note.textContent = ok ? `“${what}” copied to the clipboard` : 'Copy failed. Select the text and copy it by hand.';
   note.hidden = false;
+  if (ok && btn) { btn.classList.add('is-done'); setTimeout(() => btn.classList.remove('is-done'), 1600); }
 }
 
 // ------------------------------------------------------------------- upload
@@ -1473,7 +1885,7 @@ function showMessage(title, text) {
   $('#verdict').replaceChildren(h('div', { class: 'verdict-main' }, h('span', { class: 'verdict-glyph' }, ico('dots')), h('h1', { class: 'verdict-headline' }, title), h('p', { class: 'verdict-case' }, text)));
   $('#errors').hidden = true;
   $('#left-body').replaceChildren();
-  $('#docs').replaceChildren(h('div', { class: 'splash' }, h('b', null, title), 'Choose a review from the menu at the top right.'));
+  $('#docs').replaceChildren(h('div', { class: 'splash' }, h('b', null, title), 'Choose a review from the menu at the top.'));
   $('#detail').replaceChildren();
   $('#legend').replaceChildren();
   $('#layer-switch').hidden = true;
@@ -1482,7 +1894,8 @@ function showMessage(title, text) {
   renderTop();
 }
 
-async function openReview({ id = null, base, run = false, change = null, view = null, preloaded = null }) {
+const TABS = ['changes', 'note', 'terms'];
+async function openReview({ id = null, base, run = false, change = null, view = null, tab = null, moment = null, preloaded = null }) {
   const token = ++S.loadToken;
   let r = preloaded;
   if (!r) {
@@ -1495,11 +1908,33 @@ async function openReview({ id = null, base, run = false, change = null, view = 
   }
   if (token !== S.loadToken) return;
   S.review = r; S.base = base; S.caseId = id ?? r.case?.id ?? null; S.run = run;
-  S.claim = null; S.tab = 'changes'; S.open = {}; S.layer = 'changes';
+  S.claim = null; S.tab = TABS.includes(tab) ? tab : 'changes'; S.open = {}; S.layer = 'changes';
+  sync.offset = 0;
   const ch = changesOf(r);
+  // A finding that blocks on its own (text addressed to an AI, hidden text) is what to look at first.
   if (view === 'guard' && guardInfo(r)) S.sel = 'guard';
   else if (change && ch.some((c) => c.id === change)) S.sel = change;
-  else S.sel = (ch.find((c) => c.blocking) ?? ch[0])?.id ?? (guardInfo(r) ? 'guard' : null);
+  else S.sel = guardInfo(r) ? 'guard' : (ch.find((c) => c.blocking) ?? ch[0])?.id ?? null;
+
+  // The three "start here" moments land on the evidence, not just on the case.
+  let focus = null;
+  if (moment === 'note') {
+    const i = firstContradicted(r, true);
+    S.tab = 'note';
+    if (i >= 0) {
+      S.claim = i;
+      const cid = arr(r.note.claims[i].change_ids).find((x) => ch.some((c) => c.id === x));
+      if (cid) S.sel = cid;
+    }
+    focus = 'note';
+  } else if (moment === 'word') {
+    const c = ch.find((x) => /minimum/i.test(String(x.summary ?? ''))) ?? ch.find((x) => x.promoted === true) ?? ch.find((x) => x.blocking);
+    if (c) S.sel = c.id;
+    focus = 'readings';
+  } else if (moment === 'guard') {
+    if (guardInfo(r)) S.sel = 'guard';
+    focus = 'detail';
+  }
   const cur = changeById(S.sel);
   if (cur) S.open[groupOf(cur).key] = true;
 
@@ -1510,25 +1945,33 @@ async function openReview({ id = null, base, run = false, change = null, view = 
   renderLeft();
   renderDocs();
   renderLayerSwitch();
+  applyAutoZoom();
   renderZoom();
   renderLegend();
   renderDetail();
   renderDrawer();
-  writeHash();
-  requestAnimationFrame(() => markSelection({ scroll: true, instant: true }));
+  requestAnimationFrame(() => {
+    markSelection({ scroll: true, instant: true });
+    if (focus === 'readings') focusBlock('verify', !narrow());
+    if (focus === 'note' && S.claim != null) { const card = $(`.claim[data-claim="${S.claim}"]`); if (card) scrollIntoViewIfNeeded(card, $('#left-body')); }
+    if (focus && narrow()) reveal(focus === 'note' ? $('.left') : focus === 'readings' ? ($('#detail [data-block="verify"]') ?? $('#detail')) : $('#detail'));
+  });
 }
 
 function applyHash() {
   const hsh = readHash();
+  if (hsh.intro === '0' && !S.noIntro) { S.noIntro = true; renderIntro(); }
   const runBase = hsh.run ? safeBase(hsh.run) : null;
   const wantBase = runBase ?? (hsh.case ? `cases/${hsh.case}/` : null);
   if (wantBase && wantBase !== S.base) {
-    if (runBase) return openReview({ base: runBase, run: true, change: hsh.change, view: hsh.view });
-    if (/^[A-Za-z0-9._-]+$/.test(hsh.case)) return openReview({ id: hsh.case, base: wantBase, change: hsh.change, view: hsh.view });
+    if (runBase) return openReview({ base: runBase, run: true, change: hsh.change, view: hsh.view, tab: hsh.tab });
+    if (/^[A-Za-z0-9._-]+$/.test(hsh.case)) return openReview({ id: hsh.case, base: wantBase, change: hsh.change, view: hsh.view, tab: hsh.tab });
   }
   if (!S.review) return null;
+  const wantTab = TABS.includes(hsh.tab) ? hsh.tab : 'changes';
+  if (wantTab !== S.tab) { S.tab = wantTab; renderLeft(); }
   const want = hsh.view === 'guard' && guardInfo() ? 'guard' : changeById(hsh.change)?.id ?? null;
-  if (want && want !== S.sel) select(want);
+  if (want && want !== S.sel) select(want, { jump: false });
   return null;
 }
 
@@ -1539,19 +1982,22 @@ function wire() {
   $('#switcher-btn').addEventListener('click', () => toggleMenu($('#switcher')));
   document.addEventListener('pointerdown', (e) => {
     for (const sw of $$('.switcher')) if (!sw.contains(e.target)) closeMenu(sw);
-    if (!e.target.closest('#upload-wrap')) $('#upload-wrap').dataset.show = 'false';
+    // The open drawer lies over the workspace: a click anywhere else puts it away.
+    if (S.drawerOpen && !narrow() && e.target instanceof Element && !e.target.closest('.drawer, #clocked-pill, #how-btn, dialog')) closeDrawer();
   });
   $('#switcher-menu').addEventListener('keydown', menuKeys);
 
+  $('#how-btn').addEventListener('click', () => openDrawer('endpoints'));
+  $('#clocked-pill').addEventListener('click', () => openDrawer('endpoints'));
   $('#upload-btn').addEventListener('click', () => {
-    if (!S.live) { $('#upload-wrap').dataset.show = 'true'; return; }
+    if (!S.live) return;
     $('#upload-error').hidden = true;
     $('#upload-dialog').showModal();
   });
   $('#upload-form').addEventListener('submit', submitUpload);
   for (const b of $$('dialog [data-close]')) b.addEventListener('click', () => b.closest('dialog').close());
   for (const dlg of $$('dialog')) dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
-  $('#reply-copy').addEventListener('click', copyReply);
+  $('#reply-undo').addEventListener('click', undoOutcome);
 
   for (const t of $$('#left-tabs .tab')) t.addEventListener('click', () => { S.tab = t.dataset.tab; renderLeft(); });
   for (const b of $$('#view-seg button')) b.addEventListener('click', () => setView(b.dataset.view));
@@ -1562,11 +2008,18 @@ function wire() {
   document.addEventListener('keydown', (e) => {
     if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || !S.review) return;
     if ($('dialog[open]')) return;
-    const t = e.target;
-    if (t instanceof Element && t.closest('input, textarea, select, [contenteditable], .switcher')) return;
+    if (e.key === 'Escape' && S.drawerOpen) { closeDrawer(); return; }
+    const t = e.target instanceof Element ? e.target : null;
+    if (t?.closest('input, textarea, select, [contenteditable], .switcher')) return;
     const k = e.key;
-    if (k === 'j' || k === 'ArrowDown') { e.preventDefault(); move(1); }
-    else if (k === 'k' || k === 'ArrowUp') { e.preventDefault(); move(-1); }
+    if (k === 'ArrowDown' || k === 'ArrowUp') {
+      // Arrow keys belong to whatever scrolls. They move the selection only from the list of changes, or from nowhere in particular.
+      if (t?.closest('.doc-scroll, .detail-scroll, .drawer, .crop-view, .letter')) return;
+      if (S.tab !== 'changes' && t?.closest('.left')) return;
+      e.preventDefault();
+      move(k === 'ArrowDown' ? 1 : -1);
+    } else if (k === 'j') { e.preventDefault(); move(1); }
+    else if (k === 'k') { e.preventDefault(); move(-1); }
     else if (!e.shiftKey && (k === 'a' || k === 'c' || k === 'e')) {
       const action = { a: 'accept', c: 'counter', e: 'escalate' }[k];
       if (changeById(S.sel)?.blocking) { e.preventDefault(); decide(S.sel, action); }
@@ -1574,11 +2027,20 @@ function wire() {
   });
   window.addEventListener('hashchange', applyHash);
   new ResizeObserver(onDocsResize).observe($('#docs'));
+  // Crossing between one column and three: one document at a time on a phone, side by side again on a desk.
+  window.matchMedia?.('(max-width: 899px)').addEventListener?.('change', (e) => {
+    if (!S.review) return;
+    if (e.matches && S.view === 'both') { setView('v2'); S.wasBoth = true; }
+    else if (!e.matches && S.wasBoth) setView('both');
+    if (S.drawerOpen) renderDrawer();
+    renderDetail({ keepScroll: true });
+  });
 }
 
 async function boot() {
   wire();
-  setLive(false);
+  setLive(null);
+  S.noIntro = readHash().intro === '0';
   $('#verdict').replaceChildren(h('div', { class: 'verdict-main' }, h('span', { class: 'verdict-glyph' }, ico('dots')), h('h1', { class: 'verdict-headline' }, 'Loading review'), h('p', { class: 'verdict-case' }, 'Reading the recorded review.')));
 
   const config = fetch('api/config', { cache: 'no-cache' }).then((res) => (res.ok ? res.json() : null)).catch(() => null);
@@ -1587,6 +2049,7 @@ async function boot() {
     S.index = arr(idx).filter((c) => c && typeof c.id === 'string');
   } catch { S.index = []; }
   config.then((c) => setLive(c?.live === true));
+  renderIntro();
 
   const pending = applyHash();
   if (pending) { await pending; return; }
