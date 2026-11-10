@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redline Referee</title>
+<meta name="description" content="Catch what changed in the contract they sent back.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2315171c'/%3E%3Cpath d='M9 11h14M9 16h14M9 21h8' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M7 16h18' stroke='%23e0492f' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app" id="app" data-status="loading">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">Redline Referee</span>
+      <span class="brand-tag">Catch what changed in the contract they sent back.</span>
+    </div>
+    <div class="topbar-right">
+      <div class="switcher" id="switcher">
+        <button type="button" class="switcher-btn" id="switcher-btn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="dot" id="switcher-dot"></span>
+          <span class="switcher-label" id="switcher-label">Loading</span>
+          <span class="ico" data-ico="chevron"></span>
+        </button>
+        <div class="switcher-menu" id="switcher-menu" role="listbox" aria-label="Review" hidden></div>
+      </div>
+      <span class="mode-badge" id="mode-badge" hidden></span>
+      <span class="upload-wrap" id="upload-wrap">
+        <button type="button" class="btn" id="upload-btn" aria-disabled="true" aria-describedby="upload-hint">
+          <span class="ico" data-ico="upload"></span>Review your own PDFs
+        </button>
+        <span class="hint-pop" id="upload-hint" role="tooltip">Static replay of recorded Clocked responses. Run locally with an API key to review your own PDFs.</span>
+      </span>
+    </div>
+  </header>
+
+  <section class="verdict" id="verdict" aria-live="polite"></section>
+  <section class="errors" id="errors" hidden></section>
+
+  <main class="main" id="main">
+    <aside class="left" aria-label="Findings">
+      <div class="tabs" role="tablist" id="left-tabs">
+        <button type="button" role="tab" class="tab" data-tab="changes" aria-selected="true">Changes<span class="count" id="count-changes"></span></button>
+        <button type="button" role="tab" class="tab" data-tab="note" aria-selected="false">Cover note<span class="count" id="count-note"></span></button>
+        <button type="button" role="tab" class="tab" data-tab="terms" aria-selected="false">Key terms<span class="count" id="count-terms"></span></button>
+      </div>
+      <div class="left-body" id="left-body" role="tabpanel"></div>
+    </aside>
+
+    <section class="center" aria-label="Documents">
+      <div class="doc-toolbar">
+        <div class="doc-toolbar-left">
+          <div class="seg" id="view-seg" role="group" aria-label="Document view">
+            <button type="button" data-view="both" aria-pressed="true">Side by side</button>
+            <button type="button" data-view="v1" aria-pressed="false">We sent</button>
+            <button type="button" data-view="v2" aria-pressed="false">They returned</button>
+          </div>
+          <div class="switcher layer-switch" id="layer-switch" hidden></div>
+        </div>
+        <div class="zoom" role="group" aria-label="Zoom">
+          <button type="button" class="icon-btn" id="zoom-out" aria-label="Zoom out"><span class="ico" data-ico="minus"></span></button>
+          <span class="zoom-val" id="zoom-val">100%</span>
+          <button type="button" class="icon-btn" id="zoom-in" aria-label="Zoom in"><span class="ico" data-ico="plus"></span></button>
+          <button type="button" class="btn btn--sm" id="zoom-fit">Fit width</button>
+        </div>
+      </div>
+      <div class="docs" id="docs" data-view="both"></div>
+      <div class="legend" id="legend" aria-label="Legend"></div>
+    </section>
+
+    <aside class="right" id="detail" aria-label="Selected change"></aside>
+  </main>
+
+  <footer class="drawer" id="drawer" data-open="false"></footer>
+</div>
+
+<dialog class="modal" id="upload-dialog" aria-labelledby="upload-title">
+  <form id="upload-form" method="dialog" novalidate>
+    <header class="modal-head">
+      <h2 id="upload-title">Review your own PDFs</h2>
+      <button type="button" class="icon-btn" data-close aria-label="Close"><span class="ico" data-ico="x"></span></button>
+    </header>
+    <div class="modal-body">
+      <label class="field">
+        <span class="field-label">The version we sent <em>v1, PDF</em></span>
+        <input type="file" name="v1" accept="application/pdf,.pdf" required>
+      </label>
+      <label class="field">
+        <span class="field-label">The copy they returned <em>v2, PDF</em></span>
+        <input type="file" name="v2" accept="application/pdf,.pdf" required>
+      </label>
+      <label class="field">
+        <span class="field-label">Their cover note <em>optional</em></span>
+        <textarea name="note" rows="6" placeholder="Paste the e-mail or note that came with the returned copy."></textarea>
+      </label>
+      <p class="modal-note">Both PDFs need a text layer. The review calls Clocked and can take up to a minute.</p>
+      <div class="form-error" id="upload-error" role="alert" hidden></div>
+    </div>
+    <footer class="modal-foot">
+      <span class="busy" id="upload-busy" hidden><span class="spinner" aria-hidden="true"></span>Reviewing the two versions</span>
+      <button type="button" class="btn" data-close>Cancel</button>
+      <button type="submit" class="btn btn--primary" id="upload-submit">Run review</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="modal modal--wide" id="reply-dialog" aria-labelledby="reply-title">
+  <header class="modal-head">
+    <h2 id="reply-title">Reply summary</h2>
+    <button type="button" class="icon-btn" data-close aria-label="Close"><span class="ico" data-ico="x"></span></button>
+  </header>
+  <div class="modal-body" id="reply-body"></div>
+  <footer class="modal-foot">
+    <span class="busy" id="reply-copied" hidden>Copied to the clipboard</span>
+    <button type="button" class="btn" data-close>Close</button>
+    <button type="button" class="btn btn--primary" id="reply-copy"><span class="ico" data-ico="copy"></span>Copy</button>
+  </footer>
+</dialog>
+
+<noscript><p style="padding:24px;font-family:sans-serif">Redline Referee needs JavaScript to show a review.</p></noscript>
+<script type="module" src="app.js"></script>
+</body>
+</html>

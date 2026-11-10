@@ -51,7 +51,10 @@ function ico(name) {
   return s;
 }
 
-const pct = (x) => (typeof x === 'number' && Number.isFinite(x) ? `${Math.round(x * 100)}%` : null);
+// Whole percentages, except just under 100 where rounding would overstate (0.9986 reads 99.9%, not 100%).
+const pct = (x) => (typeof x !== 'number' || !Number.isFinite(x) ? null : x >= 0.995 && x < 0.9995 ? `${(x * 100).toFixed(1)}%` : `${Math.round(x * 100)}%`);
+const pct1 = (x) => (typeof x === 'number' && Number.isFinite(x) ? `${Math.round(x * 1000) / 10}%` : null);
+const words = (x) => String(x ?? '').replace(/_/g, ' ');
 const plural = (n, one, many) => `${n} ${n === 1 ? one : (many ?? one + 's')}`;
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
 const arr = (x) => (Array.isArray(x) ? x : []);
@@ -80,9 +83,16 @@ const ROUTE_TONE = { accept: 't-green', counter: 't-amber', escalate: 't-ink' };
 const ROUTE_KEY = { accept: 'A', counter: 'C', escalate: 'E' };
 const VERDICTS = { supported: 'Supported', contradicted: 'Contradicted', not_stated: 'Not stated', not_checked: 'Not checked' };
 const VERDICT_TONE = { supported: 't-green', contradicted: 't-red', not_stated: 't-grey', not_checked: 't-grey' };
-const RELATIONS = { conflict: 'Conflict', restated: 'Same statement', silent: 'Not flagged' };
-const RELATION_TONE = { conflict: 't-amber', restated: 't-green', silent: 't-grey' };
-const MODES = { replay: 'Replay of recorded Clocked responses', live: 'Live', 'rules-only': 'Rules only, Clocked not called' };
+const RELATIONS = { conflict: 'Conflict', same: 'Same', restated: 'Same', unpaired: 'Unpaired', silent: 'Not flagged', not_run: 'Not run' };
+const RELATION_TEXT = {
+  conflict: 'The two versions conflict', same: 'Same statement', restated: 'Same statement',
+  unpaired: 'Compare could not pair this passage', silent: 'Compare did not flag this', not_run: 'Not run',
+};
+const RELATION_TONE = { conflict: 't-amber', same: 't-green', restated: 't-green', unpaired: 't-grey', silent: 't-grey', not_run: 't-grey' };
+const VERIFY_READS = {
+  changed: ['Reads as a different meaning', 't-amber'], same: ['Reads as the same meaning', 't-green'], unclear: ['Unclear', 't-grey'],
+};
+const MODES = { replay: 'Replay of recorded Clocked responses', live: 'Live', 'rules-only': 'Rules only, Clocked not run' };
 const GROUPS = [
   { key: 'resolve', title: 'To resolve', test: (c) => !!c.blocking },
   { key: 'reworded', title: 'Reworded, same meaning', test: (c) => c.cls === 'reworded' },
@@ -104,7 +114,7 @@ const S = {
   tab: 'changes',
   open: {},             // group key -> open?
   decisions: new Map(), // base -> { changeId: action }
-  zoom: 1, view: 'both',
+  zoom: 1, view: 'both', layer: 'changes',
   drawerOpen: false, drawerTab: 'endpoints',
   panes: {},
   loadToken: 0,
@@ -117,6 +127,17 @@ const changeById = (id) => changesOf().find((c) => c.id === id) ?? null;
 const numOf = (c) => changesOf().indexOf(c) + 1;
 const clsOf = (c) => (CLASSES[c.cls] ? c.cls : 'other');
 const clauseOf = (c) => (c.clause ? `§ ${c.clause}` : '');
+// The document-level Compare result. Newer reviews nest it under compare.document.
+const cmpDoc = (r = S.review) => r?.compare?.document ?? r?.compare ?? null;
+function layersOf(r = S.review) {
+  const out = [];
+  for (const side of ['v1', 'v2']) {
+    for (const l of arr(r?.documents?.[side]?.layers)) {
+      if (l?.id && arr(l.pages).length && !out.some((x) => x.id === l.id)) out.push({ id: String(l.id), label: l.label ?? String(l.id), by: l.by ?? '' });
+    }
+  }
+  return out;
+}
 function decisions() {
   if (!S.decisions.has(S.base)) S.decisions.set(S.base, {});
   return S.decisions.get(S.base);
@@ -340,7 +361,7 @@ function renderChanges(r) {
     out.push(section(g.key, g.title, list.map(changeRow), g.collapsed));
   }
 
-  const unplaced = arr(r.compare?.unplaced);
+  const unplaced = arr(r.compare?.unplaced ?? cmpDoc(r)?.unplaced);
   if (unplaced.length) {
     out.push(h('section', { class: 'group', dataset: { open: true } },
       h('div', { class: 'group-head' }, h('span', null, 'Flagged by Compare, not matched to a clause'), h('span', { class: 'n' }, unplaced.length)),
@@ -368,11 +389,19 @@ function changeRow(c) {
     h('span', { class: 'row-main' },
       h('span', { class: 'row-top' }, clauseOf(c) ? h('span', { class: 'row-clause' }, clauseOf(c)) : null, h('span', { class: 'row-title' }, c.title ?? 'Untitled clause'), route),
       h('span', { class: 'row-summary' }, c.summary ?? ''),
-      h('span', { class: 'row-meta' }, foundBadge(c), state)));
+      h('span', { class: 'row-meta' }, foundBadge(c), promotedMark(c), state)));
 }
 function foundBadge(c) {
   const key = FOUND[c.found_by] ? c.found_by : 'rules';
-  return h('span', { class: `badge is-${key}`, title: key === 'compare' ? 'The rule layer missed this. Compare read the two versions as conflicting.' : key === 'both' ? 'Found by the rule layer and confirmed by Compare.' : 'Found by the rule layer.' }, FOUND[key]);
+  const label = c.found_by_label || FOUND[key];
+  const strong = c.promoted === true || key === 'compare';
+  const tip = c.found_by_label ? `Read by: ${c.found_by_label}`
+    : key === 'compare' ? 'The rule layer missed this. Compare read the two versions as conflicting.'
+      : key === 'both' ? 'Found by the rule layer and confirmed by Compare.' : 'Found by the rule layer.';
+  return h('span', { class: `badge is-${strong ? 'compare' : key}`, title: tip }, label);
+}
+function promotedMark(c) {
+  return c.promoted === true ? h('span', { class: 'badge is-promoted', title: c.why ?? '' }, 'Promoted by Clocked') : null;
 }
 
 // --------------------------------------------------------------- cover note
@@ -533,15 +562,20 @@ function renderDocs() {
   const r = S.review;
   const root = $('#docs');
   root.replaceChildren();
-  root.dataset.view = S.view;
-  root.style.setProperty('--zoom', String(S.zoom));
   S.panes = {};
   if (!r) return;
+  if (S.layer !== 'changes' && !layersOf(r).some((l) => l.id === S.layer)) S.layer = 'changes';
+  root.dataset.view = S.view;
+  root.dataset.layer = S.layer;
+  root.style.setProperty('--zoom', String(S.zoom));
 
   for (const side of ['v1', 'v2']) {
     const d = r.documents?.[side] ?? {};
     const name = d.name ?? (side === 'v1' ? 'The version we sent' : 'The copy they returned');
-    const pagesData = arr(d.pages);
+    // A layer is Clocked's own marked copy of the document, rendered as page images.
+    const found = S.layer === 'changes' ? null : arr(d.layers).find((l) => l?.id === S.layer) ?? null;
+    const lay = found && arr(found.pages).length ? found : null;
+    const pagesData = lay ? arr(lay.pages) : arr(d.pages);
     const pages = pagesData.map((p, i) => {
       const layer = h('div', { class: 'page-layer' });
       const w = Number(p.width) > 0 ? Number(p.width) : 1020, ht = Number(p.height) > 0 ? Number(p.height) : 1320;
@@ -556,33 +590,95 @@ function renderDocs() {
         : h('div', { class: 'doc-empty' }, 'No page images for this document.', d.source_pdf ? [' ', h('a', { href: S.base + d.source_pdf, target: '_blank', rel: 'noopener' }, 'Open the PDF')] : null));
     scroll.addEventListener('scroll', onDocScroll, { passive: true });
     S.panes[side] = { scroll, pages, lt: 0, ll: 0, ratio: 0, width: 0 };
-    root.append(h('div', { class: 'doc', dataset: { side } }, docHead(side, d, name, r), scroll));
+    root.append(h('div', { class: 'doc', dataset: { side } }, docHead(side, d, name, r, lay), scroll));
   }
-  buildOverlays(r);
+  buildOverlays(r);   // kept in layer views too (hidden by CSS) so a selected change can still be scrolled to
 }
 
-function docHead(side, d, name, r) {
+function docHead(side, d, name, r, lay) {
   const meta = h('div', { class: 'doc-meta' });
-  if (d.marked_pdf) {
-    meta.append(h('span', { class: 'tag t-accent', title: d.marked_by ?? '' }, 'Highlights by Clocked Compare'));
-    meta.append(h('a', { href: S.base + d.marked_pdf, download: d.marked_pdf, title: d.marked_by ?? 'Marked PDF' }, ico('download'), 'Marked PDF'));
+  const link = (file, label, title) => h('a', { href: S.base + file, download: file, title: title || null }, ico('download'), label);
+  if (S.layer !== 'changes') {
+    if (lay) {
+      const caption = [lay.label ?? lay.id, lay.by, lay.spans != null ? plural(lay.spans, 'span') : null].filter(Boolean).join(' · ');
+      meta.append(h('span', { class: 'doc-caption' }, caption));
+      if (lay.pdf) meta.append(link(lay.pdf, 'Download PDF', lay.by));
+    } else {
+      meta.append(h('span', { class: 'doc-caption' }, 'This layer was not returned for this document. Showing its clean pages.'));
+    }
   } else {
-    meta.append(h('span', { class: 'tag t-grey', title: d.marked_error ?? '' }, r.compare ? 'No highlights returned' : 'Compare not run, no highlights'));
-  }
-  if (d.source_pdf) meta.append(h('a', { href: S.base + d.source_pdf, download: d.source_pdf }, ico('download'), 'Original'));
-  for (const x of arr(d.extra_pdfs)) if (x?.file) meta.append(h('a', { href: S.base + x.file, download: x.file }, ico('download'), x.label ?? x.file));
-  if (side === 'v2') {
-    const g = arr(r.guard).find((x) => x.target === 'Returned copy');
-    if (g) {
-      meta.append(!g.ran ? h('span', { class: 'tag t-grey' }, 'Guard not run')
-        : g.flagged ? h('button', { type: 'button', class: 'tag t-red', style: 'cursor:pointer', onclick: () => select('guard') }, `Guard: flagged ${pct(g.injection) ?? ''}`.trim())
-          : h('span', { class: 'tag t-grey', title: `Nothing addressed to an AI reviewer. Injection probability ${pct(g.injection) ?? 'unknown'}.` }, 'Guard: clean'));
+    if (d.source_pdf) meta.append(link(d.source_pdf, 'Original'));
+    if (!arr(d.layers).length) {
+      // Older reviews carry no layers: offer whatever marked copies exist as plain downloads.
+      const seen = new Set([d.source_pdf]);
+      const add = (file, label, title) => { if (file && !seen.has(file)) { seen.add(file); meta.append(link(file, label, title)); } };
+      add(d.marked_pdf, 'Marked by Compare', d.marked_by);
+      for (const x of arr(d.extra_pdfs)) add(x?.file, x?.label ?? x?.file);
+      for (const x of arr(d.downloads)) add(x?.file, x?.label ?? x?.file, x?.by);
+    }
+    if (side === 'v2') {
+      const g = arr(r.guard).find((x) => x.target === 'Returned copy');
+      if (g) {
+        meta.append(!g.ran ? h('span', { class: 'tag t-grey' }, 'Guard not run')
+          : g.flagged ? h('button', { type: 'button', class: 'tag t-red', style: 'cursor:pointer', onclick: () => select('guard') }, `Guard: flagged ${pct(g.injection) ?? ''}`.trim())
+            : h('span', { class: 'tag t-grey', title: `Nothing addressed to an AI reviewer. Injection probability ${pct(g.injection) ?? 'unknown'}.` }, 'Guard: clean'));
+      }
     }
   }
   const n = arr(d.pages).length;
   return h('div', { class: 'doc-head' },
     h('div', { class: 'doc-name' }, name, h('small', null, n ? `${side} · ${plural(n, 'page')}` : side)),
     meta);
+}
+
+function renderLayerSwitch() {
+  const root = $('#layer-switch');
+  const layers = layersOf();
+  root.hidden = !layers.length;
+  if (!layers.length) { root.replaceChildren(); return; }
+  const all = [{ id: 'changes', label: 'Changes', by: 'Clean pages with every change located on them' }, ...layers];
+  const cur = all.find((l) => l.id === S.layer) ?? all[0];
+  const menu = h('div', { class: 'switcher-menu', role: 'listbox', 'aria-label': 'Document layer', hidden: true },
+    all.map((l) => h('button', { type: 'button', class: 'switcher-item no-dot', role: 'option', 'aria-selected': String(l.id === cur.id), onclick: () => setLayer(l.id) },
+      h('b', null, l.label), l.by ? h('small', null, l.by) : null)));
+  menu.addEventListener('keydown', menuKeys);
+  const btn = h('button', { type: 'button', class: 'switcher-btn', 'aria-haspopup': 'listbox', 'aria-expanded': 'false', title: 'What the pages show', onclick: () => toggleMenu(root) },
+    h('span', { class: 'layer-prefix' }, 'Layer'), h('span', { class: 'switcher-label' }, cur.label), ico('chevron'));
+  root.replaceChildren(btn, menu);
+}
+function setLayer(id) {
+  const keep = Object.entries(S.panes).map(([side, p]) => [side, p.scroll.scrollHeight ? p.scroll.scrollTop / p.scroll.scrollHeight : 0, p.scroll.scrollLeft]);
+  S.layer = id;
+  renderDocs();
+  sync.progUntil = performance.now() + 300;
+  for (const [side, ry, left] of keep) {
+    const p = S.panes[side];
+    if (!p) continue;
+    p.scroll.scrollTop = ry * p.scroll.scrollHeight; p.scroll.scrollLeft = left;
+    p.lt = p.scroll.scrollTop; p.ll = p.scroll.scrollLeft; p.ratio = ry;
+  }
+  renderLayerSwitch();
+  renderLegend();
+  markSelection({ scroll: false });
+}
+function toggleMenu(root) {
+  const menu = $('.switcher-menu', root), btn = $('.switcher-btn', root);
+  if (!menu || !btn) return;
+  menu.hidden = !menu.hidden;
+  btn.setAttribute('aria-expanded', String(!menu.hidden));
+  if (!menu.hidden) ($('.switcher-item[aria-selected="true"]', menu) ?? $('.switcher-item', menu))?.focus();
+}
+function closeMenu(root) {
+  const menu = $('.switcher-menu', root), btn = $('.switcher-btn', root);
+  if (menu) menu.hidden = true;
+  if (btn) btn.setAttribute('aria-expanded', 'false');
+}
+function menuKeys(e) {
+  const items = $$('.switcher-item', e.currentTarget);
+  const i = items.indexOf(document.activeElement);
+  if (e.key === 'ArrowDown') { e.preventDefault(); items[Math.min(items.length - 1, i + 1)]?.focus(); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); items[Math.max(0, i - 1)]?.focus(); }
+  else if (e.key === 'Escape') { const root = e.currentTarget.closest('.switcher'); closeMenu(root); $('.switcher-btn', root)?.focus(); }
 }
 
 function rectStyle(rect) {
@@ -613,6 +709,18 @@ function addMarks(side, page, rects, cls, cid, label, pinText, first) {
 }
 
 function buildOverlays(r) {
+  // Sentence-level passages from Compare, as a very light tint underneath the change overlays.
+  for (const c of changesOf(r)) {
+    for (const side of ['v1', 'v2']) {
+      const s = c.compare?.[side];
+      const pg = s && typeof s === 'object' && s.page ? S.panes[side]?.pages[s.page - 1] : null;
+      if (!pg) continue;
+      for (const rect of arr(s.rects)) {
+        const st = rectStyle(rect);
+        if (st) pg.layer.append(h('div', { class: `mark m-sentence c-${clsOf(c)}`, style: st.css }));
+      }
+    }
+  }
   for (const c of changesOf(r)) {
     const label = `${numOf(c)}. ${[clauseOf(c), c.title].filter(Boolean).join(' ')}: ${c.summary ?? ''}`;
     arr(c.parts).forEach((part, pi) => {
@@ -788,9 +896,13 @@ function renderLegend() {
   const root = $('#legend');
   root.replaceChildren();
   if (!r) return;
+  if (S.layer !== 'changes') {
+    root.append(h('span', null, 'Clocked\'s own marked copy. The change overlays are hidden in this layer.'),
+      h('button', { type: 'button', class: 'link-btn', onclick: () => setLayer('changes') }, 'Back to Changes'));
+    return;
+  }
   const present = new Set(changesOf(r).map(clsOf));
   const item = (cls, text) => h('span', null, h('i', { class: `c-${cls}` }), text);
-  if (r.documents?.v1?.marked_pdf || r.documents?.v2?.marked_pdf) root.append(h('span', null, h('i', { class: 'is-fill' }), 'Compare highlight'));
   if (present.has('substantive')) root.append(item('substantive', 'To resolve'));
   if (present.has('reworded')) root.append(item('reworded', 'Reworded'));
   if (present.has('administrative')) root.append(item('administrative', 'Administrative'));
@@ -823,11 +935,13 @@ function wordDiff(a, b) {
 const quoteNode = (t) => t;
 
 function comparePassages(cmp) {
-  if (!cmp.v1_quote && !cmp.v2_quote) return null;
-  const [a, b] = cmp.v1_quote && cmp.v2_quote ? wordDiff(cmp.v1_quote, cmp.v2_quote) : [cmp.v1_quote ?? '', cmp.v2_quote ?? ''];
-  return h('div', { class: 'pair' },
-    h('div', { class: 'pair-side', dataset: { side: 'v1' } }, h('div', { class: 'pair-label' }, 'Passage in v1'), h('div', { class: 'quote' }, a || h('span', { class: 'muted' }, 'None'))),
-    h('div', { class: 'pair-side', dataset: { side: 'v2' } }, h('div', { class: 'pair-label' }, 'Passage in v2'), h('div', { class: 'quote' }, b || h('span', { class: 'muted' }, 'None'))));
+  const q1 = String(cmp.v1_quote ?? cmp.v1?.quote ?? '').trim(), q2 = String(cmp.v2_quote ?? cmp.v2?.quote ?? '').trim();
+  if (!q1 && !q2) return null;
+  // Mark the differing words only when the two passages are of similar length; otherwise it is noise.
+  const alike = q1 && q2 && Math.max(q1.length, q2.length) <= 2.2 * Math.min(q1.length, q2.length);
+  const [a, b] = alike ? wordDiff(q1, q2) : [q1, q2];
+  const row = (side, label, body) => h('div', { class: 'pair-side', dataset: { side } }, h('div', { class: 'pair-label' }, label), h('div', { class: 'quote quote--clamp' }, body));
+  return h('div', { class: 'pair' }, q1 ? row('v1', 'Passage in v1', a) : null, q2 ? row('v2', 'Passage in v2', b) : null);
 }
 const alignWarning = () => h('div', { class: 'callout t-amber' }, ico('alert'), h('span', null, h('b', null, 'Quote not aligned. '), 'A quoted passage does not match the document text at the offsets Clocked returned. Read the passage in the document before relying on it.'));
 
@@ -857,7 +971,7 @@ function renderDetail({ keepScroll = false } = {}) {
         h('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Next change', title: 'Next change (J)', disabled: i === ch.length - 1, onclick: () => move(1) }, ico('down'), h('kbd', null, 'J')))),
     h('h2', { class: 'detail-title' }, [clauseOf(c), c.title].filter(Boolean).join(' · ') || 'Change'),
     c.summary ? h('p', { class: 'detail-summary' }, c.summary) : null,
-    h('div', { class: 'detail-badges' }, h('span', { class: `chip ${CLASS_TONE[c.cls] ?? 't-grey'}` }, CLASSES[c.cls] ?? c.cls ?? 'Change'), foundBadge(c)));
+    h('div', { class: 'detail-badges' }, h('span', { class: `chip ${CLASS_TONE[c.cls] ?? 't-grey'}` }, CLASSES[c.cls] ?? c.cls ?? 'Change'), foundBadge(c), promotedMark(c)));
 
   // What changed
   const parts = arr(c.parts);
@@ -879,26 +993,49 @@ function renderDetail({ keepScroll = false } = {}) {
     c.why ? h('p', { class: 'plain' }, h('b', { style: 'font-weight:600;color:var(--ink)' }, 'Why it is listed. '), c.why) : null);
 
   root.replaceChildren(
-    h('div', { class: 'detail-scroll' }, head, what, compareBlock(c, r), playbookBlock(c, r), routeBlock(c, r), claimsBlock(c, r)),
+    h('div', { class: 'detail-scroll' }, head, what, verifyBlock(c), compareBlock(c, r), playbookBlock(c, r), routeBlock(c, r), claimsBlock(c, r)),
     actionsBar(c));
   if (prev) $('.detail-scroll', root).scrollTop = prev;
 }
 
+function verifyBlock(c) {
+  const v = c.verify;
+  if (!v || typeof v !== 'object') return null;
+  const [text, tone] = VERIFY_READS[v.relation] ?? [v.relation ? words(v.relation) : 'Unclear', 't-grey'];
+  const row = (label, x) => h('div', { class: 'vrow' },
+    h('div', { class: 'vrow-label' }, label),
+    x && typeof x === 'object'
+      ? h('div', { class: 'vrow-body' },
+        h('span', { class: `chip ${VERDICT_TONE[x.verdict] ?? 't-grey'}` }, VERDICTS[x.verdict] ?? (x.verdict ? words(x.verdict) : 'No verdict')),
+        h('span', { class: 'vrow-p num' }, ['supported', 'contradicted', 'not_stated'].filter((k) => pct(x[k])).map((k) => `${VERDICTS[k].toLowerCase()} ${pct(x[k])}`).join(' · ')))
+      : h('div', { class: 'vrow-body' }, h('span', { class: 'vrow-p' }, 'Not checked')));
+  return block('Verify across versions', 'Clocked Verify', null,
+    h('div', { class: `callout ${tone}` }, h('span', null, h('b', null, text))),
+    h('div', { class: 'vrows' },
+      row('Returned sentence checked against the sent version', v.returned_against_sent),
+      row('Sent sentence checked against the returned version', v.sent_against_returned)));
+}
+
 function compareBlock(c, r) {
   const cmp = c.compare;
-  if (!cmp) {
+  if (!cmp || typeof cmp !== 'object') {
     return block('Compare', 'Clocked Compare', null, h('div', { class: 'not-run' },
       r.compare ? 'Compare raised no finding on this passage. The rule layer\'s reading stands.' : 'Not run. This change comes from the rule layer alone.'));
   }
-  const rel = cmp.relation;
-  const chip = h('span', { class: `chip ${RELATION_TONE[rel] ?? 't-grey'}` }, RELATIONS[rel] ?? rel ?? 'Finding');
+  const rel = cmp.relation ?? 'silent';
+  const chip = h('span', { class: `chip ${RELATION_TONE[rel] ?? 't-grey'}` }, RELATIONS[rel] ?? words(rel));
   const kv = h('dl', { class: 'kv' });
-  if (rel === 'conflict') kv.append(h('dt', null, 'Reading'), h('dd', null, 'The two versions conflict', cmp.kind ? h('small', null, ` · ${cmp.kind}`) : null));
-  else if (rel === 'restated') kv.append(h('dt', null, 'Reading'), h('dd', null, 'Both versions say the same thing', cmp.kind && cmp.kind !== 'restated' ? h('small', null, ` · ${cmp.kind}`) : null));
-  else if (cmp.kind) kv.append(h('dt', null, 'Kind'), h('dd', null, cmp.kind));
+  kv.append(h('dt', null, 'Reading'), h('dd', null, RELATION_TEXT[rel] ?? words(rel)));
+  if (cmp.kind) kv.append(h('dt', null, 'Kind'), h('dd', null, words(cmp.kind)));
   if (pct(cmp.confidence)) kv.append(h('dt', null, 'Confidence'), h('dd', { class: 'num' }, pct(cmp.confidence)));
+  const cp = cmp.clause_probabilities;
+  const probs = cp && typeof cp === 'object' && !Array.isArray(cp)
+    ? Object.entries(cp).filter(([, x]) => pct(x)).map(([k, x]) => `${words(k)} ${pct(x)}`).join(' · ') : '';
+  if (cmp.clause_relation || probs) {
+    kv.append(h('dt', null, 'Whole clause'), h('dd', null, cmp.clause_relation ? words(cmp.clause_relation) : '', probs ? h('small', { class: 'num' }, `${cmp.clause_relation ? ' · ' : ''}${probs}`) : null));
+  }
   return block('Compare', 'Clocked Compare', chip,
-    kv.childNodes.length ? kv : null,
+    kv,
     comparePassages(cmp),
     cmp.aligned === false ? alignWarning() : null,
     cmp.note ? h('p', { class: 'plain' }, cmp.note) : null);
@@ -1008,25 +1145,33 @@ function guardDetail(r) {
 function endpointResult(name, r) {
   const ch = changesOf(r), blocking = blockingOf(r);
   if (name === 'Compare') {
-    const c = r.compare;
+    const c = cmpDoc(r);
     if (!c) return null;
-    const bits = [plural(c.conflicts ?? 0, 'conflict')];
-    if (c.same_passages) bits.push(`${plural(c.same_passages, 'passage')} read as the same`);
-    const promoted = ch.filter((x) => x.found_by === 'compare').length;
+    const bits = [];
+    const read = blocking.filter((x) => x.compare?.relation && x.compare.relation !== 'not_run');
+    if (read.length) bits.push(`${read.filter((x) => x.compare.relation === 'conflict').length} of ${plural(read.length, 'change')} to resolve confirmed as a conflict`);
+    const promoted = ch.filter((x) => x.found_by === 'compare' && !x.found_by_label).length;   // older reviews only: there Compare did the promoting
     if (promoted) bits.push(`${plural(promoted, 'change')} the rules missed`);
-    const m1 = c.marked?.v1?.marked, m2 = c.marked?.v2?.marked;
+    const marked = r.compare?.marked ?? c.marked;
+    const m1 = marked?.v1?.marked, m2 = marked?.v2?.marked;
     if (m1 != null || m2 != null) bits.push(`${m1 ?? 0} + ${m2 ?? 0} spans marked`);
     if (c.unaligned) bits.push(`${plural(c.unaligned, 'quote')} not aligned`);
-    if (arr(c.unplaced).length) bits.push(`${arr(c.unplaced).length} not matched to a clause`);
-    return bits.join(' · ');
+    const unplaced = arr(r.compare?.unplaced ?? c.unplaced).length;
+    if (unplaced) bits.push(`${unplaced} not matched to a clause`);
+    return bits.length ? bits.join(' · ') : plural(c.conflicts ?? 0, 'conflict');
   }
   if (name === 'Verify') {
     const n = r.note;
-    if (!n?.ran) return null;
-    const by = {};
-    for (const c of arr(n.claims)) by[c.verdict] = (by[c.verdict] ?? 0) + 1;
-    const bits = ['contradicted', 'supported', 'not_stated', 'not_checked'].filter((v) => by[v]).map((v) => `${by[v]} ${VERDICTS[v].toLowerCase()}`);
-    return `${plural(arr(n.claims).length, 'statement')}${bits.length ? `: ${bits.join(', ')}` : ''}`;
+    const across = ch.filter((x) => x.verify && typeof x.verify === 'object').length;
+    const out = [];
+    if (n?.ran) {
+      const by = {};
+      for (const c of arr(n.claims)) by[c.verdict] = (by[c.verdict] ?? 0) + 1;
+      const bits = ['contradicted', 'supported', 'not_stated', 'not_checked'].filter((v) => by[v]).map((v) => `${by[v]} ${VERDICTS[v].toLowerCase()}`);
+      out.push(`${plural(arr(n.claims).length, 'statement')}${bits.length ? `: ${bits.join(', ')}` : ''}`);
+    }
+    if (across) out.push(`${plural(across, 'change')} read across versions`);
+    return out.length ? out.join(' · ') : null;
   }
   if (name === 'Rerank') {
     const looked = blocking.filter((c) => c.playbook);
@@ -1062,7 +1207,19 @@ function endpointResult(name, r) {
   return null;
 }
 
-const fmtMs = (ms) => (typeof ms !== 'number' ? '' : ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${ms} ms`);
+const fmtMs = (ms) => (typeof ms !== 'number' ? '' : ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${Math.round(ms)} ms`);
+function compareSummary(r) {
+  const c = cmpDoc(r);
+  if (!c || typeof c !== 'object') return null;
+  const bits = [];
+  if (c.relation) bits.push(words(c.relation));
+  if (pct1(c.related)) bits.push(`related ${pct1(c.related)}`);
+  if (c.conflicts != null) bits.push(plural(c.conflicts, 'conflict'));
+  if (c.same_passages != null) bits.push(plural(c.same_passages, 'same passage'));
+  if (c.unpaired != null) bits.push(`${c.unpaired} unpaired`);
+  if (arr(c.kinds).length) bits.push(`kinds: ${arr(c.kinds).map(words).join(', ')}`);
+  return bits.length ? h('p', { class: 'drawer-note' }, h('b', null, 'Compare on the two PDFs'), bits.join(' · ')) : null;
+}
 function fmtTime(iso) {
   const d = new Date(iso);
   if (!iso || Number.isNaN(d.getTime())) return iso ?? '';
@@ -1100,32 +1257,38 @@ function renderDrawer() {
           h('td', null, h('b', { style: 'font-weight:600' }, a.endpoint ?? ''), a.path ? h('span', { class: 'ep-path' }, `  ${a.path}`) : null),
           h('td', null, a.step ?? ''),
           h('td', { class: 'r' }, a.credits ?? ''),
-          h('td', { class: 'r' }, a.model_ms ?? ''),
+          h('td', { class: 'r' }, typeof a.model_ms === 'number' ? Math.round(a.model_ms) : (a.model_ms ?? '')),
           h('td', { class: 'mono' }, a.request_id ?? ''),
           h('td', { class: 'mono idem' }, a.idempotency_key ?? ''),
           h('td', null, h('span', { class: `src${a.replayed ? '' : ' is-live'}` }, a.replayed ? 'Replayed' : 'Live')),
           h('td', { class: 'num muted' }, fmtTime(a.recorded_at))))),
-        h('tfoot', null, h('tr', null, h('td'), h('td', { colspan: 2 }, `${plural(reqs.length, 'request')}`), h('td', { class: 'r' }, credits), h('td', { class: 'r' }, reqs.reduce((s, a) => s + (Number(a.model_ms) || 0), 0)), h('td', { colspan: 4 }, 'Total credits and model time'))));
+        h('tfoot', null, h('tr', null, h('td'), h('td', { colspan: 2 }, `${plural(reqs.length, 'request')}`), h('td', { class: 'r' }, credits), h('td', { class: 'r' }, Math.round(reqs.reduce((s, a) => s + (Number(a.model_ms) || 0), 0))), h('td', { colspan: 4 }, 'Total credits and model time'))));
   } else {
+    // Both lists are shown in the order the review gives them.
     const eps = arr(r.endpoints);
     const abl = new Map(arr(r.ablation).map((a) => [a.endpoint, a]));
-    body = !eps.length
+    const orphans = arr(r.ablation).filter((a) => !eps.some((e) => e.name === a.endpoint));
+    const ablLinks = (a) => {
+      const links = [];
+      for (const id of arr(a?.changes)) { const c = changeById(id); if (c) links.push(h('button', { type: 'button', onclick: () => select(id) }, `${clauseOf(c)} ${c.title ?? ''}`.trim())); }
+      for (const i of arr(a?.claims)) { const c = arr(r.note?.claims)[i]; if (c) links.push(h('button', { type: 'button', title: c.text, onclick: () => pickClaim(i) }, `Statement ${i + 1}`)); }
+      return links.length ? h('div', { class: 'ep-links' }, links) : null;
+    };
+    const table = !eps.length && !orphans.length
       ? h('div', { class: 'empty' }, h('b', null, 'No endpoint summary'), 'This review has no endpoint summary.')
       : h('table', { class: 'grid' },
         h('thead', null, h('tr', null, h('th', { style: 'width:150px' }, 'Endpoint'), h('th', { class: 'r' }, 'Calls'), h('th', { class: 'r' }, 'Credits'), h('th', { class: 'r' }, 'Model time'), h('th', { style: 'width:38%' }, 'In this review'), h('th', null, 'Without it'))),
         h('tbody', null, eps.map((e) => {
           const res = endpointResult(e.name, r);
           const a = abl.get(e.name);
-          const links = [];
-          for (const id of arr(a?.changes)) { const c = changeById(id); if (c) links.push(h('button', { type: 'button', onclick: () => select(id) }, `${clauseOf(c)} ${c.title ?? ''}`.trim())); }
-          for (const i of arr(a?.claims)) { const c = arr(r.note?.claims)[i]; if (c) links.push(h('button', { type: 'button', title: c.text, onclick: () => pickClaim(i) }, `Statement ${i + 1}`)); }
           return h('tr', { class: e.calls ? '' : 'is-off' },
             h('td', null, h('span', { class: 'ep-name' }, e.name ?? ''), e.path ? h('span', { class: 'ep-path' }, e.path) : null),
             h('td', { class: 'r' }, e.calls ?? 0), h('td', { class: 'r' }, e.credits ?? 0), h('td', { class: 'r' }, e.calls ? fmtMs(e.model_ms) : ''),
             h('td', null, h('span', { class: 'ep-result' }, res ?? (e.calls ? 'Called, no result recorded' : 'Not run')), e.effect ? h('span', { class: 'ep-effect' }, e.effect) : null),
-            h('td', null, a ? h('div', { class: 'ep-without' }, a.text ?? '', links.length ? h('div', { class: 'ep-links' }, links) : null) : h('span', { class: 'muted' }, 'Supporting step')));
-        })),
+            h('td', null, a ? h('div', { class: 'ep-without' }, a.text ?? '', ablLinks(a)) : h('span', { class: 'muted' }, 'Supporting step')));
+        }), orphans.map((a) => h('tr', null, h('td', null, h('span', { class: 'ep-name' }, a.endpoint ?? '')), h('td'), h('td'), h('td'), h('td'), h('td', null, h('div', { class: 'ep-without' }, a.text ?? '', ablLinks(a)))))),
         h('tfoot', null, h('tr', null, h('td', null, 'Total'), h('td', { class: 'r' }, calls), h('td', { class: 'r' }, credits), h('td', { class: 'r' }, fmtMs(eps.reduce((s, e) => s + (Number(e.model_ms) || 0), 0))), h('td', { colspan: 2 }))));
+    body = [compareSummary(r), table];
   }
   root.replaceChildren(bar, h('div', { class: 'drawer-body' }, body));
 }
@@ -1311,6 +1474,7 @@ function showMessage(title, text) {
   $('#docs').replaceChildren(h('div', { class: 'splash' }, h('b', null, title), 'Choose a review from the menu at the top right.'));
   $('#detail').replaceChildren();
   $('#legend').replaceChildren();
+  $('#layer-switch').hidden = true;
   $('#drawer').replaceChildren();
   for (const id of ['#count-changes', '#count-note', '#count-terms']) $(id).textContent = '';
   renderTop();
@@ -1329,7 +1493,7 @@ async function openReview({ id = null, base, run = false, change = null, view = 
   }
   if (token !== S.loadToken) return;
   S.review = r; S.base = base; S.caseId = id ?? r.case?.id ?? null; S.run = run;
-  S.claim = null; S.tab = 'changes'; S.open = {};
+  S.claim = null; S.tab = 'changes'; S.open = {}; S.layer = 'changes';
   const ch = changesOf(r);
   if (view === 'guard' && guardInfo(r)) S.sel = 'guard';
   else if (change && ch.some((c) => c.id === change)) S.sel = change;
@@ -1343,6 +1507,7 @@ async function openReview({ id = null, base, run = false, change = null, view = 
   renderErrors();
   renderLeft();
   renderDocs();
+  renderLayerSwitch();
   renderZoom();
   renderLegend();
   renderDetail();
@@ -1369,23 +1534,12 @@ function applyHash() {
 function wire() {
   for (const el of $$('[data-ico]')) el.innerHTML = ICONS[el.dataset.ico] ?? '';
 
-  $('#switcher-btn').addEventListener('click', () => {
-    const menu = $('#switcher-menu');
-    menu.hidden = !menu.hidden;
-    $('#switcher-btn').setAttribute('aria-expanded', String(!menu.hidden));
-    if (!menu.hidden) ($('.switcher-item[aria-selected="true"]', menu) ?? $('.switcher-item', menu))?.focus();
-  });
+  $('#switcher-btn').addEventListener('click', () => toggleMenu($('#switcher')));
   document.addEventListener('pointerdown', (e) => {
-    if (!e.target.closest('#switcher')) closeSwitcher();
+    for (const sw of $$('.switcher')) if (!sw.contains(e.target)) closeMenu(sw);
     if (!e.target.closest('#upload-wrap')) $('#upload-wrap').dataset.show = 'false';
   });
-  $('#switcher-menu').addEventListener('keydown', (e) => {
-    const items = $$('.switcher-item', e.currentTarget);
-    const i = items.indexOf(document.activeElement);
-    if (e.key === 'ArrowDown') { e.preventDefault(); items[Math.min(items.length - 1, i + 1)]?.focus(); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); items[Math.max(0, i - 1)]?.focus(); }
-    else if (e.key === 'Escape') { closeSwitcher(); $('#switcher-btn').focus(); }
-  });
+  $('#switcher-menu').addEventListener('keydown', menuKeys);
 
   $('#upload-btn').addEventListener('click', () => {
     if (!S.live) { $('#upload-wrap').dataset.show = 'true'; return; }

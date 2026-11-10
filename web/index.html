@@ -51,10 +51,13 @@
 
     <section class="center" aria-label="Documents">
       <div class="doc-toolbar">
-        <div class="seg" id="view-seg" role="group" aria-label="Document view">
-          <button type="button" data-view="both" aria-pressed="true">Side by side</button>
-          <button type="button" data-view="v1" aria-pressed="false">We sent</button>
-          <button type="button" data-view="v2" aria-pressed="false">They returned</button>
+        <div class="doc-toolbar-left">
+          <div class="seg" id="view-seg" role="group" aria-label="Document view">
+            <button type="button" data-view="both" aria-pressed="true">Side by side</button>
+            <button type="button" data-view="v1" aria-pressed="false">We sent</button>
+            <button type="button" data-view="v2" aria-pressed="false">They returned</button>
+          </div>
+          <div class="switcher layer-switch" id="layer-switch" hidden></div>
         </div>
         <div class="zoom" role="group" aria-label="Zoom">
           <button type="button" class="icon-btn" id="zoom-out" aria-label="Zoom out"><span class="ico" data-ico="minus"></span></button>

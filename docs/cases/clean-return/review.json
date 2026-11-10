@@ -1,0 +1,1525 @@
+{
+ "schema": 1,
+ "case": {
+  "id": "clean-return",
+  "title": "Clean return",
+  "description": "The customer fixed typos and updated its notice address. The cover note is accurate."
+ },
+ "mode": "replay",
+ "status": "ready",
+ "headline": "Ready to sign",
+ "reasons": [
+  {
+   "level": "ok",
+   "source": "All checks",
+   "text": "No substantive change, the cover note holds up, nothing addressed to an AI."
+  }
+ ],
+ "documents": {
+  "v1": {
+   "name": "The version we sent",
+   "pages_count": 3,
+   "source_pdf": "v1.pdf",
+   "marked_pdf": "v1-compare-highlight.pdf",
+   "marked_by": "Clocked Compare: every passage it paired with the other version",
+   "extra_pdfs": [
+    {
+     "label": "Key terms boxed by Extract",
+     "file": "v1-terms-box.pdf"
+    }
+   ],
+   "pages": [
+    {
+     "image": "v1-p1.png",
+     "width": 940,
+     "height": 1335
+    },
+    {
+     "image": "v1-p2.png",
+     "width": 940,
+     "height": 1335
+    },
+    {
+     "image": "v1-p3.png",
+     "width": 940,
+     "height": 1335
+    }
+   ],
+   "layers": [
+    {
+     "id": "compare",
+     "label": "Passages paired by Compare",
+     "by": "Clocked Compare, return_pdf=highlight",
+     "pdf": "v1-compare-highlight.pdf",
+     "spans": 20,
+     "pages": [
+      {
+       "image": "v1-compare-p1.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v1-compare-p2.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v1-compare-p3.png",
+       "width": 940,
+       "height": 1335
+      }
+     ]
+    },
+    {
+     "id": "terms",
+     "label": "Key terms boxed by Extract",
+     "by": "Clocked Extract, return_pdf=box",
+     "pdf": "v1-terms-box.pdf",
+     "spans": 13,
+     "pages": [
+      {
+       "image": "v1-terms-p1.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v1-terms-p2.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v1-terms-p3.png",
+       "width": 940,
+       "height": 1335
+      }
+     ]
+    }
+   ],
+   "marked_spans": 20,
+   "spans": 20
+  },
+  "v2": {
+   "name": "The copy they returned",
+   "pages_count": 3,
+   "source_pdf": "v2.pdf",
+   "marked_pdf": "v2-compare-highlight.pdf",
+   "marked_by": "Clocked Compare: every passage it paired with the other version",
+   "extra_pdfs": [
+    {
+     "label": "Key terms boxed by Extract",
+     "file": "v2-terms-box.pdf"
+    }
+   ],
+   "pages": [
+    {
+     "image": "v2-p1.png",
+     "width": 940,
+     "height": 1335
+    },
+    {
+     "image": "v2-p2.png",
+     "width": 940,
+     "height": 1335
+    },
+    {
+     "image": "v2-p3.png",
+     "width": 940,
+     "height": 1335
+    }
+   ],
+   "layers": [
+    {
+     "id": "compare",
+     "label": "Passages paired by Compare",
+     "by": "Clocked Compare, return_pdf=highlight",
+     "pdf": "v2-compare-highlight.pdf",
+     "spans": 22,
+     "pages": [
+      {
+       "image": "v2-compare-p1.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v2-compare-p2.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v2-compare-p3.png",
+       "width": 940,
+       "height": 1335
+      }
+     ]
+    },
+    {
+     "id": "terms",
+     "label": "Key terms boxed by Extract",
+     "by": "Clocked Extract, return_pdf=box",
+     "pdf": "v2-terms-box.pdf",
+     "spans": 13,
+     "pages": [
+      {
+       "image": "v2-terms-p1.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v2-terms-p2.png",
+       "width": 940,
+       "height": 1335
+      },
+      {
+       "image": "v2-terms-p3.png",
+       "width": 940,
+       "height": 1335
+      }
+     ]
+    }
+   ],
+   "marked_spans": 22,
+   "spans": 22
+  }
+ },
+ "changes": [
+  {
+   "clause": "14",
+   "title": "Notices",
+   "cls": "administrative",
+   "blocking": false,
+   "kind": "address",
+   "summary": "Notice address updated",
+   "why": "Contact details inside a notices clause.",
+   "found_by": "rules",
+   "found_by_label": "Rules",
+   "promoted": false,
+   "parts": [
+    {
+     "summary": "Notice address updated",
+     "kind": "address",
+     "v1": {
+      "quote": "Brightwater Logistics LLC, 410 Quay Street, Suite 200, Portland, Oregon 97204",
+      "changed": "410 Quay Street, Suite 200,",
+      "page": 2,
+      "rects": [
+       [
+        0.565,
+        0.82162,
+        0.94641,
+        0.84143
+       ],
+       [
+        0.04297,
+        0.84252,
+        0.3371,
+        0.86232
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "Brightwater Logistics LLC, 88 Foundry Row, Floor 6, Portland, Oregon 97209",
+      "changed": "88 Foundry Row, Floor 6,",
+      "page": 2,
+      "rects": [
+       [
+        0.565,
+        0.82162,
+        0.95229,
+        0.84143
+       ],
+       [
+        0.04297,
+        0.84252,
+        0.31835,
+        0.86232
+       ]
+      ],
+      "located": true
+     }
+    },
+    {
+     "summary": "Notice address updated",
+     "kind": "address",
+     "v1": {
+      "quote": "200, Portland, Oregon 97204. E-mail notice is effective when",
+      "changed": "97204. E-mail",
+      "page": 2,
+      "rects": [
+       [
+        0.09161,
+        0.84252,
+        0.61126,
+        0.86232
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "6, Portland, Oregon 97209. Email notice is effective when",
+      "changed": "97209. Email",
+      "page": 2,
+      "rects": [
+       [
+        0.09395,
+        0.84252,
+        0.58548,
+        0.86232
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": null,
+   "verify": null,
+   "playbook": null,
+   "decide": null,
+   "route": "accept",
+   "route_reason": "Administrative: acknowledge and update the account record.",
+   "claims": [
+    2
+   ],
+   "id": "c1"
+  },
+  {
+   "clause": "3",
+   "title": "Renewal",
+   "cls": "spelling",
+   "blocking": false,
+   "kind": "typo",
+   "summary": "“writen” → “written”",
+   "why": "One word, same first letter, at most two letters apart: treated as a spelling fix. Compare can overrule this.",
+   "found_by": "rules",
+   "found_by_label": "Rules",
+   "promoted": false,
+   "parts": [
+    {
+     "summary": "“writen” → “written”",
+     "kind": "typo",
+     "v1": {
+      "quote": "unless either party gives writen notice of non-renewal at",
+      "changed": "writen",
+      "page": 1,
+      "rects": [
+       [
+        0.89301,
+        0.36358,
+        0.94574,
+        0.38339
+       ],
+       [
+        0.04297,
+        0.38447,
+        0.45947,
+        0.40428
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "unless either party gives written notice of non-renewal at",
+      "changed": "written",
+      "page": 1,
+      "rects": [
+       [
+        0.89301,
+        0.36358,
+        0.94574,
+        0.38339
+       ],
+       [
+        0.04297,
+        0.38447,
+        0.46532,
+        0.40428
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": {
+    "relation": "same",
+    "kind": "restated",
+    "confidence": 0.9849,
+    "clause_relation": "same",
+    "clause_probability": 0.9913,
+    "v1_quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "v2_quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+    "aligned": true,
+    "v1": {
+     "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives writen notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+     "page": 1,
+     "rects": [
+      [
+       0.04297,
+       0.36358,
+       0.94574,
+       0.38339
+      ],
+      [
+       0.04297,
+       0.38447,
+       0.92224,
+       0.40428
+      ],
+      [
+       0.04297,
+       0.40538,
+       0.08691,
+       0.42518
+      ]
+     ]
+    },
+    "v2": {
+     "quote": "After the Initial Term, this Agreement renews automatically for successive twelve (12) month terms unless either party gives written notice of non-renewal at least sixty (60) days before the end of the then-current term.",
+     "page": 1,
+     "rects": [
+      [
+       0.04297,
+       0.36358,
+       0.94574,
+       0.38339
+      ],
+      [
+       0.04297,
+       0.38447,
+       0.9281,
+       0.40428
+      ],
+      [
+       0.04297,
+       0.40538,
+       0.08691,
+       0.42518
+      ]
+     ]
+    }
+   },
+   "verify": {
+    "relation": "same",
+    "returned_against_sent": {
+     "verdict": "supported",
+     "supported": 0.9933,
+     "contradicted": 0.0028,
+     "not_stated": 0.002
+    },
+    "sent_against_returned": {
+     "verdict": "supported",
+     "supported": 0.991,
+     "contradicted": 0.0042,
+     "not_stated": 0.0028
+    }
+   },
+   "playbook": null,
+   "decide": null,
+   "route": null,
+   "route_reason": null,
+   "claims": [],
+   "id": "c2"
+  },
+  {
+   "clause": "5",
+   "title": "Service Levels",
+   "cls": "spelling",
+   "blocking": false,
+   "kind": "typo",
+   "summary": "“recieve” → “receive”",
+   "why": "One word, same first letter, at most two letters apart: treated as a spelling fix. Compare can overrule this.",
+   "found_by": "rules",
+   "found_by_label": "Rules",
+   "promoted": false,
+   "parts": [
+    {
+     "summary": "“recieve” → “receive”",
+     "kind": "typo",
+     "v1": {
+      "quote": "month, Customer will recieve a service credit equal",
+      "changed": "recieve",
+      "page": 1,
+      "rects": [
+       [
+        0.26793,
+        0.78065,
+        0.70262,
+        0.80046
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "month, Customer will receive a service credit equal",
+      "changed": "receive",
+      "page": 1,
+      "rects": [
+       [
+        0.26793,
+        0.78065,
+        0.70262,
+        0.80046
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": {
+    "relation": "same",
+    "kind": "restated",
+    "confidence": 0.9856,
+    "clause_relation": "same",
+    "clause_probability": 0.9755,
+    "v1_quote": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "v2_quote": "If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+    "aligned": true,
+    "v1": {
+     "quote": "If Provider fails to meet this commitment in a calendar month, Customer will recieve a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+     "page": 1,
+     "rects": [
+      [
+       0.68863,
+       0.75976,
+       0.92591,
+       0.77957
+      ],
+      [
+       0.04297,
+       0.78065,
+       0.94807,
+       0.80046
+      ],
+      [
+       0.04297,
+       0.80155,
+       0.8216,
+       0.82136
+      ]
+     ]
+    },
+    "v2": {
+     "quote": "If Provider fails to meet this commitment in a calendar month, Customer will receive a service credit equal to 5% of the monthly fee for each full hour of unavailability, up to a maximum of 10% of the monthly fee for that month.",
+     "page": 1,
+     "rects": [
+      [
+       0.68863,
+       0.75976,
+       0.92591,
+       0.77957
+      ],
+      [
+       0.04297,
+       0.78065,
+       0.94807,
+       0.80046
+      ],
+      [
+       0.04297,
+       0.80155,
+       0.8216,
+       0.82136
+      ]
+     ]
+    }
+   },
+   "verify": {
+    "relation": "same",
+    "returned_against_sent": {
+     "verdict": "supported",
+     "supported": 0.9938,
+     "contradicted": 0.0022,
+     "not_stated": 0.0024
+    },
+    "sent_against_returned": {
+     "verdict": "supported",
+     "supported": 0.9926,
+     "contradicted": 0.0029,
+     "not_stated": 0.0025
+    }
+   },
+   "playbook": null,
+   "decide": null,
+   "route": null,
+   "route_reason": null,
+   "claims": [
+    1
+   ],
+   "id": "c3"
+  },
+  {
+   "clause": "11",
+   "title": "Termination",
+   "cls": "formatting",
+   "blocking": false,
+   "kind": "format",
+   "summary": "Formatting only",
+   "why": "Same words and numbers once formatting is ignored.",
+   "found_by": "rules",
+   "found_by_label": "Rules",
+   "promoted": false,
+   "parts": [
+    {
+     "summary": "Formatting only",
+     "kind": "format",
+     "v1": {
+      "quote": "is not cured within thirty (30) days after written notice",
+      "changed": "thirty (30)",
+      "page": 2,
+      "rects": [
+       [
+        0.68616,
+        0.55467,
+        0.93517,
+        0.57447
+       ],
+       [
+        0.04297,
+        0.57556,
+        0.24741,
+        0.59536
+       ]
+      ],
+      "located": true
+     },
+     "v2": {
+      "quote": "is not cured within 30 days after written notice",
+      "changed": "30",
+      "page": 2,
+      "rects": [
+       [
+        0.68551,
+        0.55467,
+        0.95703,
+        0.57447
+       ],
+       [
+        0.04297,
+        0.57556,
+        0.15955,
+        0.59536
+       ]
+      ],
+      "located": true
+     }
+    }
+   ],
+   "compare": null,
+   "verify": null,
+   "playbook": null,
+   "decide": null,
+   "route": null,
+   "route_reason": null,
+   "claims": [],
+   "id": "c4"
+  }
+ ],
+ "compare": {
+  "document": {
+   "verdict": "conflicts",
+   "relation": "conflicting",
+   "related": 0.9953,
+   "conflicts": 1,
+   "same_passages": 21,
+   "marked": {
+    "v1": {
+     "mode": "highlight",
+     "spans": 20,
+     "marked": 20,
+     "pages": [
+      1,
+      2,
+      3
+     ]
+    },
+    "v2": {
+     "mode": "highlight",
+     "spans": 22,
+     "marked": 22,
+     "pages": [
+      1,
+      2,
+      3
+     ]
+    }
+   }
+  },
+  "clauses": [
+   {
+    "clause": "3",
+    "relation": "same",
+    "probability": 0.9913,
+    "conflicts": 0,
+    "same": 1
+   },
+   {
+    "clause": "5",
+    "relation": "same",
+    "probability": 0.9755,
+    "conflicts": 0,
+    "same": 3
+   }
+  ],
+  "clauses_asked": 2,
+  "unaligned": 0,
+  "kinds": []
+ },
+ "note": {
+  "text": "Hi Dana,\n\nAttached is the clean copy of the Master Services Agreement, ready for countersignature. We corrected a few typographical errors. We updated our notice address in Section 14. No commercial or legal terms were changed. Payment terms remain net thirty days.\n\nCould you sign and return it by Friday so we can meet our go-live date?\n\nThanks,\nPriya Raman\nProcurement, Brightwater Logistics",
+  "claims": [
+   {
+    "text": "Attached is the clean copy of the Master Services Agreement, ready for countersignature.",
+    "start": 10,
+    "end": 98,
+    "verdict": "not_stated",
+    "p": {
+     "supported": 0.0552,
+     "contradicted": 0.0134,
+     "not_stated": 0.7319,
+     "not_a_claim": 0.1995
+    },
+    "evidence": null,
+    "change_ids": []
+   },
+   {
+    "text": "We corrected a few typographical errors.",
+    "start": 99,
+    "end": 139,
+    "verdict": "supported",
+    "p": {
+     "supported": 0.9905,
+     "contradicted": 0.004,
+     "not_stated": 0.0029,
+     "not_a_claim": 0.0026
+    },
+    "evidence": {
+     "document": "changes",
+     "quote": "Spelling corrected in clause 5 (Service Levels): “recieve” → “receive”.",
+     "confidence": 0.978,
+     "page": null,
+     "rects": [],
+     "aligned": true
+    },
+    "change_ids": [
+     "c3"
+    ]
+   },
+   {
+    "text": "We updated our notice address in Section 14.",
+    "start": 140,
+    "end": 184,
+    "verdict": "supported",
+    "p": {
+     "supported": 0.9934,
+     "contradicted": 0.0026,
+     "not_stated": 0.0019,
+     "not_a_claim": 0.0021
+    },
+    "evidence": {
+     "document": "changes",
+     "quote": "Administrative change in clause 14 (Notices): the notice address was updated.",
+     "confidence": 1,
+     "page": null,
+     "rects": [],
+     "aligned": true
+    },
+    "change_ids": [
+     "c1"
+    ]
+   },
+   {
+    "text": "No commercial or legal terms were changed.",
+    "start": 185,
+    "end": 227,
+    "verdict": "supported",
+    "p": {
+     "supported": 0.9904,
+     "contradicted": 0.0043,
+     "not_stated": 0.0026,
+     "not_a_claim": 0.0027
+    },
+    "evidence": null,
+    "change_ids": []
+   },
+   {
+    "text": "Payment terms remain net thirty days.",
+    "start": 228,
+    "end": 265,
+    "verdict": "supported",
+    "p": {
+     "supported": 0.818,
+     "contradicted": 0.0394,
+     "not_stated": 0.1203,
+     "not_a_claim": 0.0223
+    },
+    "evidence": {
+     "document": "v2",
+     "quote": "Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+     "confidence": 0.983,
+     "page": 1,
+     "rects": [
+      [
+       0.04297,
+       0.53459,
+       0.77649,
+       0.55439
+      ]
+     ],
+     "aligned": true
+    },
+    "change_ids": []
+   }
+  ],
+  "grounded": 0.6377,
+  "verdict": "partially_grounded",
+  "ran": true
+ },
+ "guard": [
+  {
+   "target": "Cover note",
+   "ran": true,
+   "injection": 0.0021249474833828774,
+   "verdict": "benign",
+   "flagged": false,
+   "category": "benign",
+   "severity": "none",
+   "evidence": []
+  },
+  {
+   "target": "Returned copy",
+   "ran": true,
+   "injection": 0.0043738420653854915,
+   "verdict": "benign",
+   "flagged": false,
+   "category": "benign",
+   "severity": "none",
+   "evidence": []
+  }
+ ],
+ "terms": [
+  {
+   "field": "annual_fee",
+   "label": "Annual fee",
+   "v1": {
+    "value": "$184,000",
+    "confidence": 0.9999999987473958,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.53099,
+      0.45953,
+      0.6101,
+      0.47934
+     ]
+    ]
+   },
+   "v2": {
+    "value": "$184,000",
+    "confidence": 0.9999999996210878,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.53099,
+      0.45953,
+      0.6101,
+      0.47934
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "payment_terms",
+   "label": "Payment terms",
+   "v1": {
+    "value": "within thirty (30) days of the invoice date",
+    "confidence": 0.9999999990438013,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.42027,
+      0.53459,
+      0.7712,
+      0.55439
+     ]
+    ]
+   },
+   "v2": {
+    "value": "within thirty (30) days of the invoice date",
+    "confidence": 0.9999999991769695,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.42027,
+      0.53459,
+      0.7712,
+      0.55439
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "late_interest",
+   "label": "Late interest",
+   "v1": {
+    "value": "rate of 1.5% per month",
+    "confidence": 0.9995704052910843,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.37619,
+      0.60965,
+      0.57081,
+      0.62945
+     ]
+    ]
+   },
+   "v2": {
+    "value": "rate of 1.5% per month",
+    "confidence": 0.999835111172388,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.37619,
+      0.60965,
+      0.57081,
+      0.62945
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "price_increase_cap",
+   "label": "Renewal increase cap",
+   "v1": {
+    "value": "by up to 5% over the fees",
+    "confidence": 0.9999999919814672,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.48872,
+      0.6847,
+      0.7043,
+      0.70451
+     ]
+    ]
+   },
+   "v2": {
+    "value": "by up to 5% over the fees",
+    "confidence": 0.9999999975306093,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.48872,
+      0.6847,
+      0.7043,
+      0.70451
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "initial_term",
+   "label": "Initial term",
+   "v1": {
+    "value": "thirty-six (36) months",
+    "confidence": 0.9999999990130419,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.73387,
+      0.28852,
+      0.91898,
+      0.30833
+     ]
+    ]
+   },
+   "v2": {
+    "value": "thirty-six (36) months",
+    "confidence": 0.9999999991119313,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.73387,
+      0.28852,
+      0.91898,
+      0.30833
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "renewal_notice",
+   "label": "Non-renewal notice",
+   "v1": {
+    "value": "at least sixty (60) days before the end of the then-current term",
+    "confidence": 0.9999999855983865,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.44424,
+      0.38447,
+      0.92224,
+      0.40428
+     ],
+     [
+      0.04297,
+      0.40538,
+      0.08163,
+      0.42518
+     ]
+    ]
+   },
+   "v2": {
+    "value": "at least sixty (60) days before the end of the then-current term",
+    "confidence": 0.9999999942990045,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.4501,
+      0.38447,
+      0.9281,
+      0.40428
+     ],
+     [
+      0.04297,
+      0.40538,
+      0.08163,
+      0.42518
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "uptime",
+   "label": "Availability",
+   "v1": {
+    "value": "at least 99.9%",
+    "confidence": 0.999992180393762,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.55916,
+      0.75976,
+      0.67808,
+      0.77957
+     ]
+    ]
+   },
+   "v2": {
+    "value": "at least 99.9%",
+    "confidence": 0.9999951925319334,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.55916,
+      0.75976,
+      0.67808,
+      0.77957
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "service_credit_limit",
+   "label": "Service credit limit",
+   "v1": {
+    "value": "up to a maximum of 10% of the monthly fee for that month",
+    "confidence": 0.9999999987507597,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.3148,
+      0.80155,
+      0.81633,
+      0.82136
+     ]
+    ]
+   },
+   "v2": {
+    "value": "up to a maximum of 10% of the monthly fee for that month",
+    "confidence": 0.9999999988217505,
+    "read": true,
+    "aligned": true,
+    "page": 1,
+    "rects": [
+     [
+      0.3148,
+      0.80155,
+      0.81633,
+      0.82136
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "liability_cap",
+   "label": "Liability cap",
+   "v1": {
+    "value": "fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim",
+    "confidence": 0.9999999979215188,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.30717,
+      0.36275,
+      0.9065,
+      0.38256
+     ],
+     [
+      0.04297,
+      0.38366,
+      0.37865,
+      0.40346
+     ]
+    ]
+   },
+   "v2": {
+    "value": "fees paid by Customer under this Agreement in the twelve (12) months before the event giving rise to the claim",
+    "confidence": 0.999999998769745,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.30717,
+      0.36275,
+      0.9065,
+      0.38256
+     ],
+     [
+      0.04297,
+      0.38366,
+      0.37865,
+      0.40346
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "data_export_window",
+   "label": "Data export window",
+   "v1": {
+    "value": "For thirty (30) days after termination or expiration",
+    "confidence": 0.9999999951808647,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.282,
+      0.0749,
+      0.70674,
+      0.09471
+     ]
+    ]
+   },
+   "v2": {
+    "value": "For thirty (30) days after termination or expiration",
+    "confidence": 0.9999999944404845,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.282,
+      0.0749,
+      0.70674,
+      0.09471
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "confidentiality_period",
+   "label": "Confidentiality period",
+   "v1": {
+    "value": "continue for three (3) years after",
+    "confidence": 0.9999999983162973,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.43257,
+      0.2668,
+      0.7061,
+      0.28661
+     ]
+    ]
+   },
+   "v2": {
+    "value": "continue for three (3) years after",
+    "confidence": 0.9999999980262453,
+    "read": true,
+    "aligned": true,
+    "page": 2,
+    "rects": [
+     [
+      0.43257,
+      0.2668,
+      0.7061,
+      0.28661
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "governing_law",
+   "label": "Governing law",
+   "v1": {
+    "value": "governed by the laws of the State of Delaware",
+    "confidence": 0.9999999960112236,
+    "read": true,
+    "aligned": true,
+    "page": 3,
+    "rects": [
+     [
+      0.20409,
+      0.05401,
+      0.59421,
+      0.07381
+     ]
+    ]
+   },
+   "v2": {
+    "value": "governed by the laws of the State of Delaware",
+    "confidence": 0.9999999882703018,
+    "read": true,
+    "aligned": true,
+    "page": 3,
+    "rects": [
+     [
+      0.20409,
+      0.05401,
+      0.59421,
+      0.07381
+     ]
+    ]
+   },
+   "changed": false
+  },
+  {
+   "field": "venue",
+   "label": "Venue",
+   "v1": {
+    "value": "courts located in Wilmington, Delaware",
+    "confidence": 0.9999999500914227,
+    "read": true,
+    "aligned": true,
+    "page": 3,
+    "rects": [
+     [
+      0.69327,
+      0.0749,
+      0.94521,
+      0.09471
+     ],
+     [
+      0.04297,
+      0.0958,
+      0.12378,
+      0.1156
+     ]
+    ]
+   },
+   "v2": {
+    "value": "courts located in Wilmington, Delaware",
+    "confidence": 0.9999999783387361,
+    "read": true,
+    "aligned": true,
+    "page": 3,
+    "rects": [
+     [
+      0.69327,
+      0.0749,
+      0.94521,
+      0.09471
+     ],
+     [
+      0.04297,
+      0.0958,
+      0.12378,
+      0.1156
+     ]
+    ]
+   },
+   "changed": false
+  }
+ ],
+ "hidden_text": [],
+ "ablation": [
+  {
+   "endpoint": "Verify",
+   "text": "The 5 statement(s) of the cover note would go unchecked; here they hold up.",
+   "changes": [],
+   "claims": []
+  },
+  {
+   "endpoint": "Compare",
+   "text": "Nothing would check that the two files are versions of the same agreement, and there would be no paired copies of the PDFs.",
+   "changes": []
+  },
+  {
+   "endpoint": "Rerank",
+   "text": "No change is open in this review, so there was nothing to look up.",
+   "changes": []
+  }
+ ],
+ "endpoints": [
+  {
+   "name": "Verify",
+   "path": "/clocked/grounding",
+   "calls": 3,
+   "credits": 19,
+   "model_ms": 446,
+   "effect": "Reads meaning twice. Each changed sentence against the other version: a spelling fix that changes meaning becomes a change, a faithful rewording is cleared. Each statement of the cover note: a contradicted one blocks signing."
+  },
+  {
+   "name": "Compare",
+   "path": "/clocked/compare",
+   "calls": 3,
+   "credits": 40,
+   "model_ms": 963,
+   "effect": "Reads each clause in question as sent against as returned: a conflict confirms a change or overrules a spelling fix, and vetoes clearing a rewording. On the two whole PDFs: checks they are versions of one agreement and returns the paired, marked copies."
+  },
+  {
+   "name": "Rerank",
+   "path": null,
+   "calls": 0,
+   "credits": 0,
+   "model_ms": 0,
+   "effect": "Picks the playbook passages for each change and skips those for other deal sizes; none found means Legal."
+  },
+  {
+   "name": "Decide",
+   "path": null,
+   "calls": 0,
+   "credits": 0,
+   "model_ms": 0,
+   "effect": "Routes each change using the passages Rerank kept; low confidence means a person decides."
+  },
+  {
+   "name": "Extract",
+   "path": "/clocked/extract",
+   "calls": 2,
+   "credits": 18,
+   "model_ms": 409,
+   "effect": "Reads the key terms of both versions for the side-by-side table and the deal size given to Rerank."
+  },
+  {
+   "name": "Guard",
+   "path": "/clocked/injection",
+   "calls": 2,
+   "credits": 4,
+   "model_ms": 54,
+   "effect": "Flags text addressed to an AI reviewer; a hit blocks signing."
+  }
+ ],
+ "errors": [],
+ "audit": {
+  "requests": [
+   {
+    "endpoint": "Guard",
+    "path": "/clocked/injection",
+    "step": "guard returned copy",
+    "credits": 2,
+    "model_ms": 28.544544,
+    "attempts": 1,
+    "request_id": "a5846e95aa4d13e2-BOS",
+    "idempotency_key": "8f4a0e46-98fa-4cd5-9972-86c73e33e86a",
+    "recorded_at": "2026-11-10T10:39:12+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare v1 v2",
+    "credits": 32,
+    "model_ms": 786.805578,
+    "attempts": 1,
+    "request_id": "a5846e95bbe93459-BOS",
+    "idempotency_key": "ed7e6f43-adf1-4c61-9d80-0ac85f242290",
+    "recorded_at": "2026-11-10T10:39:13+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Extract",
+    "path": "/clocked/extract",
+    "step": "extract terms v1",
+    "credits": 8,
+    "model_ms": 184.8815,
+    "attempts": 1,
+    "request_id": "a5846e95bd77da66-BOS",
+    "idempotency_key": "8294f0b1-3bcd-4186-8167-195f668170cf",
+    "recorded_at": "2026-11-10T10:39:12+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 5",
+    "credits": 5,
+    "model_ms": 110.945219,
+    "attempts": 1,
+    "request_id": "a5846e9c2f1c9009-BOS",
+    "idempotency_key": "ab97478e-c102-4a4e-a8c2-3e44744132bc",
+    "recorded_at": "2026-11-10T10:39:13+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 3",
+    "credits": 3,
+    "model_ms": 67.18928,
+    "attempts": 1,
+    "request_id": "a5846e98ffe5da66-BOS",
+    "idempotency_key": "a01f0a25-a8b0-443b-a1d8-c964d6ced3ae",
+    "recorded_at": "2026-11-10T10:39:13+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Extract",
+    "path": "/clocked/extract",
+    "step": "extract terms v2",
+    "credits": 10,
+    "model_ms": 225.4039,
+    "attempts": 1,
+    "request_id": "a5846e978cd59009-BOS",
+    "idempotency_key": "10805db4-1724-4230-99a1-25ae232baa08",
+    "recorded_at": "2026-11-10T10:39:13+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify returned sentences against v1",
+    "credits": 6,
+    "model_ms": 126.247646,
+    "attempts": 1,
+    "request_id": "a5846ea02dfada66-BOS",
+    "idempotency_key": "5820ad2e-4416-4a67-ab84-48beffd3c038",
+    "recorded_at": "2026-11-10T10:39:14+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify sent sentences against v2",
+    "credits": 5,
+    "model_ms": 123.721058,
+    "attempts": 1,
+    "request_id": "a5846ea029279009-BOS",
+    "idempotency_key": "bdf10bf1-187e-4704-a1ee-47903d81ff68",
+    "recorded_at": "2026-11-10T10:39:14+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Guard",
+    "path": "/clocked/injection",
+    "step": "guard cover note",
+    "credits": 2,
+    "model_ms": 26.24144,
+    "attempts": 1,
+    "request_id": "a5846ea0eca98fa5-BOS",
+    "idempotency_key": "b153a774-2ece-447c-bc1f-e2551fc5ecad",
+    "recorded_at": "2026-11-10T10:39:14+00:00",
+    "replayed": true
+   },
+   {
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify cover note",
+    "credits": 8,
+    "model_ms": 197.784027,
+    "attempts": 1,
+    "request_id": "a5846ea63c2d4d05-BOS",
+    "idempotency_key": "5355a5e7-47d4-4002-af78-99920dc62a6d",
+    "recorded_at": "2026-11-10T10:39:15+00:00",
+    "replayed": true
+   }
+  ],
+  "credits": 81,
+  "calls": 10
+ },
+ "playbook_topics": [
+  {
+   "id": "payment",
+   "title": "Payment terms"
+  },
+  {
+   "id": "fees",
+   "title": "Fees and price changes"
+  },
+  {
+   "id": "term",
+   "title": "Term and renewal"
+  },
+  {
+   "id": "liability",
+   "title": "Liability"
+  },
+  {
+   "id": "service",
+   "title": "Service levels"
+  },
+  {
+   "id": "law",
+   "title": "Governing law"
+  },
+  {
+   "id": "data",
+   "title": "Data and confidentiality"
+  },
+  {
+   "id": "assignment",
+   "title": "Assignment"
+  },
+  {
+   "id": "notices",
+   "title": "Notices"
+  }
+ ]
+}

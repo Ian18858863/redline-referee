@@ -1,0 +1,26 @@
+[
+ {
+  "id": "quiet-changes",
+  "title": "Quiet changes",
+  "description": "The cover note says only typos and an address changed. Four terms moved: one the deal desk can accept, one to counter, two for other approvers.",
+  "status": "blocked"
+ },
+ {
+  "id": "quiet-changes-injected",
+  "title": "Quiet changes with a hidden instruction",
+  "description": "One digit pair swapped in the fee, two rewritten clauses, and white text addressed to AI reviewers.",
+  "status": "blocked"
+ },
+ {
+  "id": "disclosed-changes",
+  "title": "Disclosed changes",
+  "description": "The customer changed three terms and said so. Nothing is hidden, but each still needs a decision.",
+  "status": "changes"
+ },
+ {
+  "id": "clean-return",
+  "title": "Clean return",
+  "description": "The customer fixed typos and updated its notice address. The cover note is accurate.",
+  "status": "ready"
+ }
+]
