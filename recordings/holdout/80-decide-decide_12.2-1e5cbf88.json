@@ -1,0 +1,118 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 12.2",
+ "request_hash": "1e5cbf88267b1d9fccc2ed681a3efd29fb2f01216a347a34e9022b5141e5bfef",
+ "request": {
+  "state": {
+   "clause": "12.2 Non-Renewal",
+   "change": "The Customer changed this term: 60 days' notice of non-renewal became 45 days' notice",
+   "we_sent": "Customer may elect not to renew this Agreement by giving Provider written notice at least 60 days before the end of the then-current Subscription Term.",
+   "they_returned": "Customer may elect not to renew this Agreement by giving Provider written notice at least 45 days before the end of the then-current Subscription Term.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$60,000"
+   },
+   "playbook": [
+    "Non-renewal notice: annual fees below $60,000: Applies only when annual fees are below $60,000. Our standard contract requires the customer to give notice of non-renewal at least 60 days before the end of the term. The deal desk may accept a customer request to shorten that notice to 30 days or more. For a request of 15 to 29 days the desk must counter with 30 days and may do so without approval. A request below 15 days requires Sales Director approval: the desk may neither accept nor counter. Never apply this passage to deals of $60,000 or more.",
+    "Non-renewal notice: annual fees at least $60,000: Applies only when annual fees are $60,000 or more. The desk may not accept any non-renewal notice shorter than our standard 60 days. For a request of 30 to 59 days the desk must hold our original 60-day term and may send it back without approval. A request below 30 days requires Revenue Operations approval: the desk may neither accept it nor send back the original term. Never apply this passage to smaller deals.",
+    "Renewal price increase cap: annual fees below $150,000: Applies only when annual fees are below $150,000. Our standard contract caps the price increase at each renewal at 7%. The desk may accept a customer request for a cap of 5% or higher. For a requested cap of 3% or higher but below 5% the desk must counter with 5% and may do so without approval. A requested cap below 3%, including a price freeze, requires Finance approval: the desk may neither accept nor counter. Never apply this passage to deals of $150,000 or more.",
+    "Renewal price increase cap: annual fees at least $150,000: Applies only when annual fees are $150,000 or more. The desk may not accept any cap below our standard 7%. For a requested cap of 5% or higher but below 7% the desk must restore our original 7% cap and may send it back without approval. A requested cap below 5%, including a price freeze, requires Finance approval: the desk may neither accept it nor send back the original cap. Never apply this passage to smaller deals.",
+    "Removal of automatic renewal: all deal sizes: Applies to deals of every size. A request to delete automatic renewal, or to make renewal depend on the customer's written agreement, requires approval from the VP of Sales. The desk may neither accept the request nor counter it on its own authority."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages name a different term, between our original term and what the Customer wrote, that the deal desk may agree to on its own authority and could offer instead. No if every alternative needs another approver, or the passages name no alternative."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   },
+   "desk_may_restore": {
+    "type": "noul",
+    "instructions": "Yes only if, for this specific request and these deal facts, a playbook passage explicitly says the deal desk may or must respond by sending back our original term on its own authority, without another approver. No if the passage that applies says the desk may neither accept nor counter this request, names another approver for it, or does not grant that authority for a request of this size. Ignore passages written for other deal sizes."
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 3,
+  "model_ms": 64.427841,
+  "cost_usd": 0.000598,
+  "attempts": 1,
+  "idempotency_key": "331e3f9e-75d2-402b-ae36-388ab2c81ea6",
+  "request_id": null,
+  "trace": "a588345e5e33acd7-EWR",
+  "wall_ms": 165,
+  "recorded_at": "2026-11-10T21:38:30+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0034
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.0208
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9775,
+     "provider": 0.0159,
+     "neutral": 0.0067
+    },
+    "confidence": 0.9662
+   },
+   "materiality": {
+    "type": "score",
+    "score": 3.5231,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0197,
+     "1": 0.0214,
+     "2": 0.1249,
+     "3": 0.084,
+     "4": 0.7499
+    },
+    "confidence": 0.6874
+   },
+   "desk_may_restore": {
+    "type": "noul",
+    "noul": 0.0912
+   }
+  },
+  "usage": {
+   "input_tokens": 1040,
+   "output_tokens": 14
+  }
+ }
+}

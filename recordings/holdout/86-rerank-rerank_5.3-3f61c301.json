@@ -1,0 +1,167 @@
+{
+ "endpoint": "/clocked/rerank",
+ "label": "rerank 5.3",
+ "request_hash": "3f61c301d16f59398935400dd322b6f1b13ac9307de7ffe1908f043708cd4db8",
+ "request": {
+  "query": "The customer changed clause 5.3 (Renewal Pricing): renewal price increase capped at 7% → capped at 5%. We sent: \"Provider may increase the Fees for a Renewal Term by no more than 7% over the Fees for the preceding term.\". They returned: \"Provider may increase the Fees for a Renewal Term by no more than 5% over the Fees for the preceding term.\". How should the deal desk respond?",
+  "context": {
+   "our_role": "Provider (we sent the original agreement)",
+   "annual_fee_in_our_version": "$200,000"
+  },
+  "documents": [
+   {
+    "id": "nonrenewal-small",
+    "title": "Non-renewal notice: annual fees below $60,000",
+    "text": "Applies only when annual fees are below $60,000. Our standard contract requires the customer to give notice of non-renewal at least 60 days before the end of the term. The deal desk may accept a customer request to shorten that notice to 30 days or more. For a request of 15 to 29 days the desk must counter with 30 days and may do so without approval. A request below 15 days requires Sales Director approval: the desk may neither accept nor counter. Never apply this passage to deals of $60,000 or more.",
+    "metadata": {
+     "topic": "Notice of non-renewal"
+    }
+   },
+   {
+    "id": "nonrenewal-large",
+    "title": "Non-renewal notice: annual fees at least $60,000",
+    "text": "Applies only when annual fees are $60,000 or more. The desk may not accept any non-renewal notice shorter than our standard 60 days. For a request of 30 to 59 days the desk must hold our original 60-day term and may send it back without approval. A request below 30 days requires Revenue Operations approval: the desk may neither accept it nor send back the original term. Never apply this passage to smaller deals.",
+    "metadata": {
+     "topic": "Notice of non-renewal"
+    }
+   },
+   {
+    "id": "uplift-small",
+    "title": "Renewal price increase cap: annual fees below $150,000",
+    "text": "Applies only when annual fees are below $150,000. Our standard contract caps the price increase at each renewal at 7%. The desk may accept a customer request for a cap of 5% or higher. For a requested cap of 3% or higher but below 5% the desk must counter with 5% and may do so without approval. A requested cap below 3%, including a price freeze, requires Finance approval: the desk may neither accept nor counter. Never apply this passage to deals of $150,000 or more.",
+    "metadata": {
+     "topic": "Cap on price increase at renewal"
+    }
+   },
+   {
+    "id": "uplift-large",
+    "title": "Renewal price increase cap: annual fees at least $150,000",
+    "text": "Applies only when annual fees are $150,000 or more. The desk may not accept any cap below our standard 7%. For a requested cap of 5% or higher but below 7% the desk must restore our original 7% cap and may send it back without approval. A requested cap below 5%, including a price freeze, requires Finance approval: the desk may neither accept it nor send back the original cap. Never apply this passage to smaller deals.",
+    "metadata": {
+     "topic": "Cap on price increase at renewal"
+    }
+   },
+   {
+    "id": "autorenew-removal",
+    "title": "Removal of automatic renewal: all deal sizes",
+    "text": "Applies to deals of every size. A request to delete automatic renewal, or to make renewal depend on the customer's written agreement, requires approval from the VP of Sales. The desk may neither accept the request nor counter it on its own authority.",
+    "metadata": {
+     "topic": "Automatic renewal"
+    }
+   }
+  ],
+  "instructions": "The passages are internal playbook rules for the Provider's deal desk. A passage answers the query only if it tells the deal desk how to respond to this specific change for a deal of this size."
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 48.2272,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "48a18033-33c1-4ce4-a4db-4ebef3af45df",
+  "request_id": null,
+  "trace": "a58834650c03acd7-EWR",
+  "wall_ms": 187,
+  "recorded_at": "2026-11-10T21:38:31+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "results": [
+   {
+    "index": 3,
+    "id": "uplift-large",
+    "action": "use",
+    "relevance_score": 0.9939,
+    "document_score": 0.9957,
+    "levels": {
+     "answers": 0.9939,
+     "elsewhere": 0.0017,
+     "different_case": 0.0023,
+     "unrelated": 0.002
+    }
+   },
+   {
+    "index": 2,
+    "id": "uplift-small",
+    "action": "skip",
+    "reason": "different_case",
+    "relevance_score": 0.0024,
+    "document_score": 0.0062,
+    "levels": {
+     "answers": 0.0024,
+     "elsewhere": 0.0038,
+     "different_case": 0.9863,
+     "unrelated": 0.0075
+    }
+   },
+   {
+    "index": 4,
+    "id": "autorenew-removal",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0023,
+    "document_score": 0.0066,
+    "levels": {
+     "answers": 0.0023,
+     "elsewhere": 0.0043,
+     "different_case": 0.0194,
+     "unrelated": 0.974
+    }
+   },
+   {
+    "index": 1,
+    "id": "nonrenewal-large",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.0021,
+    "document_score": 0.0072,
+    "levels": {
+     "answers": 0.0021,
+     "elsewhere": 0.0051,
+     "different_case": 0.0145,
+     "unrelated": 0.9783
+    }
+   },
+   {
+    "index": 0,
+    "id": "nonrenewal-small",
+    "action": "skip",
+    "reason": "unrelated",
+    "relevance_score": 0.002,
+    "document_score": 0.006,
+    "levels": {
+     "answers": 0.002,
+     "elsewhere": 0.004,
+     "different_case": 0.0185,
+     "unrelated": 0.9756
+    }
+   }
+  ],
+  "usage": {
+   "input_tokens": 1526
+  },
+  "timing": {
+   "total_ms": 53,
+   "rerank_ms": 52,
+   "questions_ms": 0,
+   "model_ms": 45,
+   "engine": {
+    "rows": 1641,
+    "branches": 5,
+    "forwards": 1,
+    "bins": 1,
+    "bucket_rows": 2048,
+    "long": 0,
+    "total_ms": 45,
+    "build_ms": 0,
+    "doc_ms": 3,
+    "forward_ms": 41,
+    "state_ms": 0,
+    "logits_ms": 0,
+    "state_chars": 0,
+    "row_buckets": "big",
+    "shared_opening_tokens": 224
+   }
+  }
+ }
+}

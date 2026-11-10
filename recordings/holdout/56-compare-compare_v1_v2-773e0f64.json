@@ -1,0 +1,131 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare v1 v2",
+ "request_hash": "773e0f64f7163114e953d23eb3fcfc93996bfffa9818978e71c2b0c660d97f62",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "pdf": {
+     "sha256": "a177c9ec05fd4573b9d6b938fa5554c7b0be17626129605fbd96ad78cd41984e"
+    }
+   },
+   {
+    "id": "v2",
+    "pdf": {
+     "sha256": "dd2b71a45f8dff0f1f774f4ff69dbb0105f168f0a6c13c0661b3a155648aed66"
+    }
+   }
+  ],
+  "instructions": "Document v1 is the agreement we sent. Document v2 is the copy the counterparty returned. Decide whether they are two versions of the same agreement between the same parties.",
+  "evidence": "none",
+  "kinds": false
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 96.334946,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "b17dfccb-9ab7-423c-be24-1810bcf8ed1a",
+  "request_id": null,
+  "trace": "a58834353ccfacd7-EWR",
+  "wall_ms": 227,
+  "recorded_at": "2026-11-10T21:38:24+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "none",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9918,
+    "probabilities": {
+     "same": 0.0162,
+     "overlapping": 0.2964,
+     "conflicting": 0.6792,
+     "unrelated": 0.0082
+    },
+    "duplicates": [],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 112
+  },
+  "timing": {
+   "read_ms": 112,
+   "total_ms": 124
+  },
+  "pdf": [
+   {
+    "document": "v1",
+    "pages": 4,
+    "selected": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "mode": "text",
+    "page_offsets": [
+     0,
+     2820,
+     6633,
+     10367
+    ],
+    "characters": 11896
+   },
+   {
+    "document": "v2",
+    "pages": 4,
+    "selected": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "mode": "text",
+    "page_offsets": [
+     0,
+     2820,
+     6641,
+     10698
+    ],
+    "characters": 12062
+   }
+  ]
+ }
+}

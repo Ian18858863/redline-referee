@@ -1,0 +1,106 @@
+{
+ "endpoint": "/clocked/decide",
+ "label": "decide 12.2",
+ "request_hash": "a64b810ff55181ed49027659da1f43151c7af5e6d8a940e35c0fa7533daae93d",
+ "request": {
+  "state": {
+   "clause": "12.2 Non-Renewal",
+   "change": "The Customer changed this term: 60 days' notice of non-renewal became 20 days' notice",
+   "we_sent": "Customer may elect not to renew this Agreement by giving Provider written notice at least 60 days before the end of the then-current Subscription Term.",
+   "they_returned": "Customer may elect not to renew this Agreement by giving Provider written notice at least 20 days before the end of the then-current Subscription Term.",
+   "deal_facts_from_our_version": {
+    "annual_fee": "$25,000"
+   },
+   "playbook": [
+    "Non-renewal notice: annual fees below $60,000: Applies only when annual fees are below $60,000. Our standard contract requires the customer to give notice of non-renewal at least 60 days before the end of the term. The deal desk may accept a customer request to shorten that notice to 30 days or more. For a request of 15 to 29 days the desk must counter with 30 days and may do so without approval. A request below 15 days requires Sales Director approval: the desk may neither accept nor counter. Never apply this passage to deals of $60,000 or more."
+   ]
+  },
+  "instructions": "You support the deal desk of the Provider, the party that sent the original agreement. The state describes one change the Customer made in the copy it returned, the facts of the deal, and the playbook passages that apply to the change, if any. Judge only this change, and only by what the playbook passages say the deal desk itself may do. Compare the term the Customer wrote with each limit the playbook states.",
+  "questions": {
+   "desk_may_accept": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages say the deal desk may agree to the term exactly as the Customer wrote it, on its own authority, for a deal with these facts. No if the Customer's term goes beyond what the deal desk may agree to, needs another approver, is refused, or is not covered by the passages."
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "instructions": "Yes if the playbook passages name a different term, between our original term and what the Customer wrote, that the deal desk may agree to on its own authority and could offer instead. No if every alternative needs another approver, or the passages name no alternative."
+   },
+   "favors": {
+    "type": "choice",
+    "criteria": {
+     "customer": "The change shifts money, risk or flexibility toward the Customer.",
+     "provider": "The change shifts money, risk or flexibility toward the Provider.",
+     "neutral": "The change does not clearly favour either party."
+    }
+   },
+   "materiality": {
+    "type": "score",
+    "criteria": [
+     "Trivial: no commercial or legal effect",
+     "Minor: small effect, routine to accept",
+     "Moderate: a real concession worth negotiating",
+     "Major: changes the economics or the risk of the deal",
+     "Critical: should not be signed without senior approval"
+    ]
+   }
+  }
+ },
+ "meta": {
+  "status": 200,
+  "credits": 2,
+  "model_ms": 49.787071,
+  "cost_usd": 0.000398,
+  "attempts": 1,
+  "idempotency_key": "1fe22c00-8d37-4e0f-81ad-7f0b08c88842",
+  "request_id": null,
+  "trace": "a58834559902acd7-EWR",
+  "wall_ms": 197,
+  "recorded_at": "2026-11-10T21:38:29+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "answers": {
+   "desk_may_accept": {
+    "type": "noul",
+    "noul": 0.0299
+   },
+   "desk_may_counter": {
+    "type": "noul",
+    "noul": 0.8665
+   },
+   "favors": {
+    "type": "choice",
+    "choice": "customer",
+    "probabilities": {
+     "customer": 0.9697,
+     "provider": 0.0167,
+     "neutral": 0.0135
+    },
+    "confidence": 0.9546
+   },
+   "materiality": {
+    "type": "score",
+    "score": 2.1691,
+    "legend": {
+     "0": "Trivial: no commercial or legal effect",
+     "1": "Minor: small effect, routine to accept",
+     "2": "Moderate: a real concession worth negotiating",
+     "3": "Major: changes the economics or the risk of the deal",
+     "4": "Critical: should not be signed without senior approval"
+    },
+    "probabilities": {
+     "0": 0.0189,
+     "1": 0.0809,
+     "2": 0.7298,
+     "3": 0.0533,
+     "4": 0.1172
+    },
+    "confidence": 0.6622
+   }
+  },
+  "usage": {
+   "input_tokens": 512,
+   "output_tokens": 12
+  }
+ }
+}

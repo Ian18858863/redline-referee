@@ -265,3 +265,104 @@
 {"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "21391c28ede85b3e8c414dfbd876ecf161bd550fb7c43144df1557042d620eb6", "charged": 7, "uncertain": 0, "round_accounted": 652}
 {"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "063ea9f008db34605845be93f40652c270c46830893fc516ff526fc7e16280ca", "charged": 6, "uncertain": 0, "round_accounted": 658}
 {"endpoint": "grounding", "label": "verify cover note", "request_hash": "d10dffcea76e108177881ac3d2a95441704ca65fe12609d9e1452b83f1ef2dd8", "charged": 6, "uncertain": 0, "round_accounted": 664}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "78aaf9b25700636283525f44c63f25ad89012af27ca73d4c5c389a52d21ceb88", "charged": 4, "uncertain": 0, "round_accounted": 668}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "3a0e1c2e4e55f5b272dc36cff4f2d3a12178115524e97a8028a2ca57318330ac", "charged": 3, "uncertain": 0, "round_accounted": 671}
+{"endpoint": "compare", "label": "compare clause 5.4", "request_hash": "4e92be704ba43a0a70249c0bc48249347af3b481ca513abc3946467651367b92", "charged": 6, "uncertain": 0, "round_accounted": 677}
+{"endpoint": "compare", "label": "compare clause 7.3", "request_hash": "b6d8202a5420d7a8b8001838e27513d846d9f3d8575b80459df66d8994aaa6d9", "charged": 6, "uncertain": 0, "round_accounted": 683}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "f937b0fd0b0a72f8694a079e554f08acf7351a384f61611499f8521adfd2ab62", "charged": 8, "uncertain": 0, "round_accounted": 691}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "e5d9c0a61d0ef7d30ae47f7f722a3ea853b9bf344e5d2715833d3e69b817345c", "charged": 8, "uncertain": 0, "round_accounted": 699}
+{"endpoint": "injection", "label": "guard cover note", "request_hash": "e8abda5f20a89c48efcadf003f6dd5448bf5adc58a437a4e39776580483bd09d", "charged": 2, "uncertain": 0, "round_accounted": 701}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "c2a9cf1053d0046f12314e94c8b685ddf4e4881e92c14ae0919a448b29098c98", "charged": 11, "uncertain": 0, "round_accounted": 712}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "535fc9428929a1b1c8d88571f000959e0566917dd06c8c80a007a595bd704c10", "charged": 4, "uncertain": 0, "round_accounted": 716}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "170d4255842fdb84b7f665b251864460bb34245161ce85826bd129ceef412022", "charged": 3, "uncertain": 0, "round_accounted": 719}
+{"endpoint": "compare", "label": "compare clause 3.1", "request_hash": "47749f7d5e7cbcdb869bd9e89993ebb1ee48b0303682d28b568c3f955dc720da", "charged": 5, "uncertain": 0, "round_accounted": 724}
+{"endpoint": "compare", "label": "compare clause 7.9", "request_hash": "2d48eaa06cb799b4c190dd451806265d7275989a664c318d120e100486d017a0", "charged": 5, "uncertain": 0, "round_accounted": 729}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "c2f77f587b759795a5e58c065bb187ef2d0d4233ed2b7154a1f5019a22e1e1c6", "charged": 7, "uncertain": 0, "round_accounted": 736}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "18e7f7c30a8a263829f286b14987b02855e1d23bfcb62174325592fb1d67c3e5", "charged": 8, "uncertain": 0, "round_accounted": 744}
+{"endpoint": "injection", "label": "guard cover note", "request_hash": "67284e8d9d42fcfacb987c6ec17cc4460377f84bfbe176315df5635ace8092f6", "charged": 2, "uncertain": 0, "round_accounted": 746}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "d136b324f5bb3f0edd62a46b03d5ace91ab191aea044d6acdd87b7580af84b47", "charged": 9, "uncertain": 0, "round_accounted": 755}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "2e9956b6e3643414d6d19aebdcb6ad3d48b325b5eeb5d6056911686d915edd57", "charged": 3, "uncertain": 0, "round_accounted": 758}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "9a4df08070bb4f111ba18b98c100e9e3be97a841c9bbe368672d720f1e7cd22b", "charged": 3, "uncertain": 0, "round_accounted": 761}
+{"endpoint": "compare", "label": "compare clause 2", "request_hash": "b4a78d66117992580f6bbd167557612f3122c8d2cb455c37ca2ded6ffba510b3", "charged": 6, "uncertain": 0, "round_accounted": 767}
+{"endpoint": "compare", "label": "compare clause 7", "request_hash": "903f19de19bce0202499016629b805b3264009580381f9db941936df2fb2f1ca", "charged": 9, "uncertain": 0, "round_accounted": 776}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "401ca6dd5b4cda58bdb7270760425317a13420f6c535e49957ee92d96ee692c3", "charged": 6, "uncertain": 0, "round_accounted": 782}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "f894f1bcfb81fc39fc5d3c7c7216befeebe68c37896af67dceac38ad0d669512", "charged": 6, "uncertain": 0, "round_accounted": 788}
+{"endpoint": "injection", "label": "guard cover note", "request_hash": "60375e51c1d10a7b64575cd799cf26c994e35f99819b453d5c7fa2797e64fa5e", "charged": 2, "uncertain": 0, "round_accounted": 790}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "e5342cec5fc57a03b7a0b0745c7ea2c46614791e212587e460a2e0276585c7be", "charged": 7, "uncertain": 0, "round_accounted": 797}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "cb82163881b3cb85b50a71ff38d75b2dd87e9c730157fe2f25bc26aad1176d50", "charged": 3, "uncertain": 0, "round_accounted": 800}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "8b018423e442f9666ac000f75acb98d5267ea5a2a81eeb50849233fe1ca14679", "charged": 3, "uncertain": 0, "round_accounted": 803}
+{"endpoint": "compare", "label": "compare clause 2", "request_hash": "7d394ff54e9fe36bfc36c33e94e69729b98becef92f0b06d8b16df5b2d47487e", "charged": 5, "uncertain": 0, "round_accounted": 808}
+{"endpoint": "compare", "label": "compare clause 8", "request_hash": "a0c0f8cd399706512cd542f4bf70c870d6a3cfdf99063c03542744c1a39b85d9", "charged": 5, "uncertain": 0, "round_accounted": 813}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "616503310f6715d1dd82812f43fe5872c170731e2904ebb71365f3e10668945c", "charged": 7, "uncertain": 0, "round_accounted": 820}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "4773a3138b095e53add1a4186ec25c37548e57946001cdcb313e486d4d55d27a", "charged": 7, "uncertain": 0, "round_accounted": 827}
+{"endpoint": "injection", "label": "guard cover note", "request_hash": "5a9b4a31370ed04b6abe1968ed86aaed16117a5d265e3bd194f7514a197771fb", "charged": 2, "uncertain": 0, "round_accounted": 829}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "8184fde0d59be758cdaf3317dad1f28fd81cee795a55ad3ad870e932e884d078", "charged": 7, "uncertain": 0, "round_accounted": 836}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "a362e8f3387ce60ed5619f697b0f058f0360616546370aa80450b8daf6f75c94", "charged": 2, "uncertain": 0, "round_accounted": 838}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "41a7781a4dd93f39d5b97e59aeaffe0e807cfeabbed4f3bed2702dd22108ee99", "charged": 3, "uncertain": 0, "round_accounted": 841}
+{"endpoint": "compare", "label": "compare clause 3", "request_hash": "aea511c9fc3f5bd025a74797f6cd8920d171c773c66c470156ec584a02809f01", "charged": 7, "uncertain": 0, "round_accounted": 848}
+{"endpoint": "compare", "label": "compare clause 6", "request_hash": "7f98896778245d47fb77d9dfb169f7b6b63a1464d9def0cb2a4d33dd5330088a", "charged": 12, "uncertain": 0, "round_accounted": 860}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "9da4a94ab0d9f8021c715fa792163b432ff1d72ad00de8a53622c956b1f4e818", "charged": 5, "uncertain": 0, "round_accounted": 865}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "483ccf4446ca18ef3dbb8d6721f21b1693eaa70ae1b65822b6a57ef27f095cd3", "charged": 5, "uncertain": 0, "round_accounted": 870}
+{"endpoint": "injection", "label": "guard cover note", "request_hash": "4385787f7a18f51a7ab642ffc8ef01b662757a7e651be871ba635466222d390c", "charged": 2, "uncertain": 0, "round_accounted": 872}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "21e1324fbb9f75fa44410cb29729d2996d4525336b6090c39b3f36be1cb034b1", "charged": 6, "uncertain": 0, "round_accounted": 878}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "bd1f387b39108095afb79c9662d851b5d9d3de570841a6d16f550c799e6bce13", "charged": 2, "uncertain": 0, "round_accounted": 880}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "b65d66183362ecf6f4fdbca8910d8700729c82f14196b22e6b919b32ad6fde34", "charged": 3, "uncertain": 0, "round_accounted": 883}
+{"endpoint": "compare", "label": "compare clause 2", "request_hash": "1dd76b547182e28fac11577024b4abec722246b70e1c639af7d28445b6f0032a", "charged": 5, "uncertain": 0, "round_accounted": 888}
+{"endpoint": "compare", "label": "compare clause 4", "request_hash": "3b758be3cde6eac25fcc39294d657a771f25f9deca2314924f538bfaed068546", "charged": 6, "uncertain": 0, "round_accounted": 894}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "bf9935d55e57f0d712ba572d7e2cde15e4c5c6ff7b898b6a78a95fc316c2ce2e", "charged": 5, "uncertain": 0, "round_accounted": 899}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "aa5c7f89078f536e83b891ccb9a53a426c734173e409845f47c9a9b58a5c0bb0", "charged": 5, "uncertain": 0, "round_accounted": 904}
+{"endpoint": "injection", "label": "guard cover note", "request_hash": "3644d91c2018e133d9f4a5f1619581bf176be721084779cd0f02bd3cf91af01f", "charged": 2, "uncertain": 0, "round_accounted": 906}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "1aef3f064294b126ccc92698ddfba5dd4310564af37d9581a9e5542b4f13dfc4", "charged": 6, "uncertain": 0, "round_accounted": 912}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "832ec4a42b1315703d624abdadc273f3fd0c1dd955d264f942b18aad3f1d7b35", "charged": 3, "uncertain": 0, "round_accounted": 915}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "1642f5c5908defa7e9d86cd6f5b4e78b6e284447f4370640943fa9aba775cd7b", "charged": 3, "uncertain": 0, "round_accounted": 918}
+{"endpoint": "compare", "label": "compare clause 4", "request_hash": "87dac736afc447be6a928cb9071b08a2979bc8a7a035ff2d81d31450c4f95680", "charged": 5, "uncertain": 0, "round_accounted": 923}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "8396455118fc18d37bbf7e33fb5a762d6c7a487dc0b158411a9a8f9cf19c60a1", "charged": 6, "uncertain": 0, "round_accounted": 929}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "78f32324e21bfe5fa4d3d65298e6f16ecadb73c3404d4fad4a1b22c009336c64", "charged": 5, "uncertain": 0, "round_accounted": 934}
+{"endpoint": "injection", "label": "guard cover note", "request_hash": "569ad3f1418cf2f1831cdf57cb3e915f72a785128a52aa615bb18b8612cfc5de", "charged": 2, "uncertain": 0, "round_accounted": 936}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "8242c2c03f4007791864ec3edc315015db0ee696b020d45cc6c0c2352a324e50", "charged": 7, "uncertain": 0, "round_accounted": 943}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "773e0f64f7163114e953d23eb3fcfc93996bfffa9818978e71c2b0c660d97f62", "charged": 4, "uncertain": 0, "round_accounted": 947}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "9e24394a758143b3d540060684be5246ae451c9da8dfc1f289e6ea5af9b4883c", "charged": 47, "uncertain": 0, "round_accounted": 994}
+{"endpoint": "compare", "label": "compare clause 7.3", "request_hash": "c59fbbd370654eda1d30830297f67d57ceb500a008e48ac2ef7ed65c0a9fa3bb", "charged": 6, "uncertain": 0, "round_accounted": 1000}
+{"endpoint": "compare", "label": "compare clause 7.12", "request_hash": "8368bfbd0f7869024f7720f58b2a8b5950a14d7e0bc0f085599c999399bbf797", "charged": 6, "uncertain": 0, "round_accounted": 1006}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "d392205cd527b67cabe73e4c4f34ffe8d758be220f531f59dfa99b8c0d3968ca", "charged": 8, "uncertain": 0, "round_accounted": 1014}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "0e7ccef1def2cd8dd01133f7c6f3fab4908a7399acc6493d416276dc745e851e", "charged": 7, "uncertain": 0, "round_accounted": 1021}
+{"endpoint": "injection", "label": "guard cover note", "request_hash": "7622442b3c98bfc92b88b718ef0a250593746cd1c816739da0310fa286e638d4", "charged": 2, "uncertain": 0, "round_accounted": 1023}
+{"endpoint": "grounding", "label": "verify cover note", "request_hash": "58b847f4136976e27770cf09b209a2c238b18892cef58cd39e74b843f7999969", "charged": 9, "uncertain": 0, "round_accounted": 1032}
+{"endpoint": "rerank", "label": "rerank 12.2", "request_hash": "fdafac4c4ecc41c146c545cf6f2946f865945dab4086428291f9ae7eddebc503", "charged": 2, "uncertain": 0, "round_accounted": 1034}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "79c95fbca1655bcbbbfc0174b848c322d60881a07cbf56e20ee97b2756be1aa7", "charged": 2, "uncertain": 0, "round_accounted": 1036}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "3b59416d8daa9366d74047c0bc9efa967d0e191d0f018961ac41a028d6581b4f", "charged": 3, "uncertain": 0, "round_accounted": 1039}
+{"endpoint": "rerank", "label": "rerank 5.3", "request_hash": "1457b99f8873d048adfd8ca0b58ce982275dec32e13545b36613be692285da2b", "charged": 2, "uncertain": 0, "round_accounted": 1041}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "71879452d8d9e64892fc4b556d88a56982f8660100597fde1beab2895ec7c1dd", "charged": 2, "uncertain": 0, "round_accounted": 1043}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "c01a01e462a702740bf6a12d6844b32048027a1bb18db0b5ca327887f3889185", "charged": 3, "uncertain": 0, "round_accounted": 1046}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "440bb778b54131d27bce907ba3784c80ff4c7a6613c98d8a98964d9f161a0b5e", "charged": 2, "uncertain": 0, "round_accounted": 1048}
+{"endpoint": "rerank", "label": "rerank 12.2", "request_hash": "a5ba612475797cc527b78b025349db9fb86b9caca4e31eb742171660d6926db4", "charged": 2, "uncertain": 0, "round_accounted": 1050}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "a64b810ff55181ed49027659da1f43151c7af5e6d8a940e35c0fa7533daae93d", "charged": 2, "uncertain": 0, "round_accounted": 1052}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "5e70495066b48be4dbd74a2061c644ab209b7ce4db5cb25e56af7c62acc7695d", "charged": 3, "uncertain": 0, "round_accounted": 1055}
+{"endpoint": "rerank", "label": "rerank 5.3", "request_hash": "789407d23111cade223037ecb5614d7228a735faa88bd3ef180d0071061bc089", "charged": 2, "uncertain": 0, "round_accounted": 1057}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "9d465593c55b72e149966dcea5cab38dfc66db53ed041b4441c46b2a92aec56f", "charged": 2, "uncertain": 0, "round_accounted": 1059}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "d7fe07d7b25143b4cbf4923ba825a7bbb30478ebd36649e1fee8e4c3b927e0d8", "charged": 3, "uncertain": 0, "round_accounted": 1062}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "667e0cf2545ed632ddf13933901125e20371f0697726ad0f4269e4ea3feda63e", "charged": 2, "uncertain": 0, "round_accounted": 1064}
+{"endpoint": "rerank", "label": "rerank 12.2", "request_hash": "411d33cf51c8a443c8bf12216f795e3ea9b0a8512afb944ebe5d47ea9eac0098", "charged": 2, "uncertain": 0, "round_accounted": 1066}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "1e994281783a78435203a7fac806369863b2c2b2f68c6bec631ddc75957dddca", "charged": 3, "uncertain": 0, "round_accounted": 1069}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "1e5cbf88267b1d9fccc2ed681a3efd29fb2f01216a347a34e9022b5141e5bfef", "charged": 3, "uncertain": 0, "round_accounted": 1072}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "a859c2f22b6dc182f849b84241b726b5d4a41716758f5ebe3d860fd29c3eaa40", "charged": 2, "uncertain": 0, "round_accounted": 1074}
+{"endpoint": "rerank", "label": "rerank 12.2", "request_hash": "fdad946a6cae859fb7af8605eb80db7ff493a1a7baa25b2891a33b4939811c76", "charged": 2, "uncertain": 0, "round_accounted": 1076}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "62f5bda8874af26ee5e5ae8ae14444484e7b460443b3f0c4b9b397134af4618a", "charged": 2, "uncertain": 0, "round_accounted": 1078}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "94cdc1b952cfe5646c4b799d0ae581e144b8f2f91192c4b7501f10303a6fcca4", "charged": 3, "uncertain": 0, "round_accounted": 1081}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "e2be9bd5e1c623379063dcc26e1072ed7e308462f9678c122422de2b53ef8002", "charged": 2, "uncertain": 0, "round_accounted": 1083}
+{"endpoint": "rerank", "label": "rerank 5.3", "request_hash": "3f61c301d16f59398935400dd322b6f1b13ac9307de7ffe1908f043708cd4db8", "charged": 2, "uncertain": 0, "round_accounted": 1085}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "3c473654d5b9d10d2b6090e9e09c4a193304d913a35419c731124a4ed3ae8dcb", "charged": 2, "uncertain": 0, "round_accounted": 1087}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "61876cafca11c7d049ee4aeafd1597f789975e832d9b1da21b88e7ffa9bf83ed", "charged": 3, "uncertain": 0, "round_accounted": 1090}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "84b1a3439b7d53a0cf34dc885ba597a138a30e42df628c9abdae2ed2263e7561", "charged": 2, "uncertain": 0, "round_accounted": 1092}
+{"endpoint": "rerank", "label": "rerank 12.2", "request_hash": "ad01a4d71ac8a30bee3dc1b952b6377bab2a90798603f36e1bd72a1d14a243bc", "charged": 2, "uncertain": 0, "round_accounted": 1094}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "eb3dd03e23513265e84fe44d1e930ce51055ca48def7405624f3e326531678b0", "charged": 3, "uncertain": 0, "round_accounted": 1097}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "497c1fe2af293dc6609fd3d7fa2212303af1beedb7b0fac5d223982b723697f6", "charged": 3, "uncertain": 0, "round_accounted": 1100}
+{"endpoint": "decide", "label": "decide 12.2", "request_hash": "edc56cf7617a0f2ef7a720fe38edc029d67d80eca42c0b420b4ea913463e7661", "charged": 2, "uncertain": 0, "round_accounted": 1102}
+{"endpoint": "rerank", "label": "rerank 12.1", "request_hash": "eca606a5e0a055e18247e415acef16187f22bc7c78d7e605cbfe05a7c7a5bcec", "charged": 2, "uncertain": 0, "round_accounted": 1104}
+{"endpoint": "decide", "label": "decide 12.1", "request_hash": "6f6ad19d7da5fa6924ae59501f10e12f0100e50e16e0feb1bca377e7a1c1cf80", "charged": 2, "uncertain": 0, "round_accounted": 1106}
+{"endpoint": "decide", "label": "decide 12.1", "request_hash": "4ba393e9c8bdea0f6ea5265da9ece7e1ecf0ae473e89cabc42cb2093c908147f", "charged": 3, "uncertain": 0, "round_accounted": 1109}
+{"endpoint": "decide", "label": "decide 12.1", "request_hash": "6ba56124ea306ca9445adcae2d20cee1d40a6fb2a1db3c5c640e930eeae6d4da", "charged": 2, "uncertain": 0, "round_accounted": 1111}
+{"endpoint": "rerank", "label": "rerank 5.3", "request_hash": "12ca93196cea3e252ab89308c4a3f18deba4b7b162acab21be171638671fb644", "charged": 2, "uncertain": 0, "round_accounted": 1113}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "9d52c844eb2b5f329e3727b267daef3ca305bff971cf6af12294022b4a21bfbe", "charged": 2, "uncertain": 0, "round_accounted": 1115}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "b6f4839b7709ed0b5a29486efb56fff495273800d4f19c75f48982d34a7636af", "charged": 3, "uncertain": 0, "round_accounted": 1118}
+{"endpoint": "decide", "label": "decide 5.3", "request_hash": "35cf4002e346ce7be6df4d30991332f14962a8478352160055a6a7c39eb33696", "charged": 2, "uncertain": 0, "round_accounted": 1120}

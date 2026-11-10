@@ -41,3 +41,18 @@ The last two evaluators report known quality misses; their `--check` acceptance 
 The owner authorized at most 1,500 credits for this round: 645 charged, 0 unsettled at handoff. The remaining authorization is 855, with only 705 available under the runner's 1,350 send limit and its 150-credit safety margin. Continue the same ledger if making authorized calls; never reset it or run concurrent live processes. Prefer offline replay. Keys stay in ignored local environment files, never prompts, source, reports or PR comments. The GitHub credential cannot modify workflow files; this work leaves `.github/workflows/` unchanged.
 
 Latest commit-specific CI and review status are reported in the PR conversation. Inspect the actual head before acting. Maintainer approval and final owner authorization remain required for merge/deployment.
+
+## Maintainer update, 10 November 2026 (ET)
+
+Reproduced as handed over (942 tests, four offline evaluators, browser walkthrough). Then, on this branch:
+
+| Gate from the list above | State |
+|---|---|
+| 1. Mixed-font ordering and reply invariants | Reviewed, kept. Hidden-content and instruction blockers preserved; no route gained authority |
+| 2. Unchanged tiny licence print | **Fixed generally**: concealed text blocks only when the version we sent does not carry the same text. Engine status, reasons, listed passages, UI and reply state agree. Checked on the second corpus: 0 of 3 fine-print pairs blocked, the newly concealed pair blocked by rules and Guard |
+| 3. Faithful-rewording holds | **One fixed at its cause, one kept.** The Bonterms hold came from the in-place edit (replacement words drawn last in the text layer); edited PDFs are now read in reading order. The Common Paper hold is a real disagreement between Verify and Compare and stays held. No threshold changed. Second corpus: 9 of 9 rewordings cleared, 6 of 6 substantive edits held |
+| 4. Restoration authority | **Modelled as policy data** (`restore_original` on a passage, a third question asked only then, unsure goes to a person). Development routes replay unchanged, zero loose. Second corpus: 9/10 with Rerank, no loose route in any arm |
+| 5. Paired observation with an intended user | **Not done.** No participant was available before the deadline. No benefit is claimed |
+| 6. English demo and video | Checked at four sizes, English only, no overflow, no console errors. Video re-recorded on the current interface |
+
+Evidence, first outputs and errata: the maintainer section of `eval/EXTERNAL_RESULTS.md`. Round ledger: 1,120 credits charged of the 1,350 send limit, 0 unsettled. Merge and deployment were done by the receiving maintainer on the owner's delegation, after CI passed on the final head.

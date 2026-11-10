@@ -1,0 +1,141 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 7.9",
+ "request_hash": "2d48eaa06cb799b4c190dd451806265d7275989a664c318d120e100486d017a0",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "The parties are independent contractors, not agents, partners, or joint venturers. Neither party is authorized to bind the other to any liability or obligation."
+   },
+   {
+    "id": "v2",
+    "text": "The parties are independent contractors, not partners, agents, or joint venturers. Neither party is authorized to bind the other to any liability or obligation."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 112.661858,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "a0f59da4-ddb9-455a-a8ee-eee839995cf1",
+  "request_id": null,
+  "trace": "a58833d0f8ab6a57-EWR",
+  "wall_ms": 275,
+  "recorded_at": "2026-11-10T21:38:08+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9982,
+    "probabilities": {
+     "same": 0.9917,
+     "overlapping": 0.0041,
+     "conflicting": 0.0024,
+     "unrelated": 0.0018
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.3093,
+       "restated": 0.6724,
+       "elaborated": 0.0096,
+       "different": 0.0087
+      },
+      "confidence": 0.9913,
+      "a": {
+       "document": "v1",
+       "quote": "The parties are independent contractors, not agents, partners, or joint venturers.",
+       "start": 0,
+       "end": 82,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "The parties are independent contractors, not partners, agents, or joint venturers.",
+       "start": 0,
+       "end": 82,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9925,
+       "restated": 0.003,
+       "elaborated": 0.002,
+       "different": 0.0025
+      },
+      "confidence": 0.9975,
+      "a": {
+       "document": "v1",
+       "quote": "Neither party is authorized to bind the other to any liability or obligation.",
+       "start": 83,
+       "end": 160,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Neither party is authorized to bind the other to any liability or obligation.",
+       "start": 83,
+       "end": 160,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 24,
+   "passage_reads": 1,
+   "passages_ms": 47,
+   "passages": 2,
+   "counterparts_ms": 50
+  },
+  "timing": {
+   "read_ms": 121,
+   "total_ms": 123
+  }
+ }
+}

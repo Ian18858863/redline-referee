@@ -1,0 +1,108 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "d392205cd527b67cabe73e4c4f34ffe8d758be220f531f59dfa99b8c0d3968ca",
+ "request": {
+  "pdf": {
+   "sha256": "a177c9ec05fd4573b9d6b938fa5554c7b0be17626129605fbd96ad78cd41984e"
+  },
+  "answer": "All interpretations and disputes about this Agreement will be governed by the Governing Law, without regard to its conflict of laws provisions. Each copy will be deemed an original. All copies, when taken together, will be the same agreement.",
+  "claims": [
+   "All interpretations and disputes about this Agreement will be governed by the Governing Law, without regard to its conflict of laws provisions.",
+   "Each copy will be deemed an original. All copies, when taken together, will be the same agreement."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 8,
+  "model_ms": 177.154434,
+  "cost_usd": 0.001594,
+  "attempts": 1,
+  "idempotency_key": "e8053ee1-62d3-4658-9b39-faa43edfbeaf",
+  "request_id": null,
+  "trace": "a58834434f079988-EWR",
+  "wall_ms": 312,
+  "recorded_at": "2026-11-10T21:38:26+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.991,
+  "ungrounded": 0.009,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.991,
+    "claims": [
+     0,
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "All interpretations and disputes about this Agreement will be governed by the Governing Law, without regard to its conflict of laws provisions.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5934,
+    "supported": 0.9907,
+    "contradicted": 0.0037,
+    "not_stated": 0.003,
+    "not_a_claim": 0.0026,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   },
+   {
+    "claim": "Each copy will be deemed an original. All copies, when taken together, will be the same agreement.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4066,
+    "supported": 0.9916,
+    "contradicted": 0.003,
+    "not_stated": 0.0029,
+    "not_a_claim": 0.0024,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.9907
+  },
+  "timing": {
+   "read_ms": 190,
+   "total_ms": 192
+  },
+  "pdf": {
+   "pages": 4,
+   "selected": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2820,
+    6633,
+    10367
+   ],
+   "characters": 11896
+  }
+ }
+}

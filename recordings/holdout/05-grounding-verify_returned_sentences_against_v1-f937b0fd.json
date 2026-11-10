@@ -1,0 +1,108 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "f937b0fd0b0a72f8694a079e554f08acf7351a384f61611499f8521adfd2ab62",
+ "request": {
+  "pdf": {
+   "sha256": "a177c9ec05fd4573b9d6b938fa5554c7b0be17626129605fbd96ad78cd41984e"
+  },
+  "answer": "Recipient may disclose Discloser’s Confidential Information to Users, employees, advisors, contractors, and representatives who each have a need to know the Confidential Information, but only if the person or entity is bound by confidentiality obligations at least as protective as those in this Section 5 or Recipient remains responsible for everyone’s compliance with the terms of this Section 5. The parties will bring any legal suit, action, or proceeding about this Agreement in the Chosen Courts and each party irrevocably submits to the non-exclusive jurisdiction of the Chosen Courts.",
+  "claims": [
+   "Recipient may disclose Discloser’s Confidential Information to Users, employees, advisors, contractors, and representatives who each have a need to know the Confidential Information, but only if the person or entity is bound by confidentiality obligations at least as protective as those in this Section 5 or Recipient remains responsible for everyone’s compliance with the terms of this Section 5.",
+   "The parties will bring any legal suit, action, or proceeding about this Agreement in the Chosen Courts and each party irrevocably submits to the non-exclusive jurisdiction of the Chosen Courts."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 8,
+  "model_ms": 195.584579,
+  "cost_usd": 0.001594,
+  "attempts": 1,
+  "idempotency_key": "ba17286f-f199-45e9-8822-ef65c0aaa720",
+  "request_id": null,
+  "trace": "a58833be9c440a91-IAD",
+  "wall_ms": 443,
+  "recorded_at": "2026-11-10T21:38:05+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.267,
+  "ungrounded": 0.733,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.267,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Recipient may disclose Discloser’s Confidential Information to Users, employees, advisors, contractors, and representatives who each have a need to know the Confidential Information, but only if the person or entity is bound by confidentiality obligations at least as protective as those in this Section 5 or Recipient remains responsible for everyone’s compliance with the terms of this Section 5.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6734,
+    "supported": 0.3948,
+    "contradicted": 0.5426,
+    "not_stated": 0.0475,
+    "not_a_claim": 0.0151,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "The parties will bring any legal suit, action, or proceeding about this Agreement in the Chosen Courts and each party irrevocably submits to the non-exclusive jurisdiction of the Chosen Courts.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3266,
+    "supported": 0.0035,
+    "contradicted": 0.9886,
+    "not_stated": 0.0047,
+    "not_a_claim": 0.0032,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.0035
+  },
+  "timing": {
+   "read_ms": 207,
+   "total_ms": 214
+  },
+  "pdf": {
+   "pages": 4,
+   "selected": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2820,
+    6633,
+    10367
+   ],
+   "characters": 11896
+  }
+ }
+}

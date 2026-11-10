@@ -1,0 +1,116 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "bf9935d55e57f0d712ba572d7e2cde15e4c5c6ff7b898b6a78a95fc316c2ce2e",
+ "request": {
+  "pdf": {
+   "sha256": "ba20c7f6344dfa5030c38114e13a0c4f82cfa59196e16c2eb6d0b8fb62f413f7"
+  },
+  "answer": "Provider will provide or otherwise make available to Customer, on request, reports measuring the Monthly Uptime Percentage as against Target Availability. To the extent that the Cloud Service experiences Multiple Failures, Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service.",
+  "claims": [
+   "Provider will provide or otherwise make available to Customer, on request, reports measuring the Monthly Uptime Percentage as against Target Availability.",
+   "To the extent that the Cloud Service experiences Multiple Failures, Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 118.220734,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "47eb2cc0-d1d2-4289-b957-7a1e751b9573",
+  "request_id": null,
+  "trace": "a5883418fd54b154-IAD",
+  "wall_ms": 286,
+  "recorded_at": "2026-11-10T21:38:19+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9935,
+  "ungrounded": 0.0065,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.9935,
+    "claims": [
+     0,
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Provider will provide or otherwise make available to Customer, on request, reports measuring the Monthly Uptime Percentage as against Target Availability.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4042,
+    "supported": 0.9936,
+    "contradicted": 0.0025,
+    "not_stated": 0.0022,
+    "not_a_claim": 0.0017,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "2.",
+     "start": 946,
+     "end": 948,
+     "confidence": 0.953
+    }
+   },
+   {
+    "claim": "To the extent that the Cloud Service experiences Multiple Failures, Customer may, upon notice to Provider no more than 30 days after the date the Multiple Failures occurred, terminate the Order for the applicable Cloud Service.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5958,
+    "supported": 0.9935,
+    "contradicted": 0.0023,
+    "not_stated": 0.0021,
+    "not_a_claim": 0.0022,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "4.",
+     "start": 1688,
+     "end": 1690,
+     "confidence": 0.996
+    }
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.9935
+  },
+  "timing": {
+   "read_ms": 127,
+   "total_ms": 129
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 4049
+  }
+ }
+}

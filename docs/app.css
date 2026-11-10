@@ -964,3 +964,8 @@ details.fold > div { display: grid; row-gap: 7px; }
   .reasons-legend { display:none; }
   .verdict { row-gap:9px; }
 }
+
+/* fine print that both versions carry: listed, not a finding */
+.fineprint { padding: 8px 14px 10px; display: grid; gap: 4px; }
+.fineprint .quote { font-size: 12px; }
+.fineprint small { color: var(--muted, #6b7280); font-size: 11.5px; line-height: 1.4; }

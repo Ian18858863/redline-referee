@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from eval.round_budget import RoundGateway  # noqa: E402
 from eval.run_external import transition  # noqa: E402
+from eval.scoring import nz  # noqa: E402
 from referee.engine import _decide, _final_route, _rerank, restore_marks, review  # noqa: E402
 from referee.gateway import StepError  # noqa: E402
 
@@ -42,12 +43,29 @@ def verify_lock() -> dict:
     return lock
 
 
+def card_transition(c: dict, edit) -> bool:
+    """Scoring erratum, added after the first run and reported next to it: a rewrite that moves words (passive
+    to active) is listed on one card as a deletion in one part and an insertion in another, so no single part
+    holds both sides. Here the old side may sit in one part and the new side in another part of the SAME card.
+    A card that holds neither side still does not match."""
+    old, new = map(nz, edit)
+
+    def hit(side, expected):
+        changed, quote = nz(side.get("changed", "")), nz(side.get("quote", ""))
+        return expected in quote or bool(len(changed) >= 12 and changed in expected)
+    parts = c.get("parts", [])
+    return bool(old and new) and any(hit(p["v1"], old) for p in parts) and any(hit(p["v2"], new) for p in parts)
+
+
 def score(truth: dict, r: dict) -> dict:
     changes = r.get("changes", [])
     held = [c for c in changes if c.get("blocking")]
     edits = [{"old": a, "new": b, "held": any(transition(c, (a, b)) for c in held)} for a, b in truth.get("substantive", [])]
     faithful = [{"old": a, "new": b, "found": any(transition(c, (a, b)) for c in changes),
-                 "cleared": not any(transition(c, (a, b)) for c in held) and any(transition(c, (a, b)) for c in changes)}
+                 "cleared": not any(transition(c, (a, b)) for c in held) and any(transition(c, (a, b)) for c in changes),
+                 "found_on_one_card": any(transition(c, (a, b)) or card_transition(c, (a, b)) for c in changes),
+                 "cleared_on_one_card": not any(transition(c, (a, b)) or card_transition(c, (a, b)) for c in held)
+                 and any(transition(c, (a, b)) or card_transition(c, (a, b)) for c in changes)}
                 for a, b in truth.get("faithful", [])]
     claims = r.get("note", {}).get("claims", [])
     hidden = r.get("hidden_text", [])
@@ -84,6 +102,7 @@ def detection(gw, lock) -> tuple[list[dict], dict]:
               "substantive_held": sum(e["held"] for r in rows for e in r["edits"]), "substantive": sum(len(r["edits"]) for r in rows),
               "faithful_cleared": sum(e["cleared"] for r in rows for e in r["faithful"]), "faithful": sum(len(r["faithful"]) for r in rows),
               "faithful_not_found": sum(not e["found"] for r in rows for e in r["faithful"]),
+              "faithful_cleared_card_level": sum(e["cleared_on_one_card"] for r in rows for e in r["faithful"]),
               "false_cover_caught": sum(r["false_cover_caught"] for r in false_cover), "false_covers": len(false_cover),
               "true_cover_contradicted": sum(r["true_cover_contradicted"] for r in rows),
               "unexpected_blocking": sum(r["unexpected_blocking"] for r in rows),

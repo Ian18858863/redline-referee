@@ -1,0 +1,117 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 2",
+ "request_hash": "1dd76b547182e28fac11577024b4abec722246b70e1c639af7d28445b6f0032a",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "Provider will provide or otherwise make available to Customer, upon request, reports measuring the Monthly Uptime Percentage as against Target Availability."
+   },
+   {
+    "id": "v2",
+    "text": "Provider will provide or otherwise make available to Customer, on request, reports measuring the Monthly Uptime Percentage as against Target Availability."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 5,
+  "model_ms": 100.280224,
+  "cost_usd": 0.000996,
+  "attempts": 1,
+  "idempotency_key": "42ac1821-6ba2-489e-96eb-c396bfd1e03f",
+  "request_id": null,
+  "trace": "a5883415dac5b154-IAD",
+  "wall_ms": 235,
+  "recorded_at": "2026-11-10T21:38:19+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9985,
+    "probabilities": {
+     "same": 0.9935,
+     "overlapping": 0.0026,
+     "conflicting": 0.0024,
+     "unrelated": 0.0015
+    },
+    "duplicates": [
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.8996,
+       "restated": 0.0584,
+       "elaborated": 0.0267,
+       "different": 0.0152
+      },
+      "confidence": 0.9848,
+      "a": {
+       "document": "v1",
+       "quote": "Provider will provide or otherwise make available to Customer, upon request, reports measuring the Monthly Uptime Percentage as against Target Availability.",
+       "start": 0,
+       "end": 156,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Provider will provide or otherwise make available to Customer, on request, reports measuring the Monthly Uptime Percentage as against Target Availability.",
+       "start": 0,
+       "end": 154,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 23,
+   "passage_reads": 1,
+   "passages_ms": 41,
+   "passages": 1,
+   "counterparts_ms": 44
+  },
+  "timing": {
+   "read_ms": 108,
+   "total_ms": 111
+  }
+ }
+}

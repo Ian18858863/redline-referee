@@ -19,11 +19,11 @@ Entry for the Clocked Build Challenge 2026, built on November 9 and 10, 2026.
 | | |
 |---|---|
 | Live demo, no key needed (replays recorded answers of the live Clocked API) | https://ian18858863.github.io/redline-referee/ |
-| Narrated video, 3 min 20 s | https://ian18858863.github.io/redline-referee/demo.mp4 |
+| Narrated video, 3 min 19 s | https://ian18858863.github.io/redline-referee/demo.mp4 |
 | Evaluation | [`eval/RESULTS.md`](eval/RESULTS.md) |
-| External-source challenge and routing control, including failed targets | [`eval/EXTERNAL_RESULTS.md`](eval/EXTERNAL_RESULTS.md) |
+| Two locked external corpora and routing controls, including failed targets | [`eval/EXTERNAL_RESULTS.md`](eval/EXTERNAL_RESULTS.md) |
 
-The new public-source regression holds 6/6 planted substantive edits and contradicts 3/3 false cover notes, but clears only 1/3 faithful rewordings. Its routing control establishes no Rerank accuracy uplift. First-run scoring errata, rejected prompt experiments and the absence of a completed paired human study are disclosed in the external results; these are not general contract-accuracy or productivity claims.
+Two locked corpora on public contract templates by other authors, labelled before any run. On the second, built blind to the engine and its earlier failures (three new sources, eight pairs): 6 of 6 planted substantive edits held, 9 of 9 faithful rewordings cleared (8 of 9 as first scored, see the erratum), 3 of 3 false cover notes contradicted, 8 of 8 final statuses correct, newly concealed text blocked and publisher fine print in both versions not blocked. Its ten-case routing control: 9 of 10 with the passage Rerank selected, 7 of 10 with every passage supplied, 5 of 10 with the first passage only, and no loose route in any arm. On the first corpus one faithful rewording is still held because the two readers disagree, and its six-case routing control is a tie. First outputs, scoring errata, rejected experiments and the absence of a completed paired human study are in the external results. None of this is a general contract-accuracy or productivity claim.
 
 ### For judges: three minutes
 
@@ -129,6 +129,7 @@ Before submitting the final version we had the project attacked by three indepen
 - **Two real words are not a spelling fix.** "Maximum" to "minimum" used to be classed as spelling until a model objected. Now a one-word edit is a spelling fix only if the old word is not a word.
 - **The most expensive call decided nothing.** The whole-document Compare cost about 45 credits and never changed an outcome. It is now asked for the relation only (1 to 3 credits) and stops the review when the wrong file comes back.
 - **"Read three times" was an overclaim.** Formatting is settled by rules alone, and in the first recordings the two readers never disagreed. We built the hard set to find out whether both are needed. They are; the numbers are above.
+- **A teammate's locked external test found two more.** Publisher fine print that our own version already carried blocked the review, and a faithful rewording in a PDF edited in place was held because the edit is drawn last in the file's text layer, so a reader of the raw PDF sees a hole in the sentence. Concealed text now blocks only when our version does not carry it, and edited PDFs are read in reading order and flagged as edited in place. Both fixes were then checked on a second corpus built blind to them.
 - **A judge on a phone saw a third of the page.** There is now a phone layout, a "Start here" strip and readable crops of both pages next to every change.
 
 ## Run it
@@ -178,10 +179,12 @@ uv run python eval/run_hard.py --live            # the hard set
 
 ## Limits
 
-- The documents are synthetic: one Master Services Agreement in 25 variations and one non-disclosure agreement. Other layouts are covered by generated test PDFs, not by exports from Word or a contract system.
+- The development documents are synthetic: one Master Services Agreement in 25 variations and one non-disclosure agreement. The two external corpora use six public templates with our own edits and labels (14 pairs); they are small and not independently adjudicated. Other layouts are covered by generated test PDFs, not by exports from Word or a contract system.
 - Text-layer PDFs only, single documents up to the API's limits. Multi-column pages and tables are read by heuristics.
 - The thirteen key terms Extract reads are those of a subscription agreement. On the non-disclosure agreement most of them are correctly empty.
 - Routing errs on the strict side: the playbook lets the desk extend the data export window to ninety days and Decide still answered that it may not be accepted as written, in all three pairs that contain that edit. We left the answers as recorded.
+- Sending our original term back as a counter is supported only where the policy data grants it (`restore_original` on a playbook passage). The demo playbook grants none; the mechanism is measured on the second corpus's fixture only.
+- No completed study with intended users exists. One person did half of the protocol in `study/`. Nothing here claims time saved.
 - One faithful rewording in the hard set ("exclusive of taxes" to "do not include taxes") was held by both readers. Also on the strict side.
 - Rerank's `expand` (the answer is in a neighbouring passage) is handled and unit-tested, but did not occur in the recordings.
 - The cover note is checked against the returned copy and against our own list of changes. That list comes from the rule layer and the two readers, not from the note; a statement about something outside the documents can only come back "not stated".

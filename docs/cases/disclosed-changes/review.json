@@ -1794,20 +1794,6 @@
     "cached": false
    },
    {
-    "endpoint": "Guard",
-    "path": "/clocked/injection",
-    "step": "guard returned copy",
-    "credits": 3,
-    "model_ms": 59.953728,
-    "attempts": 1,
-    "request_id": "a5846e710a73d07e-BOS",
-    "trace": "a5846e710a73d07e-BOS",
-    "idempotency_key": "1697609c-6ef0-4398-95c5-ee6be5cd8702",
-    "recorded_at": "2026-11-10T10:39:06+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
     "endpoint": "Extract",
     "path": "/clocked/extract",
     "step": "extract terms v1",
@@ -1836,6 +1822,20 @@
     "cached": false
    },
    {
+    "endpoint": "Guard",
+    "path": "/clocked/injection",
+    "step": "guard returned copy",
+    "credits": 3,
+    "model_ms": 59.953728,
+    "attempts": 1,
+    "request_id": "a5846e710a73d07e-BOS",
+    "trace": "a5846e710a73d07e-BOS",
+    "idempotency_key": "1697609c-6ef0-4398-95c5-ee6be5cd8702",
+    "recorded_at": "2026-11-10T10:39:06+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
     "endpoint": "Compare",
     "path": "/clocked/compare",
     "step": "compare clause 3",
@@ -1852,13 +1852,13 @@
    {
     "endpoint": "Compare",
     "path": "/clocked/compare",
-    "step": "compare clause 5",
-    "credits": 6,
-    "model_ms": 148.575773,
+    "step": "compare clause 4.4",
+    "credits": 4,
+    "model_ms": 93.498977,
     "attempts": 1,
-    "request_id": "a5846e7c1fa4e007-BOS",
-    "trace": "a5846e7c1fa4e007-BOS",
-    "idempotency_key": "0f466ff9-91f2-41d1-affd-9143aac64598",
+    "request_id": "a5846e772e155e1e-BOS",
+    "trace": "a5846e772e155e1e-BOS",
+    "idempotency_key": "b613a419-ab83-4251-96fe-0533e3b9b7e1",
     "recorded_at": "2026-11-10T10:39:08+00:00",
     "replayed": true,
     "cached": false
@@ -1880,13 +1880,13 @@
    {
     "endpoint": "Compare",
     "path": "/clocked/compare",
-    "step": "compare clause 6",
+    "step": "compare clause 5",
     "credits": 6,
-    "model_ms": 149.650461,
+    "model_ms": 148.575773,
     "attempts": 1,
-    "request_id": "a5846e7c3b5d5e1e-BOS",
-    "trace": "a5846e7c3b5d5e1e-BOS",
-    "idempotency_key": "02bab4c6-459d-45a9-b1ec-3afefb5a576e",
+    "request_id": "a5846e7c1fa4e007-BOS",
+    "trace": "a5846e7c1fa4e007-BOS",
+    "idempotency_key": "0f466ff9-91f2-41d1-affd-9143aac64598",
     "recorded_at": "2026-11-10T10:39:08+00:00",
     "replayed": true,
     "cached": false
@@ -1894,13 +1894,13 @@
    {
     "endpoint": "Compare",
     "path": "/clocked/compare",
-    "step": "compare clause 4.4",
-    "credits": 4,
-    "model_ms": 93.498977,
+    "step": "compare clause 6",
+    "credits": 6,
+    "model_ms": 149.650461,
     "attempts": 1,
-    "request_id": "a5846e772e155e1e-BOS",
-    "trace": "a5846e772e155e1e-BOS",
-    "idempotency_key": "b613a419-ab83-4251-96fe-0533e3b9b7e1",
+    "request_id": "a5846e7c3b5d5e1e-BOS",
+    "trace": "a5846e7c3b5d5e1e-BOS",
+    "idempotency_key": "02bab4c6-459d-45a9-b1ec-3afefb5a576e",
     "recorded_at": "2026-11-10T10:39:08+00:00",
     "replayed": true,
     "cached": false
@@ -1976,20 +1976,6 @@
     "cached": false
    },
    {
-    "endpoint": "Rerank",
-    "path": "/clocked/rerank",
-    "step": "rerank 6",
-    "credits": 4,
-    "model_ms": 91.085793,
-    "attempts": 1,
-    "request_id": "a5846e8c5eda639f-BOS",
-    "trace": "a5846e8c5eda639f-BOS",
-    "idempotency_key": "a894d593-4b51-43fa-993d-9c698a9cd874",
-    "recorded_at": "2026-11-10T10:39:11+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
     "endpoint": "Decide",
     "path": "/clocked/decide",
     "step": "decide 4.4",
@@ -2000,6 +1986,20 @@
     "trace": "a5847d3ace9f7d19-BOS",
     "idempotency_key": "04892db4-41da-4248-99ed-0baf7149abca",
     "recorded_at": "2026-11-10T10:49:12+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Rerank",
+    "path": "/clocked/rerank",
+    "step": "rerank 6",
+    "credits": 4,
+    "model_ms": 91.085793,
+    "attempts": 1,
+    "request_id": "a5846e8c5eda639f-BOS",
+    "trace": "a5846e8c5eda639f-BOS",
+    "idempotency_key": "a894d593-4b51-43fa-993d-9c698a9cd874",
+    "recorded_at": "2026-11-10T10:39:11+00:00",
     "replayed": true,
     "cached": false
    },

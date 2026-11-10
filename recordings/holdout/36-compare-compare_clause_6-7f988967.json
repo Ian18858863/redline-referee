@@ -1,0 +1,271 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 6",
+ "request_hash": "7f98896778245d47fb77d9dfb169f7b6b63a1464d9def0cb2a4d33dd5330088a",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "“Maintenance” means Provider’s routine maintenance of the Cloud Service conducted in accordance with its Maintenance Procedures or reasonable emergency maintenance. “Maintenance Procedures” means Provider’s standard Cloud Service maintenance schedule as posted or otherwise made available by Provider upon request by Customer. “Monthly Uptime Percentage” means the number of minutes the Cloud Service is accessible and not subject to an Outage during a calendar month divided by the total number of minutes in that calendar month. “Multiple Failures” is defined in the SLA Key Terms Chart. “Outage” means an unplanned interruption or material disruption of the Cloud Service, but excluding unavailability to the extent caused by (a) Customer’s use of the Cloud Service in a manner not authorized in the Agreement or Documentation, (b) general Internet problems, Force Majeure events or other factors outside of Provider’s reasonable control, (c) Customer’s network connections or other infrastructure or (d) Maintenance. “Service Credit” means a credit issued by Provider based on the monthly fees due for the affected Cloud Service in such month. “Target Availability” is defined in the SLA Key Terms Chart."
+   },
+   {
+    "id": "v2",
+    "text": "“Maintenance” means Provider’s routine maintenance of the Cloud Service conducted in accordance with its Maintenance Procedures or reasonable emergency maintenance. “Maintenance Procedures” means Provider’s standard Cloud Service maintenance schedule as posted or otherwise made available by Provider upon request by Customer. “Monthly Uptime Percentage” means the number of minutes the Cloud Service is accessible and not subject to an Outage during a calendar month divided by the total number of minutes in that calendar month. “Multiple Failures” is defined in the SLA Key Terms Chart. “Outage” means an unplanned interruption or material disruption of the Cloud Service, but excluding unavailability to the extent caused by (a) Customer’s use of the Cloud Service in a manner not authorized in the Agreement or Documentation, (b) general Internet problems, Force Majeure events or other factors outside of Provider’s reasonable control, (c) Provider ’s network connections or other infrastructure or (d) Maintenance. “Service Credit” means a credit issued by Provider based on the monthly fees due for the affected Cloud Service in such month. “Target Availability” is defined in the SLA Key Terms Chart."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 12,
+  "model_ms": 281.537339,
+  "cost_usd": 0.00239,
+  "attempts": 1,
+  "idempotency_key": "59c9996c-50ed-4783-9751-3f92700aa17d",
+  "request_id": null,
+  "trace": "a5883405df4f6c63-IAD",
+  "wall_ms": 385,
+  "recorded_at": "2026-11-10T21:38:16+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "conflicts",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [],
+    "overlaps": [
+     "v2"
+    ],
+    "conflicts": [
+     "v2"
+    ]
+   },
+   {
+    "id": "v2",
+    "duplicates": [],
+    "overlaps": [
+     "v1"
+    ],
+    "conflicts": [
+     "v1"
+    ]
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "conflicting",
+    "related": 0.9977,
+    "probabilities": {
+     "same": 0.0014,
+     "overlapping": 0.0025,
+     "conflicting": 0.9938,
+     "unrelated": 0.0023
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9923,
+       "restated": 0.0027,
+       "elaborated": 0.0027,
+       "different": 0.0023
+      },
+      "confidence": 0.9977,
+      "a": {
+       "document": "v1",
+       "quote": "“Maintenance” means Provider’s routine maintenance of the Cloud Service conducted in accordance with its Maintenance Procedures or reasonable emergency maintenance.",
+       "start": 0,
+       "end": 164,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "“Maintenance” means Provider’s routine maintenance of the Cloud Service conducted in accordance with its Maintenance Procedures or reasonable emergency maintenance.",
+       "start": 0,
+       "end": 164,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9934,
+       "restated": 0.0028,
+       "elaborated": 0.002,
+       "different": 0.0018
+      },
+      "confidence": 0.9982,
+      "a": {
+       "document": "v1",
+       "quote": "“Monthly Uptime Percentage” means the number of minutes the Cloud Service is accessible and not subject to an Outage during a calendar month divided by the total number of minutes in that calendar month.",
+       "start": 327,
+       "end": 530,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "“Maintenance Procedures” means Provider’s standard Cloud Service maintenance schedule as posted or otherwise made available by Provider upon request by Customer.",
+       "start": 165,
+       "end": 326,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9926,
+       "restated": 0.0028,
+       "elaborated": 0.0024,
+       "different": 0.0022
+      },
+      "confidence": 0.9978,
+      "a": {
+       "document": "v1",
+       "quote": "“Monthly Uptime Percentage” means the number of minutes the Cloud Service is accessible and not subject to an Outage during a calendar month divided by the total number of minutes in that calendar month.",
+       "start": 327,
+       "end": 530,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "“Monthly Uptime Percentage” means the number of minutes the Cloud Service is accessible and not subject to an Outage during a calendar month divided by the total number of minutes in that calendar month.",
+       "start": 327,
+       "end": 530,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9939,
+       "restated": 0.0024,
+       "elaborated": 0.0018,
+       "different": 0.0019
+      },
+      "confidence": 0.9981,
+      "a": {
+       "document": "v1",
+       "quote": "“Multiple Failures” is defined in the SLA Key Terms Chart.",
+       "start": 531,
+       "end": 589,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "“Multiple Failures” is defined in the SLA Key Terms Chart.",
+       "start": 531,
+       "end": 589,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9926,
+       "restated": 0.0031,
+       "elaborated": 0.0022,
+       "different": 0.0022
+      },
+      "confidence": 0.9978,
+      "a": {
+       "document": "v1",
+       "quote": "“Maintenance” means Provider’s routine maintenance of the Cloud Service conducted in accordance with its Maintenance Procedures or reasonable emergency maintenance.",
+       "start": 0,
+       "end": 164,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "“Service Credit” means a credit issued by Provider based on the monthly fees due for the affected Cloud Service in such month.",
+       "start": 1022,
+       "end": 1148,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9927,
+       "restated": 0.003,
+       "elaborated": 0.0022,
+       "different": 0.0021
+      },
+      "confidence": 0.9979,
+      "a": {
+       "document": "v1",
+       "quote": "“Monthly Uptime Percentage” means the number of minutes the Cloud Service is accessible and not subject to an Outage during a calendar month divided by the total number of minutes in that calendar month.",
+       "start": 327,
+       "end": 530,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "“Target Availability” is defined in the SLA Key Terms Chart.",
+       "start": 1149,
+       "end": 1209,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": [
+     {
+      "kind": "scope",
+      "kinds": {
+       "value": 0.0331,
+       "date_or_version": 0.0293,
+       "rule_or_condition": 0.0535,
+       "scope": 0.5674,
+       "name": 0.2739,
+       "no_conflict": 0.0428
+      },
+      "confidence": 0.9572,
+      "a": {
+       "document": "v1",
+       "quote": "“Maintenance Procedures” means Provider’s standard Cloud Service maintenance schedule as posted or otherwise made available by Provider upon request by Customer.",
+       "start": 165,
+       "end": 326,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "“Outage” means an unplanned interruption or material disruption of the Cloud Service, but excluding unavailability to the extent caused by (a) Customer’s use of the Cloud Service in a manner not authorized in the Agreement or Documentation, (b) general Internet problems, Force Majeure events or other factors outside of Provider’s reasonable control, (c) Provider ’s network connections or other infrastructure or (d) Maintenance.",
+       "start": 590,
+       "end": 1021,
+       "confidence": 1
+      }
+     }
+    ]
+   }
+  ],
+  "duplicates": [],
+  "overlaps": [
+   0
+  ],
+  "conflicts": [
+   0
+  ],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 30,
+   "passage_reads": 1,
+   "passages_ms": 72,
+   "passages": 7,
+   "counterparts_ms": 174,
+   "kinds_ms": 19
+  },
+  "timing": {
+   "read_ms": 295,
+   "total_ms": 299
+  }
+ }
+}

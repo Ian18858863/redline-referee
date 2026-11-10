@@ -1,0 +1,115 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "c2f77f587b759795a5e58c065bb187ef2d0d4233ed2b7154a1f5019a22e1e1c6",
+ "request": {
+  "pdf": {
+   "sha256": "a177c9ec05fd4573b9d6b938fa5554c7b0be17626129605fbd96ad78cd41984e"
+  },
+  "answer": "This Agreement will begin on the Effective Date and continue for the Term. The parties are independent contractors, not partners, agents, or joint venturers.",
+  "claims": [
+   "This Agreement will begin on the Effective Date and continue for the Term.",
+   "The parties are independent contractors, not partners, agents, or joint venturers."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 7,
+  "model_ms": 174.444099,
+  "cost_usd": 0.001394,
+  "attempts": 1,
+  "idempotency_key": "148d8246-cc0e-4e52-805d-91e3e56c3cfd",
+  "request_id": null,
+  "trace": "a58833d2aad26a57-EWR",
+  "wall_ms": 331,
+  "recorded_at": "2026-11-10T21:38:08+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.9919,
+  "ungrounded": 0.0081,
+  "verdict": "grounded",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.9919,
+    "claims": [
+     0,
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "This Agreement will begin on the Effective Date and continue for the Term.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.4744,
+    "supported": 0.9922,
+    "contradicted": 0.003,
+    "not_stated": 0.0025,
+    "not_a_claim": 0.0022,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf",
+    "evidence": {
+     "document": "pdf",
+     "quote": "3.1 Agreement Term.",
+     "start": 1008,
+     "end": 1027,
+     "confidence": 0.995
+    }
+   },
+   {
+    "claim": "The parties are independent contractors, not partners, agents, or joint venturers.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.5256,
+    "supported": 0.9917,
+    "contradicted": 0.0032,
+    "not_stated": 0.0027,
+    "not_a_claim": 0.0024,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 1,
+   "supported": 0.9917
+  },
+  "timing": {
+   "read_ms": 186,
+   "total_ms": 188
+  },
+  "pdf": {
+   "pages": 4,
+   "selected": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    2820,
+    6633,
+    10367
+   ],
+   "characters": 11896
+  }
+ }
+}

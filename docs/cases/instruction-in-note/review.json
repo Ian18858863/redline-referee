@@ -1631,13 +1631,13 @@
    {
     "endpoint": "Compare",
     "path": "/clocked/compare",
-    "step": "compare clause 4.4",
-    "credits": 4,
-    "model_ms": 98.810238,
+    "step": "compare clause 5",
+    "credits": 6,
+    "model_ms": 144.747297,
     "attempts": 1,
     "request_id": null,
-    "trace": "a5857fc89af00fae-BOS",
-    "idempotency_key": "dac0f645-af29-437e-9e9e-77c3eab20743",
+    "trace": "a5857fc98ad94cde-BOS",
+    "idempotency_key": "9d0a532c-6d2f-4c98-979a-d1ebad400960",
     "recorded_at": "2026-11-10T13:45:42+00:00",
     "replayed": true,
     "cached": false
@@ -1652,20 +1652,6 @@
     "request_id": null,
     "trace": "a5857fc56e090fae-BOS",
     "idempotency_key": "11ce7037-4dca-4f4b-95ad-1a29fb95191d",
-    "recorded_at": "2026-11-10T13:45:42+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
-    "endpoint": "Compare",
-    "path": "/clocked/compare",
-    "step": "compare clause 5",
-    "credits": 6,
-    "model_ms": 144.747297,
-    "attempts": 1,
-    "request_id": null,
-    "trace": "a5857fc98ad94cde-BOS",
-    "idempotency_key": "9d0a532c-6d2f-4c98-979a-d1ebad400960",
     "recorded_at": "2026-11-10T13:45:42+00:00",
     "replayed": true,
     "cached": false
@@ -1713,6 +1699,20 @@
     "cached": false
    },
    {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 4.4",
+    "credits": 4,
+    "model_ms": 98.810238,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fc89af00fae-BOS",
+    "idempotency_key": "dac0f645-af29-437e-9e9e-77c3eab20743",
+    "recorded_at": "2026-11-10T13:45:42+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
     "endpoint": "Guard",
     "path": "/clocked/injection",
     "step": "guard cover note",
@@ -1755,20 +1755,6 @@
     "cached": false
    },
    {
-    "endpoint": "Rerank",
-    "path": "/clocked/rerank",
-    "step": "rerank 8",
-    "credits": 4,
-    "model_ms": 95.624992,
-    "attempts": 1,
-    "request_id": null,
-    "trace": "a5857fd5b904cc9b-BOS",
-    "idempotency_key": "19627e7c-2e42-4bef-a375-fcd44dbbf71a",
-    "recorded_at": "2026-11-10T13:45:44+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
     "endpoint": "Decide",
     "path": "/clocked/decide",
     "step": "decide 4.4",
@@ -1779,6 +1765,20 @@
     "trace": "a5857fd77f41de02-BOS",
     "idempotency_key": "48323bdb-1ced-404a-ac42-ac1f6ec88250",
     "recorded_at": "2026-11-10T13:45:45+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Rerank",
+    "path": "/clocked/rerank",
+    "step": "rerank 8",
+    "credits": 4,
+    "model_ms": 95.624992,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fd5b904cc9b-BOS",
+    "idempotency_key": "19627e7c-2e42-4bef-a375-fcd44dbbf71a",
+    "recorded_at": "2026-11-10T13:45:44+00:00",
     "replayed": true,
     "cached": false
    },

@@ -1,0 +1,165 @@
+{
+ "endpoint": "/clocked/compare",
+ "label": "compare clause 7.12",
+ "request_hash": "8368bfbd0f7869024f7720f58b2a8b5950a14d7e0bc0f085599c999399bbf797",
+ "request": {
+  "documents": [
+   {
+    "id": "v1",
+    "text": "This Agreement may be signed in counterparts, including by electronic copies or acceptance mechanism. Each copy will be deemed an original and all copies, when taken together, will be the same agreement."
+   },
+   {
+    "id": "v2",
+    "text": "This Agreement may be signed in counterparts, including by electronic copies or acceptance mechanism. Each copy will be deemed an original. All copies, when taken together, will be the same agreement."
+   }
+  ],
+  "instructions": "Document v1 is one clause of the agreement we sent. Document v2 is the same clause in the copy the counterparty returned. Decide whether v2 says the same thing as v1. They conflict when v2 changes an obligation, a right, an amount, a rate, a period, a party, a place, a limit, or who bears a risk, even if only one number or one word differs. Spelling corrections, punctuation, capitalisation, number formatting such as 'thirty (30)' versus '30', and a faithful rewording that keeps the same obligation are the same, not a conflict.",
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 131.470749,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "ad69f7fd-5de9-46ab-b0e9-5a1943ea6dd0",
+  "request_id": null,
+  "trace": "a5883441896a9988-EWR",
+  "wall_ms": 271,
+  "recorded_at": "2026-11-10T21:38:26+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "verdict": "duplicates",
+  "threshold": 0.5,
+  "instructions_used": "custom",
+  "evidence": "all",
+  "documents": [
+   {
+    "id": "v1",
+    "duplicates": [
+     "v2"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   },
+   {
+    "id": "v2",
+    "duplicates": [
+     "v1"
+    ],
+    "overlaps": [],
+    "conflicts": []
+   }
+  ],
+  "pairs": [
+   {
+    "a": "v1",
+    "b": "v2",
+    "relation": "same",
+    "related": 0.9978,
+    "probabilities": {
+     "same": 0.9897,
+     "overlapping": 0.0052,
+     "conflicting": 0.0029,
+     "unrelated": 0.0022
+    },
+    "duplicates": [
+     {
+      "kind": "verbatim",
+      "kinds": {
+       "verbatim": 0.9905,
+       "restated": 0.0031,
+       "elaborated": 0.0034,
+       "different": 0.003
+      },
+      "confidence": 0.997,
+      "a": {
+       "document": "v1",
+       "quote": "This Agreement may be signed in counterparts, including by electronic copies or acceptance mechanism.",
+       "start": 0,
+       "end": 101,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "This Agreement may be signed in counterparts, including by electronic copies or acceptance mechanism.",
+       "start": 0,
+       "end": 101,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.9906,
+       "restated": 0.004,
+       "elaborated": 0.0027,
+       "different": 0.0027
+      },
+      "confidence": 0.702,
+      "a": {
+       "document": "v1",
+       "quote": "Each copy will be deemed an original and all copies, when taken together, will be the same agreement.",
+       "start": 102,
+       "end": 203,
+       "confidence": 0.702
+      },
+      "b": {
+       "document": "v2",
+       "quote": "Each copy will be deemed an original.",
+       "start": 102,
+       "end": 139,
+       "confidence": 1
+      }
+     },
+     {
+      "kind": "restated",
+      "kinds": {
+       "verbatim": 0.986,
+       "restated": 0.0045,
+       "elaborated": 0.0046,
+       "different": 0.0049
+      },
+      "confidence": 0.9951,
+      "a": {
+       "document": "v1",
+       "quote": "Each copy will be deemed an original and all copies, when taken together, will be the same agreement.",
+       "start": 102,
+       "end": 203,
+       "confidence": 1
+      },
+      "b": {
+       "document": "v2",
+       "quote": "All copies, when taken together, will be the same agreement.",
+       "start": 140,
+       "end": 200,
+       "confidence": 1
+      }
+     }
+    ],
+    "conflicts": []
+   }
+  ],
+  "duplicates": [
+   0
+  ],
+  "overlaps": [],
+  "conflicts": [],
+  "related_pairs": [
+   0
+  ],
+  "stages": {
+   "pairs_reread": 0,
+   "pairs_ms": 23,
+   "passage_reads": 1,
+   "passages_ms": 50,
+   "passages": 3,
+   "counterparts_ms": 68
+  },
+  "timing": {
+   "read_ms": 141,
+   "total_ms": 144
+  }
+ }
+}

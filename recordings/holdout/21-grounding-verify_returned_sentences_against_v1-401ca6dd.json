@@ -1,0 +1,107 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify returned sentences against v1",
+ "request_hash": "401ca6dd5b4cda58bdb7270760425317a13420f6c535e49957ee92d96ee692c3",
+ "request": {
+  "pdf": {
+   "sha256": "33ce49af2d533bacf7b9d54d8bcece370233b29e9d9958df7cc67dc077837c7f"
+  },
+  "answer": "This is true regardless of the computer you use to develop Your IP, excluding the one furnished to you by the Company. For your help after you leave the company, the Company may compensate you at a reasonable rate.",
+  "claims": [
+   "This is true regardless of the computer you use to develop Your IP, excluding the one furnished to you by the Company.",
+   "For your help after you leave the company, the Company may compensate you at a reasonable rate."
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 6,
+  "model_ms": 147.820095,
+  "cost_usd": 0.001195,
+  "attempts": 1,
+  "idempotency_key": "a9d76367-051d-489e-9cc0-61e98d155880",
+  "request_id": null,
+  "trace": "a58833e52fb5920c-IAD",
+  "wall_ms": 298,
+  "recorded_at": "2026-11-10T21:38:11+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.4262,
+  "ungrounded": 0.5738,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 1,
+    "share_of_answer": 0.4262,
+    "claims": [
+     1
+    ]
+   }
+  ],
+  "claims": [
+   {
+    "claim": "This is true regardless of the computer you use to develop Your IP, excluding the one furnished to you by the Company.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.554,
+    "supported": 0.0035,
+    "contradicted": 0.9889,
+    "not_stated": 0.0048,
+    "not_a_claim": 0.0029,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   },
+   {
+    "claim": "For your help after you leave the company, the Company may compensate you at a reasonable rate.",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.446,
+    "supported": 0.9514,
+    "contradicted": 0.0311,
+    "not_stated": 0.0102,
+    "not_a_claim": 0.0074,
+    "verdict": "supported",
+    "sources": {
+     "pdf": 1
+    },
+    "source": "pdf"
+   }
+  ],
+  "unsupported_claims": [
+   0
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.0035
+  },
+  "timing": {
+   "read_ms": 158,
+   "total_ms": 163
+  },
+  "pdf": {
+   "pages": 3,
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0,
+    3813,
+    7377
+   ],
+   "characters": 7422
+  }
+ }
+}
