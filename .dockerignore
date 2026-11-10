@@ -1,0 +1,11 @@
+.git
+.venv
+out
+internal
+recordings
+tests
+eval
+data/cases
+**/__pycache__
+.env
+.env.*

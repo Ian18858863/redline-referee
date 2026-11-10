@@ -1,0 +1,16 @@
+# One-click deploy of the live instance on Render (https://render.com/deploy). Set CLOCKED_API_KEY in the dashboard.
+services:
+  - type: web
+    name: redline-referee
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/config
+    envVars:
+      - key: CLOCKED_API_KEY
+        sync: false
+      - key: LIVE_RUNS_PER_HOUR
+        value: "6"
+      - key: LIVE_RUNS_PER_DAY
+        value: "60"
+      - key: CLOCKED_CREDIT_CAP
+        value: "400"
