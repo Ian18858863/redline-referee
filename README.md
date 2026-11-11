@@ -25,9 +25,15 @@ Entry for the Clocked Build Challenge 2026, built on November 9 and 10, 2026.
 
 Two locked corpora on public contract templates by other authors, labelled before any run. On the second, built blind to the engine and its earlier failures (three new sources, eight pairs): 6 of 6 planted substantive edits held, 9 of 9 faithful rewordings cleared (8 of 9 as first scored, see the erratum), 3 of 3 false cover notes contradicted, 8 of 8 final statuses correct, newly concealed text blocked and publisher fine print in both versions not blocked. Its ten-case routing control: 9 of 10 with the passage Rerank selected, 7 of 10 with every passage supplied, 5 of 10 with the first passage only, and no loose route in any arm. On the first corpus one faithful rewording is still held because the two readers disagree, and its six-case routing control is a tie. First outputs, scoring errata, rejected experiments and the absence of a completed paired human study are in the external results. None of this is a general contract-accuracy or productivity claim.
 
+### Real public contract demonstration
+
+The first case compares short, verbatim excerpts of Aclaris Therapeutics / Joseph Monahan employment agreements filed with the SEC in 2023 and 2024. The actual annual salary changes from **$280,800 to $430,000**, and the employee-benefit comparison group changes from part-time to full-time. A fresh live Clocked run held both changes, completed without errors, and used **19 credits across six calls**. Original filing links appear on both documents; [source provenance and scope](data/public-filings/SOURCE.md) are included. These are historical public contracts, not a live negotiation or a human-user study.
+
+Replay it with `python scripts/run_public_filing.py` (no API calls). The pre-existing authored examples remain available in the case selector and video.
+
 ### For judges: three minutes
 
-1. Open the demo. The first case is a returned copy whose note says nothing changed. The status is **Do not sign**, and the "Cover note" tab shows which three statements Verify contradicted.
+1. Choose **Quiet changes** in the case selector. This case is a returned copy whose note says nothing changed. The status is **Do not sign**, and the "Cover note" tab shows which three statements Verify contradicted.
 2. The first screen puts the customer's payment assurance next to **30 days → 90 days** from the open review, and says who decides next (here: the deal desk sends a counter). **Inspect this change** opens its actual page evidence. Expand **Explore the recorded cases** for a faithful rewording, a reader disagreement, a note addressed to an AI, or the wrong-file gate.
 3. Open "How it works" at the bottom of any case: what each endpoint decided in that review, what would have gone wrong without it, and every request with its credits.
 
