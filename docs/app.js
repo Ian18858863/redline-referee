@@ -139,7 +139,7 @@ const S = {
   tab: 'changes',
   open: {},             // group key -> open?
   decisions: new Map(), // base -> { changeId: action }
-  outcomes: new Map(),  // base -> { kind: 'signed' | 'sent', at: Date }
+  outcomes: new Map(),  // session summaries: legacy kinds 'signed' | 'sent' | 'asked'; not delivery receipts
   noIntro: false,       // the URL asked for no "start here" strip (intro=0)
   warnOff: new Set(),   // bases whose warnings strip was dismissed
   replies: new Map(),   // base -> { status, data }: the recorded reply.json, fetched when the summary opens
@@ -336,7 +336,7 @@ const outcomeOf = () => S.outcomes.get(S.base) ?? null;
 // The whole-document Compare is a gate. When it says the two files are not versions of one agreement,
 // the review stops there: no changes, no cover note check, nothing to approve.
 const stopped = (r = S.review) => r?.compare?.gate?.stopped === true || (r?.headline === 'Not the same agreement' && !changesOf(r).length);
-const OUTCOME_TEXT = { sent: 'Sent to approvers', signed: 'Signed off', asked: 'Asked for the right file' };
+const OUTCOME_TEXT = { sent: 'Handoff prepared', signed: 'Signed off', asked: 'File request prepared' };
 function gate(r) {
   const st = statusOf(r);
   const blocking = blockingOf(r);
@@ -345,14 +345,14 @@ function gate(r) {
   const left = blocking.length - decided;
   const base = { st, blocking, decided, left };
   if (stopped(r)) {
-    return { ...base, ok: true, kind: 'asked', label: 'Ask for the right file', why: 'There is nothing to approve: the file that came back is not a version of the agreement we sent.' };
+    return { ...base, ok: true, kind: 'asked', label: 'Prepare file request', why: 'There is nothing to approve: the file that came back is not a version of the agreement we sent.' };
   }
   if (st === 'blocked') {
-    return { ...base, ok: true, kind: 'sent', label: 'Send to approvers', why: 'Cannot be signed as returned. The approvers get the findings and your decisions.' };
+    return { ...base, ok: true, kind: 'sent', label: 'Prepare handoff', why: 'Cannot be signed as returned. Prepare the findings and your decisions to share with an approver.' };
   }
   if (st === 'incomplete') {
     const n = arr(r.errors).length;
-    return { ...base, ok: true, kind: 'sent', label: 'Send to approvers', why: `${n ? plural(n, 'step') : 'A step'} did not complete, so this cannot be signed off. The approvers get what was found.` };
+    return { ...base, ok: true, kind: 'sent', label: 'Prepare handoff', why: `${n ? plural(n, 'step') : 'A step'} did not complete, so this cannot be signed off. Prepare the available findings to share with an approver.` };
   }
   if (st === 'changes' && left > 0) {
     return { ...base, ok: false, kind: 'signed', label: 'Sign off', why: `Sign-off opens when every change to resolve has a decision. ${plural(left, 'change')} left.` };
@@ -360,7 +360,7 @@ function gate(r) {
   if (st === 'changes') {
     const up = blocking.filter((c) => d[c.id] === 'escalate').length;
     return up
-      ? { ...base, ok: true, kind: 'sent', label: 'Send to approvers', why: `Every change has a decision. ${plural(up, 'change')} ${up === 1 ? 'goes' : 'go'} to another approver before anyone signs.` }
+      ? { ...base, ok: true, kind: 'sent', label: 'Prepare handoff', why: `Every change has a decision. ${plural(up, 'change')} ${up === 1 ? 'needs' : 'need'} another approver. Copy the handoff summary to share before anyone signs.` }
       : { ...base, ok: true, kind: 'signed', label: 'Sign off', why: 'Every change to resolve has a decision.' };
   }
   return { ...base, ok: true, kind: 'signed', label: 'Sign off', why: 'No blocking finding. Nothing to resolve.' };
@@ -2005,7 +2005,7 @@ function decide(cid, action) {
 }
 
 // ------------------------------------------------------------------ summary
-// Sign-off and send both end here: one part that can go to the customer, one that stays inside.
+// Sign-off and handoff preparation end here: one part for the customer, one that stays inside.
 function openSummary() {
   const r = S.review;
   if (!r) return;
@@ -2124,30 +2124,30 @@ function renderSummary() {
   if (kind === 'asked') {
     const doc = cmpDoc(r), calls = r.audit?.calls ?? arr(r.audit?.requests).length, credits = r.audit?.credits ?? 0;
     const msg = ['Thank you for sending the file back. It is not a version of the agreement we sent you, so we have not reviewed it.', 'Could you send the returned copy of that agreement? We will review it as soon as it arrives.'];
-    const notes = [`${title}: ${String(r.headline ?? 'not the same agreement').toLowerCase()}${when ? `. Asked for the right file at ${when}` : ''}`,
+    const notes = [`${title}: ${String(r.headline ?? 'not the same agreement').toLowerCase()}${when ? `. File request prepared at ${when}` : ''}`,
       ...arr(r.reasons).map((x) => `- ${x.source}: ${reasonText(x, r)}`),
       `- Compare read the two files as ${doc?.relation ? words(doc.relation) : 'not one agreement'}${pct(doc?.related) ? `, related ${pct(doc.related)}` : ''}${pct(r.compare?.gate?.floor) ? ` (it stops below ${pct(r.compare.gate.floor)})` : ''}.`,
       `- ${plural(calls, 'Clocked call')}, ${plural(credits, 'credit')}. Nothing else was sent.`];
-    $('#reply-title').textContent = 'Ask for the right file';
+    $('#reply-title').textContent = 'Request the correct file';
     $('#reply-body').replaceChildren(
-      h('div', { class: 'reply-banner t-red' }, ico('stop'), h('span', null, `${r.headline ?? 'Not the same agreement'}${when ? `. Asked for the right file at ${when}` : ''}`, h('small', null, 'Nothing was reviewed, so there is nothing to approve.'))),
-      part('is-customer', 'For the customer', 'A request for the right file. Safe to send.', msg.map((x) => h('p', { class: 'plain' }, x)), msg.join('\n\n'), 'reply-customer'),
+      h('div', { class: 'reply-banner t-red' }, ico('stop'), h('span', null, `${r.headline ?? 'Not the same agreement'}${when ? `. File request prepared at ${when}` : ''}`, h('small', null, 'Nothing was reviewed, so there is nothing to approve.'))),
+      part('is-customer', 'For the customer', 'A request for the right file. Review before sending.', msg.map((x) => h('p', { class: 'plain' }, x)), msg.join('\n\n'), 'reply-customer'),
       part('is-internal', 'Internal notes', 'What stopped the review. Not for the customer.', [h('ul', { class: 'reply-plain' }, notes.slice(1).map((x) => h('li', null, x.replace(/^- /, ''))))], notes));
     return;
   }
 
   // ---- header
-  $('#reply-title').textContent = kind === 'sent' ? 'Sent to approvers' : 'Review signed off';
+  $('#reply-title').textContent = kind === 'sent' ? 'Approver handoff' : 'Review signed off';
   const tally = [[accepted.length, 'accepted'], [countered.length, 'to counter'], [escalated.length, 'to another approver'], [undecided.length, 'undecided']].filter(([n]) => n).map(([n, t]) => `${n} ${t}`).join(', ');
   const banner = kind === 'sent'
-    ? h('div', { class: `reply-banner ${g.st === 'changes' ? 't-amber' : 't-red'}` }, ico(g.st === 'changes' ? 'open' : 'stop'), h('span', null, `${HEADLINES[g.st]}. Sent to approvers${when ? ` at ${when}` : ''}`, tally ? h('small', null, tally) : null))
+    ? h('div', { class: `reply-banner ${g.st === 'changes' ? 't-amber' : 't-red'}` }, ico(g.st === 'changes' ? 'open' : 'stop'), h('span', null, `${HEADLINES[g.st]}. Handoff prepared${when ? ` at ${when}` : ''}`, h('small', null, [tally, 'Copy the internal notes to share with an approver.'].filter(Boolean).join(' · '))))
     : h('div', { class: `reply-banner ${countered.length ? 't-amber' : 't-green'}` }, ico(countered.length ? 'open' : 'check'),
-      h('span', null, `Review signed off${when ? ` at ${when}` : ''}`, h('small', null, countered.length ? `${tally}. The reply below goes to the customer before anyone signs.` : 'The agreement can be signed.')));
+      h('span', null, `Review signed off${when ? ` at ${when}` : ''}`, h('small', null, countered.length ? `${tally}. Review the draft below and send it to the customer before anyone signs.` : 'The agreement can be signed.')));
 
   // ---- for the customer. First choice: the reply Clocked Fill drafted and Clocked Verify checked.
   const rec = S.replies.get(S.base);
   const recorded = rec?.status === 'ok' ? rec.data : null;
-  let cn = [], cl = [], drafted = null, sub = 'What we accept and what we do not. Safe to send.';
+  let cn = [], cl = [], drafted = null, sub = 'What we accept and what we do not. Review before sending.';
   const wait = [];
   if (recorded && recorded.text && sameDecisions(d, recorded.decisions, ids)) drafted = recorded;
   else if (S.live && ids.length && !undecided.length) {
@@ -2164,7 +2164,7 @@ function renderSummary() {
   if (drafted) {
     const x = draftedReply(drafted);
     cn = x.nodes; cl = x.text;
-    sub = drafted.ran ? 'Drafted by Clocked Fill, checked by Clocked Verify. Safe to send.' : 'Safe to send.';
+    sub = drafted.ran ? 'Drafted by Clocked Fill, claim-checked by Clocked Verify. Review before sending.' : 'Review before sending.';
   } else {
     // The plain summary: what we accept and what we do not, in words that can leave the building.
     const lines = [];
