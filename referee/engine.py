@@ -33,6 +33,7 @@ import json
 import math
 import os
 import re
+import unicodedata
 
 import pymupdf
 from collections import Counter
@@ -1735,20 +1736,33 @@ def drawn_out_of_order(doc: TextDoc) -> list[int]:
     return sorted(pages)
 
 
+def _hidden_text_key(text: str) -> str:
+    """Layout-equivalent text without erasing characters that can change a term.
+
+    `_nz` is deliberately lossy for fuzzy evidence matching. It must not grant
+    an inherited-text exemption: $100, €100, -100 and +100 are different terms.
+    NFC handles canonical Unicode spellings; compatibility characters, case,
+    punctuation, currency and operators stay significant. Whitespace may wrap.
+    """
+    return squash(unicodedata.normalize("NFC", text))
+
+
 def classify_hidden(v1: TextDoc, v2: TextDoc) -> list[tuple]:
     """Each concealed passage of the returned copy, with whether the version we sent conceals the same text.
 
     Fine print that was already in our own version (a publisher's licence mark in 3 pt type, say) is inherited:
     the counterparty did not put it there, so it does not block. It stays listed, and Guard still reads all of
     the returned copy's text. Concealed text that our version does not carry is new, and blocks. Matching is by
-    the exact text, one for one: a second copy, or the same passage with a word added, is new.
+    the exact text apart from whitespace and canonical Unicode spelling, one for one: a second copy, or the
+    same passage with a word, symbol or letter case changed, is new.
     """
     pool: dict[str, int] = {}
     for h in v1.hidden:
-        pool[_nz(h.text)] = pool.get(_nz(h.text), 0) + 1
+        key = _hidden_text_key(h.text)
+        pool[key] = pool.get(key, 0) + 1
     out = []
     for h in v2.hidden:
-        key = _nz(h.text)
+        key = _hidden_text_key(h.text)
         inherited = bool(key) and pool.get(key, 0) > 0
         if inherited:
             pool[key] -= 1
