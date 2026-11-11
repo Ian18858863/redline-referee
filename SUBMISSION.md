@@ -42,3 +42,5 @@ The existing video demonstrates authored negotiation cases. The new SEC example 
 - [2024 second amended and restated employment agreement](https://www.sec.gov/Archives/edgar/data/1557746/000155837024001753/acrs-20231231xex10d15.htm)
 
 These historical public versions show annual base salary changing from $280,800 to $430,000 and the benefit-plan comparator changing from part-time to full-time employees. The demo's source note identifies the included sections. It makes no claim that Aclaris used or endorsed this application.
+
+One later qualitative owner observation found the salary change clear and potentially useful for review, while noting incomplete understanding of the interface. This is owner feedback, not an independent or timed study; [context and limits](study/OWNER_FEEDBACK.md).

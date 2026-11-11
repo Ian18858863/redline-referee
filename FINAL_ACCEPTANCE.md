@@ -44,3 +44,5 @@ Product review also corrected two evidence statements: a five-second recorded ex
 ## Real public filing check
 
 Aclaris SEC filings, 2023 and 2024; short verbatim excerpts only, not complete-contract coverage. Both actual changes held, zero errors, six fresh API calls, 19 credits. Offline replay repeated the result with zero calls. Provenance, exact excerpts and exported-PDF hashes are in data/public-filings. A user feedback request is pending; completed paired human studies remain zero.
+
+Update: the owner subsequently inspected the real case and supplied one qualitative feedback observation (salary change was clear; perceived usefulness; incomplete interface comprehension). See study/OWNER_FEEDBACK.md. Completed paired/timed studies remain zero; no efficiency figure was measured.
