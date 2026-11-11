@@ -1560,6 +1560,20 @@
     "cached": false
    },
    {
+    "endpoint": "Guard",
+    "path": "/clocked/injection",
+    "step": "guard returned copy",
+    "credits": 3,
+    "model_ms": 60.63747,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fe1feb9d83f-BOS",
+    "idempotency_key": "ad4552c0-892c-43cf-9963-952484498399",
+    "recorded_at": "2026-11-10T13:45:46+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
     "endpoint": "Extract",
     "path": "/clocked/extract",
     "step": "extract terms v2",
@@ -1588,6 +1602,20 @@
     "cached": false
    },
    {
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify returned sentences against v1",
+    "credits": 6,
+    "model_ms": 140.572002,
+    "attempts": 1,
+    "request_id": null,
+    "trace": "a5857fe59e3aa5bb-BOS",
+    "idempotency_key": "84141fff-0350-40bc-9d42-9365aa795433",
+    "recorded_at": "2026-11-10T13:45:47+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
     "endpoint": "Compare",
     "path": "/clocked/compare",
     "step": "compare clause 3",
@@ -1597,34 +1625,6 @@
     "request_id": null,
     "trace": "a5857fe50ca1d83f-BOS",
     "idempotency_key": "6c7c39f3-de41-4554-a0f9-dda26721be82",
-    "recorded_at": "2026-11-10T13:45:47+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
-    "endpoint": "Guard",
-    "path": "/clocked/injection",
-    "step": "guard returned copy",
-    "credits": 3,
-    "model_ms": 60.63747,
-    "attempts": 1,
-    "request_id": null,
-    "trace": "a5857fe1feb9d83f-BOS",
-    "idempotency_key": "ad4552c0-892c-43cf-9963-952484498399",
-    "recorded_at": "2026-11-10T13:45:46+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
-    "endpoint": "Guard",
-    "path": "/clocked/injection",
-    "step": "guard cover note",
-    "credits": 2,
-    "model_ms": 27.887009,
-    "attempts": 1,
-    "request_id": null,
-    "trace": "a5857fe81ba5a5bb-BOS",
-    "idempotency_key": "2ba4ce9d-2e77-4677-9f4c-bec7aa2c321d",
     "recorded_at": "2026-11-10T13:45:47+00:00",
     "replayed": true,
     "cached": false
@@ -1644,15 +1644,15 @@
     "cached": false
    },
    {
-    "endpoint": "Verify",
-    "path": "/clocked/grounding",
-    "step": "verify returned sentences against v1",
-    "credits": 6,
-    "model_ms": 140.572002,
+    "endpoint": "Guard",
+    "path": "/clocked/injection",
+    "step": "guard cover note",
+    "credits": 2,
+    "model_ms": 27.887009,
     "attempts": 1,
     "request_id": null,
-    "trace": "a5857fe59e3aa5bb-BOS",
-    "idempotency_key": "84141fff-0350-40bc-9d42-9365aa795433",
+    "trace": "a5857fe81ba5a5bb-BOS",
+    "idempotency_key": "2ba4ce9d-2e77-4677-9f4c-bec7aa2c321d",
     "recorded_at": "2026-11-10T13:45:47+00:00",
     "replayed": true,
     "cached": false
