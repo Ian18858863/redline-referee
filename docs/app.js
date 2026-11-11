@@ -289,6 +289,15 @@ const MOMENTS = [
   { key: 'guard', label: 'A note that talks to your AI', case: 'instruction-in-note' },
   { key: 'wrong', label: 'The wrong file came back', case: 'wrong-file' },
 ];
+// Who decides next, from the route the review suggests for this change. Says nothing when there is no route.
+function introNext(c) {
+  const who = { accept: 'The deal desk may accept it', counter: 'The deal desk sends a counter', escalate: 'An approver outside the deal desk decides' }[c?.route];
+  if (!who) return null;
+  return h('div', { class: 'intro-next' }, h('span', { class: 'intro-label' }, 'Who decides next'),
+    h('span', { class: 'intro-next-who' }, h('span', { class: `chip ${ROUTE_TONE[c.route] ?? 't-grey'}` }, ROUTES[c.route] ?? c.route), who),
+    h('small', null, 'A suggestion. The reviewer decides.'));
+}
+
 function renderIntro() {
   const root = $('#intro');
   const have = MOMENTS.filter((m) => S.index.some((c) => c.id === m.case));
@@ -306,6 +315,7 @@ function renderIntro() {
     h('div', { class: 'intro-said' }, h('span', { class: 'intro-label' }, 'The cover note'), h('q', null, claim.text)),
     h('span', { class: 'intro-vs', 'aria-hidden': 'true' }, '→'),
     h('div', { class: 'intro-found' }, h('span', { class: 'intro-label' }, `The returned copy · ${clauseOf(proof)}`), h('strong', null, proof.summary)),
+    introNext(proof),
     h('button', { type: 'button', class: 'btn btn--primary intro-action', onclick: () => { S.tab = 'changes'; select(proof.id); if (narrow()) reveal($('#detail')); } }, 'Inspect this change', ico('arrow'))) :
     h('div', { class: 'intro-orientation' }, h('b', null, 'Know what you are being asked to sign.'), h('span', null, 'Compare both copies. Check the cover note. Decide each change.'));
   root.replaceChildren(
