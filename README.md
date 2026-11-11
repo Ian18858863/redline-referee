@@ -28,10 +28,10 @@ Two locked corpora on public contract templates by other authors, labelled befor
 ### For judges: three minutes
 
 1. Open the demo. The first case is a returned copy whose note says nothing changed. The status is **Do not sign**, and the "Cover note" tab shows which three statements Verify contradicted.
-2. The first-screen evidence pair puts the customer's payment assurance next to **30 days → 90 days** from the open review. **Inspect this change** opens its actual page evidence. Expand **Explore the recorded cases** for a faithful rewording, a reader disagreement, a note addressed to an AI, or the wrong-file gate.
+2. The first screen puts the customer's payment assurance next to **30 days → 90 days** from the open review, and says who decides next (here: the deal desk sends a counter). **Inspect this change** opens its actual page evidence. Expand **Explore the recorded cases** for a faithful rewording, a reader disagreement, a note addressed to an AI, or the wrong-file gate.
 3. Open "How it works" at the bottom of any case: what each endpoint decided in that review, what would have gone wrong without it, and every request with its credits.
 
-To run it on your own two PDFs, see [Run it](#run-it). For the evidence trail, reproduction checks and remaining work against the published criteria, see [the reviewer guide](JUDGING.md).
+To run it on your own two PDFs, see [Run it](#run-it). For the evidence trail, which numbers are first outputs and which are regressions, and the gaps against each published criterion, see [the reviewer guide](JUDGING.md).
 
 ## What each endpoint changes
 
@@ -184,7 +184,7 @@ uv run python eval/run_hard.py --live            # the hard set
 - The thirteen key terms Extract reads are those of a subscription agreement. On the non-disclosure agreement most of them are correctly empty.
 - Routing errs on the strict side: the playbook lets the desk extend the data export window to ninety days and Decide still answered that it may not be accepted as written, in all three pairs that contain that edit. We left the answers as recorded.
 - Sending our original term back as a counter is supported only where the policy data grants it (`restore_original` on a playbook passage). The demo playbook grants none; the mechanism is measured on the second corpus's fixture only.
-- No completed study with intended users exists. One person did half of the protocol in `study/`. Nothing here claims time saved.
+- No completed study with intended users exists. One person did half of the protocol in `study/` ([status](study/STATUS.md)). Nothing here claims time saved.
 - One faithful rewording in the hard set ("exclusive of taxes" to "do not include taxes") was held by both readers. Also on the strict side.
 - Rerank's `expand` (the answer is in a neighbouring passage) is handled and unit-tested, but did not occur in the recordings.
 - The cover note is checked against the returned copy and against our own list of changes. That list comes from the rule layer and the two readers, not from the note; a statement about something outside the documents can only come back "not stated".

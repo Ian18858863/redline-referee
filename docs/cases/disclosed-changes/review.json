@@ -1808,20 +1808,6 @@
     "cached": false
    },
    {
-    "endpoint": "Extract",
-    "path": "/clocked/extract",
-    "step": "extract terms v2",
-    "credits": 10,
-    "model_ms": 228.006363,
-    "attempts": 1,
-    "request_id": "a5846e741a655e1e-BOS",
-    "trace": "a5846e741a655e1e-BOS",
-    "idempotency_key": "a18a1640-2595-4873-8e52-5f345f2304a6",
-    "recorded_at": "2026-11-10T10:39:07+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
     "endpoint": "Guard",
     "path": "/clocked/injection",
     "step": "guard returned copy",
@@ -1850,6 +1836,34 @@
     "cached": false
    },
    {
+    "endpoint": "Extract",
+    "path": "/clocked/extract",
+    "step": "extract terms v2",
+    "credits": 10,
+    "model_ms": 228.006363,
+    "attempts": 1,
+    "request_id": "a5846e741a655e1e-BOS",
+    "trace": "a5846e741a655e1e-BOS",
+    "idempotency_key": "a18a1640-2595-4873-8e52-5f345f2304a6",
+    "recorded_at": "2026-11-10T10:39:07+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Compare",
+    "path": "/clocked/compare",
+    "step": "compare clause 6",
+    "credits": 6,
+    "model_ms": 149.650461,
+    "attempts": 1,
+    "request_id": "a5846e7c3b5d5e1e-BOS",
+    "trace": "a5846e7c3b5d5e1e-BOS",
+    "idempotency_key": "02bab4c6-459d-45a9-b1ec-3afefb5a576e",
+    "recorded_at": "2026-11-10T10:39:08+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
     "endpoint": "Compare",
     "path": "/clocked/compare",
     "step": "compare clause 4.4",
@@ -1859,20 +1873,6 @@
     "request_id": "a5846e772e155e1e-BOS",
     "trace": "a5846e772e155e1e-BOS",
     "idempotency_key": "b613a419-ab83-4251-96fe-0533e3b9b7e1",
-    "recorded_at": "2026-11-10T10:39:08+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
-    "endpoint": "Verify",
-    "path": "/clocked/grounding",
-    "step": "verify returned sentences against v1",
-    "credits": 7,
-    "model_ms": 173.898308,
-    "attempts": 1,
-    "request_id": "a5846e7c5c7b0cee-BOS",
-    "trace": "a5846e7c5c7b0cee-BOS",
-    "idempotency_key": "a4b40d40-16d3-40b8-bdc9-b37c85e42e15",
     "recorded_at": "2026-11-10T10:39:08+00:00",
     "replayed": true,
     "cached": false
@@ -1892,15 +1892,15 @@
     "cached": false
    },
    {
-    "endpoint": "Compare",
-    "path": "/clocked/compare",
-    "step": "compare clause 6",
-    "credits": 6,
-    "model_ms": 149.650461,
+    "endpoint": "Verify",
+    "path": "/clocked/grounding",
+    "step": "verify returned sentences against v1",
+    "credits": 7,
+    "model_ms": 173.898308,
     "attempts": 1,
-    "request_id": "a5846e7c3b5d5e1e-BOS",
-    "trace": "a5846e7c3b5d5e1e-BOS",
-    "idempotency_key": "02bab4c6-459d-45a9-b1ec-3afefb5a576e",
+    "request_id": "a5846e7c5c7b0cee-BOS",
+    "trace": "a5846e7c5c7b0cee-BOS",
+    "idempotency_key": "a4b40d40-16d3-40b8-bdc9-b37c85e42e15",
     "recorded_at": "2026-11-10T10:39:08+00:00",
     "replayed": true,
     "cached": false
@@ -1976,20 +1976,6 @@
     "cached": false
    },
    {
-    "endpoint": "Decide",
-    "path": "/clocked/decide",
-    "step": "decide 4.4",
-    "credits": 2,
-    "model_ms": 29.838623,
-    "attempts": 1,
-    "request_id": "a5847d3ace9f7d19-BOS",
-    "trace": "a5847d3ace9f7d19-BOS",
-    "idempotency_key": "04892db4-41da-4248-99ed-0baf7149abca",
-    "recorded_at": "2026-11-10T10:49:12+00:00",
-    "replayed": true,
-    "cached": false
-   },
-   {
     "endpoint": "Rerank",
     "path": "/clocked/rerank",
     "step": "rerank 6",
@@ -2013,6 +1999,20 @@
     "request_id": "a5847d3ac98e6e0d-BOS",
     "trace": "a5847d3ac98e6e0d-BOS",
     "idempotency_key": "115007a8-3ec2-4ab9-8f65-df6fbeae575f",
+    "recorded_at": "2026-11-10T10:49:12+00:00",
+    "replayed": true,
+    "cached": false
+   },
+   {
+    "endpoint": "Decide",
+    "path": "/clocked/decide",
+    "step": "decide 4.4",
+    "credits": 2,
+    "model_ms": 29.838623,
+    "attempts": 1,
+    "request_id": "a5847d3ace9f7d19-BOS",
+    "trace": "a5847d3ace9f7d19-BOS",
+    "idempotency_key": "04892db4-41da-4248-99ed-0baf7149abca",
     "recorded_at": "2026-11-10T10:49:12+00:00",
     "replayed": true,
     "cached": false

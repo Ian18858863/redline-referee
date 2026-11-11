@@ -37,6 +37,40 @@ uv run uvicorn referee.server:app --port 8787
 
 The tests include injected failures and authored fake API responses to verify application policy. The evaluation and built demo replay real saved responses. No new model calls are required by these commands. The test configuration isolates local Clocked credentials and spending limits before the dotenv loader runs. `--check` rejects incomplete full reviews or missing expected claims/routes; `--check-ablation` additionally requires complete counterfactual replays; it does not require a perfect model score. Known model mistakes remain visible in `eval/RESULTS.md`. The `two-readers` / without-Compare counterfactual originally lacked a cover-note response because the changed ledger produces a new request hash. The missing request was recorded separately on 11 November 2026 (one live Verify call, 10 credits); it now replays by its exact hash. No baseline answer was substituted.
 
+## Which numbers are what
+
+Three kinds of result appear in this repository. They are not interchangeable.
+
+| Kind | What it is | Where | What it supports |
+|---|---|---|---|
+| **First output** | The untouched result of the first run on inputs frozen beforehand | `eval/external-results-first.json` (first corpus), `eval/holdout-results-first.json` (second corpus, with the digests of the code that ran) | The only numbers that say anything about unseen inputs |
+| **Scoring correction** | The same answers counted by a corrected scorer, reported beside the first count | First corpus: the scorer required a whole planted phrase inside a bounded quote. Second corpus: 8/9 rewordings as first scored, 9/9 when a rewrite listed as two parts of one card is matched | That the application's answer was right and the count was wrong. Not a model improvement |
+| **Post-fix regression** | Inputs that were looked at while fixing, run again after the fix | First corpus after the maintainer fixes: 2/3 rewordings, 5/6 statuses. All development pairs (`eval/RESULTS.md`) | That a fix did what it was meant to and broke nothing recorded. Not a holdout score |
+
+The development numbers (30/30, 0/41, 30/30, 15/15, 27/30) are regression evidence on one synthetic agreement in 25 variations. The video's closing card and the entry form quote those and the second corpus's first output, and say which is which.
+
+## Gaps against the five published criteria
+
+The weights are the challenge's. The assessments are ours, each tied to something you can open. No score is claimed.
+
+| Criterion (weight) | Evidence that exists | What is missing or weak |
+|---|---|---|
+| **Practical usefulness (25)** | A complete task: two PDFs and a note in, a status, located changes, routes and a checked reply out. Runs live on uploaded PDFs in about five seconds (`referee/server.py`, shown in the video) | **No completed observation with an intended user.** One person did the manual half of `study/PROTOCOL.md` and stopped. No time saved, no reduction in misses, nothing about real deal desks is measured or claimed. The playbook is fictional. The public demo is a replay; live review needs a local key |
+| **Quality of the core Clocked integration (30)** | Verify and Compare each decide outcomes the other would get wrong: without Verify 20/20 faithful rewordings are held and 39/39 false statements pass; without Compare 4 real changes are cleared (`eval/RESULTS.md`, recomputed from recordings). On the blind second corpus: 6/6 edits held, 9/9 rewordings cleared, 8/8 statuses | Small, self-labelled corpora (25 synthetic pairs, 14 pairs on public templates). One rewording is still held because the readers disagree. No independent legal adjudication. Scans, OCR and non-English contracts are unmeasured end to end |
+| **Thoughtful use of additional endpoints (15)** | Rerank changes the route: 9/10 with its passage against 7/10 with all passages and 5/10 with the first, no loose route (second corpus, ten cases). Decide's unsure answers go to a person. Guard is the only blocker in one case. Fill drafts a reply and Verify removes unsupported sentences. Extract supplies deal facts | The first corpus's routing control is a tie (4/6 in every arm). Rerank's `expand` never occurred in a recording. Routing is too strict on one development edit in all three pairs that contain it. Extract's thirteen terms fit a subscription agreement only. Protect and Inspect are not used |
+| **Implementation and user experience (20)** | 991 tests in CI (962 when the video was recorded), 69 malformed-response variants, failure states that never read as a pass, a phone layout, exact quotes located on both pages, a first screen that pairs the customer's claim with the change and who decides next | The interface was checked by automated walkthroughs and by us, not by intended users. Reviewer decisions are not persisted across reloads. Multi-column pages and tables are read by heuristics |
+| **Clear explanation and reproducibility (10)** | Every figure recomputes offline from recordings (`eval/run_eval.py`, `run_hard.py`, `run_external.py`, `run_holdout.py`); frozen inputs with hashes; first outputs and errata kept; limits listed in the README | The evidence is spread over four documents. The video shows the interface as recorded before the "who decides next" line was added to the first screen |
+
+## What the rules allow after the deadline
+
+Checked on the [official rules](https://clocked.rezolve.ai/build-challenge/rules) on 10 November 2026, 11 p.m. ET ("Changes: none since publication on October 19, 2026"):
+
+- "Entries cannot be submitted or changed after the submission deadline; the entry as saved at the deadline is the one judged." The deadline is 10 November 2026, 11:59 p.m. Eastern Time. The entry is the form: project text, demo link, repository link, awards, team.
+- "The application must be started and developed during the building period" (21 October to 10 November 2026) and "Keep the repository's development history available so judges can see what was built and when."
+- "Keep the demo and the repository publicly accessible through the winners' announcement on November 18, 2026."
+
+The rules do not say whether the linked repository or demo may change during judging. Because development must happen in the building period and the dated history is what judges read, this project treats 11:59 p.m. ET as a freeze for `main` and the deployed demo. Anything not merged by then stays on its branch, visible and dated, and is not presented as part of the entry.
+
 ## What would strengthen a subsequent submission
 
 The new [external-source results](eval/EXTERNAL_RESULTS.md) implement the pre-run source/label lock and the controlled retrieval comparison below. They exposed inherited tiny-print blocking, held faithful rewordings and no routing uplift. The first two were traced to general causes and fixed, restoration authority was modelled as policy data, and all three were then run once on a second corpus that was built blind and frozen first: 8/8 statuses, 6/6 substantive edits held, 9/9 rewordings cleared (8/9 as first scored), routing 9/10 with Rerank against 7/10 with all passages and 5/10 with the first passage, no loose route. Still open: one reader disagreement on the first corpus, kept as held, and no completed paired user observation. Post-fix results on the first six pairs are regression evidence. The [maintainer handoff](HANDOFF.md) gives concrete release gates and validation commands.
