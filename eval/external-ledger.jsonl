@@ -366,3 +366,9 @@
 {"endpoint": "decide", "label": "decide 5.3", "request_hash": "9d52c844eb2b5f329e3727b267daef3ca305bff971cf6af12294022b4a21bfbe", "charged": 2, "uncertain": 0, "round_accounted": 1115}
 {"endpoint": "decide", "label": "decide 5.3", "request_hash": "b6f4839b7709ed0b5a29486efb56fff495273800d4f19c75f48982d34a7636af", "charged": 3, "uncertain": 0, "round_accounted": 1118}
 {"endpoint": "decide", "label": "decide 5.3", "request_hash": "35cf4002e346ce7be6df4d30991332f14962a8478352160055a6a7c39eb33696", "charged": 2, "uncertain": 0, "round_accounted": 1120}
+{"endpoint": "compare", "label": "compare v1 v2", "request_hash": "e7191714631f14b3e887d2868ff3bae528e2a679659066e7dc892947d4d44bb6", "charged": 1, "uncertain": 0, "round_accounted": 1121}
+{"endpoint": "injection", "label": "guard returned copy", "request_hash": "7922dfcb310b567e2596550b4000aca9e816388fb584f40c547842bd990b7087", "charged": 2, "uncertain": 0, "round_accounted": 1123}
+{"endpoint": "compare", "label": "compare clause \u00b6 4", "request_hash": "01adb94d2f86af56336459548709e8cd6f214289635d971f9bbfb0a4fe0d3153", "charged": 4, "uncertain": 0, "round_accounted": 1127}
+{"endpoint": "compare", "label": "compare clause \u00b6 6", "request_hash": "622ac9878354f13890a73762f46e1bda43c29bf361b6e0cb33a24e513748adfc", "charged": 4, "uncertain": 0, "round_accounted": 1131}
+{"endpoint": "grounding", "label": "verify returned sentences against v1", "request_hash": "faf8ed4c317d0f7c1f8454011a747379a74d75b545e19d65f5bf45ff743117ec", "charged": 4, "uncertain": 0, "round_accounted": 1135}
+{"endpoint": "grounding", "label": "verify sent sentences against v2", "request_hash": "b126302376e78029e1702e5bd3a4259fb98634cca898a8a5f88eb28e21474f5c", "charged": 4, "uncertain": 0, "round_accounted": 1139}

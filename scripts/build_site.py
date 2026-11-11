@@ -16,4 +16,7 @@ for f in (ROOT / "web").iterdir():
     else:
         shutil.copy2(f, dest)
 (DOCS / ".nojekyll").write_text("")
-sys.exit(subprocess.call([sys.executable, str(ROOT / "scripts" / "run_case.py"), "--demo", "--out", str(DOCS / "cases")]))
+code = subprocess.call([sys.executable, str(ROOT / "scripts" / "run_case.py"), "--demo", "--out", str(DOCS / "cases")])
+if not code:
+    code = subprocess.call([sys.executable, str(ROOT / "scripts" / "run_public_filing.py")])
+sys.exit(code)

@@ -1,5 +1,11 @@
 [
  {
+  "id": "aclaris-public-filings",
+  "title": "Real contract: Aclaris public filings",
+  "description": "SEC-filed employment agreements, 2023 to 2024. Verbatim excerpts from salary and employee-benefits clauses; original SEC sources linked on each document.",
+  "status": "changes"
+ },
+ {
   "id": "quiet-changes",
   "title": "Quiet changes",
   "description": "The cover note says only typos and an address changed. Four terms moved: one the deal desk can accept, one to counter, two for other approvers.",

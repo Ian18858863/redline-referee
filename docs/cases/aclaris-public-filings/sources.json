@@ -1,0 +1,22 @@
+[
+  {
+    "version": "v1",
+    "year": 2023,
+    "url": "https://www.sec.gov/Archives/edgar/data/1557746/000155837023010987/acrs-20230609xex10d1.htm",
+    "quotes": [
+      "Employer will pay to Executive an annual base salary of $280,800",
+      "similarly situated part-time employees"
+    ],
+    "pdf_sha256": "4d474c0b01fa5ccc52be8ca2a5cac9aebd781523ac62f510f050f3736ebf3fa1"
+  },
+  {
+    "version": "v2",
+    "year": 2024,
+    "url": "https://www.sec.gov/Archives/edgar/data/1557746/000155837024001753/acrs-20231231xex10d15.htm",
+    "quotes": [
+      "Employer will pay to Executive an annual base salary of $430,000",
+      "similarly situated full-time employees"
+    ],
+    "pdf_sha256": "dcc77ed5faf37f8c1d65fbb3e298de3b8dea40f0020f88698f5c478b3c3f5283"
+  }
+]

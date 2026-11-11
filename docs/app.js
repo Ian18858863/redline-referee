@@ -220,7 +220,7 @@ function modeLabels(r) {
   if (r.mode === 'live' && secs) return [`Reviewed live in ${secs}`, `Reviewed live in ${secs}`];
   return [long, MODES_SHORT[r.mode] ?? long];
 }
-const START_CASES = ['quiet-changes', 'two-readers', 'instruction-in-note'];
+const START_CASES = ['aclaris-public-filings', 'quiet-changes', 'two-readers', 'instruction-in-note'];
 function renderTop() {
   const r = S.review;
   const current = S.run ? S.runs.find((x) => x.base === S.base) : S.index.find((x) => x.id === S.caseId);
@@ -952,6 +952,7 @@ function renderGate(r) {
 
 function docHead(side, d, name, r, lay) {
   const meta = h('div', { class: 'doc-meta' });
+  if (d.public_source) meta.append(h('a', { href: d.public_source, target: '_blank', rel: 'noopener' }, 'Original SEC filing'));
   const link = (file, label, title) => h('a', { href: S.base + file, download: file, title: title || null }, ico('download'), label);
   if (S.layer !== 'changes') {
     if (lay) {

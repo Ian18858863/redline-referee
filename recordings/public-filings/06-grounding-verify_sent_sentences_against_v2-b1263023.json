@@ -1,0 +1,109 @@
+{
+ "endpoint": "/clocked/grounding",
+ "label": "verify sent sentences against v2",
+ "request_hash": "b126302376e78029e1702e5bd3a4259fb98634cca898a8a5f88eb28e21474f5c",
+ "request": {
+  "pdf": {
+   "sha256": "dcc77ed5faf37f8c1d65fbb3e298de3b8dea40f0020f88698f5c478b3c3f5283"
+  },
+  "answer": "Employer will pay to Executive an annual base salary of $280,800 similarly situated part-time employees",
+  "claims": [
+   "Employer will pay to Executive an annual base salary of $280,800",
+   "similarly situated part-time employees"
+  ],
+  "instructions": "The source is one version of an agreement. Each claim is a sentence taken from the other version of the same agreement. A claim is supported when the source states the same obligation, right, amount, rate, period, party and place, even if the wording, spelling, punctuation or number formatting differs. A claim is contradicted when the source states something different about any of those. Judge each claim against the passage of the source that covers the same subject.",
+  "threshold": 0.6,
+  "evidence": "all"
+ },
+ "meta": {
+  "status": 200,
+  "credits": 4,
+  "model_ms": 75.757568,
+  "cost_usd": 0.000797,
+  "attempts": 1,
+  "idempotency_key": "2066953f-b7c9-45b1-ad91-49112efe31e3",
+  "request_id": null,
+  "trace": "a58a8eaaeeeda158-LAX",
+  "wall_ms": 555,
+  "recorded_at": "2026-11-11T04:29:41+00:00"
+ },
+ "response": {
+  "model": "clocked-1.0",
+  "grounded": 0.006,
+  "ungrounded": 0.994,
+  "verdict": "contradicted",
+  "threshold": 0.6,
+  "instructions_used": "custom",
+  "documents": [
+   {
+    "id": "pdf",
+    "share": 0,
+    "share_of_answer": 0.006,
+    "claims": []
+   }
+  ],
+  "claims": [
+   {
+    "claim": "Employer will pay to Executive an annual base salary of $280,800",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.6275,
+    "supported": 0.002,
+    "contradicted": 0.9933,
+    "not_stated": 0.003,
+    "not_a_claim": 0.0017,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null,
+    "evidence": {
+     "document": "pdf",
+     "quote": "Employer will pay to Executive an annual base salary of $430,000",
+     "start": 115,
+     "end": 179,
+     "confidence": 0.514
+    }
+   },
+   {
+    "claim": "similarly situated part-time employees",
+    "kind": "claim",
+    "counted": true,
+    "weight": 0.3725,
+    "supported": 0.0128,
+    "contradicted": 0.827,
+    "not_stated": 0.1474,
+    "not_a_claim": 0.0128,
+    "verdict": "contradicted",
+    "sources": {
+     "pdf": 1
+    },
+    "source": null
+   }
+  ],
+  "unsupported_claims": [
+   0,
+   1
+  ],
+  "not_claims": [],
+  "weakest_claim": {
+   "index": 0,
+   "supported": 0.002
+  },
+  "timing": {
+   "read_ms": 81,
+   "total_ms": 83
+  },
+  "pdf": {
+   "pages": 1,
+   "selected": [
+    1
+   ],
+   "mode": "text",
+   "page_offsets": [
+    0
+   ],
+   "characters": 299
+  }
+ }
+}
