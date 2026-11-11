@@ -963,7 +963,7 @@ function docHead(side, d, name, r, lay) {
       meta.append(h('span', { class: 'doc-caption' }, 'Clocked marked only the other document in this layer. These are this one\'s clean pages.'));
     }
   } else {
-    if (d.source_pdf) meta.append(link(d.source_pdf, 'Original'));
+    if (d.source_pdf) meta.append(link(d.source_pdf, d.public_source ? 'Excerpt PDF' : 'Original'));
     if (!arr(d.layers).length) {
       // Older reviews carry no layers: offer whatever marked copies exist as plain downloads.
       const seen = new Set([d.source_pdf]);

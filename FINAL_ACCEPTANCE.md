@@ -4,11 +4,11 @@
 
 The verified integration combines:
 
-- `main@d751898`, which already includes PR #2's hidden-text fix (`8fcf25d`);
+- `main@72ebf36`, which includes PR #2's hidden-text fix (`8fcf25d`), Claude's merged PR #3 and the refreshed narrated video;
 - Claude's product branch at `bfbc679` (`7714266` adds who decides next, evidence explanations, the criteria gap table and study status; `bfbc679` rebuilds the static demo);
 - Codex's prepared-handoff wording correction and final integration review.
 
-PR #2 was merged elsewhere in the repository while this verification was in progress. This integration does not undo that merge, merge the product branch into `main`, deploy, or update the official entry. The owner explicitly requested **no further merge**; the combined work is submitted as a separate reviewable PR. Commit-specific CI is linked in its conversation.
+PR #2 was merged elsewhere in the repository while this verification was in progress. This integration does not undo that merge, perform any further merge into `main`, deploy, or update the official entry. The owner explicitly requested **no further merge**; the combined work is submitted as a separate reviewable PR. Commit-specific CI is linked in its conversation.
 
 ## Engineering acceptance
 
